@@ -1,0 +1,70 @@
+body {
+    max-width: 100%;
+}
+
+
+
+/* --Nav Bar------------------------------------------------------------------------------------------------------- */
+.NavBarContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bg-body-tertiary {
+    width: 60%;
+    background-color:white !important;
+}
+
+.navbar-brand {
+    margin-right: 130px;
+    font-size: 25px;
+}
+
+.me-auto {
+    font-size: 25px;
+}
+
+.nav-item  {
+color: black;
+}
+
+.navbar-nav {
+    --bs-nav-link-color :black
+
+}
+
+/* --Register From------------------------------------------------------------------------------------------------------- */
+
+.RegisterFormContainer  {
+    padding-top: 100px;
+    max-width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap ;
+    }
+
+.registerTitle{
+    font-weight: bold;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.roleLabel{
+    margin-top: 50px;
+}
+
+.firstNameInput{ 
+    padding-left: 0px !important;
+    padding-right: 20px !important;
+}
+.lastNameInput{
+    padding-right: 0px !important;
+    padding-left: 20px !important;
+
+}
+
+/* --Register From------------------------------------------------------------------------------------------------------- */
+
+
