@@ -38,7 +38,7 @@ color: black;
 
 .RegisterFormContainer  {
     padding-top: 100px;
-    max-width: 30%;
+    max-width: 25%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap ;
@@ -57,11 +57,11 @@ color: black;
 
 .firstNameInput{ 
     padding-left: 0px !important;
-    padding-right: 20px !important;
+    /* padding-right: 20px !important; */
 }
 .lastNameInput{
     padding-right: 0px !important;
-    padding-left: 20px !important;
+    /* padding-left: 20px !important; */
 
 }
 
