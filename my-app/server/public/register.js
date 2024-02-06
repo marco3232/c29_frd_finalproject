@@ -1,48 +1,42 @@
-
-function register(){
-    let target = document.querySelector("#submitBtn");
-    target.addEventListener("submit", async (e)=>{
+export function register() {
+    let form = document.querySelector(".RegisterFormBody form"); 
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const passwordInput1 = target.passwordInput1.value
-        const passwordInput2 = target.passwordInput2.value
+        const passwordInput1 = form.passwordInput1.value;
+        const passwordInput2 = form.passwordInput2.value;
 
         if (passwordInput1 !== passwordInput2) {
-            swal.fire("Error... ", "The password is not match!");
-            return 
+            alert("Error... ", "The password is not match!");
+            return;
         } else {
-            swal.fire("Success", "Registered success","success")
-
+            alert("Success", "Registered success", "success");
         }
 
         const res = await fetch("/auth/register", {
-            method:"POST",
-            headers:{
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username: target.username.value,
-                password: target.passwordInput1.value,
-                email: target.email.value,
-
-            })
+                username: form.username.value,
+                password: form.passwordInput1.value,
+                email: form.email.value,
+            }),
         });
         const result = await res.json();
 
-        if(res.status == 200){
-            console.log(result)
+        if (res.status == 200) {
+            console.log(result);
             window.location.href = "/";
-            return
+            return;
+        }
 
-        } 
-
-
-        swal.fire("Error... ", "Account exists!");
-        
-    })
+        alert("Error... ", "Account exists!");
+    });
 }
-register()
+register();
 
 function alert() {
-    swal.fire("Success", "Book has been collected", "success");
+    alert("Success", "Book has been collected", "success");
 }

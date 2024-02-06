@@ -7,11 +7,4 @@ export interface UserService {
     hashed: string,
     is_admin: boolean
   }): Promise<void>
-
-
-
-
-  // clientName (output:{ username:string;}):Promise<{ username:string}>
-
-
 }
