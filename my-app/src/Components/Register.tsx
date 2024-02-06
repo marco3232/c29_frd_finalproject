@@ -23,9 +23,8 @@ const Register = () => {
 
     return (
         <MDBContainer fluid className='RegisterFormContainer'>
-            <MDBCardBody className='RegisterFormFirstContainer'>
+            <MDBCardBody className='RegisterFormBody'>
                 <h3 className='registerTitle'>Registration </h3>
-
                 <MDBRow>
                     <MDBCol md='6' className='firstNameInput'>
                         <MDBInput
@@ -108,11 +107,11 @@ const Register = () => {
                         inline
                     />
                 </div>
-                <div className='d-flex justify-content-end pt-3'>
-                    <MDBBtn color='light' size='lg'>
+                <div className='submitContainer   '>
+                    <MDBBtn id="resetBtn" color='danger' size='lg'>
                         Reset all
                     </MDBBtn>
-                    <MDBBtn className='ms-2' color='warning' size='lg' onClick={handleRegister}>
+                    <MDBBtn id="submitBtn" color='info' size='lg' onClick={handleRegister}>
                         Submit form
                     </MDBBtn>
                 </div>

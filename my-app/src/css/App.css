@@ -2,44 +2,38 @@ body {
     max-width: 100%;
 }
 
+#root {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
+#shopName {
+    font-weight: bold;
+    font-size: 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
 .NavBarContainer {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.bg-body-tertiary {
-    width: 60%;
-    background-color:white !important;
+.bg-body-tertiary{
+    width: 100%;
+    /* box-shadow: none !important; */
 }
 
-.navbar-brand {
-    margin-right: 130px;
-    font-size: 25px;
-}
-
-.me-auto {
-    font-size: 25px;
-}
-
-.nav-item  {
-color: black;
-}
-
-.navbar-nav {
-    --bs-nav-link-color :black
-
-}
 
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
 .RegisterFormContainer  {
     padding-top: 100px;
-    max-width: 25%;
+    width: 500px !important;
     display: flex;
     justify-content: center;
     flex-wrap: wrap ;
+    min-height: 100vh;
     }
 
 .registerTitle{
@@ -50,7 +44,8 @@ color: black;
 }
 
 .roleLabel{
-    margin-top: 50px;
+    margin-top: 20px;
+    color: black;
 }
 
 .firstNameInput{ 
@@ -63,6 +58,34 @@ color: black;
 
 }
 
-/* --Register From------------------------------------------------------------------------------------------------------- */
+.submitContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+#resetBtn {
+    margin-right: 50px;
+    height: 40px;
+}
+#submitBtn {
+    height: 40px;
+}
+
+/* --Class Container------------------------------------------------------------------------------------------------------- */
+
+.bigContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
 
 
+
+
+
+
+.uploadForm {
+max-width: 100%;
+width: 500px;
+}
