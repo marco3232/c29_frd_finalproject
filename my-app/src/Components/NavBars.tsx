@@ -4,53 +4,61 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useNavigate } from 'react-router-dom';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useNavigate } from 'react-router';
 
 
-
-function NavBarControl() {
+function OffcanvasExample() {
+    const expand = 'lg'
     const navigate = useNavigate();
+
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
-            <Container fluid>
-                <Navbar.Brand href="#">Title</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
+        <>
+
+            <Navbar key={'md'} expand={expand} className="bg-body-tertiary mb-3">
+                <Container fluid>
+                    <Navbar.Brand href="#"><b>網站名 Testing</b></Navbar.Brand>
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+                    <Navbar.Offcanvas
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="end"
                     >
-                        <NavDropdown title="Link" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="/upload">Upload</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action5">
-                                Something else here
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link onClick={() => navigate('/notFoundPage')}>
-                            <p>AllTools</p>
-                        </Nav.Link>
-                        <Nav.Link onClick={() => navigate('/Register')}>
-                            <p>Register</p>
-                        </Nav.Link>
-                    </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Container >
-        </Navbar >
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className="justify-content-end flex-grow-1 pe-3">
+                                <Nav.Link href="#action1">主頁</Nav.Link>
+                                <Nav.Link href="#action2">產品</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/upload')}>捐贈物資</Nav.Link>
+                                <NavDropdown
+                                    title="Dropdown"
+                                    id={`offcanvasNavbarDropdown-expand-${expand}`}
+                                >
+                                    <NavDropdown.Item onClick={() => navigate('/Register')}>注冊用戶</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/upload')}>捐贈物資</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/upload')}>testing1</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/upload')}>testing2</NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                            <Form className="d-flex">
+                                <Form.Control
+                                    type="search"
+                                    placeholder="Search"
+                                    className="me-2"
+                                    aria-label="Search"
+                                />
+                                <Button variant="outline-success">Search</Button>
+                            </Form>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
+        </>
     );
 }
 
-export default NavBarControl;
+export default OffcanvasExample;
