@@ -10,6 +10,7 @@ const app = express();
 const knexConfig = require("./knexfile");
 const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 const PORT = 8080;
+// const PORT = 3000;
 const todoService = new TodoService(knex);
 const todoController = new TodoController(todoService);
 
