@@ -7,7 +7,6 @@ import {
     MDBCol,
     MDBInput,
     MDBRadio,
-    MDBCheckbox,
 } from 'mdb-react-ui-kit';
 
 /* --------------------------------------------------------------------------------------------------------- */
@@ -20,8 +19,6 @@ const Register = () => {
     const [repeatPassword, setRepeatPassword] = useState('');
 
     const handleRegister = () => {
-        // 在這裡進行註冊邏輯，將用戶名和密碼保存到數據庫
-        // 可以使用上述狀態變量來獲取用戶輸入的值
     };
 
     return (
