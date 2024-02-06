@@ -6,7 +6,7 @@ dotenv.config();
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: "sqlite3",
+    client: "postgresql",
     connection: {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,

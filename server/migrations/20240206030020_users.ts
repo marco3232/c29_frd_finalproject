@@ -8,7 +8,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string("last_name",64)
         table.string("email").unique()
         table.bigint("phone").unique()
-        table.string("password_hash",64)
+        table.string("password",64)
+        table.string("role")
         table.timestamps(false,true)
     })
 }
