@@ -11,7 +11,7 @@ import {
 
 /* --------------------------------------------------------------------------------------------------------- */
 
-const Register = () => {
+const RegisterForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -75,6 +75,7 @@ const Register = () => {
                         value={repeatPassword}
                         onChange={(e) => setRepeatPassword(e.target.value)}
                     />
+
                 </MDBRow>
                 <div className='roleLabel'>
                     <h6 className=''>用戶身份:</h6>
@@ -106,6 +107,7 @@ const Register = () => {
                         label='非牟利機構'
                         inline
                     />
+
                 </div>
                 <div className='submitContainer   '>
                     <MDBBtn id="resetBtn" color='danger' size='lg'>
@@ -120,4 +122,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterForm;

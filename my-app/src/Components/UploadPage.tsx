@@ -1,3 +1,4 @@
+import { MDBBtn } from 'mdb-react-ui-kit';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 export default function UploadPage() {
@@ -14,17 +15,14 @@ export default function UploadPage() {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        // 在這裡實現提交功能，可以將selectedItem和quantity傳遞給後端或其他處理函數
-        console.log("選擇的物品：", selectedItem);
-        console.log("數量：", quantity);
     };
 
     return (
         <div className='uploadForm'>
-            <form onSubmit={handleSubmit}>
+            <form className='selectItem' onSubmit={handleSubmit}>
                 <label>
-                    請選擇捐贈物品：
-                    <select name="selectDonate" value={selectedItem} onChange={handleItemChange}>
+                    <h3><b>請選擇捐贈物品：</b></h3><br />
+                    <select className='donateItemList' name="selectDonate" value={selectedItem} onChange={handleItemChange}>
                         <option value="">請選擇</option>
                         <option value="wheelchair">輪椅</option>
                         <option value="electric_wheelchair">電動輪椅</option>
@@ -38,11 +36,15 @@ export default function UploadPage() {
                         <option value="paramount_bed">護理床</option>
                         <option value="lotion">潤膚霜</option>
                         <option value="others">其他</option>
-                    </select>
-                    數量 : <input type="number" value={quantity} onChange={handleQuantityChange} />
-                </label>
-                <button type="submit">提交</button>
+                        <option value="其他">其他</option>
+                    </select>{'\u00A0\u00A0'}{'\u00A0\u00A0'}
+                    <b>數量 : <input type="number" value={quantity} onChange={handleQuantityChange} /><br /><br /></b>
+                    <h5><b>確認捐贈物品 : {selectedItem} <br /><br />
+                        確認數量 : {quantity}</b></h5>
+                </label><br /><br />
+                <MDBBtn className='uploadBtn' type="submit" color='info' size='lg'>提交</MDBBtn>
+
             </form>
-        </div>
+        </div >
     );
 }

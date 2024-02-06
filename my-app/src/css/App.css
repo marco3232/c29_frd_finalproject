@@ -7,33 +7,60 @@ display: flex;
 justify-content: center;
 flex-wrap: wrap;
 }
-/* --Nav Bar------------------------------------------------------------------------------------------------------- */
-#shopName {
-    font-weight: bold;
-    font-size: 40px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+
+.bigContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
 }
+
+/* --Nav Bar------------------------------------------------------------------------------------------------------- */
 .NavBarContainer {
+border-top: solid 10px rgb(87, 179, 207);
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+#shopName {
+    font-weight: bold;
+    font-size: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
 
 .bg-body-tertiary{
     width: 100%;
-    /* box-shadow: none !important; */
+    box-shadow: none !important;
 }
 
+.offcanvas-body{
+font-size: 20px;
+}
+
+.nav-link {
+    color: black !important;
+}
+.nav-link:hover{
+    color:rgb(16, 16, 16) !important;
+    font-weight: bold;
+}
+.dropdown-item {
+    color: rgb(0, 0, 0) !important;
+}
+
+.searchBox {
+    align-items: center;
+}
 
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
 .RegisterFormContainer  {
-    padding-top: 100px;
+    padding-top: 100px !important;
     width: 500px !important;
     display: flex;
     justify-content: center;
     flex-wrap: wrap ;
-    min-height: 100vh;
     }
 
 .registerTitle{
@@ -64,28 +91,79 @@ flex-wrap: wrap;
     margin-top: 40px;
 }
 #resetBtn {
+    font-weight: bold;
     margin-right: 50px;
-    height: 40px;
+    line-height: 0.8 !important;
 }
+
 #submitBtn {
-    height: 40px;
+    font-weight: bold;
+    line-height: 0.5 !important;
 }
 
-/* --Class Container------------------------------------------------------------------------------------------------------- */
 
-.bigContainer {
+/* --Login Form------------------------------------------------------------------------------------------------------- */
+.loginFormContainer{
+    padding-top: 50px !important;
+    width: 500px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.loginForm {
+    width: 100% !important;
+    padding-top: 100px;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
+}
+
+.loginTitle {
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+.forgotPw {
+    display: flex;
     justify-content: center;
-    max-width: 100%;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.forgotPw:hover {
+    color: red;
+}
+
+.registerHere:hover {
+color:red
+}
+
+.loginBtn {
+    font-weight: bold !important;
+    line-height: 1 !important;
 }
 
 
-
-
-
+/* --Upload Form------------------------------------------------------------------------------------------------------- */
 
 .uploadForm {
-max-width: 100%;
-width: 500px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+    margin-top: 100px;
+    max-width: 100%;
+    width: 500px;
+    }
+
+.donateItemList {
+    margin-right: 30px;
+    margin-bottom: 40px;
+    background-color: white;
+    width: 200px;
+    height: 30px;
+}
+
+.uploadBtn {
+    font-weight: bold !important;
+    line-height: 1 !important;
 }

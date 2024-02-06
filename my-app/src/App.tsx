@@ -3,8 +3,7 @@ import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import Register from './Components/Register';
 import UploadPage from './Components/UploadPage';
-
-
+import LoginForm from './Components/LogIn';
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -16,6 +15,7 @@ function App() {
       {shouldShowNavBar && (
         <div className='NavBarContainer'>
           <NavBarControl />
+
         </div>
       )
       }
@@ -28,6 +28,7 @@ function App() {
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Upload" element={<UploadPage />} />
+        <Route path="/Login" element={<LoginForm />} />
         <Route path="/" element={""} />
       </Routes>
       <br />

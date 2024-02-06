@@ -30,14 +30,15 @@ function OffcanvasExample() {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Nav className="justify-content-end flex-grow-1 pe-5">
                                 <Nav.Link href="/">主頁</Nav.Link>
-                                <Nav.Link href="#action2">產品</Nav.Link>
+                                <Nav.Link href="/">產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Register')}>注冊用戶</Nav.Link>
-                                <Nav.Link href="#action2">Testing1</Nav.Link>
-                                <Nav.Link href="#action2">Testing2</Nav.Link>
-                                <Nav.Link href="#action2">Testing3</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Login')}>登入用戶</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Register')}>Testing</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Testing</Nav.Link>
+
                                 <NavDropdown
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${expandSize}`}
@@ -48,14 +49,14 @@ function OffcanvasExample() {
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                            <Form className="d-flex">
+                            <Form className="searchBox d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button id="searchBtn" variant="outline-success">Search</Button>
                             </Form>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
