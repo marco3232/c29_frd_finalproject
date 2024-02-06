@@ -1,5 +1,4 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { HomePage } from "./Page/HomePage";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import Register from './Components/Register';
@@ -27,7 +26,6 @@ function App() {
       )
       }
       <Routes>
-        <Route path="/homePage" element={<HomePage />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/upload" element={<UploadPage />} />
