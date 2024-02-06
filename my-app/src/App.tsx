@@ -3,7 +3,10 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { HomePage } from "./Page/HomePage";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
-import Register from "./Components/Register";
+import Register from './Components/Register';
+import UploadPage from './Components/UploadPage';
+
+
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -30,6 +33,7 @@ function App() {
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/upload" element={<UploadPage />} />
         <Route path="/" element={""} />
       </Routes>
       <br />
