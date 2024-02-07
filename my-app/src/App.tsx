@@ -4,7 +4,8 @@ import { HomePage } from "./Page/HomePage";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import Register from './Components/Register';
-import UploadPage from './Components/UploadPage';
+import UploadPage from "./Components/UploadPage";
+
 
 
 // --------------------------------------------------------------------------------
