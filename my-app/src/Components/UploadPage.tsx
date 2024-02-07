@@ -4,11 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "..";
 import { toggleItem } from "../hook/todoAPI";
 
-type ListPoops = {
-    id: number;
-    name: string;
-    count: number;
-};
+// type ListPoops = {
+//     id: number;
+//     name: string;
+//     count: number;
+// };
 
 const itemList = [
     { value: "wheelchair", item: "輪椅", showValue: "輪椅" },

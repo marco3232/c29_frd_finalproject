@@ -3,7 +3,9 @@ export interface UserService {
   getUserByEmail(email: string): Promise<any>
   saveUser(output: {
     email: string,
-    username: string,
+    firstName: string,
+    lastName: string,
+    phoneNumber: number
     hashed: string,
     is_admin: boolean
   }): Promise<void>

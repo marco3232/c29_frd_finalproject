@@ -7,13 +7,13 @@ export async function seed(knex: Knex): Promise<void> {
 
     // Inserts seed entries
     await knex("users").insert([
-        { 
-            first_name:"Hao",
-            last_name:"Sexy",
-            email:"sexy@gmail.com",
-            phone:"98765432",
-            password:await hashPassword("123456"),
-            role:"u",
+        {
+            first_name: "Hao",
+            last_name: "Sexy",
+            email: "sexy@gmail.com",
+            phone: "98765432",
+            password: await hashPassword("123456"),
+            role: "u",
         }
     ]).into("users");
 };
