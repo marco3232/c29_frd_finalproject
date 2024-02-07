@@ -14,6 +14,13 @@ export async function seed(knex: Knex): Promise<void> {
             phone: "98765432",
             password: await hashPassword("123456"),
             role: "u",
+        },
+        { 
+            eng_surname:"haha",
+            eng_given_name:"baba",
+            email:"haha@gmail.com",
+            password:await hashPassword("123456"),
+            mobile_phone:"98765432",
         }
     ]).into("users");
 };

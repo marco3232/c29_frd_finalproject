@@ -1,6 +1,6 @@
-// import { UserService } from "../services/user.service";
-// import { Request, Response } from "express";
-// import { hashPassword } from "../utils/hash";
+import { UserService } from "../services/User.service";
+import { Request, Response } from "express";
+import { hashPassword } from "../utils/hash";
 
 // export class AuthController {
 //     constructor(private userService: UserService) { }

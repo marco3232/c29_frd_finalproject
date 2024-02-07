@@ -11,7 +11,7 @@ import { toggleItem } from "../hook/todoAPI";
 // };
 
 const itemList = [
-    { value: "wheelchair", item: "輪椅", showValue: "輪椅" },
+    { value: "wheelchair", item: "輪椅" },
     { value: "electric_wheelchair", item: "電動輪椅" },
     { value: "crutch", item: "拐杖" },
     { value: "walker_frame", item: "步行架" },
