@@ -46,3 +46,12 @@ export async function addNewItems(title: string, description: string) {
 
 //-------------------------------------------------------------------------------------------
 
+export async function toggleItem(id: number) {
+    const res = await fetch(`${source}/todo/item/toggle/${id}`, {
+        method: "PUT",
+    })
+
+    let resp = await res.json()
+    return resp.message as string
+
+}
