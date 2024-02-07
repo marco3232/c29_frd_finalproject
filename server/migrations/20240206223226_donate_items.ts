@@ -5,10 +5,7 @@ export async function up(knex: Knex): Promise<void> {
         table.increments("id").primary();
         table.string("uuid").notNullable();
         table.string("item_name").notNullable();
-        table.integer("category_id").unsigned().references("id").inTable("category");
-        table.integer("donater_id").unsigned().references("id").inTable("users");
-        table.boolean("availability").defaultTo(true);
-        table.enum("status", ["normal", "repairing", "rented", "disposed", "lost"]).defaultTo("normal");
+        table.integer("category_id").unsigned().references("id").inTable("categories");
         table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
     });

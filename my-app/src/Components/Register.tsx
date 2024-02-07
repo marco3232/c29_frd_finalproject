@@ -17,7 +17,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-
+    const [phoneNumber, setPhoneNumber] = useState('')
     const handleRegister = async () => {
         try {
             const passwordInput1 = password;
@@ -92,6 +92,15 @@ const RegisterForm = () => {
                         />
                         <MDBInput
                             wrapperClass='mb-4'
+                            label='Phone Number'
+                            size='lg'
+                            id='form3'
+                            type='phoneNumber'
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                        />
+                        <MDBInput
+                            wrapperClass='mb-4'
                             label='Password'
                             size='lg'
                             id='form4'
@@ -101,7 +110,7 @@ const RegisterForm = () => {
                         />
                         <MDBInput
                             wrapperClass='mb-4'
-                            label='Repeat your password'
+                            label='Confirm your password'
                             size='lg'
                             id='form5'
                             type='password'
