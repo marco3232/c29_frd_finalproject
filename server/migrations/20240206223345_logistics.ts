@@ -5,19 +5,15 @@ export async function up(knex: Knex): Promise<void> {
         table.increments("id").primary();
         table.string("uuid").notNullable();
         table.enum("purpose", ["donation", "deliver", "return"]).notNullable();
-        table.integer("checkin_id").unsigned().references("id").inTable("checkins");
-        table.integer("checkout_id").unsigned().references("id").inTable("checkouts");
         table.string("room");
         table.string("building");
         table.string("street");
-        table.integer("district_id");
+        table.integer("district");
         table.integer("contact_number");
         table.string("contact_name");
-        table.date("favoured_date_1");
-        table.date("favoured_date_2");
-        table.date("favoured_date_3");
         table.date("confirmed_date");
         table.string("confirmed_session");
+        table.integer("donate_items_id")
         table.boolean("tried");
         table.boolean("rescheduled");
         table.enum("status", ["in-storage", "in-transit", "delivered", "cancelled"]).defaultTo("in-storage");

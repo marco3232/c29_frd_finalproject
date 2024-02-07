@@ -3,7 +3,7 @@ import jwtSimple from "jwt-simple";
 import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
 
-export class LoginService {
+export class AuthService {
 
     public constructor (private knex: Knex) {}
 
@@ -11,24 +11,24 @@ export class LoginService {
         return this.knex("users");
     }
 
-    async login (username: string, password_input: string){
+    async login (email: string, password_input: string){
+
 
         let userInfoQuery = await this.table()
-            .select("*")
-            .where("email" );
+        .select("*")
+        .where("email", email)
+        .first()
 
-            // console.log("march wanner know:", userInfoQuery)
+        if (userInfoQuery){
 
-        if (userInfoQuery.length > 0){
-
-            let password_hash = userInfoQuery[0].password_hash;
-
-            let compareResult = await comparePassword(password_input, password_hash)
+            let password = userInfoQuery.password;
+            
+            let compareResult = await comparePassword(password_input,password)
 
             if (compareResult) {
                 const payload = {
-                    id: userInfoQuery[0].id,
-                    username: userInfoQuery[0].username,
+                    id: userInfoQuery.id,
+                    email: userInfoQuery.email,
                 };
 
                 const token = jwtSimple.encode(payload, jwt.jwtSecret);
@@ -38,7 +38,7 @@ export class LoginService {
                 return {flag: false, message:"wrong password"}
             }
         } else{
-            return  { flag: false, message: "no such username" };
+            return  { flag: false, message: "no such email" };
         }
     }
 }
