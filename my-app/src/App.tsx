@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Upload" element={<UploadPage name={""} />} />
+        <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/" element={""} />
       </Routes>
