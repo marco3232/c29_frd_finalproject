@@ -2,20 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 //-------------------------------------------------------------------------------------------
 
 const source = "http://localhost:8080"
-interface TodoItem {
-    id: number
-    title: string
-    description: string
-    status: boolean
+interface DonateItem {
+    item_name:string
 }
 
-export function useTodoItems() {
+export function useItems() {
     const { isLoading, error, data, isFetching } = useQuery({
-        queryKey: ["todoItems"],
+        queryKey: ["donate_items"],
         queryFn: async () => {
-            const res = await fetch(`${source}/todo/items`)
+            const res = await fetch(`${source}/donate/items`)
             const result = await res.json()
-            return result.data as TodoItem[]
+            return result.data as DonateItem[]
         }
     })
 
@@ -28,6 +25,22 @@ export function useTodoItems() {
     }
     return data;
 };
+
+//-------------------------------------------------------------------------------------------
+
+export async function getDonateItems(item_name:string) {
+    const res =await fetch(`${source}/donate/items}`, {
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({item_name:item_name})
+    });
+
+    const resp = await res.json()
+
+    return resp.message as string;
+}
 
 //-------------------------------------------------------------------------------------------
 

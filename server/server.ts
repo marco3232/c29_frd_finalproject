@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
 import { AuthService } from "./services/UsersService";
-import { AuthController,  } from "./controllers/UsersController";
+import { AuthController, } from "./controllers/UsersController";
 import Knex from "knex";
 
 // -----------------------------------------------------------------------------------------------
@@ -17,9 +17,8 @@ import { ItemController } from "./controllers/ItemController";
 import { ItemService } from "./services/Item.service";
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);
-
 const authService = new AuthService(knex);
-const authController = new AuthController (authService);
+const authController = new AuthController(authService);
 
 // -----------------------------------------------------------------------------------------------
 
