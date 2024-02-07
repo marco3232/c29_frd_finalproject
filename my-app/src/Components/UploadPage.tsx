@@ -5,20 +5,54 @@ import { queryClient } from "..";
 import { getDonateItems, toggleItem, useItems } from "../hook/dataAPI";
 
 type ItemProps = {
+<<<<<<< HEAD
     // id: number;
     name: string;
     // count: number;
+=======
+  // id: number;
+  // name: string;
+  // count: number;
+>>>>>>> b648d487deff1fd68ba3dcda018987ae43965554
 };
 
+export default function UploadPage(props: ItemProps) {
+  const itemList: string | Array<{ item_name: string }> = useItems();
+  console.log("check", itemList);
 
+<<<<<<< HEAD
 
 export default function UploadPage(props: ItemProps) {
 
     const itemList:
         | string
         | Array<{ item_name: string }> = useItems()
+=======
+  const [selectedItem, setSelectedItem] = useState("");
+  const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedItem(event.target.value);
+  };
+  const [quantity, setQuantity] = useState("");
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuantity(event.target.value);
+  };
 
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+  };
+>>>>>>> b648d487deff1fd68ba3dcda018987ae43965554
 
+  // const OnGetDonateItems = useMutation({
+  //     mutationFn: async (item_name:string) => getDonateItems(),
+  //     onSuccess: () => {
+  //         queryClient.invalidateQueries({
+  //             queryKey: ["donate_items"],
+  //             exact:true
+  //         })
+  //     }
+  // })
+
+<<<<<<< HEAD
     const [selectedItem, setSelectedItem] = useState("");
     const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedItem(event.target.value);
@@ -109,5 +143,70 @@ export default function UploadPage(props: ItemProps) {
     //         </form>
     //     </div>
     // );
+=======
+  // const onToggleItem = useMutation({
+  //     mutationFn: async (id: number) => toggleItem(id),
+  //     onSuccess: () => {
+  //         queryClient.invalidateQueries({
+  //             queryKey: ["itemList"],
+  //             exact: true
+  //         });
+  //     }
+  // });
+  return (
+    <>
+      <div className="uploadForm">
+        <form className="selectItem" onSubmit={handleSubmit}>
+          <label>
+            <h3>
+              <b>請選擇捐贈物品：</b>
+            </h3>
+            <br />
+            <select className="donateItemList" name="selectDonate">
+              <option value="">
+                {Array.isArray(itemList) ? (
+                  itemList.length > 0 ? (
+                    // itemList.map!((entry) => (<option>${entry.item_name.split(",")}</option>))
+                    itemList.map!((entry) => (
+                      <option value={entry.item_name}>{entry.item_name}</option>
+                    ))
+                  ) : (
+                    <h3>No Item List</h3>
+                  )
+                ) : (
+                  ""
+                )}
+              </option>
+            </select>
+            {"\u00A0\u00A0"}
+            {"\u00A0\u00A0"}
+            <b>
+              數量 :{" "}
+              <input
+                type="number"
+                value={quantity}
+                onChange={handleQuantityChange}
+              />
+              <button onClick={() => ""}> + + </button>
+              <br />
+              <br />
+            </b>
+            <h5>
+              <b>
+                確認捐贈物品 : {selectedItem} <br />
+                <br />
+                確認數量 : {quantity}
+              </b>
+            </h5>
+          </label>
+          <br />
+          <br />
+          <MDBBtn className="uploadBtn" type="submit" color="info" size="lg">
+            提交
+          </MDBBtn>
+        </form>
+      </div>
+    </>
+  );
+>>>>>>> b648d487deff1fd68ba3dcda018987ae43965554
 }
-
