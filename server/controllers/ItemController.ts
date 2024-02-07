@@ -1,4 +1,4 @@
-import express,{ Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { ItemService } from "../services/Item.service";
 
 export class ItemController {
@@ -17,59 +17,59 @@ export class ItemController {
     res.status(200).json({ data: list });
   };
 
-//   create = async (req: Request, res: Response) => {
-//     let { title_input, description_input } = req.body;
+  //   create = async (req: Request, res: Response) => {
+  //     let { title_input, description_input } = req.body;
 
-//     let result = await this.itemService.createItem(
-//       title_input,
-//       description_input
-//     );
+  //     let result = await this.itemService.createItem(
+  //       title_input,
+  //       description_input
+  //     );
 
-//     if (result) res.status(200).json({ message: "success" });
-//     else
-//       res
-//         .status(500)
-//         .json({ message: "internal server error,cannot insert new item" });
-//   };
+  //     if (result) res.status(200).json({ message: "success" });
+  //     else
+  //       res
+  //         .status(500)
+  //         .json({ message: "internal server error,cannot insert new item" });
+  //   };
 
-//   delete = async (req: Request, res: Response) => {
-//     let { id } = req.params;
+  //   delete = async (req: Request, res: Response) => {
+  //     let { id } = req.params;
 
-//     console.log("check id", id);
-//     let result = await this.todoService.deleteItem(parseInt(id));
+  //     console.log("check id", id);
+  //     let result = await this.todoService.deleteItem(parseInt(id));
 
-//     if (result) res.status(200).json({ message: "success" });
-//     else
-//       res
-//         .status(500)
-//         .json({ message: "internal server error,cannot delete item" });
-//   };
+  //     if (result) res.status(200).json({ message: "success" });
+  //     else
+  //       res
+  //         .status(500)
+  //         .json({ message: "internal server error,cannot delete item" });
+  //   };
 
-//   updateStatus = async (req: Request, res: Response) => {
-//     let { id } = req.params;
-//     console.log("check id", id);
+  //   updateStatus = async (req: Request, res: Response) => {
+  //     let { id } = req.params;
+  //     console.log("check id", id);
 
-//     let result = await this.todoService.updateStatus(parseInt(id));
+  //     let result = await this.todoService.updateStatus(parseInt(id));
 
-//     if (result) res.status(200).json({ message: "success" });
-//     else
-//       res
-//         .status(500)
-//         .json({ message: "internal server error,cannot update item status" });
-//   };
+  //     if (result) res.status(200).json({ message: "success" });
+  //     else
+  //       res
+  //         .status(500)
+  //         .json({ message: "internal server error,cannot update item status" });
+  //   };
 
-//   updateName = async (req: Request, res: Response) => {
-//     let id = req.params.id;
-//     let { new_input } = req.body;
+  //   updateName = async (req: Request, res: Response) => {
+  //     let id = req.params.id;
+  //     let { new_input } = req.body;
 
-//     console.log("check id", id, new_input);
+  //     console.log("check id", id, new_input);
 
-//     let result = await this.todoService.updateName(parseInt(id), new_input);
+  //     let result = await this.todoService.updateName(parseInt(id), new_input);
 
-//     if (result) res.status(200).json({ message: "success" });
-//     else
-//       res
-//         .status(500)
-//         .json({ message: "internal server error,cannot update item name" });
-//   };
+  //     if (result) res.status(200).json({ message: "success" });
+  //     else
+  //       res
+  //         .status(500)
+  //         .json({ message: "internal server error,cannot update item name" });
+  //   };
 }

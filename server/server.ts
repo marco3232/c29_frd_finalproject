@@ -42,6 +42,7 @@ app.post("/auth/register", async (req, res) => {
     res.status(500).json({ message: "Registration failed" });
   }
 });
+
 app.post("/login", authController.router)
 
 console.log("march wanner know:", authController)
