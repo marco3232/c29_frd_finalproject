@@ -1,21 +1,44 @@
-import express,{ Request,Response} from "express";
-import { AuthService } from "../services/AuthService";
+import { UserService } from "../services/user.service";
+import { Request, Response } from "express";
+import { hashPassword } from "../utils/hash";
+
 
 export class AuthController {
-    router = express.Router();
-    public constructor(private authService: AuthService){
-        this.router.post("/login",this.login);
-    }
+    constructor(private userService: UserService) { }
 
-    login = async (req: Request, res: Response) =>{
-        let {email, password} = req.body;
+    register = async (req: Request, res: Response) => {
+        try {
+            if (!req.body.email) {
+                return res.status(400).json({ message: "Email cannot be empty" });
+            } else if (!req.body.password) {
+                return res.status(400).json({ message: "Password cannot be empty" });
+            } else if (!req.body.username) {
+                return res.status(400).json({ message: "Username cannot be empty" });
+            }
 
-        let result = await this.authService.login(email, password)
+            let queryResult = await this.userService.getUserByEmail(req.body.email)
+            console.log("result:", queryResult.rows);
+            if (queryResult.rowCount > 0) {
+                return res.status(400).json({ message: "Account exists" });
+            }
 
-        if (result.flag){
-            res.json({ message: result.message, token: result.token})
-        } else {
-            res.status(400).json(result.message)
+            let hashed = await hashPassword(req.body.password);
+            console.log({
+                email: req.body.email,
+                username: req.body.username,
+                password: hashed,
+            })
+            await this.userService.saveUser({
+                email: req.body.email,
+                username: req.body.username,
+                hashed: hashed,
+                is_admin: false
+            })
+
+            res.json({ message: "register success" });
+        } catch (e: any) {
+            return res.status(400).json({ message: e.message });
+
         }
     }
 }

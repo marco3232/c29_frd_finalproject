@@ -1,32 +1,37 @@
 import cors from "cors";
 import express from "express";
+import Knex from "knex";
+import bodyParser from "body-parser";
 
-
-
-const PORT = 7777;
+// -----------------------------------------------------------------------------------------------
 
 const app = express();
+const knexConfig = require("./knexfile");
+const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
+const PORT = 8080;
 
-app.use(cors)
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}));
-// import Knex from "knex";
-// import { AuthService } from "./services/AuthService";
-// import { AuthController } from "./controllers/AuthController";
+// -----------------------------------------------------------------------------------------------
 
-// const knexConfig = require("./knexfile")
-// const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
-// console.log("March wanner know:",knex)
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// const authService = new AuthService(knex)
-// const authController = new AuthController(authService);
+app.post("/auth/register", async (req, res) => {
+  const { firstname, lastname, password } = req.body;
 
-app.get("/sexy", (req,res)=> {res.send("You a so sexy")})
+  try {
+    await knex("users").insert({ firstname, lastname, password });
+    res.status(200).json({ message: "Registration successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Registration failed" });
+  }
+});
 
-// app.use("/auth", authController.router);
 
-
-app.listen(PORT, ()=>{
+// -----------------------------------------------------------------------------------------------
+app.listen(PORT, () => {
   console.log(`App running at http://localhost:${PORT}`);
 });
 
