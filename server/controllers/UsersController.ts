@@ -22,39 +22,33 @@ export class AuthController {
         }
     }
 
-
-    register = async (req: Request, res:Response) =>{
-        try{
-            if (!req.body.email){
+    register = async (req: Request, res: Response) => {
+        try {
+            if (!req.body.email) {
                 return res.status(400).json({ message: "Email cannot be empty" });
             } else if (!req.body.password) {
-              return res.status(400).json({ message: "Password cannot be empty" });
-            } else if (!req.body.mobile_phone){
-                return res.status(400).json({ message: "Mobile cannot be empty"})
+                return res.status(400).json({ message: "Password cannot be empty" });
+            } else if (!req.body.mobile_phone) {
+                return res.status(400).json({ message: "Mobile cannot be empty" })
             }
 
-            let queryResult= await this.authService.getUserEmail(req.body.email)
+            let queryResult = await this.authService.getUserEmail(req.body.email)
             console.log("result:", queryResult.rows);
             if (queryResult.rowCount > 0) {
-              return res.status(400).json({ message: "Account exists" });
+                return res.status(400).json({ message: "Account exists" });
             }
-          
 
             let hashed = await hashedPassword(req.body.password);
-            // console.log({
-            //   email: req.body.email,
-            //   password: hashed,
-            // })
 
             await this.authService.register(
-                 req.body.email,
-                 hashed,
-                 req.body.mobile_phone
-            )
+                req.body.email,
+                hashed,
+                req.body.mobile_phone
+            );
 
-            res.json({ message: "register success" });
-        }catch(e: any){
-            return res.status(400).json({ message: e.message})
+            return res.json({ message: "register success" });
+        } catch (e: any) {
+            return res.status(400).json({ message: e.message });
         }
     }
 }
