@@ -1,4 +1,4 @@
-import { UserService } from "../services/user.service";
+import { UserService } from "../services/User.service";
 import { Request, Response } from "express";
 import { hashPassword } from "../utils/hash";
 
