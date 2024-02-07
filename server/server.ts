@@ -44,7 +44,7 @@ app.post("/auth/register", async (req, res) => {
   }
 });
 app.post("/login", authController.router)
-
+app.get("/register", authController.router)
 console.log("march wanner know:",authController)
 
 // ----------------------這是分隔線----------------------------
