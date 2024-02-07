@@ -4,19 +4,19 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "..";
 import { getDonateItems, toggleItem, useItems } from "../hook/dataAPI";
 
- type ItemProps = {
+type ItemProps = {
     // id: number;
     name: string;
     // count: number;
 };
 
 
-    
-export default function UploadPage(props:ItemProps) {
 
-    const itemList : 
-        |string
-        |Array<{item_name:string}> = useItems()
+export default function UploadPage(props: ItemProps) {
+
+    const itemList:
+        | string
+        | Array<{ item_name: string }> = useItems()
 
 
     const [selectedItem, setSelectedItem] = useState("");
@@ -33,11 +33,11 @@ export default function UploadPage(props:ItemProps) {
     };
 
     const OnGetDonateItems = useMutation({
-        mutationFn: async (item_name:string) => getDonateItems(props.name),
+        mutationFn: async (item_name: string) => getDonateItems(props.name),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["donate_items"],
-                exact:true
+                exact: true
             })
         }
     })
@@ -53,7 +53,7 @@ export default function UploadPage(props:ItemProps) {
     // });
     return (
         <>
-         {/* <itemList item_name={}/> */}
+            {/* <itemList item_name={}/> */}
         </>
     )
     // return (
@@ -67,7 +67,7 @@ export default function UploadPage(props:ItemProps) {
     //                 <select
     //                     className="donateItemList"
     //                     name="selectDonate"
-                      
+
     //                 >
     //                     <option value="">請選擇</option>
 
@@ -77,8 +77,8 @@ export default function UploadPage(props:ItemProps) {
     //                         </option>
     //                     ))} */}
 
-                       
-                         
+
+
     //                 </select>
     //                 {"\u00A0\u00A0"}
     //                 {"\u00A0\u00A0"}
