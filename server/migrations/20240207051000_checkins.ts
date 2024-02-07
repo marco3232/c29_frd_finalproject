@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("user_id").unsigned().references("id").inTable("users");;
         table.integer("logistic_id").unsigned().references("id").inTable("logistics")
         table.integer("donate_item_id").unsigned().references("id").inTable("donate_items");
-        table.enum("goods_status", ["normal", "repairing", "rented", "disposed", "lost"]).defaultTo("disposed")
+        table.enum("goods_status", ["normal", "repairing", "rented", "disposed", "lost"]).defaultTo("normal")
         table.enum("order_status", ["rejected", "accepted", "received", "processed", "discharged", "checkout"]).defaultTo("received");
         table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
