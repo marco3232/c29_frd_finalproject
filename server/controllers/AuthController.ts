@@ -25,14 +25,11 @@ export class AuthController {
             let hashed = await hashPassword(req.body.password);
             console.log({
                 email: req.body.email,
-                username: req.body.username,
                 password: hashed,
             })
             await this.userService.saveUser({
                 email: req.body.email,
-                username: req.body.username,
                 hashed: hashed,
-                is_admin: false
             })
 
             res.json({ message: "register success" });
