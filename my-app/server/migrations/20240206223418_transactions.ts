@@ -9,10 +9,11 @@ export async function up(knex: Knex): Promise<void> {
         table.decimal("total_amount", 10, 2);
         table.string("stripe_id");
         table.timestamp("created_at").defaultTo(knex.fn.now());
-        table.timestamp("updated_at").defaultTo(knex.fn.now());
+        table.timestamp("updated_at").defaultTo(knex.fn.now())
     });
 }
 
 export async function down(knex: Knex): Promise<void> {
     await knex.schema.dropTable("transactions");
 }
+
