@@ -5,9 +5,11 @@ export async function up(knex: Knex): Promise<void> {
         table.increments("id").primary();
         table.string("uuid").notNullable();
         table.string("item_image_path");
-        table.integer("category_id");
-        table.integer("donater_id").unsigned().references("id").inTable("users");
-        table.enum("status", ["rejected", "accepted", "received", "processed", "discharged"]).defaultTo("received");
+        table.integer("user_id").unsigned().references("id").inTable("users");;
+        table.integer("logistic_id").unsigned().references("id").inTable("logistics")
+        table.integer("donate_item_id").unsigned().references("id").inTable("donate_items");
+        table.enum("goods_status", ["normal", "repairing", "rented", "disposed", "lost"]).defaultTo("disposed")
+        table.enum("order_status", ["rejected", "accepted", "received", "processed", "discharged", "checkout"]).defaultTo("received");
         table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
     });

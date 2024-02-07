@@ -6,10 +6,10 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("checkout_id").unsigned().references("id").inTable("checkouts");
         table.integer("user_id").unsigned().references("id").inTable("users");
         table.enum("purpose", ["deposit", "rent_charge"]).notNullable();
-        table.decimal("total_amount", 10, 2);
+        table.decimal("total_amount");
         table.string("stripe_id");
         table.timestamp("created_at").defaultTo(knex.fn.now());
-        table.timestamp("updated_at").defaultTo(knex.fn.now())
+        table.timestamp("updated_at").defaultTo(knex.fn.now());
     });
 }
 
