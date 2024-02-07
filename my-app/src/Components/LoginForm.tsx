@@ -8,7 +8,7 @@ import {
 }
     from 'mdb-react-ui-kit';
 
-function App() {
+function LoginForm() {
     return (
         <MDBContainer fluid className='loginFormContainer'>
 
@@ -28,4 +28,4 @@ function App() {
     );
 }
 
-export default App;
+export default LoginForm;
