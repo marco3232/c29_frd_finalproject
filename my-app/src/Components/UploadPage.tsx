@@ -21,6 +21,8 @@ export default function UploadPage() {
             <option value="others">其他</option>
         </select>
         數量 : <input />
+        <button onClick={()=> {}}>add</button>
     </label>
     </>)
 }
+
