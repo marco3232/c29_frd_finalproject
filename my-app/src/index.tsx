@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store';
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import { store } from './store';
 //-------------------------------------------------------------------------------------------
 export const queryClient = new QueryClient()
 
@@ -20,7 +20,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-
     <Provider store={store} >
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>

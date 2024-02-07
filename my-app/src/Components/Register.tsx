@@ -16,13 +16,12 @@ const RegisterForm = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('')
     const handleRegister = async () => {
         try {
             const passwordInput1 = password;
-            const passwordInput2 = repeatPassword;
-
+            const passwordInput2 = confirmPassword;
             if (passwordInput1 !== passwordInput2) {
                 alert("The password does not match!");
                 return;
@@ -30,15 +29,18 @@ const RegisterForm = () => {
                 alert("Registered successfully");
             }
 
-            const res = await fetch("/auth/register", {
+            const res = await fetch("/Register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    username: firstName + " " + lastName,
+                    firstName: firstName,
+                    lastName: lastName,
                     password: password,
                     email: email,
+                    phoneNumber: phoneNumber,
+
                 }),
             });
 
@@ -114,8 +116,8 @@ const RegisterForm = () => {
                             size='lg'
                             id='form5'
                             type='password'
-                            value={repeatPassword}
-                            onChange={(e) => setRepeatPassword(e.target.value)}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
                     </MDBRow>
@@ -155,7 +157,7 @@ const RegisterForm = () => {
                         <MDBBtn id="resetBtn" color='danger' size='lg'>
                             Reset all
                         </MDBBtn>
-                        <MDBBtn id="submitBtn" color='info' size='lg' onClick={handleRegister}>
+                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg' >
                             Submit form
                         </MDBBtn>
                     </div>
@@ -166,3 +168,5 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+
+
