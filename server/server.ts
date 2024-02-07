@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
 import { AuthService } from "./services/UsersService";
-import { AuthController,  } from "./controllers/UsersController";
+import { AuthController, } from "./controllers/UsersController";
 import Knex from "knex";
 
 // -----------------------------------------------------------------------------------------------
@@ -17,9 +17,8 @@ import { ItemController } from "./controllers/ItemController";
 import { ItemService } from "./services/Item.service";
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);
-
 const authService = new AuthService(knex);
-const authController = new AuthController (authService);
+const authController = new AuthController(authService);
 
 // -----------------------------------------------------------------------------------------------
 
@@ -45,7 +44,7 @@ app.post("/auth/register", async (req, res) => {
 });
 app.post("/login", authController.router)
 
-console.log("march wanner know:",authController)
+console.log("march wanner know:", authController)
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);
