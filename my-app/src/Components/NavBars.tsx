@@ -32,7 +32,7 @@ function OffcanvasExample() {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-5">
                                 <Nav.Link href="/">主頁</Nav.Link>
-                                <Nav.Link href="/">產品</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/')}>產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Register')}>注冊用戶</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Login')}>登入用戶</Nav.Link>
