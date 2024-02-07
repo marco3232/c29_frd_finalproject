@@ -3,7 +3,8 @@ import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import Register from './Components/Register';
 import UploadPage from './Components/UploadPage';
-import LoginForm from './Components/LogIn';
+import LoginForm from './Components/LoginForm';
+
 // --------------------------------------------------------------------------------
 
 function App() {

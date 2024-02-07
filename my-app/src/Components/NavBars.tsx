@@ -34,7 +34,7 @@ function OffcanvasExample() {
                                 <Nav.Link href="/">主頁</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/')}>產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>捐贈物資</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Register')}>注冊用戶</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Register')}>註冊用戶</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Login')}>登入用戶</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Register')}>Testing</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Testing</Nav.Link>
@@ -43,7 +43,7 @@ function OffcanvasExample() {
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${expandSize}`}
                                 >
-                                    <NavDropdown.Item onClick={() => navigate('/Register')}>注冊用戶</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/Register')}>註冊用戶</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/Upload')}>捐贈物資</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing1</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
