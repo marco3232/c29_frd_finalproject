@@ -8,7 +8,7 @@ import bodyParser from "body-parser";
 const app = express();
 const knexConfig = require("./knexfile");
 const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
-const PORT = 3000;
+const PORT = 8080;
 
 // -----------------------------------------------------------------------------------------------
 

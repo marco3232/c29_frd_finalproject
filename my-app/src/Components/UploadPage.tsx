@@ -68,7 +68,7 @@ export default function UploadPage() {
                         <option value="">請選擇</option>
 
                         {itemList.map((entry) => (
-                            <option key={entry.value} value={entry.showValue}>
+                            <option key={entry.value} value={entry.item}>
                                 {entry.item}
                             </option>
                         ))}
