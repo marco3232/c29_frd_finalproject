@@ -14,12 +14,16 @@ export async function hashedPassword(plainPassword: string) {
     return hash;
 }
 
-export function comparePassword(options: {
-    password: string
+export async function comparePassword(
+    password_input: string,
     password_hash: string
-}): Promise<boolean> {
-    return compare(options.password, options.password_hash)
+) {
+    let result = await compare(password_input, password_hash);
+
+    return result
 }
+
+
 
 export async function checkPassword(options: {
     plainPassword: string;
