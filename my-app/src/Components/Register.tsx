@@ -18,7 +18,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState(0)
+    const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
     const queryClient = useQueryClient()
     const onGetAddUsers = useMutation({
         mutationFn: async (data: { firstName: string, lastName: string, email: string, password: string, phoneNumber: number }) => createUsers(data.firstName, data.lastName, data.password, data.email, data.phoneNumber),
@@ -47,6 +47,9 @@ const RegisterForm = () => {
 
             } if (!phoneNumber) {
                 return alert("Phone number cannot be empty")
+
+            } if (phoneNumber < 10000000) {
+                return alert("Phone number must be 8 digit")
 
             } else {
                 alert("Registered successfully");
