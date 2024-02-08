@@ -8,6 +8,7 @@ import {
     MDBInput,
     MDBRadio,
 } from 'mdb-react-ui-kit';
+import { alignPropType } from 'react-bootstrap/esm/types';
 
 /* --------------------------------------------------------------------------------------------------------- */
 const RegisterForm = () => {
@@ -17,16 +18,26 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('')
-    const handleRegister = async () => {
+
+    const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
+            event.preventDefault();
             const passwordInput1 = password;
             const passwordInput2 = confirmPassword;
+
+
             if (passwordInput1 !== passwordInput2) {
-                alert("The password does not match!");
-                return;
+                return alert("The password does not match!");
+
+            } if (!email) {
+                return alert("Email cannot be empty")
+
+            } if (!phoneNumber) {
+                return alert("Phone number cannot be empty")
+            } if (phoneNumber.length > 8) {
+                return alert("Phone number cannot exceed 8 digits")
             } else {
                 alert("Registered successfully");
-                console.log("register success")
             }
 
             const res = await fetch("/auth/register", {
@@ -39,34 +50,20 @@ const RegisterForm = () => {
                     lastName: lastName,
                     password: password,
                     email: email,
-                    phoneNumber: phoneNumber,
-
+                    mobile_phone: phoneNumber,
                 }),
             });
-
             const result = await res.json();
-
             if (res.status === 200) {
                 console.log(result);
                 window.location.href = "/";
+                return
             }
+            alert("Account exists !")
         } catch (error) {
             console.error(error);
         }
     };
-
-    // async function Register(email: string, password: string) {
-    //     const source = "http://localhost:3000"
-    //     const res = await fetch(`${source}/Register`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({ email_input: email, password_input: password })
-    //     })
-    //     let resp = await res.json()
-    //     return resp.message
-    // }
 
 
     return (
@@ -82,7 +79,7 @@ const RegisterForm = () => {
                                 size='lg'
                                 id='form1'
                                 type='text'
-                                value={123}
+                                value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                             />
                         </MDBCol>
@@ -93,7 +90,7 @@ const RegisterForm = () => {
                                 size='lg'
                                 id='form2'
                                 type='text'
-                                value={123}
+                                value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                         </MDBCol>
@@ -112,7 +109,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form3'
                             type='phoneNumber'
-                            value={123}
+                            value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                         <MDBInput
@@ -121,7 +118,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form4'
                             type='password'
-                            value={123}
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <MDBInput
@@ -130,7 +127,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form5'
                             type='password'
-                            value={123}
+                            value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
