@@ -10,7 +10,6 @@ import {
 } from 'mdb-react-ui-kit';
 
 /* --------------------------------------------------------------------------------------------------------- */
-
 const RegisterForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -27,9 +26,10 @@ const RegisterForm = () => {
                 return;
             } else {
                 alert("Registered successfully");
+                console.log("register success")
             }
 
-            const res = await fetch("/Register", {
+            const res = await fetch("/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,8 +55,22 @@ const RegisterForm = () => {
         }
     };
 
+    // async function Register(email: string, password: string) {
+    //     const source = "http://localhost:3000"
+    //     const res = await fetch(`${source}/Register`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({ email_input: email, password_input: password })
+    //     })
+    //     let resp = await res.json()
+    //     return resp.message
+    // }
+
+
     return (
-        <MDBContainer fluid className='RegisterFormContainer'>
+        <MDBContainer fluid className='RegisterFormContainer' >
             <MDBCardBody className='RegisterFormBody'>
                 <h3 className='registerTitle'>Registration </h3>
                 <form onSubmit={handleRegister}>
@@ -68,7 +82,7 @@ const RegisterForm = () => {
                                 size='lg'
                                 id='form1'
                                 type='text'
-                                value={firstName}
+                                value={123}
                                 onChange={(e) => setFirstName(e.target.value)}
                             />
                         </MDBCol>
@@ -79,7 +93,7 @@ const RegisterForm = () => {
                                 size='lg'
                                 id='form2'
                                 type='text'
-                                value={lastName}
+                                value={123}
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                         </MDBCol>
@@ -98,7 +112,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form3'
                             type='phoneNumber'
-                            value={phoneNumber}
+                            value={123}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                         <MDBInput
@@ -107,7 +121,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form4'
                             type='password'
-                            value={password}
+                            value={123}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <MDBInput
@@ -116,7 +130,7 @@ const RegisterForm = () => {
                             size='lg'
                             id='form5'
                             type='password'
-                            value={confirmPassword}
+                            value={123}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
@@ -165,7 +179,7 @@ const RegisterForm = () => {
             </MDBCardBody>
         </MDBContainer>
     );
-};
+}
 
 export default RegisterForm;
 

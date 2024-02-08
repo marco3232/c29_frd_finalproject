@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
-import Register from './Components/Register';
 import UploadPage from './Components/UploadPage';
 import LoginForm from './Components/LoginForm';
+import RegisterForm from "./Components/Register";
 
 
 // --------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ function App() {
       )}
       <Routes>
         <Route path="/notFoundPage" element={<NotFoundPage />} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="/Register" element={<RegisterForm />} />
         <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/" element={""} />
