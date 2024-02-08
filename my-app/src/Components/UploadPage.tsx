@@ -11,9 +11,8 @@ import { getDonateItems, toggleItem, useItems } from "../hook/dataAPI";
 };
 
 
-    
 export default function UploadPage(props:ItemProps) {
-
+    
     const itemList : 
         |string
         |Array<{item_name:string}> = useItems()
@@ -32,15 +31,16 @@ export default function UploadPage(props:ItemProps) {
         event.preventDefault();
     };
 
-    const OnGetDonateItems = useMutation({
-        mutationFn: async (item_name:string) => getDonateItems(props.name),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["donate_items"],
-                exact:true
-            })
-        }
-    })
+    
+    // const OnGetDonateItems = useMutation({
+    //     mutationFn: async (item_name:string) => getDonateItems(props.name),
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries({
+    //             queryKey: ["donate_items"],
+    //             exact:true
+    //         })
+    //     }
+    // })
 
     // const onToggleItem = useMutation({
     //     mutationFn: async (id: number) => toggleItem(id),
@@ -51,63 +51,63 @@ export default function UploadPage(props:ItemProps) {
     //         });
     //     }
     // });
+   
     return (
-        <>
-         {/* <itemList item_name={}/> */}
-        </>
-    )
-    // return (
-    //     <div className="uploadForm">
-    //         <form className="selectItem" onSubmit={handleSubmit}>
-    //             <label>
-    //                 <h3>
-    //                     <b>請選擇捐贈物品：</b>
-    //                 </h3>
-    //                 <br />
-    //                 <select
-    //                     className="donateItemList"
-    //                     name="selectDonate"
+        <div className="uploadForm">
+            <form className="selectItem" onSubmit={handleSubmit}>
+                <label>
+                    <h3>
+                        <b>請選擇捐贈物品：</b>
+                    </h3>
+                    <br />
+                    <select
+                        className="donateItemList"
+                        name="selectDonate"
                       
-    //                 >
-    //                     <option value="">請選擇</option>
-
-    //                     {/* {itemList.map((item) => (
-    //                         <option key={entry.value} value={entry.item}>
-    //                             {entry.item}
-    //                         </option>
-    //                     ))} */}
+                    >
+                        <option value="">請選擇</option>
+                        {Array.isArray(itemList) && itemList.map((item, index) => (
+                            <option key={index} value={item.item_name}>
+                                {item.item_name}
+                            </option>
+                        ))}
+                        {/* {itemList.map((item) => (
+                            <option key={entry.value} value={entry.item}>
+                                {entry.item}
+                            </option>
+                        ))} */}
 
                        
                          
-    //                 </select>
-    //                 {"\u00A0\u00A0"}
-    //                 {"\u00A0\u00A0"}
-    //                 <b>
-    //                     數量 :{" "}
-    //                     <input
-    //                         type="number"
-    //                         value={quantity}
-    //                         onChange={handleQuantityChange}
-    //                     />
-    //                     <button onClick={() => ('')}> + + </button>
-    //                     <br />
-    //                     <br />
-    //                 </b>
-    //                 <h5>
-    //                     <b>
-    //                         確認捐贈物品 : {selectedItem} <br />
-    //                         <br />
-    //                         確認數量 : {quantity}
-    //                     </b>
-    //                 </h5>
-    //             </label>
-    //             <br />
-    //             <br />
-    //             <MDBBtn className="uploadBtn" type="submit" color="info" size="lg">
-    //                 提交
-    //             </MDBBtn>
-    //         </form>
-    //     </div>
-    // );
+                    </select>
+                    {"\u00A0\u00A0"}
+                    {"\u00A0\u00A0"}
+                    <b>
+                        數量 :{" "}
+                        <input
+                            type="number"
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                        />
+                        <button onClick={() => ('')}> + + </button>
+                        <br />
+                        <br />
+                    </b>
+                    <h5>
+                        <b>
+                            確認捐贈物品 : {selectedItem} <br />
+                            <br />
+                            確認數量 : {quantity}
+                        </b>
+                    </h5>
+                </label>
+                <br />
+                <br />
+                <MDBBtn className="uploadBtn" type="submit" color="info" size="lg">
+                    提交
+                </MDBBtn>
+            </form>
+        </div>
+    );
 }
 
