@@ -55,7 +55,7 @@ export default function UploadPage(props: ItemProps) {
               <b>請選擇捐贈物品：</b>
             </h3>
             <br />
-            <select className="donateItemList" name="selectDonate">
+            {/* <select className="donateItemList" name="selectDonate">
               <option value="">
                 {Array.isArray(itemList) ? (
                   itemList.length > 0 ? (
@@ -70,17 +70,17 @@ export default function UploadPage(props: ItemProps) {
                   ""
                 )}
               </option>
+            </select> */}
+            <select className="donateItemList" name="selectDonate" value={selectedItem} onChange={handleItemChange}>
+              <option value="">請選擇</option>
+              {Array.isArray(itemList) && itemList.length > 0 ? (
+                itemList.map((entry) => (
+                  <option value={entry.item_name}>{entry.item_name}</option>
+                ))
+              ) : (
+                <option value="">No Item List</option>
+              )}
             </select>
-            {/* <select className="donateItemList" name="selectDonate" value={selectedItem} onChange={handleItemChange}>
-    <option value="">請選擇</option>
-  {Array.isArray(itemList) && itemList.length > 0 ? (
-    itemList.map((entry) => (
-      <option value={entry.item_name}>{entry.item_name}</option>
-    ))
-  ) : (
-    <option value="">No Item List</option>
-  )}
-</select> */}
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
             <b>

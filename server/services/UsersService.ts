@@ -44,18 +44,18 @@ export class AuthService {
 
     async getUserEmail(email: string): Promise<any> {
         let queryResult = await this.knex.raw(`SELECT * FROM users where email = ?`, [
-          email,
+            email,
         ]);
         return queryResult
-      }
+    }
 
-    async register (email:string, hashed:string, mobile_phone:number){
+    async register(email: string, hashed: string, mobile_phone: number) {
         await this.table()
-        .insert({
-            email: email,
-            password: hashed,
-            mobile_phone:mobile_phone
-        })
-        .into ("users")
+            .insert({
+                email: email,
+                password: hashed,
+                mobile_phone: mobile_phone
+            })
+            .into("users")
     }
 }
