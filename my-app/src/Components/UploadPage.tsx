@@ -83,6 +83,7 @@ export default function UploadPage(props: ItemProps) {
             </select>
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
+            {"\u00A0\u00A0"}
             <b>
               數量 :{" "}
               <input
