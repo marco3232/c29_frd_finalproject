@@ -5,12 +5,12 @@ export async function up(knex: Knex): Promise<void> {
         table.increments("id").primary();
         table.string("email").notNullable().unique();
         table.string("password").notNullable();
-        table.text("address");
+        table.text("address")
         table.string("chi_surname");
         table.string("chi_given_name");
         table.string("eng_surname");
         table.string("eng_given_name");
-        table.integer("mobile_phone").unique;
+        table.integer("mobile_phone").notNullable().unique();
         table.string("address_proof_image_path");
         table.enum("status", ["not verified", "processing", "verified"]).defaultTo("not verified");
         table.timestamp("created_at").defaultTo(knex.fn.now());

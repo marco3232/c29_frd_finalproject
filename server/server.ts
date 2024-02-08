@@ -42,9 +42,10 @@ app.post("/auth/register", async (req, res) => {
     res.status(500).json({ message: "Registration failed" });
   }
 });
-app.post("/login", authController.router)
 
-console.log("march wanner know:", authController)
+app.post("/login", authController.router)
+app.get("/register", authController.router)
+console.log("march wanner know:",authController)
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);

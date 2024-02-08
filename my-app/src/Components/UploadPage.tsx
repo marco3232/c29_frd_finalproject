@@ -4,34 +4,29 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "..";
 import { getDonateItems, toggleItem, useItems } from "../hook/dataAPI";
 
- type ItemProps = {
-    // id: number;
-    name: string;
-    // count: number;
+type ItemProps = {
+  // id: number;
+//   name: string;
+  // count: number;
 };
 
+export default function UploadPage() {
+  const itemList: string | Array<{ item_name: string }> = useItems();
+  console.log("check", itemList);
 
-export default function UploadPage(props:ItemProps) {
-    
-    const itemList : 
-        |string
-        |Array<{item_name:string}> = useItems()
+  const [selectedItem, setSelectedItem] = useState("");
+  const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedItem(event.target.value);
+  };
+  const [quantity, setQuantity] = useState("");
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuantity(event.target.value);
+  };
 
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+  };
 
-    const [selectedItem, setSelectedItem] = useState("");
-    const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedItem(event.target.value);
-    };
-    const [quantity, setQuantity] = useState("");
-    const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setQuantity(event.target.value);
-    };
-
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-    };
-
-    
     // const OnGetDonateItems = useMutation({
     //     mutationFn: async (item_name:string) => getDonateItems(props.name),
     //     onSuccess: () => {
@@ -66,11 +61,7 @@ export default function UploadPage(props:ItemProps) {
                       
                     >
                         <option value="">請選擇</option>
-                        {Array.isArray(itemList) && itemList.map((item, index) => (
-                            <option key={index} value={item.item_name}>
-                                {item.item_name}
-                            </option>
-                        ))}
+
                         {/* {itemList.map((item) => (
                             <option key={entry.value} value={entry.item}>
                                 {entry.item}
@@ -110,4 +101,3 @@ export default function UploadPage(props:ItemProps) {
         </div>
     );
 }
-
