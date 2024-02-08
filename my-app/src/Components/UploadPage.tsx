@@ -55,22 +55,8 @@ export default function UploadPage(props: ItemProps) {
               <b>請選擇捐贈物品：</b>
             </h3>
             <br />
-            {/* <select className="donateItemList" name="selectDonate">
-              <option value="">
-                {Array.isArray(itemList) ? (
-                  itemList.length > 0 ? (
-                    itemList.map!((entry) => (<option>${entry.item_name.split(",")}</option>))
-                    // itemList.map!((entry) => (
-                    // <option value={entry.item_name}>{entry.item_name}</option>
-                    // ))
-                  ) : (
-                    <h3>No Item List</h3>
-                  )
-                ) : (
-                  ""
-                )}
-              </option>
-            </select> */}
+            
+            
             <select className="donateItemList" name="selectDonate" value={selectedItem} onChange={handleItemChange}>
               <option value="">請選擇</option>
               {Array.isArray(itemList) && itemList.length > 0 ? (
