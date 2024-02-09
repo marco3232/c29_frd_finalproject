@@ -1,8 +1,7 @@
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
-import { AuthService } from "./services/UsersService";
-import { AuthController, } from "./controllers/UsersController";
+
 import Knex from "knex";
 
 // -----------------------------------------------------------------------------------------------
@@ -15,10 +14,17 @@ const PORT = 8080;
 
 import { ItemController } from "./controllers/ItemController";
 import { ItemService } from "./services/Item.service";
+import { AuthService } from "./services/UsersService";
+import { AuthController } from "./controllers/UsersController";
+import { LogisticController } from "./controllers/logisticsController";
+import { LogisticService } from "./services/logisticsServices";
+
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);
 const authService = new AuthService(knex);
 const authController = new AuthController(authService);
+const logisticService = new LogisticService(knex);
+const logisticController = new LogisticController(logisticService);
 
 // -----------------------------------------------------------------------------------------------
 
@@ -43,12 +49,13 @@ app.post("/auth/register", async (req, res) => {
   }
 });
 
-app.post("/login", authController.router)
-app.get("/register", authController.router)
-console.log("march wanner know:",authController)
+app.post("/login", authController.router);
+app.get("/register", authController.router);
+// console.log("march wanner know:",authController)
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);
+app.use("/",logisticController.router)
 
 // -----------------------------------------------------------------------------------------------
 app.listen(PORT, () => {
