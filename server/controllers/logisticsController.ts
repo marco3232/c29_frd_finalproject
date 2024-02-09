@@ -9,25 +9,25 @@ export class LogisticController {
 
   create = async (req: Request, res: Response) => {
     let {
-      room_input,
-      building_input,
-      street_input,
-      district_input,
-      contact_number_input,
-      contact_name_input,
-      confirmed_date_input,
-      confirmed_session_input,
+      room,
+      building,
+      street,
+      district,
+      contact_number,
+      contact_name,
+      confirmed_date,
+      confirmed_session,
     } = req.body;
 
     let result = await this.logisticService.createLogistic(
-      room_input,
-      building_input,
-      street_input,
-      district_input,
-      contact_number_input,
-      contact_name_input,
-      confirmed_date_input,
-      confirmed_session_input
+      room,
+      building,
+      street,
+      district,
+      contact_number,
+      contact_name,
+      confirmed_date,
+      confirmed_session
     );
 
     if (result) res.status(200).json({ message: "success" });

@@ -7,7 +7,7 @@ export class LogisticService {
   }
 
   async createLogistic(
-    room_input: string,
+    room: string,
     building_input: string,
     street_input: string,
     district_input: string,
@@ -18,7 +18,7 @@ export class LogisticService {
   ) {
     try {
       await this.table().insert({
-        room: room_input,
+        room: room,
         building: building_input,
         street: street_input,
         district: district_input,
