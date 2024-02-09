@@ -1,0 +1,17 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin-left: 20px;
+    padding-bottom: 30px;
+    object-fit: contain;
+}
+
+.title {
+    text-align: center;
+    font-size: 60px;
+}
+
+.header{
+    font-size: 70px;
+}

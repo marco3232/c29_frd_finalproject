@@ -7,8 +7,9 @@ type ItemType = {
 export class ItemService {
   constructor(private knex: Knex) {}
   table() {
-    return this.knex("donate_items");
+    return this.knex("logistics_item");
   }
+  
 
   async getAll() {
     let rows: ItemType[] = await this.table().select("item_name").orderBy("id", "asc");
@@ -16,19 +17,17 @@ export class ItemService {
     return rows;
   }
 
-  //   async createItem(title_input: string, description_input: string) {
-  //     try {
-  //       await this.table().insert({
-  //         title: title_input,
-  //         description: description_input,
-  //         status: false,
-  //       });
-  //       return true;
-  //     } catch (error) {
-  //       console.log(error);
-  //       return false;
-  //     }
-  //   }
+    async createItem(quantity_input: number) {
+      try {
+        await this.table().insert({
+          item_quantity: quantity_input,
+        });
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    }
 
   //   async deleteItem(target_id: number) {
   //     try {
