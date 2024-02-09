@@ -12,10 +12,10 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 const PORT = 8080;
 // --------------------- controller and service------------------------------
 
-import { ItemController } from "./controllers/ItemController";
-import { ItemService } from "./services/Item.service";
-import { AuthService } from "./services/UsersService";
-import { AuthController } from "./controllers/UsersController";
+import { ItemController } from "./controllers/itemController";
+import { ItemService } from "./services/itemService";
+import { AuthService } from "./services/usersService";
+import { AuthController } from "./controllers/usersController";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { AuthService } from "../services/UsersService";
+import { AuthService } from "../services/usersService";
 import { hashedPassword } from "../utils/hash";
 
 export class AuthController {

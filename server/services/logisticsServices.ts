@@ -5,6 +5,9 @@ export class LogisticService {
   table() {
     return this.knex("logistics");
   }
+  table2() {
+    return this.knex("logistic_items");
+  }
 
   async createLogistic(
     room_input: string,
@@ -28,6 +31,18 @@ export class LogisticService {
         confirmed_session: confirmed_session_input,
       });
       console.log("haha")
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  async createDonateItem(qty_input:number) {
+    try {
+      await this.table2().insert({
+        qty:qty_input
+      });
       return true;
     } catch (error) {
       console.log(error);
