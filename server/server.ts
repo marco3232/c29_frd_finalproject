@@ -32,22 +32,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use("/auth", authController.router) // route to authController
+app.use("/donate", itemController.router);
+
 
 app.get("/hi", (req, res) => {
   res.send("hi");
 });
 
-app.post("/auth/register", async (req, res) => {
-  const { email, password } = req.body;
 
-  try {
-    await knex("users").insert({ email, password });
-    res.status(200).json({ message: "Registration successful" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Registration failed" });
-  }
-});
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);

@@ -6,7 +6,7 @@ export class AuthController {
     router = express.Router();
     public constructor(private authService: AuthService) {
         this.router.post("/login", this.login)
-        this.router.get("./register", this.register)
+        this.router.post("/register", this.register)
     }
 
     login = async (req: Request, res: Response) => {
@@ -21,6 +21,13 @@ export class AuthController {
             res.status(400).json({ message: result.message })
         }
     }
+
+
+
+
+
+
+
 
     register = async (req: Request, res: Response) => {
         try {

@@ -13,7 +13,6 @@ export class AuthService {
 
     async login(email: string, password_input: string) {
 
-
         let userInfoQuery = await this.table()
             .select("*")
             .where("email", email)
@@ -49,6 +48,11 @@ export class AuthService {
         return queryResult
     }
 
+
+
+
+
+    
     async register(email: string, hashed: string, mobile_phone: number) {
         await this.table()
             .insert({
