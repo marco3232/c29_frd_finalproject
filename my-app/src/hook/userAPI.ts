@@ -68,15 +68,17 @@ export async function loginUser(email: string, password: string) {
             body: JSON.stringify({ email: email, password: password })
         });
 
+        const data = await res.json();
+
         if (res.ok) {
             alert("Login successful");
+            console.log(data);
+            window.location.href = "/";
         } else {
             const errorData = await res.json();
-            console.error("Login error:", errorData.message);
             alert("Login failed: " + errorData.message);
         }
     } catch (error: any) {
-        console.error("Login error:", error.message);
         alert("Login failed: Network error");
     }
 }

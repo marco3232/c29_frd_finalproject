@@ -15,7 +15,7 @@ function LoginForm() {
         event.preventDefault();
 
         if (!password || !email) {
-            return setError("Email and password cannot be empty");
+            return alert("Email and password cannot be empty");
         }
 
         try {
