@@ -4,6 +4,7 @@ import NavBarControl from "./Components/NavBars";
 import Register from './Components/Register';
 import UploadPage from './Components/UploadPage';
 import LoginForm from './Components/LoginForm';
+import DonateItemPage from "./Components/DonateItemPage";
 
 
 // --------------------------------------------------------------------------------
@@ -33,6 +34,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
+        <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/" element={""} />
       </Routes>
       <br />

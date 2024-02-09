@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "..";
-import { getDonateItems, toggleItem, useItems } from "../hook/dataAPI";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {addNewItems , toggleItem, useItems } from "../hook/dataAPI";
+import ListGroup from "react-bootstrap/esm/ListGroup";
 
 type ItemProps = {
   // id: number;
@@ -11,6 +11,11 @@ type ItemProps = {
 };
 
 export default function UploadPage() {
+  const queryClient = useQueryClient();
+  const [input, setInput] = useState("");
+  const [preSubmit, setPreSubmit] = useState("");
+  const [donationList, setDonationList] = useState<Array<{ item_name: string; quantity: number }>>([]);
+
   const itemList: string | Array<{ item_name: string }> = useItems();
   console.log("check", itemList);
 
@@ -27,15 +32,24 @@ export default function UploadPage() {
     event.preventDefault();
   };
 
-  // const OnGetDonateItems = useMutation({
-  //     mutationFn: async (item_name:string) => getDonateItems(props.name),
-  //     onSuccess: () => {
-  //         queryClient.invalidateQueries({
-  //             queryKey: ["donate_items"],
-  //             exact:true
-  //         })
-  //     }
-  // })
+  const addPreSubmitHandler = () => {
+    if (selectedItem && quantity) {
+      const newItem = { item_name: selectedItem, quantity: parseInt(quantity) };
+      setDonationList([...donationList, newItem]);
+      setSelectedItem(""); // Reset selected item after adding to the list
+      setQuantity(""); // Reset quantity after adding to the list
+    }
+  };
+
+  const OnAddNewItems = useMutation({
+      mutationFn: async (quantity:number) => addNewItems(quantity),
+      onSuccess: () => {
+          queryClient.invalidateQueries({
+              queryKey: ["donate_items"],
+              exact:true
+          })
+      }
+  })
 
   // const onToggleItem = useMutation({
   //     mutationFn: async (id: number) => toggleItem(id),
@@ -81,7 +95,7 @@ export default function UploadPage() {
               value={quantity}
               onChange={handleQuantityChange}
             />
-            <button onClick={() => ""}> + + </button>
+            <button onClick={addPreSubmitHandler}> + + </button>
             <br />
             <br />
           </b>
@@ -95,10 +109,20 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" type="submit" color="info" size="lg">
+        <MDBBtn className="uploadBtn"  color="info" size="lg" 
+         onClick={() => {
+        }}
+        >
           提交
         </MDBBtn>
       </form>
+      <ListGroup as="ul">
+        {donationList.map((item, index) => (
+          <ListGroup.Item key={index}>
+            {item.item_name} - Quantity: {item.quantity}
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
     </div>
   );
 }

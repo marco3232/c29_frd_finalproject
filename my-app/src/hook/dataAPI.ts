@@ -28,29 +28,13 @@ export function useItems() {
 
 //-------------------------------------------------------------------------------------------
 
-export async function getDonateItems(item_name: string) {
-    const res = await fetch(`${source}/donate/items}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ item_name: item_name })
-    });
-
-    const resp = await res.json()
-
-    return resp.message as string;
-}
-
-//-------------------------------------------------------------------------------------------
-
-export async function addNewItems(title: string, description: string) {
-    const res = await fetch(`${source}/todo/item`, {
+export async function addNewItems(quantity_input: number) {
+    const res = await fetch(`${source}/donate/items`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ title_input: title, description_input: description })
+        body: JSON.stringify({quantity_input: quantity_input })
     })
     let resp = await res.json()
     return resp.message
