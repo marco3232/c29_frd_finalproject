@@ -18,6 +18,7 @@ export class LogisticController {
       contact_name_input,
       confirmed_date_input,
       confirmed_session_input,
+      qty
     } = req.body;
 
     let result = await this.logisticService.createLogistic(
@@ -28,7 +29,8 @@ export class LogisticController {
       contact_number_input,
       contact_name_input,
       confirmed_date_input,
-      confirmed_session_input
+      confirmed_session_input,
+      qty
     );
 
     if (result) res.status(200).json({ message: "success" });
@@ -39,18 +41,18 @@ export class LogisticController {
   };
 
 
-  createDonateItem = async (req: Request, res: Response) => {
-    let { qty_input } = req.body;
+  // createDonateItem = async (req: Request, res: Response) => {
+  //   let { qty_input } = req.body;
 
-    let result = await this.logisticService.createDonateItem(
-      qty_input
-    );
+  //   let result = await this.logisticService.createDonateItem(
+  //     qty_input
+  //   );
 
-    if (result) res.status(200).json({ message: "success" });
-    else
-      res
-        .status(500)
-        .json({ message: "internal server error,cannot insert new item" });
-  };
+  //   if (result) res.status(200).json({ message: "success" });
+  //   else
+  //     res
+  //       .status(500)
+  //       .json({ message: "internal server error,cannot insert new item" });
+  // };
 
 }

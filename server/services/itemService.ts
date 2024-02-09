@@ -7,7 +7,7 @@ type ItemType = {
 export class ItemService {
   constructor(private knex: Knex) {}
   table() {
-    return this.knex("logistics_item");
+    return this.knex("donate_items");
   }
   
 
