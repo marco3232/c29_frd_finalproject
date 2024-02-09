@@ -20,7 +20,7 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
-    const [emailExists, setEmailExists] = useState(false);
+    const [isRegistering, setIsRegistering] = useState(false);
     const queryClient = useQueryClient()
     const GetCreateUsers = useMutation({
         mutationFn: async (data: { firstName: string, lastName: string, email: string, password: string, phoneNumber: number }) => createUsers(data.firstName, data.lastName, data.password, data.email, data.phoneNumber),
@@ -28,9 +28,24 @@ const RegisterForm = () => {
             queryClient.invalidateQueries({
                 queryKey: ["users"],
                 exact: true
-            })
+            });
+            alert('Registration successful');
+        },
+        onError: (error: any) => {
+            console.error('Error during registration:', error);
+            if (error.message === "Email already exists") {
+                alert('Email already exists. Please use a different email address.');
+            } else {
+                alert('Error during registration: ' + error.message);
+            }
+        },
+        onMutate: () => {
+            setIsRegistering(true);
+        },
+        onSettled: () => {
+            setIsRegistering(false);
         }
-    })
+    });
 
     //-------------------------------------------------------------------------------------------
 
@@ -38,29 +53,6 @@ const RegisterForm = () => {
         event.preventDefault();
         const passwordInput1 = password;
         const passwordInput2 = confirmPassword;
-
-
-        async function checkEmailExists(email: string) {
-            try {
-                const response = await fetch(`${source}/auth/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.exists;
-                } else {
-                    throw new Error('Failed to check email existence');
-                }
-            } catch (error) {
-                console.error(error);
-                return false;
-            }
-        }
 
         if (passwordInput1 !== passwordInput2) {
             return alert("The password does not match!");
@@ -73,20 +65,18 @@ const RegisterForm = () => {
         }
         if (phoneNumber < 10000000) {
             return alert("Phone number must be 8 digits");
-        } else {
-            alert("Registered successfully");
         }
 
         try {
-            const emailExists = await checkEmailExists(email);
-            if (emailExists) {
-                return alert("email already exists!")
+            await createUsers(firstName, lastName, password, email, phoneNumber);
+            alert("Registration successful");
+        } catch (error: any) {
+            console.error('Error during registration:', error);
+            if (error.message === "Email already exists") {
+                alert('Email already exists. Please use a different email address.');
             } else {
-                alert("register success")
-                GetCreateUsers.mutate({ firstName, lastName, email, password, phoneNumber });
+                alert('Error during registration: ' + error.message);
             }
-        } catch {
-            console.log(Error)
         }
     };
 
@@ -192,7 +182,7 @@ const RegisterForm = () => {
                         <MDBBtn id="resetBtn" color='danger' size='lg'>
                             Reset all
                         </MDBBtn>
-                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg'>
+                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg' disabled={isRegistering}>{isRegistering ? 'Registering...' : 'Submit form'}
                             Submit form
                         </MDBBtn>
                     </div>
@@ -201,6 +191,4 @@ const RegisterForm = () => {
         </MDBContainer >
     );
 }
-
 export default RegisterForm;
-

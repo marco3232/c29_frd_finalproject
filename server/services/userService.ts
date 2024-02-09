@@ -47,24 +47,43 @@ export class AuthService {
     // -----------------------------------------------------------------------------------------------
 
     async getUserEmail(email: string): Promise<any> {
-        let queryResult = await this.knex.raw(`SELECT * FROM users where email = ?`, [
-            email,
-        ]);
-        return queryResult
+        try {
+            const queryResult = await this.table()
+                .where("email", email)
+                .select("*");
+            return queryResult;
+        } catch (error: any) {
+            throw new Error("Error retrieving user email: " + error.message);
+        }
     }
+
 
 
     // -----------------------------------------------------------------------------------------------
-
     async register(email: string, hashed: string, mobile_phone: number) {
-        await this.table()
-            .insert({
+        try {
+            if (!email || !hashed || !mobile_phone) {
+                throw new Error("Missing required fields");
+            }
+
+            const existingUser = await this.table().where("email", email).first();
+            if (existingUser) {
+                throw new Error("Email already exists");
+            }
+
+            await this.table().insert({
                 email: email,
                 password: hashed,
-                mobile_phone: mobile_phone
-            })
-            .into("users")
+                mobile_phone: mobile_phone,
+            });
+
+            return { success: true, message: "User registered successfully" };
+        } catch (error: any) {
+            return { success: false, message: error.message };
+        }
     }
+
+
 }
 
 

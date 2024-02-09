@@ -2,38 +2,26 @@ import express, { Request, Response } from "express";
 import { hashedPassword } from "../utils/hash";
 import { AuthService } from "../services/userService";
 
+//-------------------------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------------------------
-
-export = class AuthController {
-    static register(firstName: any, lastName: any, email: any, password: any, phoneNumber: any) {
-        throw new Error("Method not implemented.");
-    }
+export default class AuthController {
     router = express.Router();
-    public constructor(private authService: AuthService) {
-        this.router.post("/login", this.login)
-        this.router.post("/register", this.register)
+
+    constructor(private authService: AuthService) {
+        this.router.post("/login", this.login.bind(this));
+        this.router.post("/register", this.register.bind(this));
     }
 
-    register = async (req: Request, res: Response) => {
+    async register(req: Request, res: Response) {
         try {
-            if (!req.body.email) {
-                return res.status(400).json({ message: "Email cannot be empty" });
-            } else if (!req.body.password) {
-                return res.status(400).json({ message: "Password cannot be empty" });
-            } else if (!req.body.mobile_phone) {
-                return res.status(400).json({ message: "Mobile cannot be empty" })
+            if (!req.body.email || !req.body.password || !req.body.mobile_phone) {
+                return res.status(400).json({ message: "Email, password, and mobile phone cannot be empty" });
             }
 
-            let checkEmail = await this.authService.getUserEmail(req.body.email)
-            if (checkEmail.rowCount > 0) {
-                return res.status(400).json({ message: "Email exists" });
+            let checkEmail = await this.authService.getUserEmail(req.body.email);
+            if (checkEmail.length > 0) {
+                return res.status(400).json({ message: "Email already exists" });
             }
-
-            // const existingUser = await this.authService.getUserEmail(req.body.mobile_phone);
-            // if (existingUser.rowCount > 0) {
-            //     return res.status(400).json({ message: "Mobile phone already exists" });
-            // }
 
             let hashed = await hashedPassword(req.body.password);
 
@@ -49,9 +37,7 @@ export = class AuthController {
         }
     }
 
-    // -----------------------------------------------------------------------------------------------
-
-    login = async (req: Request, res: Response) => {
+    async login(req: Request, res: Response) {
         let { email, password } = req.body;
 
         let result = await this.authService.login(email, password);
@@ -63,6 +49,4 @@ export = class AuthController {
             res.status(400).json({ message: result.message })
         }
     }
-
-};
-
+}

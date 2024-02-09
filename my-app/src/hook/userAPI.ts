@@ -34,19 +34,28 @@ export function useItems() {
 //-------------------------------------------------------------------------------------------
 
 export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
-    const res = await fetch(`${source}/auth/register`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email, mobile_phone: phoneNumber })
-    })
-    if (res.status == 200) {
-        console.log(res)
-        window.location.href = "/";
-        return
-    };
+    try {
+        const res = await fetch(`${source}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email, mobile_phone: phoneNumber })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            console.log(data);
+            window.location.href = "/";
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
 }
+
 //-------------------------------------------------------------------------------------------
 
 
