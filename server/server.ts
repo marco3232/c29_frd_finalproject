@@ -2,10 +2,6 @@ import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
 import Knex from "knex";
-import { ItemController } from "./controllers/itemController";
-import { ItemService } from "./services/itemService";
-import { AuthService } from "./services/userService";
-import AuthController from "./controllers/authController";
 // -----------------------------------------------------------------------------------------------
 
 const app = express();
@@ -17,10 +13,10 @@ const PORT = 8080;
 
 import { ItemController } from "./controllers/ItemController";
 import { ItemService } from "./services/Item.service";
-import { AuthService } from "./services/UsersService";
-import { AuthController } from "./controllers/UsersController";
+import { AuthService } from "./services/userService";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
+import AuthController from "./controllers/authController";
 
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);

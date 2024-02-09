@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { ItemService } from "../services/itemService";
+import { ItemService } from "../services/Item.service";
 
 export class ItemController {
   router = express.Router();
@@ -17,19 +17,19 @@ export class ItemController {
     res.status(200).json({ data: list });
   };
 
-    create = async (req: Request, res: Response) => {
-      let { quantity_input } = req.body;
+  create = async (req: Request, res: Response) => {
+    let { quantity_input } = req.body;
 
-      let result = await this.itemService.createItem(
-        quantity_input
-      );
+    let result = await this.itemService.createItem(
+      quantity_input
+    );
 
-      if (result) res.status(200).json({ message: "success" });
-      else
-        res
-          .status(500)
-          .json({ message: "internal server error,cannot insert new item" });
-    };
+    if (result) res.status(200).json({ message: "success" });
+    else
+      res
+        .status(500)
+        .json({ message: "internal server error,cannot insert new item" });
+  };
 
   //   delete = async (req: Request, res: Response) => {
   //     let { id } = req.params;
