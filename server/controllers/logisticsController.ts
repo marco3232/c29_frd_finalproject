@@ -10,7 +10,7 @@ export class LogisticController {
 
   create = async (req: Request, res: Response) => {
     let {
-      room_input,
+      room,
       building_input,
       street_input,
       district_input,
@@ -22,7 +22,7 @@ export class LogisticController {
     } = req.body;
 
     let result = await this.logisticService.createLogistic(
-      room_input,
+      room,
       building_input,
       street_input,
       district_input,

@@ -25,7 +25,7 @@ export class LogisticService {
     const trx = await this.knex.transaction();
 
     try {      
-      await this.table(trx).insert({
+      await this.table(null).insert({
         room: room_input,
         building: building_input,
         street: street_input,
