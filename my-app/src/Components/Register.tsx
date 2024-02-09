@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     MDBBtn,
     MDBContainer,
@@ -9,7 +9,7 @@ import {
     MDBRadio,
 } from 'mdb-react-ui-kit';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createUsers } from '../hook/useAPI';
+import { createUsers } from '../hook/userAPI';
 
 /* --------------------------------------------------------------------------------------------------------- */
 const RegisterForm = () => {
@@ -19,8 +19,10 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
+    const [emailExists, setEmailExists] = useState(false);
     const queryClient = useQueryClient()
-    const onGetAddUsers = useMutation({
+    const source = "http://localhost:8080"
+    const GetCreateUsers = useMutation({
         mutationFn: async (data: { firstName: string, lastName: string, email: string, password: string, phoneNumber: number }) => createUsers(data.firstName, data.lastName, data.password, data.email, data.phoneNumber),
         onSuccess: () => {
             queryClient.invalidateQueries({
@@ -29,38 +31,47 @@ const RegisterForm = () => {
             })
         }
     })
+    const checkEmailExists = async (email: string) => {
+        try {
+            const response = await fetch(`${source}/auth/register/checkEmail?email=${email}`);
+            const data = await response.json();
+            setEmailExists(data.exists);
+        } catch (error) {
+            console.error('Error checking email existence:', error);
+        }
+    };
 
     //-------------------------------------------------------------------------------------------
 
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault();
+
             const passwordInput1 = password;
             const passwordInput2 = confirmPassword;
 
-
             if (passwordInput1 !== passwordInput2) {
                 return alert("The password does not match!");
-
-            } if (!email) {
-                return alert("Email cannot be empty")
-
-            } if (!phoneNumber) {
-                return alert("Phone number cannot be empty")
-
-            } if (phoneNumber < 10000000) {
-                return alert("Phone number must be 8 digit")
-
+            }
+            if (!email) {
+                return alert("Email cannot be empty");
+            }
+            if (!phoneNumber) {
+                return alert("Phone number cannot be empty");
+            }
+            if (phoneNumber < 10000000) {
+                return alert("Phone number must be 8 digits");
+            } if (emailExists) {
+                return alert("Email already exists!");
             } else {
                 alert("Registered successfully");
-                // window.location.reload()
             }
-            // alert("Account exists !")
-            onGetAddUsers.mutate({ firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber })
+            GetCreateUsers.mutate({ firstName, lastName, email, password, phoneNumber });
+
         } catch (error) {
             console.error(error);
         }
-    };
+    }
 
     return (
         <MDBContainer fluid className='RegisterFormContainer' >
@@ -104,7 +115,7 @@ const RegisterForm = () => {
                             label='Phone Number'
                             size='lg'
                             id='form3'
-                            type='number'
+                            type='phoneNumber'
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(Number(e.target.value))}
                         />
@@ -164,7 +175,7 @@ const RegisterForm = () => {
                         <MDBBtn id="resetBtn" color='danger' size='lg'>
                             Reset all
                         </MDBBtn>
-                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg' onClick={() => handleRegister}>
+                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg'>
                             Submit form
                         </MDBBtn>
                     </div>

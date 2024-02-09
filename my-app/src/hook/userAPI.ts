@@ -41,6 +41,12 @@ export async function createUsers(firstName: string, lastName: string, password:
         },
         body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email, mobile_phone: phoneNumber })
     })
-    let resp = await res.json()
-    return resp.message
-};
+    if (res.status == 200) {
+        console.log(res)
+        window.location.href = "/";
+        return
+    };
+}
+//-------------------------------------------------------------------------------------------
+
+
