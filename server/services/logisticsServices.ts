@@ -5,6 +5,7 @@ export class LogisticService {
   table() {
     return this.knex("logistics");
   }
+
   async createLogistic(
     room_input: string,
     building_input: string,
@@ -27,7 +28,6 @@ export class LogisticService {
         confirmed_session: confirmed_session_input,
       });
       console.log("haha")
-      console.log()
       return true;
     } catch (error) {
       console.log(error);
