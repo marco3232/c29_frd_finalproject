@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { hashedPassword } from "../utils/hash";
-import { AuthService } from "../services/userService";
+import { comparePassword, hashedPassword } from "../utils/hash";
+import { AuthService } from "../services/authService";
 
 //-------------------------------------------------------------------------------------------
 
@@ -37,12 +37,14 @@ export default class AuthController {
         }
     }
 
+    // -------------------------------------------------------------------------
+
     async login(req: Request, res: Response) {
         let { email, password } = req.body;
 
         let result = await this.authService.login(email, password);
 
-        console.log("March wanner know:", result)
+        // console.log("March wanner know:", result)
         if (result.flag) {
             res.json({ message: result.message, token: result.token });
         } else {

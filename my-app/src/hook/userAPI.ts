@@ -58,4 +58,28 @@ export async function createUsers(firstName: string, lastName: string, password:
 
 //-------------------------------------------------------------------------------------------
 
+export async function loginUser(email: string, password: string) {
+    try {
+        const res = await fetch(`${source}/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: email, password: password })
+        });
+
+        if (res.ok) {
+            alert("Login successful");
+        } else {
+            const errorData = await res.json();
+            console.error("Login error:", errorData.message);
+            alert("Login failed: " + errorData.message);
+        }
+    } catch (error: any) {
+        console.error("Login error:", error.message);
+        alert("Login failed: Network error");
+    }
+}
+
+
 

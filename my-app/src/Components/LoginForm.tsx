@@ -4,27 +4,42 @@ import {
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
-
-/* --------------------------------------------------------------------------------------------------------- */
+const source = "http://localhost:8080";
 
 function LoginForm() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
 
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (!password) {
-            return alert("Password cannot be empty!");
-        }
-        if (!email) {
-            return alert("Email cannot be empty");
-        } else {
-            return alert("Login success")
-
+        if (!password || !email) {
+            return setError("Email and password cannot be empty");
         }
 
-    }
+        try {
+            const response = await fetch(`${source}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (data.flag) {
+                alert("Login successful!");
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setError("An error occurred during login");
+        }
+    };
+
     return (
         <MDBContainer fluid className="loginFormContainer">
             <div className="loginForm">
@@ -54,23 +69,15 @@ function LoginForm() {
                         className="loginBtn mb-4 px-5 mx-5 w-100"
                         color="info"
                         size="lg"
+                        type="submit"
                     >
                         Login
                     </MDBBtn>
-                    <a className="forgotPw" href="#!">
-                        Forgot password?
-                    </a>
-                    <p className="">
-                        Don't have an account?{" "}
-                        <a href="#!" className="registerHere">
-                            Register here
-                        </a>
-                    </p>
+                    <p className="error">{error}</p>
                 </form>
             </div>
         </MDBContainer >
     );
 }
-
 
 export default LoginForm;
