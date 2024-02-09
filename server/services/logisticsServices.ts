@@ -1,13 +1,13 @@
 import { Knex } from "knex";
 
 export class LogisticService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table(trx: Knex | null) {
-    let t = !trx  ? this.knex : trx 
+    let t = !trx ? this.knex : trx;
     return t("logistics");
   }
   table2(trx: Knex | null) {
-    let t = !trx  ? this.knex : trx 
+    let t = !trx ? this.knex : trx;
     return t("logistic_items");
   }
 
@@ -37,16 +37,14 @@ export class LogisticService {
       });
 
       await this.table2(trx).insert({
-        qty
+        qty,
       });
       await trx.commit();
       return true;
     } catch (error) {
       console.log(error);
-      trx.rollback()
+      trx.rollback();
       return false;
-      
     }
   }
-
 }

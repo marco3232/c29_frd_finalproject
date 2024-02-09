@@ -14,6 +14,8 @@ type UserType = {
     password: string;
 };
 
+
+
 export function isLoggedIn(req: Request, res: Response, next: NextFunction) {
     try {
 

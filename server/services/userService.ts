@@ -3,6 +3,8 @@ import jwtSimple from "jwt-simple";
 import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
 
+// -----------------------------------------------------------------------------------------------
+
 export class AuthService {
 
     public constructor(private knex: Knex) { }
@@ -41,6 +43,9 @@ export class AuthService {
         }
     }
 
+
+    // -----------------------------------------------------------------------------------------------
+
     async getUserEmail(email: string): Promise<any> {
         let queryResult = await this.knex.raw(`SELECT * FROM users where email = ?`, [
             email,
@@ -49,10 +54,8 @@ export class AuthService {
     }
 
 
+    // -----------------------------------------------------------------------------------------------
 
-
-
-    
     async register(email: string, hashed: string, mobile_phone: number) {
         await this.table()
             .insert({
@@ -62,4 +65,18 @@ export class AuthService {
             })
             .into("users")
     }
+}
+
+
+// -----------------------------------------------------------------------------------------------
+
+export interface UserService {
+    loginUser(output: { username: string; password: string }): Promise<{ username: string }>
+    getUserByEmail(email: string): Promise<any>
+    saveUser(output: {
+        email: string,
+        username: string,
+        hashed: string,
+        is_admin: boolean
+    }): Promise<void>
 }

@@ -5,11 +5,11 @@ type ItemType = {
 };
 
 export class ItemService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table() {
     return this.knex("donate_items");
   }
-  
+
 
   async getAll() {
     let rows: ItemType[] = await this.table().select("item_name").orderBy("id", "asc");
@@ -17,17 +17,17 @@ export class ItemService {
     return rows;
   }
 
-    async createItem(quantity_input: number) {
-      try {
-        await this.table().insert({
-          item_quantity: quantity_input,
-        });
-        return true;
-      } catch (error) {
-        console.log(error);
-        return false;
-      }
+  async createItem(quantity_input: number) {
+    try {
+      await this.table().insert({
+        item_quantity: quantity_input,
+      });
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
+  }
 
   //   async deleteItem(target_id: number) {
   //     try {
