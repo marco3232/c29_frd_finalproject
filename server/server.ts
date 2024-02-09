@@ -11,12 +11,12 @@ const PORT = 8080;
 
 // --------------------- controller and service------------------------------
 
+import { ItemService } from "./services/itemService";
 import { ItemController } from "./controllers/ItemController";
-import { ItemService } from "./services/Item.service";
-import { AuthService } from "./services/userService";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 import AuthController from "./controllers/authController";
+import { AuthService } from "./services/userService";
 
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);

@@ -1,5 +1,4 @@
-import { NextFunction, Router, Response, Request } from "express";
-import { UserService } from "../services/userService";
+import express, { NextFunction, Request, Response, Router } from "express";
 
 
 // -----------------------------------------------------------------------------------------------
@@ -42,6 +41,5 @@ export class UserController {
     //         res.status(400).json({ message: error.message })
     //     }
     // }
-
 
 }
