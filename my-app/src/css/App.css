@@ -70,6 +70,7 @@ font-size: 20px;
     justify-content: center;
 }
 
+
 .roleLabel{
     margin-top: 20px;
     color: black;
@@ -115,12 +116,13 @@ font-size: 20px;
     padding-top: 100px;
     justify-content: center;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
 }
 
 .forgotPw {

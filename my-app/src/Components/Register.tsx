@@ -8,8 +8,9 @@ import {
     MDBInput,
     MDBRadio,
 } from 'mdb-react-ui-kit';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { dataTagSymbol, useMutation, useQueryClient } from '@tanstack/react-query';
 import { createUsers } from '../hook/userAPI';
+const source = "http://localhost:8080"
 
 /* --------------------------------------------------------------------------------------------------------- */
 const RegisterForm = () => {
@@ -21,7 +22,6 @@ const RegisterForm = () => {
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
     const [emailExists, setEmailExists] = useState(false);
     const queryClient = useQueryClient()
-    const source = "http://localhost:8080"
     const GetCreateUsers = useMutation({
         mutationFn: async (data: { firstName: string, lastName: string, email: string, password: string, phoneNumber: number }) => createUsers(data.firstName, data.lastName, data.password, data.email, data.phoneNumber),
         onSuccess: () => {
@@ -31,47 +31,64 @@ const RegisterForm = () => {
             })
         }
     })
-    const checkEmailExists = async (email: string) => {
-        try {
-            const response = await fetch(`${source}/auth/register/checkEmail?email=${email}`);
-            const data = await response.json();
-            setEmailExists(data.exists);
-        } catch (error) {
-            console.error('Error checking email existence:', error);
-        }
-    };
 
     //-------------------------------------------------------------------------------------------
 
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
-        try {
-            event.preventDefault();
+        event.preventDefault();
+        const passwordInput1 = password;
+        const passwordInput2 = confirmPassword;
 
-            const passwordInput1 = password;
-            const passwordInput2 = confirmPassword;
 
-            if (passwordInput1 !== passwordInput2) {
-                return alert("The password does not match!");
-            }
-            if (!email) {
-                return alert("Email cannot be empty");
-            }
-            if (!phoneNumber) {
-                return alert("Phone number cannot be empty");
-            }
-            if (phoneNumber < 10000000) {
-                return alert("Phone number must be 8 digits");
-            } if (emailExists) {
-                return alert("Email already exists!");
-            } else {
-                alert("Registered successfully");
-            }
-            GetCreateUsers.mutate({ firstName, lastName, email, password, phoneNumber });
+        async function checkEmailExists(email: string) {
+            try {
+                const response = await fetch(`${source}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
 
-        } catch (error) {
-            console.error(error);
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.exists;
+                } else {
+                    throw new Error('Failed to check email existence');
+                }
+            } catch (error) {
+                console.error(error);
+                return false;
+            }
         }
-    }
+
+        if (passwordInput1 !== passwordInput2) {
+            return alert("The password does not match!");
+        }
+        if (!email) {
+            return alert("Email cannot be empty");
+        }
+        if (!phoneNumber) {
+            return alert("Phone number cannot be empty");
+        }
+        if (phoneNumber < 10000000) {
+            return alert("Phone number must be 8 digits");
+        } else {
+            alert("Registered successfully");
+        }
+
+        try {
+            const emailExists = await checkEmailExists(email);
+            if (emailExists) {
+                return alert("email already exists!")
+            } else {
+                alert("register success")
+                GetCreateUsers.mutate({ firstName, lastName, email, password, phoneNumber });
+            }
+        } catch {
+            console.log(Error)
+        }
+    };
 
     return (
         <MDBContainer fluid className='RegisterFormContainer' >

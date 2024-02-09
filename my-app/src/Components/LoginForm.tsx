@@ -5,14 +5,13 @@ import {
     MDBInput,
 } from "mdb-react-ui-kit";
 
+/* --------------------------------------------------------------------------------------------------------- */
+
 function LoginForm() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
-
-
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-        const passwordInput1 = password;
         event.preventDefault();
 
         if (!password) {
@@ -20,16 +19,19 @@ function LoginForm() {
         }
         if (!email) {
             return alert("Email cannot be empty");
+        } else {
+            return alert("Login success")
+
         }
 
     }
     return (
         <MDBContainer fluid className="loginFormContainer">
             <div className="loginForm">
-                <h3 className="loginTitle" style={{ letterSpacing: "1px" }}>
-                    Log in
-                </h3>
                 <form className='loginFormFetch' onSubmit={handleLogin}>
+                    <h3 className="loginTitle" style={{ letterSpacing: "1px" }}>
+                        Log in
+                    </h3>
 
                     <MDBInput
                         wrapperClass="mb-4 mx-5 w-100"
@@ -69,5 +71,6 @@ function LoginForm() {
         </MDBContainer >
     );
 }
+
 
 export default LoginForm;
