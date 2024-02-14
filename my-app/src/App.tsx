@@ -4,12 +4,10 @@ import NavBarControl from "./Components/NavBars";
 import UploadPage from './Page/UploadPage';
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
-import InputAddressPage from "./Components/InputAddressPage";
-import { HomePage } from "./Page/HomePage";
-import { AuthGuard } from "./utils/authGuard";
+import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
-import { Button } from "react-bootstrap";
-import { logout } from "./slice/authSlice";
+import { AuthGuard } from "./utils/authGuard";
+
 
 
 
@@ -46,9 +44,8 @@ function App() {
         <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
         <Route element={<AuthGuard />} />
-        <Route path="/Home" element={<HomePage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
-        <Route path="/InputAddress" element={<InputAddressPage />} />
+        <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
       </Routes>
       <br />
