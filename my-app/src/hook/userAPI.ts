@@ -73,7 +73,7 @@ export async function loginUser(email: string, password: string) {
         if (res.ok) {
             alert("Login successful");
             console.log(data);
-            window.location.href = "/";
+            window.location.assign("/")
         } else {
             const errorData = await res.json();
             alert("Login failed: " + errorData.message);

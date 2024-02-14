@@ -31,6 +31,7 @@ function LoginForm() {
 
             if (data.flag) {
                 alert("Login successful!");
+                window.location.href = "/";
             } else {
                 alert(data.message);
             }

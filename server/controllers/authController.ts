@@ -44,9 +44,12 @@ export default class AuthController {
 
         let result = await this.authService.login(email, password);
 
-        // console.log("March wanner know:", result)
         if (result.flag) {
             res.json({ message: result.message, token: result.token });
+            // window.location.assign("/")
+            // window.location.href = "/";
+
+
         } else {
             res.status(400).json({ message: result.message })
         }

@@ -20,32 +20,6 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
-    const [isRegistering, setIsRegistering] = useState(false);
-    const queryClient = useQueryClient()
-    const GetCreateUsers = useMutation({
-        mutationFn: async (data: { firstName: string, lastName: string, email: string, password: string, phoneNumber: number }) => createUsers(data.firstName, data.lastName, data.password, data.email, data.phoneNumber),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["users"],
-                exact: true
-            });
-            alert('Registration successful');
-        },
-        onError: (error: any) => {
-            console.error('Error during registration:', error);
-            if (error.message === "Email already exists") {
-                alert('Email already exists. Please use a different email address.');
-            } else {
-                alert('Error during registration: ' + error.message);
-            }
-        },
-        onMutate: () => {
-            setIsRegistering(true);
-        },
-        onSettled: () => {
-            setIsRegistering(false);
-        }
-    });
 
     //-------------------------------------------------------------------------------------------
 
@@ -182,7 +156,7 @@ const RegisterForm = () => {
                         <MDBBtn id="resetBtn" color='danger' size='lg'>
                             Reset all
                         </MDBBtn>
-                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg' disabled={isRegistering}>{isRegistering ? 'Registering...' : 'Submit form'}
+                        <MDBBtn type="submit" id="submitBtn" color='info' size='lg'>
                             Submit form
                         </MDBBtn>
                     </div>
