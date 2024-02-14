@@ -12,7 +12,7 @@ const PORT = 8080;
 // --------------------- controller and service------------------------------
 
 import { ItemService } from "./services/itemService";
-import { ItemController } from "./controllers/ItemController";
+import { ItemController } from "./controllers/itemController";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 import AuthController from "./controllers/authController";

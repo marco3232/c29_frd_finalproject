@@ -32,6 +32,7 @@ export class AuthService {
 
 
                 return { flag: true, message: "Login successful!", token: token };
+
             } else {
                 return { flag: false, message: "Incorrect password" };
             }
@@ -41,7 +42,7 @@ export class AuthService {
     }
 
     // -----------------------------------------------------------------------------------------------
-    async register(email: string, hashed: string, mobile_phone: number) {
+    async register(email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
         try {
             if (!email || !hashed || !mobile_phone) {
                 throw new Error("Missing required fields");
@@ -56,6 +57,8 @@ export class AuthService {
                 email: email,
                 password: hashed,
                 mobile_phone: mobile_phone,
+                eng_surname: eng_surname,
+                eng_given_name: eng_given_name
             });
 
             return { success: true, message: "User registered successfully" };
