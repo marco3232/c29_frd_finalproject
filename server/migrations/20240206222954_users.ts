@@ -10,7 +10,7 @@ export async function up(knex: Knex): Promise<void> {
         table.string("chi_given_name");
         table.string("eng_surname");
         table.string("eng_given_name");
-        table.integer("").notNullable().unique();
+        table.integer("mobile_phone").notNullable().unique();
         table.string("address_proof_image_path");
         table.enum("status", ["not verified", "processing", "verified"]).defaultTo("not verified");
         table.timestamp("created_at").defaultTo(knex.fn.now());
