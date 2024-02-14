@@ -12,7 +12,7 @@ const PORT = 8080;
 // --------------------- controller and service------------------------------
 
 import { ItemService } from "./services/itemService";
-import { ItemController } from "./controllers/itemController";
+import { ItemController } from "./controllers/ItemController";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 import AuthController from "./controllers/authController";
@@ -39,11 +39,12 @@ app.use("/donate", itemController.router);
 // -----------------------------------------------------------------------------------------------
 
 app.get("/hi", isLoggedIn, (req, res) => {
-  res.send("hi");
+  res.send(`Welcome, ${req.user?.eng_given_name}!`);
+
 });
 
 
-app.post("/login", isLoggedIn, authController.router);
+app.post("/login", authController.router);
 app.get("/register", authController.router);
 
 // ----------------------這是分隔線----------------------------

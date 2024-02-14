@@ -4,18 +4,11 @@ import {
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../hook/hooks";
-import { login } from "../slice/authSlice";
+import { loginUser } from '../hook/userAPI';
 
 // --------------------------------------------------------------------------------
 
-const source = "http://localhost:8080";
-
-
 export function LoginForm() {
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
@@ -40,25 +33,26 @@ export function LoginForm() {
         if (!password || !email) {
             return alert("Email and password cannot be empty");
         }
-
         try {
-            const response = await fetch(`${source}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
+            loginUser(email, password)
 
-            const data = await response.json();
+            //     const response = await fetch(`${source}/auth/login`, {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ email, password }),
+            //     });
 
-            if (data.flag) {
-                alert("Login successful!");
-                dispatch(login(email));
-                navigate('/');
-            } else {
-                alert(data.message);
-            }
+            //     const data = await response.json();
+
+            //     if (data.flag) {
+            //         alert("Login successful!");
+            //         dispatch(login(email));
+            //         navigate('/');
+            //     } else {
+            //         alert(data.message);
+            //     }
         } catch (error) {
             console.error('Error during login:', error);
             setError("An error occurred during login");

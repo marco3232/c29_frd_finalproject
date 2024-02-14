@@ -10,8 +10,8 @@ const permit = new Bearer({
 
 interface User {
     id: number
-    username: string
-    password: string
+    mobile_phone: number
+    eng_given_name: string
 }
 
 declare global {
@@ -38,7 +38,7 @@ export async function isLoggedIn(
         const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
         req.user = decoded;
 
-        console.log("guard check", req.user);
+        console.log("guard.ts check", req.user)
 
         return next();
     } catch (e) {

@@ -10,7 +10,7 @@ export function AuthGuard() {
     if (isAuthenticated) {
         return <Outlet />;
     } else {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/loign" replace />;
     }
 }
 

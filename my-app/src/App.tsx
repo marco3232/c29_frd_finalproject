@@ -5,6 +5,11 @@ import UploadPage from './Page/UploadPage';
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import InputAddressPage from "./Components/InputAddressPage";
+import { HomePage } from "./Page/HomePage";
+import { AuthGuard } from "./utils/authGuard";
+import { LoginForm } from "./Components/LoginForm";
+import { Button } from "react-bootstrap";
+import { logout } from "./slice/authSlice";
 
 
 

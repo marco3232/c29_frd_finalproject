@@ -41,6 +41,7 @@ export class AuthService {
     }
 
     // -----------------------------------------------------------------------------------------------
+
     async register(email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
         try {
             if (!email || !hashed || !mobile_phone) {

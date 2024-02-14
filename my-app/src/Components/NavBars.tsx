@@ -15,8 +15,6 @@ import { logout } from '../slice/authSlice';
 function OffcanvasExample() {
     const expandSize = 'lg'
     const navigate = useNavigate();
-    const dispatch = useAppDispatch()
-
 
     return (
         <>
@@ -41,7 +39,7 @@ function OffcanvasExample() {
                                 <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Register')}>註冊用戶</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Login')}>登入用戶</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Home')}>Testing</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/')}>Testing</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Testing</Nav.Link>
 
                                 <NavDropdown
