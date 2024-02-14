@@ -33,14 +33,14 @@ export function useItems() {
 
 //-------------------------------------------------------------------------------------------
 
-export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
+export async function createUsers(firstName: string, , lastName: string, password: string, email: string, phoneNumber: number) {
     try {
         const res = await fetch(`${source}/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email, mobile_phone: phoneNumber })
+            body: JSON.stringify({ eng_surname: firstName, eng_given_name: lastName, password: password, email: email, mobile_phone: phoneNumber })
         });
 
         const data = await res.json();
@@ -73,7 +73,7 @@ export async function loginUser(email: string, password: string) {
         if (res.ok) {
             alert("Login successful");
             console.log(data);
-            window.location.href = "/";
+            window.location.assign("/")
         } else {
             const errorData = await res.json();
             alert("Login failed: " + errorData.message);

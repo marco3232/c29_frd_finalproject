@@ -28,7 +28,9 @@ export default class AuthController {
             await this.authService.register(
                 req.body.email,
                 hashed,
-                req.body.mobile_phone
+                req.body.mobile_phone,
+                req.body.eng_surname,
+                req.body.eng_given_name
             );
 
             return res.json({ message: "Register success" });
@@ -44,9 +46,12 @@ export default class AuthController {
 
         let result = await this.authService.login(email, password);
 
-        // console.log("March wanner know:", result)
         if (result.flag) {
             res.json({ message: result.message, token: result.token });
+            // window.location.assign("/")
+            // window.location.href = "/";
+
+
         } else {
             res.status(400).json({ message: result.message })
         }

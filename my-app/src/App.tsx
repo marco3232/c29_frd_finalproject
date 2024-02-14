@@ -15,6 +15,9 @@ function App() {
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
+  const user = "John";
+  const isLoggedIn = true;
+
   return (
     <div className="bigContainer">
       {shouldShowNavBar && (
