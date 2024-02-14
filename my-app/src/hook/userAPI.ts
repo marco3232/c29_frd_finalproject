@@ -33,7 +33,7 @@ export function useItems() {
 
 //-------------------------------------------------------------------------------------------
 
-export async function createUsers(firstName: string, , lastName: string, password: string, email: string, phoneNumber: number) {
+export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
     try {
         const res = await fetch(`${source}/auth/register`, {
             method: "POST",
@@ -73,7 +73,7 @@ export async function loginUser(email: string, password: string) {
         if (res.ok) {
             alert("Login successful");
             console.log(data);
-            window.location.assign("/")
+            window.location.assign("/") 
         } else {
             const errorData = await res.json();
             alert("Login failed: " + errorData.message);

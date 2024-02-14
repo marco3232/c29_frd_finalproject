@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {addNewItems , toggleItem, useItems } from "../hook/dataAPI";
+import {addNewItems , useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 
 type ItemProps = {

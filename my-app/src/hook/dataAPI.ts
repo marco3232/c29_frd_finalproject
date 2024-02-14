@@ -43,11 +43,11 @@ export async function addNewItems(quantity_input: number) {
 
 //-------------------------------------------------------------------------------------------
 
-export async function toggleItem(id: number) {
-    const res = await fetch(`${source}/todo/item/toggle/${id}`, {
-        method: "PUT",
-    })
-    let resp = await res.json()
-    return resp.message as string
+// export async function toggleItem(id: number) {
+//     const res = await fetch(`${source}/todo/item/toggle/${id}`, {
+//         method: "PUT",
+//     })
+//     let resp = await res.json()
+//     return resp.message as string
 
-}
+// }
