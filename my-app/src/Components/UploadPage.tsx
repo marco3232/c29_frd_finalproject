@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {addNewItems , toggleItem, useItems } from "../hook/dataAPI";
+import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 
 type ItemProps = {
@@ -14,7 +14,9 @@ export default function UploadPage() {
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
-  const [donationList, setDonationList] = useState<Array<{ item_name: string; quantity: number }>>([]);
+  const [donationList, setDonationList] = useState<
+    Array<{ item_name: string; quantity: number }>
+  >([]);
 
   const itemList: string | Array<{ item_name: string }> = useItems();
   console.log("check", itemList);
@@ -42,24 +44,20 @@ export default function UploadPage() {
   };
 
   const OnAddNewItems = useMutation({
-      mutationFn: async (quantity:number) => addNewItems(quantity),
-      onSuccess: () => {
-          queryClient.invalidateQueries({
-              queryKey: ["donate_items"],
-              exact:true
-          })
-      }
-  })
+    mutationFn: async (
+      logistic_id: number,
+      donate_item_id: number,
+      qty: number
+    ) => addNewItems(logistic_id,donate_item_id,qty),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["donate_items"],
+        exact: true,
+      });
+    },
+  });
 
-  // const onToggleItem = useMutation({
-  //     mutationFn: async (id: number) => toggleItem(id),
-  //     onSuccess: () => {
-  //         queryClient.invalidateQueries({
-  //             queryKey: ["itemList"],
-  //             exact: true
-  //         });
-  //     }
-  // });
+
 
   return (
     <div className="uploadForm">
@@ -92,7 +90,7 @@ export default function UploadPage() {
             數量 :{" "}
             <input
               type="number"
-              value={quantity}
+              value={qty}
               onChange={handleQuantityChange}
             />
             <button onClick={addPreSubmitHandler}> + + </button>
@@ -109,10 +107,7 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn"  color="info" size="lg" 
-         onClick={() => {
-        }}
-        >
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {}}>
           提交
         </MDBBtn>
       </form>
