@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
     MDBBtn,
     MDBContainer,
@@ -8,10 +8,7 @@ import {
     MDBInput,
     MDBRadio,
 } from 'mdb-react-ui-kit';
-import { dataTagSymbol, useMutation, useQueryClient } from '@tanstack/react-query';
 import { createUsers } from '../hook/userAPI';
-const source = "http://localhost:8080"
-
 /* --------------------------------------------------------------------------------------------------------- */
 const RegisterForm = () => {
     const [firstName, setFirstName] = useState('');

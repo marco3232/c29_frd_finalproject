@@ -28,7 +28,9 @@ export default class AuthController {
             await this.authService.register(
                 req.body.email,
                 hashed,
-                req.body.mobile_phone
+                req.body.mobile_phone,
+                req.body.eng_surname,
+                req.body.eng_given_name
             );
 
             return res.json({ message: "Register success" });
