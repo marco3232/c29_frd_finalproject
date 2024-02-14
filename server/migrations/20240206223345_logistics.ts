@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<void> {
         table.string("room");
         table.string("building");
         table.string("street");
-        table.integer("district");
+        table.string("district");
         table.integer("contact_number");
         table.string("contact_name");
         table.date("confirmed_date");
