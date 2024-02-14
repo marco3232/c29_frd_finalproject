@@ -16,7 +16,8 @@ import { ItemController } from "./controllers/ItemController";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 import AuthController from "./controllers/authController";
-import { AuthService } from "./services/userService";
+import { AuthService } from "./services/authService";
+import { isLoggedIn, is_admin } from "./middelware";
 
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);
@@ -42,10 +43,15 @@ app.get("/hi", (req, res) => {
 });
 
 
-
 app.post("/login", authController.router);
 app.get("/register", authController.router);
-// console.log("march wanner know:",authController)
+app.get('/admin_route', isLoggedIn, is_admin, (req, res) => {
+  if (req.session && req.session.email) {
+    res.send(`Welcome ${req.session.email}, you are an admin`);
+  } else {
+    res.status(401).json({ message: "Access denied. You are not logged in." });
+  }
+});
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);
