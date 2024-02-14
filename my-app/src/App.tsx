@@ -7,6 +7,7 @@ import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
+import { useState } from "react";
 
 
 
@@ -17,8 +18,20 @@ function App() {
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean)
 
 
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+
+    // If token exists, validate it (you need to implement token validation)
+    if (token) {
+      const isValid = validateToken(token); // Implement validateToken function
+      setIsLoggedIn(isValid);
+    } else {
+      setIsLoggedIn(false);
+    }
+  };
 
   return (
     <div className="bigContainer">

@@ -17,7 +17,6 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
-
     //-------------------------------------------------------------------------------------------
 
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {

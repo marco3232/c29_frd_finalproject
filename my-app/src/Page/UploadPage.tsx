@@ -44,11 +44,12 @@ export default function UploadPage() {
   };
 
   const OnAddNewItems = useMutation({
-    mutationFn: async (data:{
+    mutationFn: async (data: {
       logistic_id: number,
       donate_item_id: number,
-      qty: number}
-    ) => addNewItems(data.logistic_id,data.donate_item_id,data.qty),
+      qty: number
+    }
+    ) => addNewItems(data.logistic_id, data.donate_item_id, data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
@@ -108,7 +109,7 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={()=>OnAddNewItems}>
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => OnAddNewItems}>
           提交
         </MDBBtn>
       </form>
