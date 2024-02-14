@@ -7,7 +7,6 @@ export class LogisticController {
     this.router.post("/logistic", this.create);
   }
 
-
   create = async (req: Request, res: Response) => {
     let {
       room,
@@ -18,7 +17,10 @@ export class LogisticController {
       contact_name,
       confirmed_date,
       confirmed_session,
-      qty
+      user_id,
+      qty,
+      donate_item_id,
+      logistic_id,
     } = req.body;
 
     let result = await this.logisticService.createLogistic(
@@ -30,7 +32,10 @@ export class LogisticController {
       contact_name,
       confirmed_date,
       confirmed_session,
-      qty
+      user_id,
+      qty,
+      donate_item_id,
+      logistic_id
     );
 
     if (result) res.status(200).json({ message: "success" });
@@ -39,7 +44,6 @@ export class LogisticController {
         .status(500)
         .json({ message: "internal server error,cannot insert new item" });
   };
-
 
   // createDonateItem = async (req: Request, res: Response) => {
   //   let { qty_input } = req.body;
@@ -54,5 +58,4 @@ export class LogisticController {
   //       .status(500)
   //       .json({ message: "internal server error,cannot insert new item" });
   // };
-
 }

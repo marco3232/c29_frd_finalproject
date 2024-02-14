@@ -32,16 +32,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/auth", authController.router) // route to authController
+app.use("/auth", authController.router); // route to authController
 app.use("/donate", itemController.router);
-
 
 // -----------------------------------------------------------------------------------------------
 
 app.get("/hi", (req, res) => {
   res.send("hi");
 });
-
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);
@@ -55,9 +53,7 @@ app.get("/register", authController.router);
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);
-app.use("/", logisticController.router)
-
-
+app.use("/", logisticController.router);
 
 //-----------------------------------------------------------------------------------------------
 app.listen(PORT, () => {
