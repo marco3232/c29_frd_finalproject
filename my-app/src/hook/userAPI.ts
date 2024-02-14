@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 //-------------------------------------------------------------------------------------------
 
-const source = "http://localhost:8080"
+const source = "http://localhost:8080";
 interface userValues {
-    firstName: string,
-    lastName: string,
-    password: string,
-    email: string,
-    phoneNumber: number,
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    phoneNumber: number;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -16,17 +16,17 @@ export function useItems() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await fetch(`${source}/auth/register`)
-            const result = await res.json()
-            return result.data as userValues[]
-        }
-    })
-    if (isLoading || isFetching) return "Data Loading"
+            const res = await fetch(`${source}/auth/register`);
+            const result = await res.json();
+            return result.data as userValues[];
+        },
+    });
+    if (isLoading || isFetching) return "Data Loading";
     if (error) {
-        return "Error "
+        return "Error ";
     }
     if (!data) {
-        return []
+        return [];
     }
     return data;
 }
@@ -63,9 +63,9 @@ export async function loginUser(email: string, password: string) {
         const res = await fetch(`${source}/auth/login`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: email, password: password })
+            body: JSON.stringify({ email: email, password: password }),
         });
 
         const data = await res.json();
@@ -73,7 +73,7 @@ export async function loginUser(email: string, password: string) {
         if (res.ok) {
             alert("Login successful");
             console.log(data);
-            window.location.assign("/")
+            window.location.assign("/");
         } else {
             const errorData = await res.json();
             alert("Login failed: " + errorData.message);
@@ -83,25 +83,5 @@ export async function loginUser(email: string, password: string) {
     }
 }
 
-//-------------------------------------------------------------------------------------------
 
-export async function localLogin(lastName: string, password: string) {
-    const res = await fetch(`${process.env.REACT_APP_API_SERVER}/auth/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify({
-            lastName,
-            password
-        })
-    })
 
-    const result = await res.json();
-    if (res.status === 200) {
-        localStorage.setItem('token', result.token)
-        return true
-    } else {
-        return false
-    }
-}

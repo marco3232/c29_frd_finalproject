@@ -4,9 +4,10 @@ import NavBarControl from "./Components/NavBars";
 import UploadPage from './Page/UploadPage';
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
-import { LoginForm } from "./Components/LoginForm";
-import { AuthGuard } from "./utils/authGuard"
-import { HomePage } from "./Page/HomePage";
+import InputAddressPage from "./Components/InputAddressPage";
+
+
+
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
         <Route element={<AuthGuard />} />
         <Route path="/Home" element={<HomePage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
+        <Route path="/InputAddress" element={<InputAddressPage />} />
+        <Route path="/" element={""} />
       </Routes>
       <br />
 

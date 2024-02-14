@@ -6,16 +6,11 @@ import {
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hook/hooks";
-import { localLogin } from "../hook/userAPI";
 import { login } from "../slice/authSlice";
 
+// --------------------------------------------------------------------------------
 
 const source = "http://localhost:8080";
-// import { FormEvent } from "react";
-// import { Button, Form, FormControl, InputGroup } from "react-bootstrap"
-
-
-
 
 
 export function LoginForm() {
@@ -29,17 +24,17 @@ export function LoginForm() {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const form = e.target as HTMLFormElement;
+        // const form = e.target as HTMLFormElement;
 
-        const username = form.username.value
-        const password = form.password.value
-        const success = await localLogin(username, password)
-        if (success) {
-            dispatch(login(username))
-            navigate('/')
-        } else {
-            return
-        }
+        // const username = form.username.value
+        // const password = form.password.value
+        // const success = await localLogin(username, password)
+        // if (success) {
+        //     dispatch(login(username))
+        //     navigate('/')
+        // } else {
+        //     return
+        // }
 
 
         if (!password || !email) {

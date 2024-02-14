@@ -18,7 +18,10 @@ export class LogisticController {
       contact_name,
       confirmed_date,
       confirmed_session,
-      qty
+      user_id,
+      qty,
+      donate_item_id,
+      logistic_id
     } = req.body;
 
     let result = await this.logisticService.createLogistic(
@@ -30,8 +33,12 @@ export class LogisticController {
       contact_name,
       confirmed_date,
       confirmed_session,
-      qty
+      user_id,
+      qty,
+      donate_item_id,
+      logistic_id
     );
+
 
     if (result) res.status(200).json({ message: "success" });
     else
