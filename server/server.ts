@@ -12,7 +12,7 @@ const PORT = 8080;
 // --------------------- controller and service------------------------------
 
 import { ItemService } from "./services/itemService";
-import { ItemController } from "./controllers/ItemController";
+import { ItemController } from "./controllers/itemController";
 import { LogisticController } from "./controllers/logisticsController";
 import { LogisticService } from "./services/logisticsServices";
 import AuthController from "./controllers/authController";
@@ -45,13 +45,13 @@ app.get("/hi", (req, res) => {
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);
-app.get('/admin_route', isLoggedIn, is_admin, (req, res) => {
-  if (req.session && req.session.email) {
-    res.send(`Welcome ${req.session.email}, you are an admin`);
-  } else {
-    res.status(401).json({ message: "Access denied. You are not logged in." });
-  }
-});
+// app.get('/admin_route', isLoggedIn, is_admin, (req, res) => {
+//   if (req.session && req.session.email) {
+//     res.send(`Welcome ${req.session.email}, you are an admin`);
+//   } else {
+//     res.status(401).json({ message: "Access denied. You are not logged in." });
+//   }
+// });
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", itemController.router);
