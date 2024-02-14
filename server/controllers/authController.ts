@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { comparePassword, hashedPassword } from "../utils/hash";
 import { AuthService } from "../services/authService";
+import { isTokenKind, tokenToString } from "typescript";
 
 //-------------------------------------------------------------------------------------------
 
@@ -18,7 +19,7 @@ export default class AuthController {
                 return res.status(400).json({ message: "Email, password, and mobile phone cannot be empty" });
             }
 
-            let checkEmail = await this.authService.getUserEmail(req.body.email);
+            let checkEmail = await this.authService.getUser(req.body.email);
             if (checkEmail.length > 0) {
                 return res.status(400).json({ message: "Email already exists" });
             }
@@ -48,6 +49,7 @@ export default class AuthController {
 
         if (result.flag) {
             res.json({ message: result.message, token: result.token });
+
             // window.location.assign("/")
             // window.location.href = "/";
 

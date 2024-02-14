@@ -25,11 +25,10 @@ export class AuthService {
                 const payload = {
                     id: userInfoQuery.id,
                     email: userInfoQuery.email,
-                    name: userInfoQuery.firstName
+                    name: userInfoQuery.lastName
                 };
 
                 const token = jwtSimple.encode(payload, jwt.jwtSecret);
-
 
                 return { flag: true, message: "Login successful!", token: token };
 
@@ -69,15 +68,9 @@ export class AuthService {
 
     // -----------------------------------------------------------------------------------------------
 
-    async getUserEmail(email: string): Promise<any> {
-        try {
-            const queryResult = await this.table()
-                .where("email", email)
-                .select("*");
-            return queryResult;
-        } catch (error: any) {
-            throw new Error("Error retrieving user email: " + error.message);
-        }
+    async getUser(username: string) {
+        const user = (await this.knex).select('*').from('users').where('eng_given_name', username)
+        return user;
     }
 }
 

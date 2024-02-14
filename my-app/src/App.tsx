@@ -1,20 +1,20 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
-import UploadPage from './Components/UploadPage';
-import LoginForm from './Components/LoginForm';
-import DonateItemPage from "./Components/DonateItemPage";
+import UploadPage from './Page/UploadPage';
+import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
-
-
+import { LoginForm } from "./Components/LoginForm";
+import { AuthGuard } from "./utils/authGuard"
+import { HomePage } from "./Page/HomePage";
 // --------------------------------------------------------------------------------
 
 function App() {
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
-  const user = "John";
-  const isLoggedIn = true;
+
+
 
   return (
     <div className="bigContainer">
@@ -32,15 +32,19 @@ function App() {
           ></img>
         </div>
       )}
+
+
       <Routes>
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
+        <Route element={<AuthGuard />} />
+        <Route path="/Home" element={<HomePage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
-        <Route path="/" element={""} />
       </Routes>
       <br />
+
     </div>
   );
 }

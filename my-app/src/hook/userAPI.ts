@@ -33,7 +33,7 @@ export function useItems() {
 
 //-------------------------------------------------------------------------------------------
 
-export async function createUsers(firstName: string, , lastName: string, password: string, email: string, phoneNumber: number) {
+export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
     try {
         const res = await fetch(`${source}/auth/register`, {
             method: "POST",
@@ -83,5 +83,25 @@ export async function loginUser(email: string, password: string) {
     }
 }
 
+//-------------------------------------------------------------------------------------------
 
+export async function localLogin(lastName: string, password: string) {
+    const res = await fetch(`${process.env.REACT_APP_API_SERVER}/auth/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            lastName,
+            password
+        })
+    })
 
+    const result = await res.json();
+    if (res.status === 200) {
+        localStorage.setItem('token', result.token)
+        return true
+    } else {
+        return false
+    }
+}
