@@ -75,13 +75,25 @@ export async function loginUser(email: string, password: string) {
             console.log(data);
             window.location.assign("/");
         } else {
-            const errorData = await res.json();
-            alert("Login failed: " + errorData.message);
+            alert("Login failed: " + data.message);
         }
     } catch (error: any) {
         alert("Login failed: Network error");
     }
 }
 
+//-------------------------------------------------------------------------------------------
 
+export async function addItem(title: string, description: string) {
+    const res = await fetch(`${process.env.REACT_APP_API_SERVER}/todo/item`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ title, description })
+    })
 
+    const result = await res.json()
+    return result.data
+}

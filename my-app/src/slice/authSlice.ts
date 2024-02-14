@@ -8,10 +8,14 @@ interface AuthState {
     username: string | null
 }
 
+// --------------------------------------------------------------------------------
+
 const initialState: AuthState = {
     isAuthenticated: localStorage.getItem('token') !== null,
     username: null
 }
+
+// --------------------------------------------------------------------------------
 
 export const authSlice = createSlice({
     name: 'auth',
