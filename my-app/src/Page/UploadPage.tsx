@@ -15,7 +15,7 @@ export default function UploadPage() {
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
   const [donationList, setDonationList] = useState<
-    Array<{ item_name: string; quantity: number }>
+    Array<{ id: number, item_name: string; quantity: number }>
   >([]);
 
   const itemList: string | Array<{ item_name: string }> = useItems();
@@ -25,7 +25,7 @@ export default function UploadPage() {
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedItem(event.target.value);
   };
-  const [quantity, setQuantity] = useState<number >(0);
+  const [quantity, setQuantity] = useState<number>(0);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     // setQuantity(event.target.value);
   };
@@ -36,10 +36,10 @@ export default function UploadPage() {
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-      const newItem = { item_name: selectedItem, quantity: (quantity) };
+      const newItem = { id: donationList.length + 1, item_name: selectedItem, quantity: (quantity) };
       setDonationList([...donationList, newItem]);
       setSelectedItem(""); // Reset selected item after adding to the list
-      setQuantity(quantity); // Reset quantity after adding to the list
+      setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
@@ -58,11 +58,18 @@ export default function UploadPage() {
     },
 
   });
-  
-  const addNewItemHandler = ()=>{
-    OnAddNewItems.mutate({logistic_id:1,donate_item_id:1,qty:1})
+
+  const addNewItemHandler = () => {
+    OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
   }
-  console.log("onadd??",addNewItemHandler)
+  console.log("onadd??", addNewItemHandler)
+
+
+  const handleDelete = (id: number) => {
+    const updatedList = donationList.filter(item => item.id !== id);
+    setDonationList(updatedList);
+  };
+
 
   return (
     <div className="uploadForm">
@@ -112,8 +119,8 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={()=>{
-          OnAddNewItems.mutate({ logistic_id:1,donate_item_id:1 ,qty:quantity});
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
+          OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: quantity });
           setInput("");
         }}>
           提交
@@ -121,8 +128,16 @@ export default function UploadPage() {
       </form>
       <ListGroup as="ul">
         {donationList.map((item, index) => (
-          <ListGroup.Item key={index}>
+          <ListGroup.Item key={item.id}>
             {item.item_name} - Quantity: {item.quantity}
+            {"\u00A0\u00A0"}
+            {"\u00A0\u00A0"}
+            <span
+              className="delete-link"
+              onClick={() => handleDelete(item.id)}
+              onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
+              onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
+            >[Delete]</span>
           </ListGroup.Item>
         ))}
       </ListGroup>

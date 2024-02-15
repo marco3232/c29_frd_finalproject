@@ -112,12 +112,17 @@ font-size: 20px;
 }
 
 .loginForm {
-    width: 100% !important;
+    width: 80% !important;
     padding-top: 100px;
     justify-content: center;
     display: flex;
 }
 
+.loginFormFetch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .loginTitle {
     font-weight: bold;
     margin-bottom: 5rem;
