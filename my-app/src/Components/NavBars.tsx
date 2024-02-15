@@ -48,7 +48,7 @@ function OffcanvasExample() {
                                 >
                                     <NavDropdown.Item onClick={() => navigate('/Register')}>註冊用戶</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/Upload')}>捐贈物資</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/InputAddress')}>testing1</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/Transaction')}>Transaction</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>

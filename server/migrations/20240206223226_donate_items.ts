@@ -3,7 +3,6 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("donate_items", (table) => {
     table.increments("id").primary();
-    table.uuid('uuid').defaultTo(knex.fn.uuid())
     table.string("item_name");
     table
       .integer("category_id")

@@ -1,21 +1,6 @@
 import { Knex } from "knex";
 
-
-// type LogisticType = {
-//   room_input: string,
-//   building_input: string,
-//   street_input: string,
-//   district_input: string,
-//   contact_number_input: number,
-//   contact_name_input: string,
-//   confirmed_date_input: Date,
-//   confirmed_session_input: string,
-//   user_id_input: number,
-//   qty_input: number,
-//   donate_item_id_input: number,
-//   logistic_id_input: number
-// }
-export class LogisticService {
+export class LogisticMixService {
   constructor(private knex: Knex) {}
   table(trx: Knex | null) {
     let t = !trx ? this.knex : trx;
@@ -26,11 +11,7 @@ export class LogisticService {
     return t("logistic_items");
   }
 
-
-
-
-
-  async createLogistic(
+  async createLogisticMix(
     room_input: string,
     building_input: string,
     street_input: string,
