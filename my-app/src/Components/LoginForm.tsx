@@ -106,8 +106,8 @@ export function LoginForm() {
                     >
                         {isSubmitting ? 'Logging in...' : 'Login'}
                     </MDBBtn>
-                    <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot password?</a></p>
-                    <p className='ms-5'>Don't have an account? <a href="/register" className="link-info">Register here</a></p>
+                    <p className="small mb-5 pb-lg-2 ms-1"><a className="text-muted" href="#!">Forgot password?</a></p>
+                    <p className='ms-1'>Don't have an account? <a href="/register" className="link-info">Register here</a></p>
 
                 </form>
             </div>
