@@ -96,7 +96,6 @@ export default function TransactionPage() {
         <TimePicker label="Basic time picker" />
       </DemoContainer>
     </LocalizationProvider>
-
       <br></br>
           <Button>Submit</Button>
     </div>
