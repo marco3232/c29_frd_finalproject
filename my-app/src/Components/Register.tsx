@@ -44,21 +44,30 @@ const RegisterForm = () => {
         event.preventDefault();
         const passwordInput1 = password;
         const passwordInput2 = confirmPassword;
+
+
+
         if (passwordInput1 !== passwordInput2) {
-            return alert("The password does not match!");
+            return Swal.fire({
+                text: "The password does not match!",
+                icon: 'error',
+                showConfirmButton: true,
+            })
         }
         if (!email) {
-            return alert("Email cannot be empty");
+            return Swal.fire({
+                text: "Email cannot be empty",
+                icon: 'error',
+                showConfirmButton: true,
+            })
         }
         if (!phoneNumber) {
-            return alert("Phone number cannot be empty");
+            return Swal.fire({
+                text: "Phone number cannot be empty",
+                icon: 'error',
+                showConfirmButton: true,
+            })
         }
-        if (phoneNumber < 10000000) {
-            return alert("Phone number must be 8 digits");
-        }
-
-
-
         try {
             const formData = { firstName, lastName, password, email, phoneNumber };
             mutate(formData)
@@ -82,7 +91,7 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='firstNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='First Name'
+                                label='First Name　　　　(Option)'
                                 size='lg'
                                 id='form1'
                                 type='text'
@@ -93,7 +102,29 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='Last Name'
+                                label='Last Name　　　　(Option)'
+                                size='lg'
+                                id='form2'
+                                type='text'
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                        </MDBCol>
+                        <MDBCol md='6' className='firstNameInput'>
+                            <MDBInput
+                                wrapperClass='mb-4'
+                                label='姓氏　　　　　　　(Option)'
+                                size='lg'
+                                id='form2'
+                                type='text'
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                        </MDBCol>
+                        <MDBCol md='6' className='lastNameInput'>
+                            <MDBInput
+                                wrapperClass='mb-4'
+                                label='名稱　　　　　　　(Option)'
                                 size='lg'
                                 id='form2'
                                 type='text'
