@@ -10,12 +10,12 @@ import { useMutation } from '@tanstack/react-query';
 
 const RegisterForm = () => {
     const navigate = useNavigate();
-    const [firstName, setFirstName] = useState('123');
-    const [lastName, setLastName] = useState('123');
-    const [email, setEmail] = useState('123@ggmail.com');
-    const [password, setPassword] = useState('123');
-    const [confirmPassword, setConfirmPassword] = useState('123');
-    const [phoneNumber, setPhoneNumber] = useState<number | undefined>(12312332);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState<number | undefined>();
 
     const { mutate } = useMutation({
         mutationFn: createUser,
