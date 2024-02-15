@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from 'react-query';
 //-------------------------------------------------------------------------------------------
 
 const source = "http://localhost:8080";
@@ -12,50 +12,53 @@ interface userValues {
 
 //-------------------------------------------------------------------------------------------
 
-export function useItems() {
-    const { isLoading, error, data, isFetching } = useQuery({
-        queryKey: ["users"],
-        queryFn: async () => {
-            const res = await fetch(`${source}/auth/register`);
-            const result = await res.json();
-            return result.data as userValues[];
-        },
-    });
-    if (isLoading || isFetching) return "Data Loading";
-    if (error) {
-        return "Error ";
-    }
-    if (!data) {
-        return [];
-    }
-    return data;
-}
+// export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
+//     try {
+//         const res = await fetch(`${source}/auth/register`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({ eng_surname: firstName, eng_given_name: lastName, password: password, email: email, mobile_phone: phoneNumber })
+//         });
 
-//-------------------------------------------------------------------------------------------
+//         const data = await res.json();
 
-export async function createUsers(firstName: string, lastName: string, password: string, email: string, phoneNumber: number) {
+//         if (res.ok) {
+//             console.log(data);
+//             window.location.href = "/";
+//         } else {
+//             throw new Error(data.message);
+//         }
+//     } catch (error: any) {
+//         throw new Error(error.message);
+//     }
+// }
+
+
+
+export async function createUser({ firstName, lastName, password, email, phoneNumber }: { firstName: string, lastName: string, password: string, email: string, phoneNumber: number }) {
     try {
         const res = await fetch(`${source}/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ eng_surname: firstName, eng_given_name: lastName, password: password, email: email, mobile_phone: phoneNumber })
+            body: JSON.stringify({ eng_surname: firstName, eng_given_name: lastName, password, email, mobile_phone: phoneNumber })
         });
 
         const data = await res.json();
 
         if (res.ok) {
             console.log(data);
-            window.location.href = "/";
+            // window.location.href = "/";
         } else {
-            throw new Error(data.message);
+            throw new Error(data.message)
         }
     } catch (error: any) {
-        throw new Error(error.message);
+        throw new Error(error.message)
     }
 }
-
 //-------------------------------------------------------------------------------------------
 
 export async function loginUser(email: string, password: string) {

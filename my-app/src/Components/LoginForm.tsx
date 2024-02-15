@@ -4,7 +4,6 @@ import {
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
-import { loginUser } from '../hook/userAPI';
 
 // --------------------------------------------------------------------------------
 
@@ -17,42 +16,11 @@ export function LoginForm() {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // const form = e.target as HTMLFormElement;
-
-        // const username = form.username.value
-        // const password = form.password.value
-        // const success = await localLogin(username, password)
-        // if (success) {
-        //     dispatch(login(username))
-        //     navigate('/')
-        // } else {
-        //     return
-        // }
-
-
         if (!password || !email) {
             return alert("Email and password cannot be empty");
         }
         try {
-            loginUser(email, password)
-
-            //     const response = await fetch(`${source}/auth/login`, {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify({ email, password }),
-            //     });
-
-            //     const data = await response.json();
-
-            //     if (data.flag) {
-            //         alert("Login successful!");
-            //         dispatch(login(email));
-            //         navigate('/');
-            //     } else {
-            //         alert(data.message);
-            //     }
+            // loginUser(email, password)
         } catch (error) {
             console.error('Error during login:', error);
             setError("An error occurred during login");
@@ -101,4 +69,3 @@ export function LoginForm() {
         </MDBContainer >
     );
 }
-

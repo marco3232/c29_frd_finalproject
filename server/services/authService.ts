@@ -53,26 +53,48 @@ export class AuthService {
                 throw new Error("Email already exists");
             }
 
-            await this.table().insert({
+            const existingUserByPhone = await this.table().where("mobile_phone", mobile_phone).first();
+            if (existingUserByPhone) {
+                throw new Error("Phone number already exists");
+            }
+
+            if (String(mobile_phone).length != 8) {
+                throw new Error("Phone number must be 8 digits")
+            }
+
+
+            const data = {
                 email: email,
                 password: hashed,
                 mobile_phone: mobile_phone,
                 eng_surname: eng_surname,
                 eng_given_name: eng_given_name
-            });
-
+            }
+            console.log(data)
+            await this.table().insert(data);
             return { success: true, message: "User registered successfully" };
+
+
+
         } catch (error: any) {
-            return { success: false, message: error.message };
+            console.error(error)
+            throw new Error(error.message)
         }
     }
 
     // -----------------------------------------------------------------------------------------------
 
-    async getUser(username: string) {
-        const user = (await this.knex).select('*').from('users').where('eng_given_name', username)
-        return user;
+    async getUser(email: string): Promise<number> {
+        try {
+            const queryResult = await this.table()
+                .where("email", email)
+                .select("*");
+            return queryResult.length;
+        } catch (error: any) {
+            throw new Error("Error retrieving user email: " + error.message);
+        }
     }
+
 }
 
 // -----------------------------------------------------------------------------------------------

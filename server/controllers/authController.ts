@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
-import { comparePassword, hashedPassword } from "../utils/hash";
+import { hashedPassword } from "../utils/hash";
 import { AuthService } from "../services/authService";
-import { isTokenKind, tokenToString } from "typescript";
 
 //-------------------------------------------------------------------------------------------
 
@@ -13,18 +12,25 @@ export default class AuthController {
         this.router.post("/register", this.register.bind(this));
     }
 
-    async register(req: Request, res: Response) {
+    async register(req: Request, res: Response): Promise<void> {
         try {
             if (!req.body.email || !req.body.password || !req.body.mobile_phone) {
-                return res.status(400).json({ message: "Email, password, and mobile phone cannot be empty" });
+                res.status(400).json({ message: "Email, password, and mobile phone cannot be empty" });
+                return
             }
 
-            let checkEmail = await this.authService.getUser(req.body.email);
-            if (checkEmail.length > 0) {
-                return res.status(400).json({ message: "Email already exists" });
+            if (req.body.mobile_phone.toString().length !== 8) {
+                res.status(400).json({ message: "Phone number must be 8 digits" });
+                return;
             }
 
-            let hashed = await hashedPassword(req.body.password);
+            let countOfEmailRecord: number = await this.authService.getUser(req.body.email);
+            console.log({ countOfEmailRecord })
+            if (countOfEmailRecord > 0) {
+                res.status(400).json({ message: "Email already exists" });
+                return
+            }
+            let hashed: string = await hashedPassword(req.body.password);
 
             await this.authService.register(
                 req.body.email,
@@ -34,9 +40,11 @@ export default class AuthController {
                 req.body.eng_given_name
             );
 
-            return res.json({ message: "Register success" });
+            res.json({ message: "Register success" });
+            return
         } catch (e: any) {
-            return res.status(400).json({ message: e.message });
+            res.status(400).json({ message: e.message });
+            return
         }
     }
 
@@ -51,7 +59,6 @@ export default class AuthController {
             res.json({ message: result.message, token: result.token });
 
             // window.location.assign("/")
-            // window.location.href = "/";
 
 
         } else {

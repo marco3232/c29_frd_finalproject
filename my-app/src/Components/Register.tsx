@@ -1,29 +1,33 @@
 import { useState } from 'react';
-import {
-    MDBBtn,
-    MDBContainer,
-    MDBCardBody,
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBRadio,
-} from 'mdb-react-ui-kit';
-import { createUsers } from '../hook/userAPI';
-/* --------------------------------------------------------------------------------------------------------- */
+import { MDBBtn, MDBContainer, MDBCardBody, MDBRow, MDBCol, MDBInput, MDBRadio } from 'mdb-react-ui-kit';
+import { useMutation } from '@tanstack/react-query';
+import { createUser } from '../hook/userAPI';
+
+//-------------------------------------------------------------------------------------------
+
 const RegisterForm = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState<number | undefined>(undefined)
-    //-------------------------------------------------------------------------------------------
+    const [firstName, setFirstName] = useState('123');
+    const [lastName, setLastName] = useState('123');
+    const [email, setEmail] = useState('123@ggmail.com');
+    const [password, setPassword] = useState('123');
+    const [confirmPassword, setConfirmPassword] = useState('123');
+    const [phoneNumber, setPhoneNumber] = useState<number | undefined>(12312332);
+    const { mutate } = useMutation({
+        mutationFn: createUser,
+        onSuccess: (data) => {
+            console.log(data)
+            alert("Registration successful");
+        },
+        onError: (data) => {
+            alert(data);
+        }
+    })
+
 
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const passwordInput1 = password;
         const passwordInput2 = confirmPassword;
-
         if (passwordInput1 !== passwordInput2) {
             return alert("The password does not match!");
         }
@@ -37,10 +41,13 @@ const RegisterForm = () => {
             return alert("Phone number must be 8 digits");
         }
 
+
+
         try {
-            await createUsers(firstName, lastName, password, email, phoneNumber);
-            alert("Registration successful");
+            const formData = { firstName, lastName, password, email, phoneNumber };
+            mutate(formData)
         } catch (error: any) {
+            console.log(error)
             console.error('Error during registration:', error);
             if (error.message === "Email already exists") {
                 alert('Email already exists. Please use a different email address.');
@@ -114,7 +121,6 @@ const RegisterForm = () => {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
-
                     </MDBRow>
                     <div className='roleLabel'>
                         <h6 className=''>用戶身份:</h6>
@@ -146,7 +152,6 @@ const RegisterForm = () => {
                             label='非牟利機構'
                             inline
                         />
-
                     </div>
                     <div className='submitContainer   '>
                         <MDBBtn id="resetBtn" color='danger' size='lg'>
@@ -161,4 +166,5 @@ const RegisterForm = () => {
         </MDBContainer >
     );
 }
+
 export default RegisterForm;

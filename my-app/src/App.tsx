@@ -21,17 +21,17 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean)
 
 
-  const checkLoginStatus = () => {
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  // const checkLoginStatus = () => {
+  //   const token = localStorage.getItem('token'); // Retrieve token from localStorage
 
-    // If token exists, validate it (you need to implement token validation)
-    if (token) {
-      const isValid = validateToken(token); // Implement validateToken function
-      setIsLoggedIn(isValid);
-    } else {
-      setIsLoggedIn(false);
-    }
-  };
+  //   // If token exists, validate it (you need to implement token validation)
+  //   if (token) {
+  //     const isValid = validateToken(token); // Implement validateToken function
+  //     setIsLoggedIn(isValid);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // };
 
   return (
     <div className="bigContainer">
@@ -52,15 +52,19 @@ function App() {
 
 
       <Routes>
-        <Route path="/notFoundPage" element={<NotFoundPage />} />
-        <Route path="/Register" element={<RegisterForm />} />
-        <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
-        <Route element={<AuthGuard />} />
-        <Route path="/Donate" element={<DonateItemPage />} />
-        <Route path="/Transaction" element={<TransactionPage />} />
+        <Route path="/Register" element={<RegisterForm />} />
+        <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/" element={""} />
+
+
+        <Route element={<AuthGuard />} >
+          <Route path="/Upload" element={<UploadPage />} />
+          <Route path="/Donate" element={<DonateItemPage />} />
+          <Route path="/Transaction" element={<TransactionPage />} />
+        </Route>
       </Routes>
+
       <br />
 
     </div>
