@@ -19,7 +19,7 @@ export default function UploadPage() {
   >([]);
 
   const itemList: string | Array<{ item_name: string }> = useItems();
-  console.log("check", itemList);
+
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -44,11 +44,11 @@ export default function UploadPage() {
   };
 
   const OnAddNewItems = useMutation({
-    mutationFn: async (
-      logistic_id: number,
-      donate_item_id: number,
-      qty: number
-    ) => addNewItems(logistic_id,donate_item_id,qty),
+    mutationFn: async (data: {
+      logistic_id: number;
+      donate_item_id: number;
+      qty: number;
+    }) => addNewItems(data.donate_item_id, data.logistic_id, data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
@@ -56,8 +56,11 @@ export default function UploadPage() {
       });
     },
   });
-
-
+  
+  const addNewItemHandler = ()=>{
+    OnAddNewItems.mutate({logistic_id:1,donate_item_id:1,qty:1})
+  }
+  console.log("onadd??",addNewItemHandler)
 
   return (
     <div className="uploadForm">
@@ -88,11 +91,7 @@ export default function UploadPage() {
           {"\u00A0\u00A0"}
           <b>
             數量 :{" "}
-            <input
-              type="number"
-              value={qty}
-              onChange={handleQuantityChange}
-            />
+            <input type="number" value={quantity} onChange={handleQuantityChange} />
             <button onClick={addPreSubmitHandler}> + + </button>
             <br />
             <br />
@@ -107,7 +106,7 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {}}>
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={addNewItemHandler}>
           提交
         </MDBBtn>
       </form>
