@@ -33,13 +33,13 @@ function App() {
       <nav className="banContainer">
         <Navbar.Brand id="shopName" href="/">shopName</Navbar.Brand>
         <br />
-        <Nav.Item>
-          <Button variant="warning" onClick={logInNavigate}>
+        <Nav.Item className="logIn_logOutBtn">
+          <Button variant="secondary" onClick={logInNavigate}>
             Login
           </Button>
           {"\u00A0\u00A0"}
           {"\u00A0\u00A0"}
-          <Button variant="warning" onClick={() => ("")}>
+          <Button variant="dark" onClick={() => ("")}>
             Logout
           </Button>
         </Nav.Item>
@@ -68,9 +68,9 @@ function App() {
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
-          <Route path="/Upload" element={<UploadPage />} />
-          <Route path="/Donate" element={<DonateItemPage />} />
-          <Route path="/Transaction" element={<TransactionPage />} />
+        <Route path="/Upload" element={<UploadPage />} />
+        <Route path="/Donate" element={<DonateItemPage />} />
+        <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
 
 
