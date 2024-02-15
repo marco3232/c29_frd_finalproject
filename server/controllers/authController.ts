@@ -52,14 +52,10 @@ export default class AuthController {
 
     async login(req: Request, res: Response) {
         let { email, password } = req.body;
-
         let result = await this.authService.login(email, password);
 
         if (result.flag) {
             res.json({ message: result.message, token: result.token });
-
-            // window.location.assign("/")
-
 
         } else {
             res.status(400).json({ message: result.message })

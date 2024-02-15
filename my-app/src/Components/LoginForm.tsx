@@ -1,29 +1,66 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'
 import {
     MDBBtn,
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
-
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../hook/userAPI';
 // --------------------------------------------------------------------------------
 
+
 export function LoginForm() {
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+    const { mutate: loginMutate } = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (data) => {
+            if (data && data.message === "Login successful!") {
+                Swal.fire({
+                    title: "Login successful",
+                    icon: 'success',
+                    showConfirmButton: false,
+                })
+                navigate("/")
+            }
+        },
+        onError: (data) => {
+            Swal.fire({
+                title: "Login failed",
+                text: data.message || "Unknown error",
+                icon: 'error',
+                showConfirmButton: true,
+            })
+        },
+        onMutate: () => {
+            setIsSubmitting(true);
+        },
+        onSettled: () => {
+            setIsSubmitting(false);
+        }
+    })
 
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+
+
         if (!password || !email) {
             return alert("Email and password cannot be empty");
         }
+
         try {
-            // loginUser(email, password)
+            const formData = { email, password }
+            loginMutate(formData)
         } catch (error) {
             console.error('Error during login:', error);
-            setError("An error occurred during login");
         }
     };
 
@@ -59,13 +96,15 @@ export function LoginForm() {
                         color="info"
                         size="lg"
                         type="submit"
+                        disabled={isSubmitting}
                     >
-                        Login
+                        {isSubmitting ? 'Logging in...' : 'Login'}
                     </MDBBtn>
-                    <p className="error">{error}</p>
+                    <p className="error">{""}</p>
                 </form>
             </div>
 
         </MDBContainer >
     );
 }
+

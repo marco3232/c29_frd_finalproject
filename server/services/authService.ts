@@ -16,28 +16,23 @@ export class AuthService {
     async login(email: string, password: string) {
         const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-        if (userInfoQuery) {
-            const passwordHash = userInfoQuery.password;
-
-            const compareResult = await comparePassword(password, passwordHash);
-
-            if (compareResult) {
-                const payload = {
-                    id: userInfoQuery.id,
-                    email: userInfoQuery.email,
-                    name: userInfoQuery.lastName
-                };
-
-                const token = jwtSimple.encode(payload, jwt.jwtSecret);
-
-                return { flag: true, message: "Login successful!", token: token };
-
-            } else {
-                return { flag: false, message: "Incorrect password" };
-            }
-        } else {
-            return { flag: false, message: "User not found" };
+        if (!userInfoQuery) {
+            return { flag: false, message: "User not found" }
         }
+
+        if (!comparePassword) {
+            return { flag: false, message: "Incorrect password" }
+        }
+        const payload = {
+            id: userInfoQuery.id,
+            email: userInfoQuery.email,
+            name: userInfoQuery.lastName
+        };
+
+        const token = jwtSimple.encode(payload, jwt.jwtSecret);
+
+        return { flag: true, message: "Login successful!", token: token };
+
     }
 
     // -----------------------------------------------------------------------------------------------

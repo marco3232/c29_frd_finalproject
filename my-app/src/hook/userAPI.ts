@@ -1,6 +1,3 @@
-import { useMutation } from 'react-query';
-//-------------------------------------------------------------------------------------------
-
 const source = "http://localhost:8080";
 interface userValues {
     firstName: string;
@@ -51,7 +48,6 @@ export async function createUser({ firstName, lastName, password, email, phoneNu
 
         if (res.ok) {
             console.log(data);
-            // window.location.href = "/";
         } else {
             throw new Error(data.message)
         }
@@ -61,27 +57,26 @@ export async function createUser({ firstName, lastName, password, email, phoneNu
 }
 //-------------------------------------------------------------------------------------------
 
-export async function loginUser(email: string, password: string) {
+export async function loginUser({ email, password }: { email: string, password: string }) {
     try {
         const res = await fetch(`${source}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: email, password: password }),
+            body: JSON.stringify({ email, password }),
         });
 
         const data = await res.json();
 
         if (res.ok) {
-            alert("Login successful");
-            console.log(data);
-            window.location.assign("/");
+            return data
+
         } else {
-            alert("Login failed: " + data.message);
+            throw new Error(data.message || 'Login failed: Unknown error');
         }
     } catch (error: any) {
-        alert("Login failed: Network error");
+        throw new Error(error.message);
     }
 }
 

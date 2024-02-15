@@ -1,25 +1,41 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MDBBtn, MDBContainer, MDBCardBody, MDBRow, MDBCol, MDBInput, MDBRadio } from 'mdb-react-ui-kit';
-import { useMutation } from '@tanstack/react-query';
 import { createUser } from '../hook/userAPI';
+import Swal from 'sweetalert2'
+import { useMutation } from '@tanstack/react-query';
+
 
 //-------------------------------------------------------------------------------------------
 
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('123');
     const [lastName, setLastName] = useState('123');
     const [email, setEmail] = useState('123@ggmail.com');
     const [password, setPassword] = useState('123');
     const [confirmPassword, setConfirmPassword] = useState('123');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>(12312332);
+
     const { mutate } = useMutation({
         mutationFn: createUser,
         onSuccess: (data) => {
             console.log(data)
-            alert("Registration successful");
+            Swal.fire({
+                text: "Registration successful",
+                icon: 'success',
+                showConfirmButton: false,
+            })
+
+            navigate("/")
+
         },
         onError: (data) => {
-            alert(data);
+            Swal.fire({
+                text: data.message,
+                icon: 'error',
+                showConfirmButton: true,
+            })
         }
     })
 
