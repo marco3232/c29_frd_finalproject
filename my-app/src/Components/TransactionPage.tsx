@@ -5,9 +5,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import dayjs from "dayjs";
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addLogistic } from "../hook/dataAPI";
 
 //-------------------------------------------------------------------------------------------
 
@@ -185,11 +187,8 @@ export default function TransactionPage() {
       </div>
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
-          <DateTimePicker
-            label="收貨日期及時間"
-            defaultValue={dayjs()}
-          />
+        <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
+          <DateTimePicker label="收貨日期及時間" defaultValue={dayjs()} />
         </DemoContainer>
       </LocalizationProvider>
       <br></br>
