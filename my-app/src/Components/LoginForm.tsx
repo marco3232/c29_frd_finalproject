@@ -28,6 +28,7 @@ export function LoginForm() {
                     showConfirmButton: false,
                 })
                 navigate("/")
+
             }
         },
         onError: (data) => {
@@ -35,7 +36,7 @@ export function LoginForm() {
                 title: "Login failed",
                 text: data.message || "Unknown error",
                 icon: 'error',
-                showConfirmButton: true,
+                showConfirmButton: false,
             })
         },
         onMutate: () => {
@@ -53,7 +54,12 @@ export function LoginForm() {
 
 
         if (!password || !email) {
-            return alert("Email and password cannot be empty");
+            return Swal.fire({
+                title: "Login failed",
+                text: "Email and password cannot be empty",
+                icon: 'error',
+                showConfirmButton: false,
+            })
         }
 
         try {
@@ -71,7 +77,7 @@ export function LoginForm() {
             <div className="loginForm">
                 <form className='loginFormFetch' onSubmit={handleLogin}>
                     <h3 className="loginTitle" style={{ letterSpacing: "1px" }}>
-                        Log in
+                        Login
                     </h3>
 
                     <MDBInput
@@ -100,7 +106,9 @@ export function LoginForm() {
                     >
                         {isSubmitting ? 'Logging in...' : 'Login'}
                     </MDBBtn>
-                    <p className="error">{""}</p>
+                    <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot password?</a></p>
+                    <p className='ms-5'>Don't have an account? <a href="/register" className="link-info">Register here</a></p>
+
                 </form>
             </div>
 
