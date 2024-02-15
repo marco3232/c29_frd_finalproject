@@ -119,8 +119,8 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: quantity });
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={()=>{
+          OnAddNewItems.mutate({ logistic_id:0,donate_item_id:1 ,qty:quantity});
           setInput("");
         }}>
           提交

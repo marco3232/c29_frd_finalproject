@@ -68,13 +68,13 @@ function App() {
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
-        <Route path="/Upload" element={<UploadPage />} />
-        <Route path="/Donate" element={<DonateItemPage />} />
-        <Route path="/Transaction" element={<TransactionPage />} />
-
-
+          <Route path="/Upload" element={<UploadPage />} />
+          <Route path="/Donate" element={<DonateItemPage />} />
+          <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
-        <Route element={<AuthGuard />}>
+
+
+        <Route element={<AuthGuard />} >
         </Route>
       </Routes>
 

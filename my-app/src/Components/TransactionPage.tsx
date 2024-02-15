@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import styles from "../css/InputAddressPage.module.css"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -91,7 +91,8 @@ export default function TransactionPage() {
           />
         </DemoContainer>
       </LocalizationProvider>
-
+      <br></br>
+          <Button>Submit</Button>
     </div>
   );
 }
