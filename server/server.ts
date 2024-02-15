@@ -14,7 +14,7 @@ const PORT = 8080;
 import { ItemService } from "./services/itemService";
 import { ItemController } from "./controllers/itemController";
 import { LogisticController } from "./controllers/logisticsController";
-import { LogisticService } from "./services/logisticsServices";
+import { LogisticService } from "./services/logisticsService2";
 import AuthController from "./controllers/authController";
 import { AuthService } from "./services/authService";
 import { isLoggedIn, is_admin } from "./middelware";

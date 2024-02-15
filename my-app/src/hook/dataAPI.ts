@@ -30,7 +30,7 @@ export function useItems() {
 
 export async function addNewItems(
   logistic_id_input: number,
-  donate_item_id_input: number,
+  donate_item_id_input: number | string,
   qty_input: number
 ) {
   const res = await fetch(`${source}/logistic`, {

@@ -5,7 +5,8 @@ import UploadPage from './Components/UploadPage';
 import LoginForm from './Components/LoginForm';
 import DonateItemPage from "./Components/DonateItemPage";
 import RegisterForm from "./Components/Register";
-import InputAddressPage from "./Components/InputAddressPage";
+import TransactionPage from "./Components/TransactionPage";
+
 
 
 
@@ -40,7 +41,7 @@ function App() {
         <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/Donate" element={<DonateItemPage />} />
-        <Route path="/InputAddress" element={<InputAddressPage />} />
+        <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
       </Routes>
       <br />

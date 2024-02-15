@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
-import { LogisticService } from "../services/logisticsServices";
+import { LogisticService } from "../services/logisticsService2";
+
 
 export class LogisticController {
   router = express.Router();
@@ -9,30 +10,30 @@ export class LogisticController {
 
   create = async (req: Request, res: Response) => {
     let {
-      room,
-      building,
-      street,
-      district,
-      contact_number,
-      contact_name,
-      confirmed_date,
-      confirmed_session,
-      user_id,
+      // room,
+      // building,
+      // street,
+      // district,
+      // contact_number,
+      // contact_name,
+      // confirmed_date,
+      // confirmed_session,
+      // user_id,
       qty,
       donate_item_id,
       logistic_id,
     } = req.body;
 
-    let result = await this.logisticService.createLogistic(
-      room,
-      building,
-      street,
-      district,
-      contact_number,
-      contact_name,
-      confirmed_date,
-      confirmed_session,
-      user_id,
+    let result = await this.logisticService.createDonateItem(
+      // room,
+      // building,
+      // street,
+      // district,
+      // contact_number,
+      // contact_name,
+      // confirmed_date,
+      // confirmed_session,
+      // user_id,
       qty,
       donate_item_id,
       logistic_id

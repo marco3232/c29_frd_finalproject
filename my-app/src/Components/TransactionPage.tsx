@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
 
-export default function InputAddressPage() {
+export default function TransactionPage() {
   const [region, setRegion] = useState("");
   const [districtOptions, setDistrictOptions] = useState<string[]>([]);
 

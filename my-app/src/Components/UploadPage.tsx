@@ -25,9 +25,9 @@ export default function UploadPage() {
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedItem(event.target.value);
   };
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState<number >(0);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuantity(event.target.value);
+    // setQuantity(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -36,19 +36,19 @@ export default function UploadPage() {
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-      const newItem = { item_name: selectedItem, quantity: parseInt(quantity) };
+      const newItem = { item_name: selectedItem, quantity: (quantity) };
       setDonationList([...donationList, newItem]);
       setSelectedItem(""); // Reset selected item after adding to the list
-      setQuantity(""); // Reset quantity after adding to the list
+      setQuantity(quantity); // Reset quantity after adding to the list
     }
   };
 
   const OnAddNewItems = useMutation({
-    mutationFn: async (data: {
-      logistic_id: number;
-      donate_item_id: number;
-      qty: number;
-    }) => addNewItems(data.donate_item_id, data.logistic_id, data.qty),
+    mutationFn: async (data:{
+      logistic_id: number,
+      donate_item_id: number,
+      qty: number}
+    ) => addNewItems(data.logistic_id,data.donate_item_id,data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
@@ -91,7 +91,11 @@ export default function UploadPage() {
           {"\u00A0\u00A0"}
           <b>
             數量 :{" "}
-            <input type="number" value={quantity} onChange={handleQuantityChange} />
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+            />
             <button onClick={addPreSubmitHandler}> + + </button>
             <br />
             <br />
@@ -106,7 +110,10 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={addNewItemHandler}>
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={()=>{
+          OnAddNewItems.mutate({ logistic_id:1,donate_item_id:1 ,qty:quantity});
+          setInput("");
+        }}>
           提交
         </MDBBtn>
       </form>
