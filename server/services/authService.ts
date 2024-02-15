@@ -16,32 +16,27 @@ export class AuthService {
     async login(email: string, password: string) {
         const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-        if (userInfoQuery) {
-            const passwordHash = userInfoQuery.password;
-
-            const compareResult = await comparePassword(password, passwordHash);
-
-            if (compareResult) {
-                const payload = {
-                    id: userInfoQuery.id,
-                    email: userInfoQuery.email,
-                    name: userInfoQuery.firstName
-                };
-
-                const token = jwtSimple.encode(payload, jwt.jwtSecret);
-
-
-                return { flag: true, message: "Login successful!", token: token };
-
-            } else {
-                return { flag: false, message: "Incorrect password" };
-            }
-        } else {
-            return { flag: false, message: "User not found" };
+        if (!userInfoQuery) {
+            return { flag: false, message: "User not found" }
         }
+
+        if (!comparePassword) {
+            return { flag: false, message: "Incorrect password" }
+        }
+        const payload = {
+            id: userInfoQuery.id,
+            email: userInfoQuery.email,
+            name: userInfoQuery.lastName
+        };
+
+        const token = jwtSimple.encode(payload, jwt.jwtSecret);
+
+        return { flag: true, message: "Login successful!", token: token };
+
     }
 
     // -----------------------------------------------------------------------------------------------
+
     async register(email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
         try {
             if (!email || !hashed || !mobile_phone) {
@@ -53,32 +48,48 @@ export class AuthService {
                 throw new Error("Email already exists");
             }
 
-            await this.table().insert({
+            const existingUserByPhone = await this.table().where("mobile_phone", mobile_phone).first();
+            if (existingUserByPhone) {
+                throw new Error("Phone number already exists");
+            }
+
+            if (String(mobile_phone).length != 8) {
+                throw new Error("Phone number must be 8 digits")
+            }
+
+
+            const data = {
                 email: email,
                 password: hashed,
                 mobile_phone: mobile_phone,
                 eng_surname: eng_surname,
                 eng_given_name: eng_given_name
-            });
-
+            }
+            console.log(data)
+            await this.table().insert(data);
             return { success: true, message: "User registered successfully" };
+
+
+
         } catch (error: any) {
-            return { success: false, message: error.message };
+            console.error(error)
+            throw new Error(error.message)
         }
     }
 
     // -----------------------------------------------------------------------------------------------
 
-    async getUserEmail(email: string): Promise<any> {
+    async getUser(email: string): Promise<number> {
         try {
             const queryResult = await this.table()
                 .where("email", email)
                 .select("*");
-            return queryResult;
+            return queryResult.length;
         } catch (error: any) {
             throw new Error("Error retrieving user email: " + error.message);
         }
     }
+
 }
 
 // -----------------------------------------------------------------------------------------------

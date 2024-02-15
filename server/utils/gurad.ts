@@ -1,37 +1,59 @@
-import { Request, Response, NextFunction } from "express"
 import { Bearer } from "permit";
 import jwtSimple from "jwt-simple";
 import jwt from "./jwt";
-
+import express from "express";
+//-------------------------------------------------------------------------------------------
 
 const permit = new Bearer({
     query: "access_token"
 });
 
-type UserType = {
-    id: number;
-    email: string;
-    password: string;
-};
+interface User {
+    id: number
+    mobile_phone: number
+    eng_given_name: string
+}
 
-
-
-export function isLoggedIn(req: Request, res: Response, next: NextFunction) {
-    try {
-
-        const token = permit.check(req);
-
-        if (!token) {
-            throw Error();
+declare global {
+    namespace Express {
+        interface Request {
+            user?: Omit<User, 'password'>
         }
-
-        const decoded: Omit<UserType, "password"> = jwtSimple.decode(
-            token,
-            jwt.jwtSecret
-        );
-        req.body.users_id = decoded.id
-        next();
-    } catch (error) {
-        res.status(401).json({ msg: "Permission Denied" })
     }
 }
+
+//-------------------------------------------------------------------------------------------
+
+export async function isLoggedIn(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+) {
+    try {
+        const token = permit.check(req);
+        if (!token) {
+            return res.status(401).json({ msg: "Permission Denied" });
+        }
+
+        const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
+        req.user = decoded;
+
+        console.log("guard.ts check", req.user)
+
+        return next();
+    } catch (e) {
+        return res.status(401).json({ msg: "Permission Denied" });
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+export default {
+    jwtSecret: "IamasecretthatyoushouldneverrevealtoanyonePlsDoNotCopyDirectly",
+    jwtSession: {
+        session: false,
+    },
+};
+
+//-------------------------------------------------------------------------------------------
+

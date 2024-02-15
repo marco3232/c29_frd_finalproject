@@ -7,7 +7,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router';
 import "../css/App.css"
+import { useAppDispatch } from '../hook/hooks';
+import { logout } from '../slice/authSlice';
 
+// --------------------------------------------------------------------------------
 
 function OffcanvasExample() {
     const expandSize = 'lg'
@@ -36,7 +39,7 @@ function OffcanvasExample() {
                                 <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Register')}>註冊用戶</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Login')}>登入用戶</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Register')}>Testing</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/')}>Testing</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Testing</Nav.Link>
 
                                 <NavDropdown
@@ -66,5 +69,8 @@ function OffcanvasExample() {
         </>
     );
 }
+
+
+// --------------------------------------------------------------------------------
 
 export default OffcanvasExample;

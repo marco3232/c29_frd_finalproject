@@ -1,47 +1,72 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'
 import {
     MDBBtn,
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
-const source = "http://localhost:8080";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../hook/userAPI';
+// --------------------------------------------------------------------------------
 
-function LoginForm() {
+
+export function LoginForm() {
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+
+    const { mutate: loginMutate } = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (data) => {
+            if (data && data.message === "Login successful!") {
+                Swal.fire({
+                    title: "Login successful",
+                    icon: 'success',
+                    showConfirmButton: false,
+                })
+                navigate("/")
+            }
+        },
+        onError: (data) => {
+            Swal.fire({
+                title: "Login failed",
+                text: data.message || "Unknown error",
+                icon: 'error',
+                showConfirmButton: true,
+            })
+        },
+        onMutate: () => {
+            setIsSubmitting(true);
+        },
+        onSettled: () => {
+            setIsSubmitting(false);
+        }
+    })
+
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+
 
         if (!password || !email) {
             return alert("Email and password cannot be empty");
         }
 
         try {
-            const response = await fetch(`${source}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            const data = await response.json();
-
-            if (data.flag) {
-                alert("Login successful!");
-                window.location.href = "/";
-            } else {
-                alert(data.message);
-            }
+            const formData = { email, password }
+            loginMutate(formData)
         } catch (error) {
             console.error('Error during login:', error);
-            setError("An error occurred during login");
         }
     };
 
+
     return (
+
         <MDBContainer fluid className="loginFormContainer">
             <div className="loginForm">
                 <form className='loginFormFetch' onSubmit={handleLogin}>
@@ -71,14 +96,15 @@ function LoginForm() {
                         color="info"
                         size="lg"
                         type="submit"
+                        disabled={isSubmitting}
                     >
-                        Login
+                        {isSubmitting ? 'Logging in...' : 'Login'}
                     </MDBBtn>
-                    <p className="error">{error}</p>
+                    <p className="error">{""}</p>
                 </form>
             </div>
+
         </MDBContainer >
     );
 }
 
-export default LoginForm;
