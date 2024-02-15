@@ -90,6 +90,7 @@ export default function TransactionPage() {
         <DatePicker label="Basic date picker" />
       </DemoContainer>
     </LocalizationProvider>
+    <br></br>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimePicker']}>
         <TimePicker label="Basic time picker" />
