@@ -15,6 +15,11 @@ flex-wrap: wrap;
     max-width: 100%;
 }
 
+.banContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 .NavBarContainer {
 border-top: solid 10px rgb(87, 179, 207);
@@ -27,6 +32,8 @@ border-top: solid 10px rgb(87, 179, 207);
     font-weight: bold;
     font-size: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    display: flex;
+    justify-content: center;
 }
 
 .bg-body-tertiary{

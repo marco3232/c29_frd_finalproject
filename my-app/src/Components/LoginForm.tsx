@@ -77,7 +77,7 @@ export function LoginForm() {
             <div className="loginForm">
                 <form className='loginFormFetch' onSubmit={handleLogin}>
                     <h3 className="loginTitle" style={{ letterSpacing: "1px" }}>
-                        Log in
+                        Login
                     </h3>
 
                     <MDBInput

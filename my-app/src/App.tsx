@@ -8,7 +8,7 @@ import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { useState } from "react";
-import { Nav, Button } from "react-bootstrap";
+import { Nav, Button, Navbar } from "react-bootstrap";
 
 
 
@@ -30,7 +30,9 @@ function App() {
 
   return (
     <div className="bigContainer">
-      <nav>
+      <nav className="banContainer">
+        <Navbar.Brand id="shopName" href="/">shopName</Navbar.Brand>
+        <br />
         <Nav.Item>
           <Button variant="warning" onClick={logInNavigate}>
             Login

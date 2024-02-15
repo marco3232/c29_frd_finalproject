@@ -21,7 +21,6 @@ function OffcanvasExample() {
 
             <Navbar key={'md'} expand={expandSize} className="bg-body-tertiary mb-3">
                 <Container fluid>
-                    <Navbar.Brand id="shopName" href="#">Testing</Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expandSize}`} />
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${expandSize}`}
