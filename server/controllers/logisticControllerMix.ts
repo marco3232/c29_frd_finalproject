@@ -1,39 +1,39 @@
 import express, { Request, Response } from "express";
-import { LogisticService } from "../services/logisticsService2";
+import { LogisticMixService } from "../services/logisticServicesMix";
 
 
-export class LogisticController {
+export class LogisticMixController {
   router = express.Router();
-  constructor(private logisticService: LogisticService) {
-    this.router.post("/logistic", this.create);
+  constructor(private logisticMixService: LogisticMixService) {
+    this.router.post("/logisticMix", this.create);
   }
 
   create = async (req: Request, res: Response) => {
     let {
-      // room,
-      // building,
-      // street,
-      // district,
-      // contact_number,
-      // contact_name,
-      // confirmed_date,
-      // confirmed_session,
-      // user_id,
+      room,
+      building,
+      street,
+      district,
+      contact_number,
+      contact_name,
+      confirmed_date,
+      confirmed_session,
+      user_id,
       qty,
       donate_item_id,
       logistic_id,
     } = req.body;
 
-    let result = await this.logisticService.createDonateItem(
-      // room,
-      // building,
-      // street,
-      // district,
-      // contact_number,
-      // contact_name,
-      // confirmed_date,
-      // confirmed_session,
-      // user_id,
+    let result = await this.logisticMixService.createLogisticMix(
+      room,
+      building,
+      street,
+      district,
+      contact_number,
+      contact_name,
+      confirmed_date,
+      confirmed_session,
+      user_id,
       qty,
       donate_item_id,
       logistic_id

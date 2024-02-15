@@ -1,9 +1,9 @@
 import { Knex } from "knex";
 
-export class LogisticService {
+export class UploadDonateItemsService {
   constructor(private knex: Knex) {}
 
-  private logisticsItemsTable() {
+  private uploadDonateItemsTable() {
     return this.knex("logistic_items");
   }
 
@@ -13,7 +13,7 @@ export class LogisticService {
     logistic_id_input: number
   ) {
     try {
-      await this.logisticsItemsTable().insert({
+      await this.uploadDonateItemsTable().insert({
         qty: qty_input,
         donate_item_id: donate_item_id_input,
         logistic_id: logistic_id_input,

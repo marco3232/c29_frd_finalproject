@@ -19,7 +19,7 @@ export default function UploadPage() {
   >([]);
 
   const itemList: string | Array<{ item_name: string }> = useItems();
-  console.log("check", itemList);
+
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -56,8 +56,11 @@ export default function UploadPage() {
       });
     },
   });
-
-
+  
+  const addNewItemHandler = ()=>{
+    OnAddNewItems.mutate({logistic_id:1,donate_item_id:1,qty:1})
+  }
+  console.log("onadd??",addNewItemHandler)
 
   return (
     <div className="uploadForm">
