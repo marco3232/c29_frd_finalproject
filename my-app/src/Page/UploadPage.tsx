@@ -59,10 +59,10 @@ export default function UploadPage() {
 
   });
   
-  const addNewItemHandler = ()=>{
-    OnAddNewItems.mutate({logistic_id:1,donate_item_id:1,qty:1})
-  }
-  console.log("onadd??",addNewItemHandler)
+  // const addNewItemHandler = ()=>{
+  //   OnAddNewItems.mutate({logistic_id:1,donate_item_id:1,qty:1})
+  // }
+  // console.log("onadd??",addNewItemHandler)
 
   return (
     <div className="uploadForm">
@@ -113,7 +113,7 @@ export default function UploadPage() {
         <br />
         <br />
         <MDBBtn className="uploadBtn" color="info" size="lg" onClick={()=>{
-          OnAddNewItems.mutate({ logistic_id:0,donate_item_id:1 ,qty:quantity});
+          OnAddNewItems.mutate({ logistic_id:2,donate_item_id:1 ,qty:quantity});
           setInput("");
         }}>
           提交
