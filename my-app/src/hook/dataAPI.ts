@@ -33,7 +33,7 @@ export async function addNewItems(
   donate_item_id_input: number | string,
   qty_input: number
 ) {
-  const res = await fetch(`${source}/logistic`, {
+  const res = await fetch(`${source}/donate/upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
