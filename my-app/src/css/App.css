@@ -16,10 +16,11 @@ flex-wrap: wrap;
 }
 
 .banContainer {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
+
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 .NavBarContainer {
 border-top: solid 10px rgb(87, 179, 207);
@@ -190,4 +191,12 @@ display: flex;
 justify-content:flex-end;
 padding-top: 50px;
 padding-bottom: 10px;
+}
+
+
+.css-hkdbh3-MuiPaper-root-MuiCard-root {
+border:solid 1px black;  
+margin: 5px;
+box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2)!important;
+height: 350px;
 }
