@@ -12,11 +12,9 @@ const PORT = 8080;
 // --------------------- controller and service------------------------------
 
 import { ItemService } from "./services/itemService";
-import { ItemController } from "./controllers/itemController";
 
 import AuthController from "./controllers/authController";
 import { AuthService } from "./services/authService";
-import { isLoggedIn, is_admin } from "./middelware";
 import { UploadDonateItemsController } from "./controllers/uploadDonateItemsController";
 import { UploadDonateItemsService } from "./services/uploadDonateItemsService";
 // -------------------------------------------------------------------------------
@@ -25,6 +23,8 @@ import { LogisticService } from "./services/logisticsService";
 
 import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
+import { ItemController } from "./controllers/ItemController";
+import { isLoggedIn } from "./utils/gurad";
 
 const itemService = new ItemService(knex);
 const itemController = new ItemController(itemService);
@@ -53,19 +53,13 @@ app.use("/donate", itemController.router);
 
 // -----------------------------------------------------------------------------------------------
 
-app.get("/hi", (req, res) => {
-  res.send("hi");
+app.get("/hi", isLoggedIn, (req, res) => {
+  res.send(`Welcome, ${req.user?.eng_given_name}!`);
+
 });
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);
-// app.get('/admin_route', isLoggedIn, is_admin, (req, res) => {
-//   if (req.session && req.session.email) {
-//     res.send(`Welcome ${req.session.email}, you are an admin`);
-//   } else {
-//     res.status(401).json({ message: "Access denied. You are not logged in." });
-//   }
-// });
 
 // ----------------------這是分隔線----------------------------
 app.use("/donate", uploadDonateItemsController.router);

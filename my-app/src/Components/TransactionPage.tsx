@@ -7,6 +7,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from "dayjs";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
+//-------------------------------------------------------------------------------------------
 
 export default function TransactionPage() {
   const [region, setRegion] = useState("");
@@ -51,45 +52,45 @@ export default function TransactionPage() {
 
   return (
     <div >
-      <div  className={styles.contactInfo}>
-      <Form>
-      <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Label>聯絡人姓名</Form.Label>
-        <Form.Control type="email" placeholder="" />
-        <Form.Label>聯絡人電話</Form.Label>
-        <Form.Control type="phoneNumber" placeholder="" />
-      </Form.Group>
-    </Form>
-      <Form.Label>區域</Form.Label>
-      <Form.Select onChange={handleRegionChange} value={region}>
-        <option></option>
-        <option>香港島</option>
-        <option>九龍區</option>
-        <option>新界區</option>
-      </Form.Select>
+      <div className={styles.contactInfo}>
+        <Form>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>聯絡人姓名</Form.Label>
+            <Form.Control type="email" placeholder="" />
+            <Form.Label>聯絡人電話</Form.Label>
+            <Form.Control type="phoneNumber" placeholder="" />
+          </Form.Group>
+        </Form>
+        <Form.Label>區域</Form.Label>
+        <Form.Select onChange={handleRegionChange} value={region}>
+          <option></option>
+          <option>香港島</option>
+          <option>九龍區</option>
+          <option>新界區</option>
+        </Form.Select>
 
-      <Form.Label>地區</Form.Label>
-      <Form.Select>
-        {districtOptions.map((district, index) => (
-          <option key={index}>{district}</option>
-        ))}
-      </Form.Select>
-      <Form.Label>街道</Form.Label>
+        <Form.Label>地區</Form.Label>
+        <Form.Select>
+          {districtOptions.map((district, index) => (
+            <option key={index}>{district}</option>
+          ))}
+        </Form.Select>
+        <Form.Label>街道</Form.Label>
         <Form.Control type="street" placeholder="" />
-      <Form.Label>大廈 / 屋</Form.Label>
+        <Form.Label>大廈 / 屋</Form.Label>
         <Form.Control type="building" placeholder="" />
-      <Form.Label>樓 / 室</Form.Label>
+        <Form.Label>樓 / 室</Form.Label>
         <Form.Control type="flat-room" placeholder="" />
-        </div>
-        <br></br>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
-        <DateTimePicker
-          label="收貨日期及時間"
-          defaultValue={dayjs()}
-        />
-      </DemoContainer>
-    </LocalizationProvider>
+      </div>
+      <br></br>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
+          <DateTimePicker
+            label="收貨日期及時間"
+            defaultValue={dayjs()}
+          />
+        </DemoContainer>
+      </LocalizationProvider>
 
     </div>
   );
