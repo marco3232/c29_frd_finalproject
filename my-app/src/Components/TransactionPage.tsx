@@ -6,6 +6,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from "dayjs";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 //-------------------------------------------------------------------------------------------
 
@@ -84,13 +86,16 @@ export default function TransactionPage() {
       </div>
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
-          <DateTimePicker
-            label="收貨日期及時間"
-            defaultValue={dayjs()}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
+      <DemoContainer components={['DatePicker']}>
+        <DatePicker label="Basic date picker" />
+      </DemoContainer>
+    </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['TimePicker']}>
+        <TimePicker label="Basic time picker" />
+      </DemoContainer>
+    </LocalizationProvider>
+
       <br></br>
           <Button>Submit</Button>
     </div>
