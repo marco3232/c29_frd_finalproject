@@ -23,7 +23,7 @@ import { LogisticService } from "./services/logisticsService";
 
 import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
-import { ItemController } from "./controllers/ItemController";
+import { ItemController } from "./controllers/itemController";
 import { isLoggedIn } from "./utils/gurad";
 
 const itemService = new ItemService(knex);
@@ -59,6 +59,8 @@ app.get("/hi", isLoggedIn, (req, res) => {
 });
 
 app.post("/login", authController.router);
+
+
 app.get("/register", authController.router);
 
 // ----------------------這是分隔線----------------------------
