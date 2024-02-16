@@ -2,7 +2,7 @@ import { Knex } from "knex";
 import jwtSimple from "jwt-simple";
 import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
-
+import bcrypt from 'bcrypt'
 // -----------------------------------------------------------------------------------------------
 
 export class AuthService {
@@ -20,18 +20,25 @@ export class AuthService {
             return { flag: false, message: "User not found" }
         }
 
+        const passwordMatch = await bcrypt.compare(password, userInfoQuery.password)
         if (!comparePassword) {
             return { flag: false, message: "Incorrect password" }
         }
-        const payload = {
-            id: userInfoQuery.id,
-            email: userInfoQuery.email,
-            name: userInfoQuery.lastName
-        };
 
-        const token = jwtSimple.encode(payload, jwt.jwtSecret);
 
-        return { flag: true, message: "Login successful!", token: token };
+        if (passwordMatch) {
+            const payload = {
+                id: userInfoQuery.id,
+                email: userInfoQuery.email,
+                name: userInfoQuery.eng_surname
+            };
+
+            const token = jwtSimple.encode(payload, jwt.jwtSecret);
+            return { flag: true, message: "Login successful!", token: token };
+        } else {
+            return { flag: false, message: "Incorrect password" }
+
+        }
 
     }
 
@@ -99,7 +106,7 @@ export interface UserService {
     getUserByEmail(email: string): Promise<any>
     saveUser(output: {
         email: string,
-        username: string,
+        eng_surname: string,
         hashed: string,
         is_admin: boolean
     }): Promise<void>

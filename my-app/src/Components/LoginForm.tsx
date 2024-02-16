@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import {
     MDBBtn,
@@ -8,29 +8,33 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
+import { UserData } from '../hook/models';
+
 // --------------------------------------------------------------------------------
 
-
 export function LoginForm() {
-    const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [userData, setUserData] = useState<UserData>();
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
         onSuccess: (data) => {
             if (data && data.message === "Login successful!") {
+                localStorage.setItem('token', data.token)
+                setIsLoggedIn(true);
+                setUserData(data.user);
                 Swal.fire({
                     title: "Login successful",
                     icon: 'success',
                     showConfirmButton: false,
                 })
-                navigate("/")
-
             }
         },
+
         onError: (data) => {
             Swal.fire({
                 title: "Login failed",
@@ -47,12 +51,10 @@ export function LoginForm() {
         }
     })
 
+    // -----------------------------------------------
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-
-
         if (!password || !email) {
             return Swal.fire({
                 title: "Login failed",
@@ -70,13 +72,12 @@ export function LoginForm() {
         }
     };
 
-
     return (
 
         <MDBContainer fluid className="loginFormContainer">
             <div className="loginForm">
                 <form className='loginFormFetch' onSubmit={handleLogin}>
-                    <h3 className="loginTitle" style={{ letterSpacing: "1px" }}>
+                    <h3 className="loginTitle" style={{ letterSpacing: "1px" }} >
                         Login
                     </h3>
 
@@ -111,7 +112,6 @@ export function LoginForm() {
 
                 </form>
             </div>
-
         </MDBContainer >
     );
 }

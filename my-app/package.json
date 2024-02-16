@@ -11,6 +11,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "5",
     "dayjs": "^1.11.10",
+    "jsonwebtoken": "^9.0.2",
     "mdb-react-ui-kit": "^7.1.0",
     "primeicons": "^6.0.1",
     "primereact": "^10.5.0",

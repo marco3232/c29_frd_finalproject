@@ -1,4 +1,5 @@
 const source = "http://localhost:8080";
+
 interface userValues {
     firstName: string;
     lastName: string;
@@ -38,7 +39,6 @@ export async function loginUser({ email, password }: { email: string, password: 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({ email, password }),
         });
@@ -58,17 +58,15 @@ export async function loginUser({ email, password }: { email: string, password: 
 
 //-------------------------------------------------------------------------------------------
 
-
-export async function addItem(title: string, description: string) {
-    const res = await fetch(`${process.env.REACT_APP_API_SERVER}/auth/login`, {
-        method: "POST",
+export async function getUserInfo(token: string) {
+    const response = await fetch(`${source}/auth/login`, {
+        method: 'GET',
         headers: {
             "Content-Type": 'application/json',
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({ title, description })
-    })
-
-    const result = await res.json()
-    return result.data
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    return data;
 }
+
