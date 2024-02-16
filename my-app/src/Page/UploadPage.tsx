@@ -18,7 +18,7 @@ export default function UploadPage() {
     Array<{ id: number, item_name: string; quantity: number }>
   >([]);
 
-  const itemList: string | Array<{ item_name: string }> = useItems();
+  const itemList: string | Array<{ id:number, item_name: string }> = useItems();
 
 
   const [selectedItem, setSelectedItem] = useState("");
@@ -36,10 +36,14 @@ export default function UploadPage() {
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-      const newItem = { id: donationList.length + 1, item_name: selectedItem, quantity: (quantity) };
+
+      const newItem = { 
+        id: donationList.length + 1,
+        item_name: selectedItem, 
+        quantity: (quantity) };
       setDonationList([...donationList, newItem]);
-      setSelectedItem(""); // Reset selected item after adding to the list
-      setQuantity(0); // Reset quantity after adding to the list
+      // setSelectedItem(""); // Reset selected item after adding to the list
+      // setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
@@ -59,10 +63,10 @@ export default function UploadPage() {
 
   });
 
-  const addNewItemHandler = () => {
-    OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
-  }
-  console.log("onadd??", addNewItemHandler)
+  // const addNewItemHandler = () => {
+  //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
+  // }
+  // console.log("onadd??", addNewItemHandler)
 
 
   const handleDelete = (id: number) => {
@@ -120,7 +124,10 @@ export default function UploadPage() {
         <br />
         <br />
         <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          OnAddNewItems.mutate({ logistic_id: 0, donate_item_id: 1, qty: quantity });
+          OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: 2, qty: quantity });
+          console.log("check item",selectedItem)
+          console.log("check qty",quantity)
+          console.log("check id",)
           setInput("");
         }}>
           提交
