@@ -44,7 +44,7 @@ export class AuthService {
 
     // -----------------------------------------------------------------------------------------------
 
-    async register(chi_surname: string, chi_given_name: string, email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
+    async register(eng_surname: string, eng_given_name: string, chi_surname: string, chi_given_name: string, email: string, mobile_phone: number, hashed: string,) {
         try {
             if (!email || !hashed || !mobile_phone) {
                 throw new Error("Missing required fields");
@@ -66,13 +66,13 @@ export class AuthService {
 
 
             const data = {
+                eng_surname,
+                eng_given_name,
                 chi_surname,
                 chi_given_name,
                 email,
-                password: hashed,
                 mobile_phone,
-                eng_surname,
-                eng_given_name,
+                password: hashed,
             }
             console.log(data)
             await this.table().insert(data);

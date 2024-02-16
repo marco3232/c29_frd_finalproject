@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 const RegisterForm = () => {
     const navigate = useNavigate();
     const [chiSurname, setChiSurname] = useState('')
-    const [chiGivenName, setchiGivenName] = useState('')
+    const [chiGivenName, setChiGivenName] = useState('')
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -71,7 +71,7 @@ const RegisterForm = () => {
             })
         }
         try {
-            const formData = { firstName, lastName, password, email, phoneNumber };
+            const formData = { firstName, lastName, chiSurname, chiGivenName, email, phoneNumber, password, };
             mutate(formData)
         } catch (error: any) {
             console.log(error)
@@ -95,7 +95,6 @@ const RegisterForm = () => {
                                 wrapperClass='mb-4'
                                 label='First Name　　　　(Option)'
                                 size='lg'
-                                id='form1'
                                 type='text'
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
@@ -106,7 +105,6 @@ const RegisterForm = () => {
                                 wrapperClass='mb-4'
                                 label='Last Name　　　　(Option)'
                                 size='lg'
-                                id='form2'
                                 type='text'
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
@@ -117,7 +115,6 @@ const RegisterForm = () => {
                                 wrapperClass='mb-4'
                                 label='姓　　　　(Option)'
                                 size='lg'
-                                id='form2'
                                 type='text'
                                 value={chiSurname}
                                 onChange={(e) => setChiSurname(e.target.value)}
@@ -131,14 +128,13 @@ const RegisterForm = () => {
                                 id='form2'
                                 type='text'
                                 value={chiGivenName}
-                                onChange={(e) => setchiGivenName(e.target.value)}
+                                onChange={(e) => setChiGivenName(e.target.value)}
                             />
                         </MDBCol>
                         <MDBInput
                             wrapperClass='mb-4'
                             label='Your Email'
                             size='lg'
-                            id='form3'
                             type='email'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -147,7 +143,6 @@ const RegisterForm = () => {
                             wrapperClass='mb-4'
                             label='Phone Number'
                             size='lg'
-                            id='form3'
                             type='phoneNumber'
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(Number(e.target.value))}
@@ -156,7 +151,6 @@ const RegisterForm = () => {
                             wrapperClass='mb-4'
                             label='Password'
                             size='lg'
-                            id='form4'
                             type='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -165,7 +159,6 @@ const RegisterForm = () => {
                             wrapperClass='mb-4'
                             label='Confirm your password'
                             size='lg'
-                            id='form5'
                             type='password'
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}

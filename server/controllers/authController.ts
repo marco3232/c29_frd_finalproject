@@ -33,13 +33,13 @@ export default class AuthController {
             let hashed: string = await hashedPassword(req.body.password);
 
             await this.authService.register(
-                req.body.email,
-                hashed,
-                req.body.mobile_phone,
                 req.body.eng_surname,
                 req.body.eng_given_name,
                 req.body.chi_surname,
-                req.body.chi_given_name
+                req.body.chi_given_name,
+                req.body.email,
+                req.body.mobile_phone,
+                hashed,
             );
 
             res.json({ message: "Register success" });

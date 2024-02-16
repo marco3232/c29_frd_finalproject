@@ -11,7 +11,7 @@ interface userValues {
 }
 // -------------------------------------------------------------------------------------------
 
-export async function createUser({ firstName, lastName, password, email, phoneNumber }: { firstName: string, lastName: string, password: string, email: string, phoneNumber: number }) {
+export async function createUser({ firstName, lastName, chiSurname, chiGivenName, email, phoneNumber, password }: { firstName: string, lastName: string, chiSurname: string, chiGivenName: string, email: string, phoneNumber: number, password: string }) {
     try {
         const res = await fetch(`${source}/auth/register`, {
             method: "POST",
@@ -19,7 +19,7 @@ export async function createUser({ firstName, lastName, password, email, phoneNu
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                eng_surname: firstName, eng_given_name: lastName, password, email, mobile_phone: phoneNumber
+                eng_surname: firstName, eng_given_name: lastName, chi_surname: chiSurname, chi_given_name: chiGivenName, email, mobile_phone: phoneNumber, password,
             })
         });
 
