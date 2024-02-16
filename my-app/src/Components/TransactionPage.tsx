@@ -58,7 +58,6 @@ export default function TransactionPage() {
       confirmed_session: confirmedSessionInput,
       // user_id: userIdInput,
     });
-    // setContactNameInput("");
     window.location.href = "/Transaction";
   };
 
