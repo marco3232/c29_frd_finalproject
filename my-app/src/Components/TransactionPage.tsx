@@ -24,8 +24,8 @@ export default function TransactionPage() {
       district?: string;
       contact_number?: string;
       contact_name?: string;
-      confirmed_date?: string;
-      confirmed_session?: string;
+      confirmed_date?: Date;
+      // confirmed_session?: string;
       // user_id?: number;
     }) =>
       addLogistic(
@@ -35,8 +35,8 @@ export default function TransactionPage() {
         data.district,
         data.contact_number,
         data.contact_name,
-        data.confirmed_date,
-        data.confirmed_session
+        data.confirmed_date
+        // data.confirmed_session
         // data.user_id
       ),
     onSuccess: () =>
@@ -53,8 +53,8 @@ export default function TransactionPage() {
       street: streetInput,
       district: districtInput,
       contact_number: contactNumberInput,
-      // contact_name: contactNameInput,
-      // confirmed_date: confirmedDateInput,
+      contact_name: contactNameInput,
+      confirmed_date: confirmedDateInput,
       // confirmed_session: confirmedSessionInput,
       // user_id: userIdInput,
     });
@@ -68,7 +68,7 @@ export default function TransactionPage() {
   const [districtInput, setDistrictInput] = useState("");
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
-  // const [confirmedDateInput, setConfirmDateInput] = useState("");
+  const [confirmedDateInput, setConfirmDateInput] = useState<Date>(new Date());
   // const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
@@ -187,16 +187,26 @@ export default function TransactionPage() {
       </div>
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker']}>
-        <DatePicker label="Basic date picker" />
-      </DemoContainer>
-    </LocalizationProvider>
-    <br></br>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['TimePicker']}>
-        <TimePicker label="Basic time picker" />
-      </DemoContainer>
-    </LocalizationProvider>
+        <DemoContainer components={["DatePicker"]}>
+          <DatePicker
+            label="Date"
+            value={confirmedDateInput}
+            onChange={(date) => {
+              
+              if (date !== null) {
+                const d = new Date().toLocaleDateString('en-US')
+                console.log('date',date);
+              } 
+            }}
+          />
+        </DemoContainer>
+      </LocalizationProvider>
+      <br></br>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={["TimePicker"]}>
+          <TimePicker label="Time" />
+        </DemoContainer>
+      </LocalizationProvider>
       <br></br>
       <Button onClick={addLogisticHandler}>Submit</Button>
     </div>
