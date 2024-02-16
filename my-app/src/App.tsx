@@ -8,7 +8,7 @@ import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { useEffect, useState } from "react";
-import { Nav, Button, Navbar } from "react-bootstrap";
+import { Nav, Button, Navbar, NavbarBrand } from "react-bootstrap";
 import { UserData } from "./hook/models";
 import { getUserInfo } from "./hook/userAPI";
 
@@ -24,8 +24,8 @@ function App() {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
     setIsLoggedIn(false);
+    localStorage.removeItem('token');
     navigate('/')
   };
 
@@ -49,7 +49,9 @@ function App() {
   return (
     <div className="bigContainer">
       <nav className="banContainer">
-        <Navbar.Brand id="shopName" href="/">shopName</Navbar.Brand>
+        <NavbarBrand>
+          <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
+        </NavbarBrand>
         <br />
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (

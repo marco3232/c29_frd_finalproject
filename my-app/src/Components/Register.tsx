@@ -110,10 +110,10 @@ const RegisterForm = () => {
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                         </MDBCol>
-                        <MDBCol md='6' className='lastNameInput'>
+                        <MDBCol md='6' className='firstNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='姓　　　　(Option)'
+                                label='姓氏　　　　　　　(Option)'
                                 size='lg'
                                 type='text'
                                 value={chiSurname}
@@ -123,7 +123,7 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='名　　　　(Option)'
+                                label='名稱　　　　　　　(Option)'
                                 size='lg'
                                 id='form2'
                                 type='text'

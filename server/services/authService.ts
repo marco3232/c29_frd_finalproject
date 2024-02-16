@@ -107,7 +107,6 @@ export interface UserService {
     saveUser(output: {
         email: string,
         eng_surname: string,
-        chi_surname: string,
         hashed: string,
         is_admin: boolean
     }): Promise<void>
