@@ -1,14 +1,15 @@
 const source = "http://localhost:8080";
 
+
 interface userValues {
+    chiSurname: string;
     firstName: string;
     lastName: string;
     password: string;
     email: string;
     phoneNumber: number;
 }
-
-//-------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------
 
 export async function createUser({ firstName, lastName, password, email, phoneNumber }: { firstName: string, lastName: string, password: string, email: string, phoneNumber: number }) {
     try {
@@ -17,7 +18,9 @@ export async function createUser({ firstName, lastName, password, email, phoneNu
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ eng_surname: firstName, eng_given_name: lastName, password, email, mobile_phone: phoneNumber })
+            body: JSON.stringify({
+                eng_surname: firstName, eng_given_name: lastName, password, email, mobile_phone: phoneNumber
+            })
         });
 
         const data = await res.json();

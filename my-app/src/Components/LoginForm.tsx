@@ -6,7 +6,7 @@ import {
     MDBInput,
 } from "mdb-react-ui-kit";
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
 import { UserData } from '../hook/models';
 
@@ -18,6 +18,7 @@ export function LoginForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [userData, setUserData] = useState<UserData>();
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const navigate = useNavigate();
 
 
     const { mutate: loginMutate } = useMutation({
@@ -32,6 +33,7 @@ export function LoginForm() {
                     icon: 'success',
                     showConfirmButton: false,
                 })
+                navigate('/')
             }
         },
 

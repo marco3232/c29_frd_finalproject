@@ -44,7 +44,7 @@ export class AuthService {
 
     // -----------------------------------------------------------------------------------------------
 
-    async register(email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
+    async register(chi_surname: string, chi_given_name: string, email: string, hashed: string, mobile_phone: number, eng_surname: string, eng_given_name: string) {
         try {
             if (!email || !hashed || !mobile_phone) {
                 throw new Error("Missing required fields");
@@ -66,17 +66,17 @@ export class AuthService {
 
 
             const data = {
-                email: email,
+                chi_surname,
+                chi_given_name,
+                email,
                 password: hashed,
-                mobile_phone: mobile_phone,
-                eng_surname: eng_surname,
-                eng_given_name: eng_given_name
+                mobile_phone,
+                eng_surname,
+                eng_given_name,
             }
             console.log(data)
             await this.table().insert(data);
             return { success: true, message: "User registered successfully" };
-
-
 
         } catch (error: any) {
             console.error(error)
@@ -107,6 +107,7 @@ export interface UserService {
     saveUser(output: {
         email: string,
         eng_surname: string,
+        chi_surname: string,
         hashed: string,
         is_admin: boolean
     }): Promise<void>
