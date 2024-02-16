@@ -9,6 +9,7 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogistic } from "../hook/dataAPI";
 
+
 //-------------------------------------------------------------------------------------------
 
 export default function TransactionPage() {
@@ -184,21 +185,21 @@ export default function TransactionPage() {
         />
       </div>
       <br></br>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DatePicker"]}>
           <DatePicker
             label="Date"
             value={confirmedDateInput}
             onChange={(date) => {
-              
               if (date !== null) {
-                const d = new Date().toLocaleDateString('en-US')
+                const d = new Date(date).toLocaleDateString('en-US')
                 console.log('date',date);
               } 
             }}
           />
         </DemoContainer>
-      </LocalizationProvider>
+      </LocalizationProvider> */}
+
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["TimePicker"]}>
