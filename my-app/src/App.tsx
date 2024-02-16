@@ -9,6 +9,8 @@ import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { useEffect, useState } from "react";
 import { Nav, Button, Navbar } from "react-bootstrap";
+import { UserData } from "./hook/models";
+import { getUserInfo } from "./hook/userAPI";
 
 // --------------------------------------------------------------------------------
 
