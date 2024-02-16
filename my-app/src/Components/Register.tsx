@@ -113,7 +113,7 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='chi Name　　　　(Option)'
+                                label='姓　　　　(Option)'
                                 size='lg'
                                 type='text'
                                 value={chiSurname}
@@ -123,7 +123,7 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='chi last Name　　　　(Option)'
+                                label='名　　　　(Option)'
                                 size='lg'
                                 id='form2'
                                 type='text'

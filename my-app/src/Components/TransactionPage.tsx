@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import styles from "../css/InputAddressPage.module.css";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import dayjs from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import styles from "../css/InputAddressPage.module.css"
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogistic } from "../hook/dataAPI";
+import dayjs from "dayjs";
+
 
 //-------------------------------------------------------------------------------------------
 
@@ -24,8 +24,8 @@ export default function TransactionPage() {
       district?: string;
       contact_number?: string;
       contact_name?: string;
-      confirmed_date?:string;
-      // confirmed_session?: string;
+      confirmed_date?: string;
+      confirmed_session?: string;
       // user_id?: number;
     }) =>
       addLogistic(
@@ -35,8 +35,8 @@ export default function TransactionPage() {
         data.district,
         data.contact_number,
         data.contact_name,
-        data.confirmed_date
-        // data.confirmed_session
+        data.confirmed_date,
+        data.confirmed_session
         // data.user_id
       ),
     onSuccess: () =>
@@ -55,10 +55,9 @@ export default function TransactionPage() {
       contact_number: contactNumberInput,
       contact_name: contactNameInput,
       confirmed_date: confirmedDateInput,
-      // confirmed_session: confirmedSessionInput,
+      confirmed_session: confirmedSessionInput,
       // user_id: userIdInput,
     });
-    // setContactNameInput("");
     window.location.href = "/Transaction";
   };
 
@@ -69,7 +68,7 @@ export default function TransactionPage() {
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
   const [confirmedDateInput, setConfirmDateInput] = useState("");
-  // const [confirmedSessionInput, setConfirmSessionInput] = useState("");
+  const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
 
@@ -192,29 +191,32 @@ export default function TransactionPage() {
             label="Date"
             value={dayjs(confirmedDateInput)}
             onChange={(date) => {
-              
-              if (date !== null && date !== undefined) {
-                const dayjsDate = dayjs(date)
-                console.log("check",new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
-                setConfirmDateInput(new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
-
-                // if (dayjsDate.isValid()){
-                //   setConfirmDateInput(dayjsDate.toDate())
-                  
-                // } else {
-                //   console.error('Invalid date format')
-                // }
-                // const d = new Date(date)
-                // console.log('date',d);
-              } 
+              const dayjsDate = dayjs(date);
+              const dateToString = new Date(
+                dayjsDate.toDate()
+              ).toLocaleDateString("en-US");
+              console.log("date", dateToString);
+              setConfirmDateInput(dateToString);
             }}
           />
         </DemoContainer>
       </LocalizationProvider>
+
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["TimePicker"]}>
-          <TimePicker label="Time" />
+          <TimePicker
+            label="Time"
+            value={dayjs(confirmedSessionInput)}
+            onChange={(session) => {
+              const dayjsSession = dayjs(session);
+              const sessionToString = new Date(
+                dayjsSession.toDate()
+              ).toLocaleTimeString("en-US");
+              console.log("session", sessionToString);
+              setConfirmSessionInput(sessionToString);
+            }}
+          />
         </DemoContainer>
       </LocalizationProvider>
       <br></br>

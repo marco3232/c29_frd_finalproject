@@ -3,6 +3,7 @@ import { MDBBtn } from "mdb-react-ui-kit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
+import { useNavigate } from "react-router-dom";
 
 type ItemProps = {
   // id: number;
@@ -11,6 +12,7 @@ type ItemProps = {
 };
 
 export default function UploadPage() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
@@ -18,13 +20,16 @@ export default function UploadPage() {
     Array<{ id: number, item_name: string; quantity: number }>
   >([]);
 
-  const itemList: string | Array<{ item_name: string }> = useItems();
+  const itemList: string | Array<{ id:number, item_name: string }> = useItems();
 
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedItem(event.target.value);
   };
+
+  
+
   const [quantity, setQuantity] = useState<number>(0);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     // setQuantity(event.target.value);
@@ -36,10 +41,14 @@ export default function UploadPage() {
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-      const newItem = { id: donationList.length + 1, item_name: selectedItem, quantity: (quantity) };
+
+      const newItem = { 
+        id: donationList.length + 1,
+        item_name: selectedItem, 
+        quantity: (quantity) };
       setDonationList([...donationList, newItem]);
-      setSelectedItem(""); // Reset selected item after adding to the list
-      setQuantity(0); // Reset quantity after adding to the list
+      // setSelectedItem(""); // Reset selected item after adding to the list
+      // setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
@@ -59,10 +68,10 @@ export default function UploadPage() {
 
   });
 
-  const addNewItemHandler = () => {
-    OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
-  }
-  console.log("onadd??", addNewItemHandler)
+  // const addNewItemHandler = () => {
+  //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
+  // }
+  // console.log("onadd??", addNewItemHandler)
 
 
   const handleDelete = (id: number) => {
@@ -89,7 +98,7 @@ export default function UploadPage() {
             <option value="">請選擇</option>
             {Array.isArray(itemList) && itemList.length > 0 ? (
               itemList.map((entry) => (
-                <option value={entry.item_name}>{entry.item_name}</option>
+                <option value={entry.id}>{entry.item_name}</option>
               ))
             ) : (
               <option value="">No Item List</option>
@@ -111,7 +120,7 @@ export default function UploadPage() {
           </b>
           <h5>
             <b>
-              確認捐贈物品 : {selectedItem} <br />
+              確認捐贈物品 : {} <br />
               <br />
               確認數量 : {quantity}
             </b>
@@ -120,12 +129,15 @@ export default function UploadPage() {
         <br />
         <br />
         <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          OnAddNewItems.mutate({ logistic_id: 0, donate_item_id: 1, qty: quantity });
+          OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
+          console.log("check qty",quantity)
+          console.log("check id",selectedItem)
           setInput("");
         }}>
           提交
         </MDBBtn>
       </form>
+      <button onClick={() => navigate('/Transaction')}>NEXT</button>
       <ListGroup as="ul">
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.id}>

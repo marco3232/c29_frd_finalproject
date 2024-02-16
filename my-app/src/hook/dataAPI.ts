@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const source = "http://localhost:8080";
 interface DonateItem {
+  id:number,
   item_name: string;
 }
 
@@ -30,7 +31,7 @@ export function useItems() {
 
 export async function addNewItems(
   logistic_id_input: number,
-  donate_item_id_input: number | string,
+  donate_item_id_input: number,
   qty_input: number
 ) {
   const res = await fetch(`${source}/donate/upload`, {
