@@ -24,7 +24,7 @@ export default function TransactionPage() {
       district?: string;
       contact_number?: string;
       contact_name?: string;
-      confirmed_date?: Date;
+      confirmed_date?:Date;
       // confirmed_session?: string;
       // user_id?: number;
     }) =>
@@ -190,12 +190,22 @@ export default function TransactionPage() {
         <DemoContainer components={["DatePicker"]}>
           <DatePicker
             label="Date"
-            value={confirmedDateInput}
+            value={dayjs(confirmedDateInput)}
             onChange={(date) => {
               
-              if (date !== null) {
-                const d = new Date().toLocaleDateString('en-US')
-                console.log('date',date);
+              if (date !== null && date !== undefined) {
+                const dayjsDate = dayjs(date)
+                console.log("check",new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
+                // setConfirmDateInput(new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
+
+                // if (dayjsDate.isValid()){
+                //   setConfirmDateInput(dayjsDate.toDate())
+                  
+                // } else {
+                //   console.error('Invalid date format')
+                // }
+                // const d = new Date(date)
+                // console.log('date',d);
               } 
             }}
           />
