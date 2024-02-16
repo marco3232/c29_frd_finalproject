@@ -187,10 +187,16 @@ export default function TransactionPage() {
       </div>
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
-          <DateTimePicker label="收貨日期及時間" defaultValue={dayjs()} />
-        </DemoContainer>
-      </LocalizationProvider>
+      <DemoContainer components={['DatePicker']}>
+        <DatePicker label="Basic date picker" />
+      </DemoContainer>
+    </LocalizationProvider>
+    <br></br>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['TimePicker']}>
+        <TimePicker label="Basic time picker" />
+      </DemoContainer>
+    </LocalizationProvider>
       <br></br>
       <Button onClick={addLogisticHandler}>Submit</Button>
     </div>
