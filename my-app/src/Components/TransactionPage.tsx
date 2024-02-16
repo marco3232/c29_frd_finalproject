@@ -69,7 +69,7 @@ export default function TransactionPage() {
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
   const [confirmedDateInput, setConfirmDateInput] = useState("");
-  // const [confirmedSessionInput, setConfirmSessionInput] = useState("");
+  const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
 
@@ -215,7 +215,14 @@ export default function TransactionPage() {
       <br></br>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["TimePicker"]}>
-          <TimePicker label="Time" />
+          <TimePicker 
+            label="Time" 
+            value={confirmedSessionInput}
+            onChange={() => {
+              
+
+            }}
+            />
         </DemoContainer>
       </LocalizationProvider>
       <br></br>

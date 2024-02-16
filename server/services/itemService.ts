@@ -1,6 +1,7 @@
 import { Knex } from "knex";
 
 type ItemType = {
+  id:number,
   item_name: string;
 };
 
@@ -12,7 +13,7 @@ export class ItemService {
 
 
   async getAll() {
-    let rows: ItemType[] = await this.table().select("item_name").orderBy("id", "asc");
+    let rows: ItemType[] = await this.table().select("item_name","id").orderBy("id", "asc");
 
     return rows;
   }
