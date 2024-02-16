@@ -12,7 +12,7 @@ export class LogisticService {
     building_input: string,
     street_input: string,
     district_input: string,
-    contact_number_input: number,
+    contact_number_input: number | null,
     contact_name_input: string,
     confirmed_date_input: Date,
     confirmed_session_input: string,

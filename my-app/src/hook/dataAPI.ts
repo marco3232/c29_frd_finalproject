@@ -50,15 +50,15 @@ export async function addNewItems(
 }
 
 export async function addLogistic(
-  room_input: string,
-  building_input: string,
-  street_input: string,
-  district_input: string,
-  contact_number_input: number,
-  contact_name_input: string,
-  confirmed_date_input: Date,
-  confirmed_session_input: string,
-  user_id_input: number
+  room_input?: string,
+  building_input?: string,
+  street_input?: string,
+  district_input?: string,
+  contact_number_input?: string,
+  contact_name_input?: string,
+  confirmed_date_input?: Date,
+  confirmed_session_input?: string,
+  user_id_input?: number
 ) {
   const res = await fetch(`${source}/logistic`, {
     method: "POST",

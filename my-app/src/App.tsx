@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
-import UploadPage from './Page/UploadPage';
+import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
@@ -9,9 +9,6 @@ import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { useState } from "react";
 import { Nav, Button, Navbar } from "react-bootstrap";
-
-
-
 
 // --------------------------------------------------------------------------------
 
@@ -62,7 +59,6 @@ function App() {
           </div>
         )
       }
-
 
       <Routes>
         <Route path="/Login" element={<LoginForm />} />
