@@ -7,8 +7,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router';
 import "../css/App.css"
-import { useAppDispatch } from '../hook/hooks';
-import { logout } from '../slice/authSlice';
 
 // --------------------------------------------------------------------------------
 

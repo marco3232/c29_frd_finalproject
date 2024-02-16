@@ -59,6 +59,8 @@ app.get("/hi", isLoggedIn, (req, res) => {
 });
 
 app.post("/login", authController.router);
+
+
 app.get("/register", authController.router);
 
 // ----------------------這是分隔線----------------------------

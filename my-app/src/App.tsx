@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
@@ -7,8 +7,10 @@ import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav, Button, Navbar } from "react-bootstrap";
+import { UserData } from "./hook/models";
+import { getUserInfo } from "./hook/userAPI";
 
 // --------------------------------------------------------------------------------
 
@@ -18,10 +20,29 @@ function App() {
   const shouldShowWelcomePage = location.pathname === "/";
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const navigate = useNavigate();
+  const [userData, setUserData] = useState<UserData>();
 
-  function logInNavigate() {
-    navigate("/login")
-  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/')
+  };
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      getUserInfo(token)
+        .then((data) => {
+          setUserData(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user data', error);
+        });
+    }
+  }, []);
 
 
 
@@ -31,15 +52,20 @@ function App() {
         <Navbar.Brand id="shopName" href="/">shopName</Navbar.Brand>
         <br />
         <Nav.Item className="logIn_logOutBtn">
-          <Button variant="secondary" onClick={logInNavigate}>
-            Login
-          </Button>
-          {"\u00A0\u00A0"}
-          {"\u00A0\u00A0"}
-          <Button variant="dark" onClick={() => ("")}>
-            Logout
-          </Button>
+          {isLoggedIn ? (
+            <div className="logInStatus">
+              <p>Welcome, {userData?.eng_surname}!You are logged in.</p>
+              <Button variant="dark" onClick={handleLogout}>
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button variant="secondary" onClick={() => navigate('/login')}>
+              Login
+            </Button>
+          )}
         </Nav.Item>
+
       </nav>
       {
         shouldShowNavBar && (
@@ -64,13 +90,13 @@ function App() {
         <Route path="/Login" element={<LoginForm />} />
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
-        <Route path="/Upload" element={<UploadPage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
-
-
         <Route element={<AuthGuard />} >
+
+          <Route path="/Upload" element={<UploadPage />} />
+
         </Route>
       </Routes>
 

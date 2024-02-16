@@ -37,7 +37,9 @@ export default class AuthController {
                 hashed,
                 req.body.mobile_phone,
                 req.body.eng_surname,
-                req.body.eng_given_name
+                req.body.eng_given_name,
+                req.body.chi_surname,
+                req.body.chi_given_name
             );
 
             res.json({ message: "Register success" });

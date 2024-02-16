@@ -10,6 +10,8 @@ import { useMutation } from '@tanstack/react-query';
 
 const RegisterForm = () => {
     const navigate = useNavigate();
+    const [chiSurname, setChiSurname] = useState('')
+    const [chiGivenName, setchiGivenName] = useState('')
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -110,10 +112,10 @@ const RegisterForm = () => {
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                         </MDBCol>
-                        <MDBCol md='6' className='firstNameInput'>
+                        <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='姓氏　　　　　　　(Option)'
+                                label='Last Name　　　　(Option)'
                                 size='lg'
                                 id='form2'
                                 type='text'
@@ -124,7 +126,7 @@ const RegisterForm = () => {
                         <MDBCol md='6' className='lastNameInput'>
                             <MDBInput
                                 wrapperClass='mb-4'
-                                label='名稱　　　　　　　(Option)'
+                                label='Last Name　　　　(Option)'
                                 size='lg'
                                 id='form2'
                                 type='text'
