@@ -120,7 +120,7 @@ const RegisterForm = () => {
                                 id='form2'
                                 type='text'
                                 value={chiSurname}
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(e) => setChiSurname(e.target.value)}
                             />
                         </MDBCol>
                         <MDBCol md='6' className='lastNameInput'>
@@ -131,7 +131,7 @@ const RegisterForm = () => {
                                 id='form2'
                                 type='text'
                                 value={chiGivenName}
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(e) => setchiGivenName(e.target.value)}
                             />
                         </MDBCol>
                         <MDBInput
