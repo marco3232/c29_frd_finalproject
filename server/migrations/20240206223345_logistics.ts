@@ -13,7 +13,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("district");
     table.integer("contact_number");
     table.string("contact_name");
-    table.date("confirmed_date");
+    table.string("confirmed_date");
     table.string("confirmed_session");
     table.boolean("tried");
     table.boolean("rescheduled");

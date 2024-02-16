@@ -14,7 +14,7 @@ export class LogisticService {
     district_input: string,
     contact_number_input: number | null,
     contact_name_input: string,
-    confirmed_date_input: Date,
+    confirmed_date_input: string,
     confirmed_session_input: string,
     user_id_input: number,
   ) {

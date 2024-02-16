@@ -24,7 +24,7 @@ export default function TransactionPage() {
       district?: string;
       contact_number?: string;
       contact_name?: string;
-      confirmed_date?:Date;
+      confirmed_date?:string;
       // confirmed_session?: string;
       // user_id?: number;
     }) =>
@@ -68,7 +68,7 @@ export default function TransactionPage() {
   const [districtInput, setDistrictInput] = useState("");
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
-  const [confirmedDateInput, setConfirmDateInput] = useState<Date>(new Date());
+  const [confirmedDateInput, setConfirmDateInput] = useState("");
   // const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
@@ -196,7 +196,7 @@ export default function TransactionPage() {
               if (date !== null && date !== undefined) {
                 const dayjsDate = dayjs(date)
                 console.log("check",new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
-                // setConfirmDateInput(new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
+                setConfirmDateInput(new Date(dayjsDate.toDate()).toLocaleDateString("en-US"))
 
                 // if (dayjsDate.isValid()){
                 //   setConfirmDateInput(dayjsDate.toDate())
