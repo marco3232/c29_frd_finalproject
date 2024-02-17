@@ -51,7 +51,7 @@ export async function loginUser({ email, password }: { email: string, password: 
             return {
                 token: data.token,
                 user: email
-            }
+            } //改緊，依家一登入完show到，但reloadPage之後就消失左呀我屌
 
         } else {
             throw new Error(data.message || 'Login failed: Unknown error');
