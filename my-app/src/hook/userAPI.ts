@@ -48,7 +48,10 @@ export async function loginUser({ email, password }: { email: string, password: 
         const data = await res.json();
 
         if (res.ok) {
-            return data
+            return {
+                token: data.token,
+                user: email
+            }
 
         } else {
             throw new Error(data.message || 'Login failed: Unknown error');
