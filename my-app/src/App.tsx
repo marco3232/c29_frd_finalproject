@@ -1,4 +1,6 @@
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Nav, Button, Navbar, NavbarBrand } from "react-bootstrap";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
@@ -7,42 +9,42 @@ import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
-import { useEffect, useState } from "react";
-import { Nav, Button, Navbar, NavbarBrand } from "react-bootstrap";
 import { UserData } from "./hook/models";
 import { getUserInfo } from "./hook/userAPI";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from "./store";
+import { logout } from "./slice/authSlice";
 // --------------------------------------------------------------------------------
 
 function App() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
   const navigate = useNavigate();
-  const [userData, setUserData] = useState<UserData>();
-
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('token');
-    navigate('/')
-  };
+  const userData = useSelector((state: IRootState) => state.auth.eng_given_name);
 
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true);
       getUserInfo(token)
         .then((data) => {
-          setUserData(data);
+
         })
         .catch((error) => {
           console.error('Error fetching user data', error);
         });
     }
   }, []);
+
+  const handleLogout = () => {
+    dispatch(logout())
+    localStorage.removeItem('token');
+    navigate('/')
+  };
+
 
 
 
@@ -56,7 +58,7 @@ function App() {
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p>Welcome, {userData?.eng_surname}!You are logged in.</p>
+              <p>Welcome, {userData!}!You are logged in.</p>
               <Button variant="dark" onClick={handleLogout}>
                 Logout
               </Button>

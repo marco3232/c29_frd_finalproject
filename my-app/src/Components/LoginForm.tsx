@@ -8,15 +8,17 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
-import { UserData } from '../hook/models';
+
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../slice/authSlice';
 
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
+    const dispatch = useDispatch();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [userData, setUserData] = useState<UserData>();
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ export function LoginForm() {
         onSuccess: (data) => {
             localStorage.setItem('token', data.token)
             setIsLoggedIn(true);
-            setUserData(data.user);
+            dispatch(loginSuccess(data.user))
             Swal.fire({
                 title: "Login successful",
                 icon: 'success',
@@ -52,6 +54,9 @@ export function LoginForm() {
 
 
     // -----------------------------------------------
+
+
+
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
