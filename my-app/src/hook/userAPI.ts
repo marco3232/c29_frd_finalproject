@@ -74,4 +74,3 @@ export async function getUserInfo(token: string) {
     }
     return data;
 }
-

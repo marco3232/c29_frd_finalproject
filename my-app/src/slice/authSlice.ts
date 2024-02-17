@@ -1,3 +1,4 @@
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserInfo } from '../hook/userAPI';
@@ -9,14 +10,16 @@ interface AuthState {
     isAuthenticated: boolean;
     userData: {
         eng_given_name: string
-    } | null
+    }
 }
 
 // ---------------------------------------------------------------
 
 const initialState: AuthState = {
     isAuthenticated: !!localStorage.getItem('token'),
-    userData: null
+    userData: {
+        eng_given_name: ''
+    }
 }
 
 // ---------------------------------------------------------------
@@ -26,21 +29,22 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         loginSuccess: (state, action: PayloadAction<any>) => {
-            state.userData = action.payload;
+            state.userData.eng_given_name = action.payload;
             state.isAuthenticated = true;
         },
         logout: (state) => {
-            state.userData = null;
+            state.userData.eng_given_name = '';
             localStorage.removeItem('token');
             state.isAuthenticated = false;
         }
-    }
+    },
+
 });
 // ---------------------------------------------------------------
 
 export const login = createAsyncThunk(
     'auth/login',
-    async (payload: { eng_given_name: string, password: string }, { dispatch }) => {
+    async (payload: { eng_given_name: string, password: string }) => {
         try {
 
             const response = await fetch('/auth/login', {
@@ -52,14 +56,13 @@ export const login = createAsyncThunk(
             });
 
             if (!response.ok) {
-                throw new Error('登入失敗');
+                throw new Error('登入失败');
             }
             const userData = await response.json();
-            dispatch(loginSuccess(userData));
             localStorage.setItem('token', userData.token);
+            return userData;
         } catch (error) {
-            console.error('登入失敗:', error);
-
+            console.error('登入失败:', error);
             throw error;
         }
     }
@@ -67,23 +70,23 @@ export const login = createAsyncThunk(
 
 // ---------------------------------------------------------------
 
-export const fetchUserInfo = () => async (dispatch: any) => {
-    try {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const userInfo = await getUserInfo(token)
-            dispatch(loginSuccess(userInfo))
+export const fetchUserInfo = createAsyncThunk(
+    'auth/fetchUserInfo',
+    async (_, { rejectWithValue }) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Token not found');
+            }
+
+            const userInfo = await getUserInfo(token);
+            return userInfo;
+        } catch (error: any) {
+            console.error('Error fetching user info:', error);
+            return rejectWithValue(error.message);
         }
-    } catch (error) {
-        console.error('Error fetching user info:', error);
     }
-}
-
-
-
-
-
-
+)
 
 //-------------------------------------------------------------------------------------------
 

@@ -21,7 +21,7 @@ export class AuthService {
         }
 
         const passwordMatch = await bcrypt.compare(password, userInfoQuery.password)
-        if (!comparePassword) {
+        if (!passwordMatch) {
             return { flag: false, message: "Incorrect password" }
         }
 
