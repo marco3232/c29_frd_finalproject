@@ -38,7 +38,14 @@ export const authSlice = createSlice({
             state.isAuthenticated = false;
         }
     },
-
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchUserInfo.fulfilled, (state, action) => {
+                state.userData.eng_given_name = action.payload;
+            })
+            .addCase(fetchUserInfo.rejected, (state, action) => {
+            });
+    }
 });
 // ---------------------------------------------------------------
 
