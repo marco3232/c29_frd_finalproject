@@ -1,6 +1,5 @@
 const source = "http://localhost:8080";
 
-
 interface userValues {
     chiSurname: string;
     firstName: string;
@@ -70,7 +69,9 @@ export async function getUserInfo(token: string) {
         }
     });
     const data = await response.json();
+    if (!data.eng_given_name) {
+        throw new Error('User name not found in user info');
+    }
     return data;
 }
-
 

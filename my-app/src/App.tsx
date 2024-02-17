@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { Nav, Button, Navbar, NavbarBrand } from "react-bootstrap";
+import { useEffect, } from "react";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Nav, Button, NavbarBrand } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
-import { UserData } from "./hook/models";
 import { getUserInfo } from "./hook/userAPI";
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from "./store";
-import { logout } from "./slice/authSlice";
+import { loginSuccess, logout } from "./slice/authSlice";
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -23,21 +22,25 @@ function App() {
   const shouldShowWelcomePage = location.pathname === "/";
   const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
   const navigate = useNavigate();
-  const userData = useSelector((state: IRootState) => state.auth.eng_given_name);
+  const userData = useSelector((state: IRootState) => state.auth.userData);
 
+
+  // ------------------
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       getUserInfo(token)
-        .then((data) => {
-
+        .then((userData) => {
+          dispatch(loginSuccess(userData.eng_given_name));
         })
         .catch((error) => {
           console.error('Error fetching user data', error);
         });
     }
-  }, []);
+  }, [dispatch]);
+
+  // ------------------
 
   const handleLogout = () => {
     dispatch(logout())
@@ -45,8 +48,7 @@ function App() {
     navigate('/')
   };
 
-
-
+  // ------------------
 
   return (
     <div className="bigContainer">
@@ -58,7 +60,7 @@ function App() {
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p>Welcome, {userData!}!You are logged in.</p>
+              <p>Welcome, {userData?.eng_given_name}!You are logged in.</p>
               <Button variant="dark" onClick={handleLogout}>
                 Logout
               </Button>

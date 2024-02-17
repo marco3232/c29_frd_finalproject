@@ -19,6 +19,8 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState<number | undefined>();
 
+    // -----------------------------------------------
+
     const { mutate } = useMutation({
         mutationFn: createUser,
         onSuccess: (data) => {
@@ -41,6 +43,7 @@ const RegisterForm = () => {
         }
     })
 
+    // -----------------------------------------------
 
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -83,6 +86,8 @@ const RegisterForm = () => {
             }
         }
     };
+
+    // -----------------------------------------------
 
     return (
         <MDBContainer fluid className='RegisterFormContainer' >

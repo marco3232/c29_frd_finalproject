@@ -22,6 +22,7 @@ export function LoginForm() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
 
+    // -----------------------------------------------
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
@@ -34,6 +35,7 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
+
             navigate('/')
         },
         onError: (data) => {
@@ -55,9 +57,6 @@ export function LoginForm() {
 
     // -----------------------------------------------
 
-
-
-
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!password || !email) {
@@ -77,7 +76,7 @@ export function LoginForm() {
         }
     };
 
-
+    // -----------------------------------------------
 
     return (
 
