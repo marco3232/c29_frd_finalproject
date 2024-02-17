@@ -1,4 +1,4 @@
-import { useEffect, } from "react";
+import { useEffect, useState } from "react";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
@@ -23,8 +23,7 @@ function App() {
   const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
   const navigate = useNavigate();
   const userData = useSelector((state: IRootState) => state.auth.userData);
-
-
+  const [username, setUserName] = useState('')
   // ------------------
 
   useEffect(() => {
@@ -40,6 +39,23 @@ function App() {
     }
   }, [dispatch]);
 
+  // --------------
+  useEffect(() => {
+    if (userData?.eng_given_name) {
+      setUserName(userData?.eng_given_name);
+      sessionStorage.setItem("user", JSON.stringify({ user: userData?.eng_given_name }))
+    }
+    else {
+      let name = '';
+      try {
+        name = JSON.parse(sessionStorage.getItem("user") || '{}')?.user;
+      } catch (error) { }
+
+      if (name) {
+        setUserName(name);
+      }
+    }
+  }, [userData?.eng_given_name])
   // ------------------
 
   const handleLogout = () => {
@@ -49,7 +65,7 @@ function App() {
   };
 
   // ------------------
-
+  console.log('userData?.eng_given_name', userData?.eng_given_name)
   return (
     <div className="bigContainer">
       <nav className="banContainer">
@@ -60,15 +76,11 @@ function App() {
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p>Welcome, {userData?.eng_given_name}!You are logged in.</p>
-              <Button variant="dark" onClick={handleLogout}>
-                Logout
-              </Button>
+              <p>Welcome, <b>{username}</b>!</p>
+              <Button variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
-            <Button variant="secondary" onClick={() => navigate('/login')}>
-              Login
-            </Button>
+            <Button variant="secondary" onClick={() => navigate('/login')}>Login</Button>
           )}
         </Nav.Item>
 

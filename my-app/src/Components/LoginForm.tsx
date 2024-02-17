@@ -29,7 +29,7 @@ export function LoginForm() {
         onSuccess: (data) => {
             localStorage.setItem('token', data.token)
             setIsLoggedIn(true);
-            dispatch(loginSuccess(data.user))
+            dispatch(loginSuccess(data.data))
             Swal.fire({
                 title: "Login successful",
                 icon: 'success',

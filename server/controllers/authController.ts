@@ -58,15 +58,16 @@ export default class AuthController {
         let result = await this.authService.login(email, password);
 
         if (result.flag) {
-            res.json({ message: result.message, token: result.token });
+            res.json({ message: result.message, token: result.token, data: result.data });
         } else {
             res.status(400).json({ message: result.message })
         }
     }
 
+    // -------------------------------------------------------------------------
+
     async getUserInfo(req: Request, res: Response): Promise<void> {
         try {
-            // Check if user is authenticated
             if (!req.user) {
                 res.status(401).json({ message: "Unauthorized" });
                 return;

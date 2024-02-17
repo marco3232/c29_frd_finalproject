@@ -48,11 +48,7 @@ export async function loginUser({ email, password }: { email: string, password: 
         const data = await res.json();
 
         if (res.ok) {
-            return {
-                token: data.token,
-                user: email
-            } //改緊，依家一登入完show到，但reloadPage之後就消失左呀我屌
-
+            return data
         } else {
             throw new Error(data.message || 'Login failed: Unknown error');
         }
@@ -64,7 +60,7 @@ export async function loginUser({ email, password }: { email: string, password: 
 //-------------------------------------------------------------------------------------------
 
 export async function getUserInfo(token: string) {
-    const response = await fetch(`${source}/auth/login`, {
+    const response = await fetch(`${source}/auth/user`, {
         method: 'GET',
         headers: {
             "Content-Type": 'application/json',
@@ -72,8 +68,9 @@ export async function getUserInfo(token: string) {
         }
     });
     const data = await response.json();
-    if (!data.eng_given_name) {
+    if (!data) {
         throw new Error('User name not found in user info');
     }
     return data;
 }
+

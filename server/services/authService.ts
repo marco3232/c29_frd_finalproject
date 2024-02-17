@@ -30,11 +30,11 @@ export class AuthService {
             const payload = {
                 id: userInfoQuery.id,
                 email: userInfoQuery.email,
-                name: userInfoQuery.eng_surname
+                data: userInfoQuery.eng_surname
             };
 
             const token = jwtSimple.encode(payload, jwt.jwtSecret);
-            return { flag: true, message: "Login successful!", token: token };
+            return { flag: true, data: userInfoQuery.eng_surname, message: "Login successful!", token: token };
         } else {
             return { flag: false, message: "Incorrect password" }
 
