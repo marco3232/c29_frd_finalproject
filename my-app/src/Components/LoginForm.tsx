@@ -6,37 +6,38 @@ import {
     MDBInput,
 } from "mdb-react-ui-kit";
 import { useMutation } from '@tanstack/react-query';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
-import { UserData } from '../hook/models';
+
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../slice/authSlice';
 
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
+    const dispatch = useDispatch();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [userData, setUserData] = useState<UserData>();
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
 
+    // -----------------------------------------------
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
         onSuccess: (data) => {
-            if (data && data.message === "Login successful!") {
-                localStorage.setItem('token', data.token)
-                setIsLoggedIn(true);
-                setUserData(data.user);
-                Swal.fire({
-                    title: "Login successful",
-                    icon: 'success',
-                    showConfirmButton: false,
-                })
-                navigate('/')
-            }
-        },
+            localStorage.setItem('token', data.token)
+            setIsLoggedIn(true);
+            dispatch(loginSuccess(data.data))
+            Swal.fire({
+                title: "Login successful",
+                icon: 'success',
+                showConfirmButton: false
+            });
 
+            navigate('/')
+        },
         onError: (data) => {
             Swal.fire({
                 title: "Login failed",
@@ -52,6 +53,7 @@ export function LoginForm() {
             setIsSubmitting(false);
         }
     })
+
 
     // -----------------------------------------------
 
@@ -73,6 +75,8 @@ export function LoginForm() {
             console.error('Error during login:', error);
         }
     };
+
+    // -----------------------------------------------
 
     return (
 

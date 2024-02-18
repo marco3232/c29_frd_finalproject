@@ -1,69 +1,88 @@
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Nav, Button, NavbarBrand } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
-import { useEffect, useState } from "react";
-import { Nav, Button, Navbar } from "react-bootstrap";
-import { UserData } from "./hook/models";
 import { getUserInfo } from "./hook/userAPI";
 import { ConfirmationPage } from "./Page/ConfirmationPage";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from "./store";
+import { loginSuccess, logout } from "./slice/authSlice";
 // --------------------------------------------------------------------------------
 
 function App() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
   const navigate = useNavigate();
-  const [userData, setUserData] = useState<UserData>();
-
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    navigate('/')
-  };
-
+  const userData = useSelector((state: IRootState) => state.auth.userData);
+  const [username, setUserName] = useState('')
+  // ------------------
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true);
       getUserInfo(token)
-        .then((data) => {
-          setUserData(data);
+        .then((userData) => {
+          dispatch(loginSuccess(userData.eng_given_name));
         })
         .catch((error) => {
           console.error('Error fetching user data', error);
         });
     }
-  }, []);
+  }, [dispatch]);
 
+  // --------------
+  useEffect(() => {
+    if (userData?.eng_given_name) {
+      setUserName(userData?.eng_given_name);
+      sessionStorage.setItem("user", JSON.stringify({ user: userData?.eng_given_name }))
+    }
+    else {
+      let name = '';
+      try {
+        name = JSON.parse(sessionStorage.getItem("user") || '{}')?.user;
+      } catch (error) { }
 
+      if (name) {
+        setUserName(name);
+      }
+    }
+  }, [userData?.eng_given_name])
+  // ------------------
 
+  const handleLogout = () => {
+    dispatch(logout())
+    localStorage.removeItem('token');
+    navigate('/')
+  };
+
+  // ------------------
+  console.log('userData?.eng_given_name', userData?.eng_given_name)
   return (
     <div className="bigContainer">
       <nav className="banContainer">
-        <Navbar.Brand id="shopName" href="/">shopName</Navbar.Brand>
+        <NavbarBrand>
+          <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
+        </NavbarBrand>
         <br />
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p>Welcome, {userData?.eng_surname}!You are logged in.</p>
-              <Button variant="dark" onClick={handleLogout}>
-                Logout
-              </Button>
+              <p>Welcome, <b>{username}</b>!</p>
+              <Button variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
-            <Button variant="secondary" onClick={() => navigate('/login')}>
-              Login
-            </Button>
+            <Button variant="secondary" onClick={() => navigate('/login')}>Login</Button>
           )}
         </Nav.Item>
 

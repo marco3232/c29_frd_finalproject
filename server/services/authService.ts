@@ -21,7 +21,7 @@ export class AuthService {
         }
 
         const passwordMatch = await bcrypt.compare(password, userInfoQuery.password)
-        if (!comparePassword) {
+        if (!passwordMatch) {
             return { flag: false, message: "Incorrect password" }
         }
 
@@ -30,11 +30,11 @@ export class AuthService {
             const payload = {
                 id: userInfoQuery.id,
                 email: userInfoQuery.email,
-                name: userInfoQuery.eng_surname
+                data: userInfoQuery.eng_surname
             };
 
             const token = jwtSimple.encode(payload, jwt.jwtSecret);
-            return { flag: true, message: "Login successful!", token: token };
+            return { flag: true, data: userInfoQuery.eng_surname, message: "Login successful!", token: token };
         } else {
             return { flag: false, message: "Incorrect password" }
 
@@ -107,7 +107,6 @@ export interface UserService {
     saveUser(output: {
         email: string,
         eng_surname: string,
-        chi_surname: string,
         hashed: string,
         is_admin: boolean
     }): Promise<void>
