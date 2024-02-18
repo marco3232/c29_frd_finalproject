@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 
 const source = "http://localhost:8080"
 interface DonateItem {
+    id:number
     item_name: string
+    qty:number
 }
 
-export function useItems() {
+export function useDonateItems() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["logistic"],
         queryFn: async () => {

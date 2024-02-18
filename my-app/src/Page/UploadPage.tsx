@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 type ItemProps = {
   // id: number;
-  //   name: string;
-  // count: number;
+  // name: string;
+
 };
 
 export default function UploadPage() {
@@ -120,7 +120,7 @@ export default function UploadPage() {
           </b>
           <h5>
             <b>
-              確認捐贈物品 : {} <br />
+              確認捐贈物品 : {selectedItem} <br />
               <br />
               確認數量 : {quantity}
             </b>
@@ -140,7 +140,7 @@ export default function UploadPage() {
       <button onClick={() => navigate('/Transaction')}>NEXT</button>
       <ListGroup as="ul">
         {donationList.map((item, index) => (
-          <ListGroup.Item key={item.id}>
+          <ListGroup.Item key={item.item_name}>
             {item.item_name} - Quantity: {item.quantity}
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
