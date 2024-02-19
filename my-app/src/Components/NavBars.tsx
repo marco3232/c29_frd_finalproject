@@ -43,6 +43,7 @@ function OffcanvasExample() {
                                     <NavDropdown.Item onClick={() => navigate('/Upload')}>捐贈物資</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/Transaction')}>Transaction</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                             <Form className="searchBox d-flex">

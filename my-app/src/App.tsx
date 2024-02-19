@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Nav, Button, Navbar } from "react-bootstrap";
 import { UserData } from "./hook/models";
 import { getUserInfo } from "./hook/userAPI";
+import FinalConfirmPage from "./Components/FinalConfirmPage";
 
 // --------------------------------------------------------------------------------
 
@@ -93,6 +94,7 @@ function App() {
         <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
+        <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route element={<AuthGuard />} >
 
           <Route path="/Upload" element={<UploadPage />} />

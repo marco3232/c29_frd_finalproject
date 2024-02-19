@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const source = "http://localhost:8080";
 interface DonateItem {
-  id:number,
+  id: number;
   item_name: string;
 }
 
@@ -49,35 +49,3 @@ export async function addNewItems(
   return resp.message;
 }
 
-export async function addLogistic(
-  room_input?: string,
-  building_input?: string,
-  street_input?: string,
-  district_input?: string,
-  contact_number_input?: string,
-  contact_name_input?: string,
-  confirmed_date_input?: string,
-  confirmed_session_input?: string,
-  user_id_input?: number
-) {
-  const res = await fetch(`${source}/logistic`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      room: room_input,
-      building: building_input,
-      street: street_input,
-      district: district_input,
-      contact_number: contact_number_input,
-      contact_name: contact_name_input,
-      confirmed_date: confirmed_date_input,
-      confirmed_session: confirmed_session_input,
-      user_id: user_id_input,
-    }),
-  });
-
-  let resp = await res.json();
-  return resp.message;
-}
