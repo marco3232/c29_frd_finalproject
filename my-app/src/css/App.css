@@ -14,21 +14,24 @@ flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
     width:60%;
+
 }
 
 .banContainer {
-    width: 100%;
+    width:90%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content:space-between;
+
 }
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
-.NavBarContainer {
+/* .NavBarContainer {
 border-top: solid 10px rgb(87, 179, 207);
     width: 100%;
     display: flex;
     justify-content: center;
-}
+} */
 
 #shopName {
     font-weight: bold;
@@ -36,11 +39,13 @@ border-top: solid 10px rgb(87, 179, 207);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 }
 
-.bg-body-tertiary{
-    width: 100%;
+.navBarControl{
+    /* width: 100%; */
     box-shadow: none !important;
+    /* padding-top: 50px !important; */
 }
 
 .offcanvas-body{
@@ -157,6 +162,7 @@ color:red
 .loginBtn {
     font-weight: bold !important;
     line-height: 1 !important;
+    padding-top: 50px !important;
 }
 
 
@@ -191,17 +197,31 @@ color:red
 display: flex;
 justify-content:flex-end;
 padding-top: 50px;
-padding-bottom: 10px;
+padding-bottom: 20px;
 }
 
 .logInStatus {
     display: flex;
-    font-size: 25px;
-    height: 40px;
+    font-size: 35px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    height: 30px;
+    padding-top:  10px;
 }
 
 .logOutBtn {
-    margin-left: 20px;
+    margin-left: 25px;
+    font-weight: bold !important;
+    height: 40px;
+}
+
+.loginFormBtn {
+    font-weight: bold !important;
+}
+
+.logInBtn {
+    font-weight: bold !important;
+    height: 40px !important;
+
 }
 
 .css-hkdbh3-MuiPaper-root-MuiCard-root {
@@ -211,15 +231,11 @@ box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 
 height: 350px;
 }
 
-
-#banner {
-    width: 1200px;
-    height: 400px
-}
-
-
-
-
 .donateItemContainer {
     width: 70%;
+}
+
+#banner {
+    width: 900px;
+    height: 400px
 }

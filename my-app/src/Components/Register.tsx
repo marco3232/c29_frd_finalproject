@@ -8,7 +8,6 @@ import {
   MDBCol,
   MDBInput,
   MDBRadio,
-  MDBCardImage,
 } from "mdb-react-ui-kit";
 import { createUser } from "../hook/userAPI";
 import Swal from "sweetalert2";

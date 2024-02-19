@@ -69,40 +69,37 @@ function App() {
   console.log('userData?.eng_given_name', userData?.eng_given_name)
   return (
     <div className="bigContainer">
+      {/* <div className="welcomePage">
+        <img src={banner} alt="Matthias Zomer" id="banner" />
+      </div> */}
       <nav className="banContainer">
-        {/* <img src={A} alt='I am A' width={'200px'} /> */}
-
-        <NavbarBrand>
-          <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
-        </NavbarBrand>
-        <br />
-
+        <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
         <Nav.Item className="logIn_logOutBtn">
+          <NavBarControl />
           {isLoggedIn ? (
             <div className="logInStatus">
               <p>Welcome, <b>{username}</b>!</p>
               <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
-            <Button variant="secondary" onClick={() => navigate('/login')}>Login</Button>
+            <div className="logInStatus">
+              <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
+            </div>
           )}
         </Nav.Item>
 
       </nav>
 
-      {
+      {/* {
         shouldShowNavBar && (
           <div className="NavBarContainer">
             <NavBarControl />
           </div>
         )
-      }
+      } */}
       {
         shouldShowWelcomePage && (
-          <div className="welcomePage">
-            <img src={banner} alt="Matthias Zomer" id="banner" />
-
-          </div>
+          ""
         )
       }
 

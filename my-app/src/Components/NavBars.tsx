@@ -10,14 +10,14 @@ import "../css/App.css"
 
 // --------------------------------------------------------------------------------
 
-function OffcanvasExample() {
+function NavBarControl() {
     const expandSize = 'lg'
     const navigate = useNavigate();
 
     return (
         <>
 
-            <Navbar key={'md'} expand={expandSize} className="bg-body-tertiary mb-3">
+            <Navbar key={'md'} expand={expandSize} className='navBarControl'>
                 <Container fluid>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expandSize}`} />
                     <Navbar.Offcanvas
@@ -44,7 +44,7 @@ function OffcanvasExample() {
                                     <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                            <Form className="searchBox d-flex">
+                            {/* <Form className="searchBox d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
@@ -52,7 +52,7 @@ function OffcanvasExample() {
                                     aria-label="Search"
                                 />
                                 <Button id="searchBtn" variant="outline-success">Search</Button>
-                            </Form>
+                            </Form> */}
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
@@ -65,4 +65,4 @@ function OffcanvasExample() {
 
 // --------------------------------------------------------------------------------
 
-export default OffcanvasExample;
+export default NavBarControl;
