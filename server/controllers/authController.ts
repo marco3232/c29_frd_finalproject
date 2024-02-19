@@ -10,6 +10,7 @@ export default class AuthController {
     constructor(private authService: AuthService) {
         this.router.post("/login", this.login.bind(this));
         this.router.post("/register", this.register.bind(this));
+        this.router.get("/user", this.getUserInfo.bind(this));
     }
 
     async register(req: Request, res: Response): Promise<void> {
@@ -57,11 +58,26 @@ export default class AuthController {
         let result = await this.authService.login(email, password);
 
         if (result.flag) {
-            res.json({ message: result.message, token: result.token });
-
-
+            res.json({ message: result.message, token: result.token, data: result.data });
         } else {
             res.status(400).json({ message: result.message })
+        }
+    }
+
+    // -------------------------------------------------------------------------
+
+    async getUserInfo(req: Request, res: Response): Promise<void> {
+        try {
+            if (!req.user) {
+                res.status(401).json({ message: "Unauthorized" });
+                return;
+            }
+
+            const userData = req.user;
+
+            res.json(userData);
+        } catch (error) {
+            res.status(500).json({ message: "Internal server error" });
         }
     }
 }

@@ -1,6 +1,5 @@
 const source = "http://localhost:8080";
 
-
 interface userValues {
     chiSurname: string;
     firstName: string;
@@ -50,7 +49,6 @@ export async function loginUser({ email, password }: { email: string, password: 
 
         if (res.ok) {
             return data
-
         } else {
             throw new Error(data.message || 'Login failed: Unknown error');
         }
@@ -62,7 +60,7 @@ export async function loginUser({ email, password }: { email: string, password: 
 //-------------------------------------------------------------------------------------------
 
 export async function getUserInfo(token: string) {
-    const response = await fetch(`${source}/auth/login`, {
+    const response = await fetch(`${source}/auth/user`, {
         method: 'GET',
         headers: {
             "Content-Type": 'application/json',
@@ -70,6 +68,9 @@ export async function getUserInfo(token: string) {
         }
     });
     const data = await response.json();
+    if (!data) {
+        throw new Error('User name not found in user info');
+    }
     return data;
 }
 
