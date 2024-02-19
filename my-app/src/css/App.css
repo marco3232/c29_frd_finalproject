@@ -217,13 +217,6 @@ padding-top: 50px;;
 
 }
 
-.css-hkdbh3-MuiPaper-root-MuiCard-root {
-border:solid 1px black;  
-margin: 5px;
-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2)!important;
-height: 350px;
-}
-
 .donateItemContainer {
     width: 70%;
 }
@@ -239,4 +232,21 @@ height: 350px;
     padding-top: 10px;
     width: 200px;
 
+}
+
+
+/* ------DonateItem------------------------------------------------------------------------------------------ */
+
+.css-hkdbh3-MuiPaper-root-MuiCard-root {
+    border:solid 1px black;   
+    margin: 5px;
+    /* box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2) !important; */
+    height: 300px;
+    }
+
+.cardName {
+    width: 200px;
+    height: 250px;
+    border: solid 1px;
+    margin: 5px;
 }
