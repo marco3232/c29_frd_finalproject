@@ -5,8 +5,8 @@ import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Components/TransactionPage";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { Nav, Button, NavbarBrand } from "react-bootstrap";
+import { Routes, Route, useNavigate, useLocation, Form } from "react-router-dom";
+import { Nav, Button, NavbarBrand, FormControl } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { getUserInfo } from "./hook/userAPI";
@@ -15,6 +15,7 @@ import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
 import FinalConfirmPage from "./Components/FinalConfirmPage";
 import banner from "./image/pexels-matthias-zomer-339620.jpg"
+
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -69,16 +70,13 @@ function App() {
   console.log('userData?.eng_given_name', userData?.eng_given_name)
   return (
     <div className="bigContainer">
-      {/* <div className="welcomePage">
-        <img src={banner} alt="Matthias Zomer" id="banner" />
-      </div> */}
+
       <nav className="banContainer">
         <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
         <Nav.Item className="logIn_logOutBtn">
-          <NavBarControl />
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p>Welcome, <b>{username}</b>!</p>
+              <p className="pWelcome"><b>Welcome ,  {username}</b>!</p>
               <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
@@ -86,10 +84,14 @@ function App() {
               <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
             </div>
           )}
+          <NavBarControl />
         </Nav.Item>
 
       </nav>
 
+      {/* <div className="welcomePage">
+        <img src={banner} alt="Matthias Zomer" id="banner" />
+      </div> */}
       {/* {
         shouldShowNavBar && (
           <div className="NavBarContainer">
@@ -99,7 +101,9 @@ function App() {
       } */}
       {
         shouldShowWelcomePage && (
-          ""
+          <div className="welcomePage">
+            <img src={banner} alt="Matthias Zomer" id="banner" />
+          </div>
         )
       }
 

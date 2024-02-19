@@ -18,7 +18,7 @@ function NavBarControl() {
         <>
 
             <Navbar key={'md'} expand={expandSize} className='navBarControl'>
-                <Container fluid>
+                <Container fluid className='navbarSecondControl'>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expandSize}`} />
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${expandSize}`}
@@ -34,6 +34,10 @@ function NavBarControl() {
                                 <Nav.Link onClick={() => navigate('')}>產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+
                                 <NavDropdown
                                     title="服務項目"
                                     id={`offcanvasNavbarDropdown-expand-${expandSize}`}
@@ -44,7 +48,7 @@ function NavBarControl() {
                                     <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                            {/* <Form className="searchBox d-flex">
+                            <Form className="searchBox d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
@@ -52,7 +56,7 @@ function NavBarControl() {
                                     aria-label="Search"
                                 />
                                 <Button id="searchBtn" variant="outline-success">Search</Button>
-                            </Form> */}
+                            </Form>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

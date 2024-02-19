@@ -13,25 +13,17 @@ flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
-    width:60%;
+    width:75%;
 
 }
 
 .banContainer {
-    width:90%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content:space-between;
-
+    justify-content: center ;
+    width: 100%;
 }
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
-/* .NavBarContainer {
-border-top: solid 10px rgb(87, 179, 207);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-} */
 
 #shopName {
     font-weight: bold;
@@ -42,10 +34,8 @@ border-top: solid 10px rgb(87, 179, 207);
     padding-top: 20px;
 }
 
-.navBarControl{
-    /* width: 100%; */
+.navBarControl {
     box-shadow: none !important;
-    /* padding-top: 50px !important; */
 }
 
 .offcanvas-body{
@@ -67,6 +57,10 @@ font-size: 20px;
     align-items: center;
 }
 
+.navbarSecondControl {
+    margin-left: 0px !important;
+    width: 80%;  
+}
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
 .RegisterFormContainer  {
@@ -119,7 +113,7 @@ font-size: 20px;
 
 /* --Login Form------------------------------------------------------------------------------------------------------- */
 .loginFormContainer{
-    padding-top: 50px !important;
+    padding-top: 20px !important;
     width: 500px !important;
     display: flex;
     justify-content: center;
@@ -194,18 +188,17 @@ color:red
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
 .logIn_logOutBtn{
-display: flex;
-justify-content:flex-end;
-padding-top: 50px;
-padding-bottom: 20px;
+padding-top: 50px;; 
 }
 
 .logInStatus {
     display: flex;
-    font-size: 35px;
+    align-items: center;
+    font-size: 25px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    height: 30px;
-    padding-top:  10px;
+    height: 40px;
+    justify-content: flex-end;
+    margin-left: 800px  !important;
 }
 
 .logOutBtn {
@@ -238,4 +231,12 @@ height: 350px;
 #banner {
     width: 900px;
     height: 400px
+}
+
+
+.pWelcome {
+    display: flex;
+    padding-top: 10px;
+    width: 200px;
+
 }
