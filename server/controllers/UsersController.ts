@@ -39,18 +39,20 @@ export class AuthController {
               return res.status(400).json({ message: "Account exists" });
             }
           
-
+            console.log("march wanner know:", req.body.email)
             let hashed = await hashedPassword(req.body.password);
-            // console.log({
-            //   email: req.body.email,
-            //   password: hashed,
-            // })
+            console.log({
+              email: req.body.email,
+              password: hashed,
+            })
 
             await this.authService.register(
-                 req.body.email,
-                 hashed,
-                 req.body.mobile_phone
+             req.body.email,
+            hashed,
+              req.body.mobile_phone
             )
+
+            return 
 
             res.json({ message: "register success" });
         }catch(e: any){
