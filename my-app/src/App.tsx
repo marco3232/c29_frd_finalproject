@@ -50,13 +50,12 @@ function App() {
       try {
         name = JSON.parse(sessionStorage.getItem("user") || '{}')?.user;
       } catch (error) { }
-
       if (name) {
         setUserName(name);
       }
     }
   }, [userData?.eng_given_name])
-  // ------------------
+  // ---------------------
 
   const handleLogout = () => {
     dispatch(logout())
