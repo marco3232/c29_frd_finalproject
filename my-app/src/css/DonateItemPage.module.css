@@ -1,0 +1,30 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin-left: 20px;
+    padding-bottom: 30px;
+    object-fit: contain;
+    box-shadow: 0px !important;
+}
+
+.title {
+    width: 50%;
+    text-align: center;
+    font-size: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column
+}
+
+.header{
+    font-size: 55px;
+    padding-bottom: 50px;
+}
+
+
+.uploadBtn {
+    width: 25%;
+margin-top: 30px;
+}
+

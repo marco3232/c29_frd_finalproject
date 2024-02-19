@@ -1,34 +1,34 @@
 import { Knex } from "knex";
 
 type ItemType = {
+  id:number,
   item_name: string;
 };
 
 export class ItemService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table() {
     return this.knex("donate_items");
   }
 
+
   async getAll() {
-    let rows: ItemType[] = await this.table().select("item_name").orderBy("id", "asc");
+    let rows: ItemType[] = await this.table().select("item_name","id").orderBy("id", "asc");
 
     return rows;
   }
 
-  //   async createItem(title_input: string, description_input: string) {
-  //     try {
-  //       await this.table().insert({
-  //         title: title_input,
-  //         description: description_input,
-  //         status: false,
-  //       });
-  //       return true;
-  //     } catch (error) {
-  //       console.log(error);
-  //       return false;
-  //     }
-  //   }
+  async createItem(quantity_input: number) {
+    try {
+      await this.table().insert({
+        item_quantity: quantity_input,
+      });
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
   //   async deleteItem(target_id: number) {
   //     try {

@@ -1,4 +1,3 @@
-
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -10,6 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import { store } from './store';
+
 //-------------------------------------------------------------------------------------------
 export const queryClient = new QueryClient()
 
@@ -21,11 +21,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store} >
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
           <App />
-        </QueryClientProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </QueryClientProvider >
     </Provider>
   </React.StrictMode >
 );

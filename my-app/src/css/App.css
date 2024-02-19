@@ -13,6 +13,13 @@ flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
+    width:60%;
+}
+
+.banContainer {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
@@ -25,8 +32,10 @@ border-top: solid 10px rgb(87, 179, 207);
 
 #shopName {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 50px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    display: flex;
+    justify-content: center;
 }
 
 .bg-body-tertiary{
@@ -70,6 +79,7 @@ font-size: 20px;
     justify-content: center;
 }
 
+
 .roleLabel{
     margin-top: 20px;
     color: black;
@@ -111,16 +121,22 @@ font-size: 20px;
 }
 
 .loginForm {
-    width: 100% !important;
+    width: 80% !important;
     padding-top: 100px;
     justify-content: center;
     display: flex;
-    flex-wrap: wrap;
 }
 
+.loginFormFetch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
 }
 
 .forgotPw {
@@ -166,4 +182,32 @@ color:red
 .uploadBtn {
     font-weight: bold !important;
     line-height: 1 !important;
+}
+
+
+/* --Btn------------------------------------------------------------------------------------------------------- */
+
+.logIn_logOutBtn{
+display: flex;
+justify-content:flex-end;
+padding-top: 50px;
+padding-bottom: 10px;
+}
+
+
+.css-hkdbh3-MuiPaper-root-MuiCard-root {
+border:solid 1px black;  
+margin: 5px;
+box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2)!important;
+height: 350px;
+}
+
+
+
+
+
+
+
+.donateItemContainer {
+    width: 70%;
 }

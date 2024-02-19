@@ -1,55 +1,72 @@
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
-import { AuthService } from "./services/UsersService";
-import { AuthController, } from "./controllers/UsersController";
 import Knex from "knex";
 
-// -----------------------------------------------------------------------------------------------
-
+// ------Import routes and services------------------------------------------------------
+import { AuthService } from "./services/authService";
+import AuthController from "./controllers/authController";
+import { ItemService } from "./services/itemService";
+import { ItemController } from "./controllers/itemController";
+import { UploadDonateItemsService } from "./services/uploadDonateItemsService";
+import { UploadDonateItemsController } from "./controllers/uploadDonateItemsController";
+import { LogisticService } from "./services/logisticsService";
+import { LogisticController } from "./controllers/logisticController";
+import { LogisticMixService } from "./services/logisticServicesMix";
+import { LogisticMixController } from "./controllers/logisticControllerMix";
+//-----------
+import { isLoggedIn } from "./utils/gurad";
+//-----------
 const app = express();
 const knexConfig = require("./knexfile");
 const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 const PORT = 8080;
-// --------------------- controller and service------------------------------
+//-----------
 
-import { ItemController } from "./controllers/ItemController";
-import { ItemService } from "./services/Item.service";
-const itemService = new ItemService(knex);
-const itemController = new ItemController(itemService);
+// ------Initialize services------------------------------------------------------
+
 const authService = new AuthService(knex);
-const authController = new AuthController(authService);
+const itemService = new ItemService(knex);
+const uploadDonateItemsService = new UploadDonateItemsService(knex);
+const logisticService = new LogisticService(knex);
+const logisticMixService = new LogisticMixService(knex);
 
-// -----------------------------------------------------------------------------------------------
+
+// ------Initialize controllers------------------------------------------------------
+
+const authController = new AuthController(authService);
+const itemController = new ItemController(itemService);
+const uploadDonateItemsController = new UploadDonateItemsController(uploadDonateItemsService);
+const logisticController = new LogisticController(logisticService);
+const logisticMixController = new LogisticMixController(logisticMixService);
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get("/hi", (req, res) => {
-  res.send("hi");
+// ------Auth routes------------------------------------------------------
+app.use("/auth", authController.router);
+
+// ------Donate routes------------------------------------------------------
+app.use("/donate", isLoggedIn, itemController.router);
+app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
+
+// ------Logistic routes------------------------------------------------------
+app.use("/logistic", isLoggedIn, logisticController.router);
+app.use("/logistic-mix", isLoggedIn, logisticMixController.router);
+
+// ------Other routes------------------------------------------------------
+app.get("/hi", isLoggedIn, (req, res) => {
+  res.send(`Welcome, ${req.user?.eng_given_name}!`);
 });
 
-app.post("/auth/register", async (req, res) => {
-  const { email, password } = req.body;
+app.post("/login", authController.router);
+app.get("/register", authController.router);
 
-  try {
-    await knex("users").insert({ email, password });
-    res.status(200).json({ message: "Registration successful" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Registration failed" });
-  }
-});
-app.post("/login", authController.router)
-app.get("/register", authController.router)
-console.log("march wanner know:",authController)
 
-// ----------------------這是分隔線----------------------------
-app.use("/donate", itemController.router);
+// ------Port------------------------------------------------------
 
-// -----------------------------------------------------------------------------------------------
 app.listen(PORT, () => {
   console.log(`App running at http://localhost:${PORT}`);
 });

@@ -1,62 +1,45 @@
-import express, { Request, Response}from "express";
-import { AuthService } from "../services/UsersService";
-import { hashedPassword } from "../utils/hash";
+import express, { NextFunction, Request, Response, Router } from "express";
 
-export class AuthController {
-    router = express.Router();
-    public constructor(private authService: AuthService){
-        this.router.post("/login", this.login)
-        this.router.get("./register", this.register)
-    }
 
-    login = async (req: Request, res: Response) =>{
-        let { email, password } = req.body;
+// -----------------------------------------------------------------------------------------------
 
-        let result = await this.authService.login(email, password);
+export class UserController {
+    public router = Router()
 
-        console.log("March wanner know:", result)
-        if(result.flag){
-            res.json({ message: result.message, token: result.token});
-        } else {
-            res.status(400).json({message: result.message})
+    wrapMethod(method: (res: Response) => object | Promise<object>) {
+        method = method.bind(this)
+        return async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                let json = await method(res)
+                res.json(json)
+            } catch (error) {
+                next(error)
+            }
         }
     }
+    // constructor(
+    //     private userService: UserService,
+    // ) {
+    //     // this.router.get('/user/session', isLoggedIn, this.getUsername)
+    //     // this.router.get('/user/cancelCollect', isLoggedIn, this.getUsername)
+    //     this.router.get('/user/username', this.getUsername)
 
+    // }
 
-    register = async (req: Request, res:Response) =>{
-        try{
-            if (!req.body.email){
-                return res.status(400).json({ message: "Email cannot be empty" });
-            } else if (!req.body.password) {
-              return res.status(400).json({ message: "Password cannot be empty" });
-            } else if (!req.body.mobile_phone){
-                return res.status(400).json({ message: "Mobile cannot be empty"})
-            }
+    // -----------------------------------------------------------------------------------------------
 
-            let queryResult= await this.authService.getUserEmail(req.body.email)
-            console.log("result:", queryResult.rows);
-            if (queryResult.rowCount > 0) {
-              return res.status(400).json({ message: "Account exists" });
-            }
-          
-            console.log("march wanner know:", req.body.email)
-            let hashed = await hashedPassword(req.body.password);
-            console.log({
-              email: req.body.email,
-              password: hashed,
-            })
+    // async getUsername(req: Request, res: Response) {
+    //     try {
+    //         if (req.session.email) {
+    //             res.json({ message: "login success", data: req.session.username })
 
-            await this.authService.register(
-             req.body.email,
-            hashed,
-              req.body.mobile_phone
-            )
+    //         } else {
+    //             res.status(400).json({ message: "you are not login" })
+    //         }
 
-            return 
+    //     } catch (error: any) {
+    //         res.status(400).json({ message: error.message })
+    //     }
+    // }
 
-            res.json({ message: "register success" });
-        }catch(e: any){
-            return res.status(400).json({ message: e.message})
-        }
-    }
 }

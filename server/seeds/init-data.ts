@@ -8,16 +8,34 @@ export async function seed(knex: Knex): Promise<void> {
     // Inserts seed entries
     await knex("users").insert([
         {
-            email: "sexy@gmail.com",
+            email: "admin01@gmail.com",
             password: await hashPassword("123456"),
             address: "Heaven_road_9527",
-            chi_surname: "好",
-            chi_given_name: "性感",
-            eng_surname: "Hao",
-            eng_given_name: "sexy",
+            chi_surname: "李",
+            chi_given_name: "嘉超",
+            eng_surname: "Pi",
+            eng_given_name: "kachu",
             mobile_phone: "98765432",
             address_proof_image_path: "/assets/batman.jpeg",
             status: "verified"
         }
     ]).into("users");
+
+
+    // -------------------------------------
+    await knex("users").insert([
+        {
+            email: "testing@gmail.com",
+            password: await hashPassword("123456"),
+            address: "hongkong",
+            chi_surname: "田",
+            chi_given_name: "比比",
+            eng_surname: "Ho",
+            eng_given_name: "lo",
+            mobile_phone: "23456789",
+            address_proof_image_path: "/assets/batman.jpeg",
+            status: "verified"
+        }
+    ]).into("users");
 };
+

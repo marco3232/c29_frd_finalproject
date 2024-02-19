@@ -6,18 +6,13 @@ export async function seed(knex: Knex): Promise<void> {
 
     // Inserts seed entries
     await knex("donate_items").insert([
-        { item_name: "wheelchair" },
-        { item_name: "electric_wheelchair" },
-        { item_name: "crutch" },
-        { item_name: "walker_frame" },
-        { item_name: "bath_chair" },
-        { item_name: "walker_frame" },
-        { item_name: "nutritional_supplement" },
-        { item_name: "adult_diapers" },
-        { item_name: "wipes" },
-        { item_name: "sphygmomanometer" },
-        { item_name: "paramount_bed" },
-        { item_name: "lotion" },
-        { item_name: "others" },
+        { item_name: "輪椅" },
+        { item_name: "電動輪椅" },
+        { item_name: "穿手拐杖" },
+        { item_name: "四腳叉" },
+        { item_name: "步行架" },
+        { item_name: "沐浴椅" },
+        { item_name: "便椅" },
+        { item_name: "高背椅" },
     ]);
 };
