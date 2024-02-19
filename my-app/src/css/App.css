@@ -17,7 +17,7 @@ flex-wrap: wrap;
 }
 
 .banContainer {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -69,7 +69,8 @@ font-size: 20px;
     width: 500px !important;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap ;
+    flex-direction: row;
+   flex-wrap: wrap ;
     }
 
 .registerTitle{
@@ -78,7 +79,6 @@ font-size: 20px;
     display: flex;
     justify-content: center;
 }
-
 
 .roleLabel{
     margin-top: 20px;
@@ -194,6 +194,15 @@ padding-top: 50px;
 padding-bottom: 10px;
 }
 
+.logInStatus {
+    display: flex;
+    font-size: 25px;
+    height: 40px;
+}
+
+.logOutBtn {
+    margin-left: 20px;
+}
 
 .css-hkdbh3-MuiPaper-root-MuiCard-root {
 border:solid 1px black;  
@@ -203,7 +212,10 @@ height: 350px;
 }
 
 
-
+#banner {
+    width: 1200px;
+    height: 400px
+}
 
 
 

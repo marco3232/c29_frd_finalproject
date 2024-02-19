@@ -8,6 +8,7 @@ import {
   MDBCol,
   MDBInput,
   MDBRadio,
+  MDBCardImage,
 } from "mdb-react-ui-kit";
 import { createUser } from "../hook/userAPI";
 import Swal from "sweetalert2";
@@ -100,6 +101,9 @@ const RegisterForm = () => {
         <h3 className='registerTitle'>Registration </h3>
         <form className="registerFormFetch" onSubmit={handleRegister}>
           <MDBRow>
+            {/* <MDBCol md='6' className="d-none d-md-block">
+              <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp' alt="Sample photo" className="rounded-start" fluid />
+            </MDBCol> */}
             <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
