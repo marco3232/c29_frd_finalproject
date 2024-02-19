@@ -10,11 +10,12 @@ import { Nav, Button, NavbarBrand } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { getUserInfo } from "./hook/userAPI";
-import { ConfirmationPage } from "./Page/ConfirmationPage";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
+import FinalConfirmPage from "./Components/FinalConfirmPage";
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -111,9 +112,8 @@ function App() {
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/Transaction" element={<TransactionPage />} />
-        <Route path="/Confirmation" element={<ConfirmationPage />} />
         <Route path="/" element={""} />
-        {/* <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} /> */}
+        <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route element={<AuthGuard />} >
 
           <Route path="/Upload" element={<UploadPage />} />

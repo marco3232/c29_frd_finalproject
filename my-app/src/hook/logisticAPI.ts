@@ -8,7 +8,11 @@ export function useGetLogisticInfo() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["logistic"],
         queryFn: async () => {
-            const res = await fetch(`${source}/logisticlist`)
+            const res = await fetch(`${source}/logisticlist`,{
+              headers:{
+                "Authorization":`Bearer ${localStorage.getItem('token')}`
+              }
+            })
             const result = await res.json()
             return result.data
         }
@@ -39,6 +43,7 @@ export async function addLogisticColumn(
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization":`Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
         room: room,
@@ -72,6 +77,7 @@ export async function addLogisticColumn(
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization":`Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
         id: id,
