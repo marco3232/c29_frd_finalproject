@@ -144,6 +144,70 @@ export default function DonateItemPage() {
           </CardContent>
           <CardActions></CardActions>
         </Card>
+        <Card className="cardName">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="200"
+            image="assets/donate_items_img/高背椅.webp"
+            style={{ objectFit: 'contain' }}
+
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              高背椅
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+        <Card className="cardName">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="200"
+            image="assets/donate_items_img/高背椅.webp"
+            style={{ objectFit: 'contain' }}
+
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              高背椅
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+        <Card className="cardName">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="200"
+            image="assets/donate_items_img/高背椅.webp"
+            style={{ objectFit: 'contain' }}
+
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              高背椅
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+        <Card className="cardName">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="200"
+            image="assets/donate_items_img/高背椅.webp"
+            style={{ objectFit: 'contain' }}
+
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              高背椅
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
         <span
           className={styles.uploadBtn}
           onClick={() => navigate('/Upload')}
