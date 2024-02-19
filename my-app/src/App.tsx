@@ -111,7 +111,7 @@ function App() {
         <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
-        <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+        {/* <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} /> */}
         <Route element={<AuthGuard />} >
 
           <Route path="/Upload" element={<UploadPage />} />
