@@ -49,7 +49,7 @@ export async function isLoggedIn(
 //-------------------------------------------------------------------------------------------
 
 export default {
-    jwtSecret: "IamasecretthatyoushouldneverrevealtoanyonePlsDoNotCopyDirectly",
+    jwtSecret: "nmyJTwyxqlwGy2gcmeQJdQ0I4z9JWP2BojmNU8YEo8rjfuzgNZ",
     jwtSession: {
         session: false,
     },
