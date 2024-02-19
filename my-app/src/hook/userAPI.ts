@@ -46,6 +46,10 @@ export async function loginUser({ email, password }: { email: string, password: 
         });
 
         const data = await res.json();
+        // const json = { result: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImVtYWlsIjoiYWRtaW4wMUBnbWFpbC5jb20iLCJkYXRhIjoiUGkifQ.FstlM59bbC742ufdIQYGDf8KpGJBhoaBS8M-XqJ_yso" }
+
+        // const isAdmin = JSON.parse(atob(json.result.split('.')[1])).account[0].role === 'verified'
+        // console.log(isAdmin, "checking is admin")
 
         if (res.ok) {
             return data
@@ -55,6 +59,7 @@ export async function loginUser({ email, password }: { email: string, password: 
     } catch (error: any) {
         throw new Error(error.message);
     }
+
 }
 
 //-------------------------------------------------------------------------------------------

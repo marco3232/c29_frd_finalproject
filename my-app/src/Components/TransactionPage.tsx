@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import styles from "../css/InputAddressPage.module.css"
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import styles from "../css/InputAddressPage.module.css";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addLogistic } from "../hook/dataAPI";
+import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
-
+import { useNavigate } from "react-router-dom";
 
 //-------------------------------------------------------------------------------------------
 
 export default function TransactionPage() {
   // -----------react query-----------------------
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const onAddLogistic = useMutation({
     mutationFn: async (data: {
@@ -28,7 +29,7 @@ export default function TransactionPage() {
       confirmed_session?: string;
       // user_id?: number;
     }) =>
-      addLogistic(
+      addLogisticColumn(
         data.room,
         data.building,
         data.street,
@@ -41,7 +42,7 @@ export default function TransactionPage() {
       ),
     onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: ["donate_items"],
+        queryKey: ["logistic"],
         exact: true,
       }),
   });
@@ -58,22 +59,22 @@ export default function TransactionPage() {
       confirmed_session: confirmedSessionInput,
       // user_id: userIdInput,
     });
-    window.location.href = "/Transaction";
+    navigate("/");
   };
 
   const [roomInput, setRoomInput] = useState("");
   const [buildingInput, setBuildingInput] = useState("");
   const [streetInput, setStreetInput] = useState("");
-  const [districtInput, setDistrictInput] = useState("");
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
   const [confirmedDateInput, setConfirmDateInput] = useState("");
   const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
-
+  
   const [region, setRegion] = useState("");
   const [districtOptions, setDistrictOptions] = useState<string[]>([]);
+  const [districtInput, setDistrictInput] = useState("");
 
   const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedRegion = e.target.value;

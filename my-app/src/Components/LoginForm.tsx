@@ -8,10 +8,11 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
-
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../slice/authSlice';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { notification } from 'antd';
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
@@ -21,6 +22,7 @@ export function LoginForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
+    const notify = () => toast("Wow so easy!");
 
     // -----------------------------------------------
 
@@ -35,6 +37,7 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
+
 
             navigate('/')
         },
