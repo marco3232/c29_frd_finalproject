@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 type ItemProps = {
   // id: number;
   // name: string;
-
 };
 
 export default function UploadPage() {

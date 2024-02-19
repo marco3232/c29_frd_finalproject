@@ -8,14 +8,7 @@ export function ConfirmationPage() {
     return (
         <>
         <div>
-        {Array.isArray(donateItemList)
-        ? donateItemList.length > 0
-          ? donateItemList!.map((item) => (
-              <ConfirmationPage
-              />
-            ))
-          : "No todo Items"
-        : ""}
+          <h1>確認版面</h1>
         </div>
         </>
     )

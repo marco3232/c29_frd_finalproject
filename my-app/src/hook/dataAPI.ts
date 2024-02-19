@@ -11,7 +11,12 @@ export function useItems() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["donate_items"],
     queryFn: async () => {
-      const res = await fetch(`${source}/donate/items`);
+      const res = await fetch(`${source}/donate/items`,{
+        headers: {
+          "Authorization":`Bearer ${localStorage.getItem('token')}`
+        },
+      })
+
       const result = await res.json();
       return result.data as DonateItem[];
     },
@@ -38,6 +43,7 @@ export async function addNewItems(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization":`Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
       logistic_id: logistic_id_input,
@@ -64,6 +70,7 @@ export async function addLogistic(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization":`Bearer ${localStorage.getItem('token')}`
     },
     body: JSON.stringify({
       room: room_input,

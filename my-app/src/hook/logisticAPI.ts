@@ -12,7 +12,11 @@ export function useDonateItems() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["logistic"],
         queryFn: async () => {
-            const res = await fetch(`${source}/logistic`)
+            const res = await fetch(`${source}/logistic`,{
+                headers: {
+                  "Authorization":`Bearer ${localStorage.getItem('token')}`
+                },
+              })
             const result = await res.json()
             return result.data as DonateItem[]
         }
