@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { MDBBtn, MDBContainer, MDBCardBody, MDBRow, MDBCol, MDBInput, MDBRadio } from 'mdb-react-ui-kit';
-import { createUser } from '../hook/userAPI';
-import Swal from 'sweetalert2'
-import { useMutation } from '@tanstack/react-query';
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBCardBody,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBRadio,
+} from "mdb-react-ui-kit";
+import { createUser } from "../hook/userAPI";
+import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
 
 //-------------------------------------------------------------------------------------------
 
@@ -31,61 +38,59 @@ const RegisterForm = () => {
                 showConfirmButton: false,
             })
 
-            navigate("/")
+      navigate("/");
+    },
+    onError: (data) => {
+      Swal.fire({
+        text: data.message,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    },
+  });
 
-        },
-        onError: (data) => {
-            Swal.fire({
-                text: data.message,
-                icon: 'error',
-                showConfirmButton: true,
-            })
-        }
-    })
+  const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const passwordInput1 = password;
+    const passwordInput2 = confirmPassword;
+
+    if (passwordInput1 !== passwordInput2) {
+      return Swal.fire({
+        text: "The password does not match!",
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
+    if (!email) {
+      return Swal.fire({
+        text: "Email cannot be empty",
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
+    if (!phoneNumber) {
+      return Swal.fire({
+        text: "Phone number cannot be empty",
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
+    try {
+      const formData = { firstName, lastName, chiSurname,chiGivenName, email, phoneNumber,password };
+      mutate(formData);
+    } catch (error: any) {
+      console.log(error);
+      console.error("Error during registration:", error);
+      if (error.message === "Email already exists") {
+        alert("Email already exists. Please use a different email address.");
+      } else {
+        alert("Error during registration: " + error.message);
+      }
+    }
+  };
 
     // -----------------------------------------------
 
-    const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const passwordInput1 = password;
-        const passwordInput2 = confirmPassword;
-
-
-
-        if (passwordInput1 !== passwordInput2) {
-            return Swal.fire({
-                text: "The password does not match!",
-                icon: 'error',
-                showConfirmButton: true,
-            })
-        }
-        if (!email) {
-            return Swal.fire({
-                text: "Email cannot be empty",
-                icon: 'error',
-                showConfirmButton: true,
-            })
-        }
-        if (!phoneNumber) {
-            return Swal.fire({
-                text: "Phone number cannot be empty",
-                icon: 'error',
-                showConfirmButton: true,
-            })
-        }
-        try {
-            const formData = { firstName, lastName, chiSurname, chiGivenName, email, phoneNumber, password, };
-            mutate(formData)
-        } catch (error: any) {
-            console.log(error)
-            console.error('Error during registration:', error);
-            if (error.message === "Email already exists") {
-                alert('Email already exists. Please use a different email address.');
-            } else {
-                alert('Error during registration: ' + error.message);
-            }
-        }
-    };
 
     // -----------------------------------------------
 

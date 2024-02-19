@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const source = "http://localhost:8080";
 interface DonateItem {
-  id:number,
+  id: number;
   item_name: string;
 }
 

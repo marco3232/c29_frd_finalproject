@@ -52,13 +52,12 @@ function App() {
       try {
         name = JSON.parse(sessionStorage.getItem("user") || '{}')?.user;
       } catch (error) { }
-
       if (name) {
         setUserName(name);
       }
     }
   }, [userData?.eng_given_name])
-  // ------------------
+  // ---------------------
 
   const handleLogout = () => {
     dispatch(logout())
@@ -114,6 +113,7 @@ function App() {
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/Confirmation" element={<ConfirmationPage />} />
         <Route path="/" element={""} />
+        {/* <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} /> */}
         <Route element={<AuthGuard />} >
 
           <Route path="/Upload" element={<UploadPage />} />
