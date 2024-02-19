@@ -22,13 +22,13 @@ export function LoginForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
-    const notify = () => toast("Wow so easy!");
 
     // -----------------------------------------------
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
         onSuccess: (data) => {
+            const notify = () => toast("Login successful");
             localStorage.setItem('token', data.token)
             setIsLoggedIn(true);
             dispatch(loginSuccess(data.data))
@@ -37,8 +37,6 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
-
-
             navigate('/')
         },
         onError: (data) => {
@@ -120,6 +118,8 @@ export function LoginForm() {
                     <p className='ms-1'>Don't have an account? <a href="/register" className="link-info">Register here</a></p>
 
                 </form>
+                <div>
+                </div>
             </div>
         </MDBContainer >
     );

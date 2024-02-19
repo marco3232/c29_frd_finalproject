@@ -17,7 +17,7 @@ export async function seed(knex: Knex): Promise<void> {
             eng_given_name: "kachu",
             mobile_phone: "98765432",
             address_proof_image_path: "/assets/batman.jpeg",
-            status: "verified"
+            role: "admin"
         }
     ]).into("users");
 
@@ -34,7 +34,7 @@ export async function seed(knex: Knex): Promise<void> {
             eng_given_name: "lo",
             mobile_phone: "23456789",
             address_proof_image_path: "/assets/batman.jpeg",
-            status: "verified"
+            role: "admin"
         }
     ]).into("users");
 };
