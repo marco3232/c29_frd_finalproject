@@ -37,5 +37,21 @@ export async function seed(knex: Knex): Promise<void> {
             role: "admin"
         }
     ]).into("users");
+
+    await knex("users").insert([
+        {
+            email: "user@gmail.com",
+            password: await hashPassword("123456"),
+            address: "hongkong",
+            chi_surname: "user",
+            chi_given_name: "useruser",
+            eng_surname: "sad",
+            eng_given_name: "lqwo",
+            mobile_phone: "22223333",
+            address_proof_image_path: "/assets/batman.jpeg",
+            role: "user"
+        }
+    ]).into("users");
+
 };
 

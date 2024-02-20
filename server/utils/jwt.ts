@@ -15,6 +15,6 @@
 export default {
     jwtSecret: "IamasecretthatyoushouldneverrevealtoanyonePlsDoNotCopyDirectly",
     jwtSession: {
-        session: false,
+        session: true,
     },
 };
