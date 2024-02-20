@@ -82,7 +82,7 @@ function App() {
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p className="pWelcome"><b>Welcome ,  {username}</b>!</p>
+              <p className="pWelcome"><b>Welcome,{username}</b>!</p>
               <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
