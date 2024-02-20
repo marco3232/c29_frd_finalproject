@@ -18,27 +18,34 @@ export class AuthService {
   async login(email: string, password: string) {
     const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-    if (!userInfoQuery) {
-      return { flag: false, message: "User not found" };
-    }
-
     const passwordMatch = await bcrypt.compare(password, userInfoQuery.password);
     if (!passwordMatch) {
       return { flag: false, message: "Incorrect password" };
     }
 
-    // Make sure that userInfoQuery.role is the correct property name for the role column in your users table
     const role = userInfoQuery.role;
 
     const payload = {
       id: userInfoQuery.id,
       email: userInfoQuery.email,
       data: userInfoQuery.eng_given_name,
-      role: role // Ensure that the role is correctly fetched from the database
+      role: role
     };
 
-    const token = jwtSimple.encode(payload, jwt.jwtSecret);
-    return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token, role: role };
+    if (passwordMatch) {
+      const payload = {
+        id: userInfoQuery.id,
+        email: userInfoQuery.email,
+        data: userInfoQuery.eng_given_name,
+        role: userInfoQuery.role,
+      };
+
+      const token = jwtSimple.encode(payload, jwt.jwtSecret);
+      return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role };
+    } else {
+      return { flag: false, message: "Incorrect password" }
+
+    }
   }
 
 

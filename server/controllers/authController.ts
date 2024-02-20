@@ -16,11 +16,9 @@ export default class AuthController {
   async register(req: Request, res: Response): Promise<void> {
     try {
       if (!req.body.email || !req.body.password || !req.body.mobile_phone) {
-        res
-          .status(400)
-          .json({
-            message: "Email, password, and mobile phone cannot be empty",
-          });
+        res.status(400).json({
+          message: "Email, password, and mobile phone cannot be empty",
+        });
         return;
       }
 
@@ -60,7 +58,7 @@ export default class AuthController {
   // -------------------------------------------------------------------------
 
   async login(req: Request, res: Response) {
-    let { email, password } = req.body;
+    let { email, password, role } = req.body;
     let result = await this.authService.login(email, password);
 
     if (result.flag) {
