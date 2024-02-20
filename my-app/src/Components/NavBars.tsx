@@ -10,15 +10,15 @@ import "../css/App.css"
 
 // --------------------------------------------------------------------------------
 
-function OffcanvasExample() {
+function NavBarControl() {
     const expandSize = 'lg'
     const navigate = useNavigate();
 
     return (
         <>
 
-            <Navbar key={'md'} expand={expandSize} className="bg-body-tertiary mb-3">
-                <Container fluid>
+            <Navbar key={'md'} expand={expandSize} className='navBarControl'>
+                <Container fluid className='navbarSecondControl'>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expandSize}`} />
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${expandSize}`}
@@ -34,6 +34,10 @@ function OffcanvasExample() {
                                 <Nav.Link onClick={() => navigate('')}>產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+
                                 <NavDropdown
                                     title="服務項目"
                                     id={`offcanvasNavbarDropdown-expand-${expandSize}`}
@@ -65,4 +69,4 @@ function OffcanvasExample() {
 
 // --------------------------------------------------------------------------------
 
-export default OffcanvasExample;
+export default NavBarControl;

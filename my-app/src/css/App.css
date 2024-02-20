@@ -13,22 +13,17 @@ flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
-    width:60%;
+    width:75%;
+
 }
 
 .banContainer {
-    width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center ;
+    width: 100%;
 }
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
-.NavBarContainer {
-border-top: solid 10px rgb(87, 179, 207);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
 
 #shopName {
     font-weight: bold;
@@ -36,10 +31,10 @@ border-top: solid 10px rgb(87, 179, 207);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 }
 
-.bg-body-tertiary{
-    width: 100%;
+.navBarControl {
     box-shadow: none !important;
 }
 
@@ -62,6 +57,10 @@ font-size: 20px;
     align-items: center;
 }
 
+.navbarSecondControl {
+    margin-left: 0px !important;
+    width: 80%;  
+}
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
 .RegisterFormContainer  {
@@ -69,7 +68,8 @@ font-size: 20px;
     width: 500px !important;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap ;
+    flex-direction: row;
+   flex-wrap: wrap ;
     }
 
 .registerTitle{
@@ -78,7 +78,6 @@ font-size: 20px;
     display: flex;
     justify-content: center;
 }
-
 
 .roleLabel{
     margin-top: 20px;
@@ -114,7 +113,7 @@ font-size: 20px;
 
 /* --Login Form------------------------------------------------------------------------------------------------------- */
 .loginFormContainer{
-    padding-top: 50px !important;
+    padding-top: 20px !important;
     width: 500px !important;
     display: flex;
     justify-content: center;
@@ -157,6 +156,7 @@ color:red
 .loginBtn {
     font-weight: bold !important;
     line-height: 1 !important;
+    padding-top: 50px !important;
 }
 
 
@@ -188,26 +188,65 @@ color:red
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
 .logIn_logOutBtn{
-display: flex;
-justify-content:flex-end;
-padding-top: 50px;
-padding-bottom: 10px;
+padding-top: 50px;; 
 }
 
-
-.css-hkdbh3-MuiPaper-root-MuiCard-root {
-border:solid 1px black;  
-margin: 5px;
-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2)!important;
-height: 350px;
+.logInStatus {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    height: 40px;
+    justify-content: flex-end;
+    margin-left: 800px  !important;
 }
 
+.logOutBtn {
+    margin-left: 25px;
+    font-weight: bold !important;
+    height: 40px;
+}
 
+.loginFormBtn {
+    font-weight: bold !important;
+}
 
+.logInBtn {
+    font-weight: bold !important;
+    height: 40px !important;
 
-
-
+}
 
 .donateItemContainer {
     width: 70%;
+}
+
+#banner {
+    width: 900px;
+    height: 400px
+}
+
+
+.pWelcome {
+    display: flex;
+    padding-top: 10px;
+    width: 200px;
+
+}
+
+
+/* ------DonateItem------------------------------------------------------------------------------------------ */
+
+.css-hkdbh3-MuiPaper-root-MuiCard-root {
+    border:solid 1px black;   
+    margin: 5px;
+    /* box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.2), 0px 0px 0px 0px rgba(255, 255, 255, 0.2) !important; */
+    height: 300px;
+    }
+
+.cardName {
+    width: 200px;
+    height: 250px;
+    border: solid 1px;
+    margin: 5px;
 }

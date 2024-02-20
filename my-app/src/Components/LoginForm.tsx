@@ -106,7 +106,7 @@ export function LoginForm() {
                     />
 
                     <MDBBtn
-                        className="loginBtn mb-4 px-5 mx-5 w-100"
+                        className="loginFormBtn mb-4 px-5 mx-5 w-100"
                         color="info"
                         size="lg"
                         type="submit"
