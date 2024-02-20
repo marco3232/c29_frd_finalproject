@@ -123,7 +123,7 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}> + + </button>
+            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}>   預覽   </button>
             <br />
             <br />
           </b>

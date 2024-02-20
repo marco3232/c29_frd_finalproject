@@ -18,8 +18,8 @@ import { parseJwt } from '../utils/authGuard';
 
 export function LoginForm() {
     const dispatch = useDispatch();
-    const [password, setPassword] = useState('123456');
-    const [email, setEmail] = useState('admin01@gmail.com');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();

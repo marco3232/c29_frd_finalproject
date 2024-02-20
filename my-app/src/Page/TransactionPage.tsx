@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { useNow } from "@mui/x-date-pickers/internals";
+import "../css/InputAddressPage.module.css"
 
 //-------------------------------------------------------------------------------------------
 
@@ -71,6 +71,8 @@ export default function TransactionPage() {
   const [confirmedDateInput, setConfirmDateInput] = useState("");
   const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
+
+
   // -----------react query-----------------------
 
   const [region, setRegion] = useState("");
@@ -185,46 +187,47 @@ export default function TransactionPage() {
             setRoomInput(e.target.value);
           }}
         />
-      </div>
-      <br></br>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DatePicker"]}>
-          <DatePicker
-            label="Date"
-            // defaultValue={dayjs()}
-            value={dayjs(confirmedDateInput)}
-            onChange={(date) => {
-              const dayjsDate = dayjs(date);
-              const dateToString = new Date(
-                dayjsDate.toDate()
-              ).toLocaleDateString("en-US");
-              console.log("date", dateToString);
-              setConfirmDateInput(dateToString);
-            }}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
+        <br></br>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="Date"
+              // defaultValue={dayjs()}
+              value={dayjs(confirmedDateInput)}
+              onChange={(date) => {
+                const dayjsDate = dayjs(date);
+                const dateToString = new Date(
+                  dayjsDate.toDate()
+                ).toLocaleDateString("en-US");
+                console.log("date", dateToString);
+                setConfirmDateInput(dateToString);
+              }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
 
-      <br></br>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["TimePicker"]}>
-          <TimePicker
-            label="Time"
-            // defaultValue={dayjs()}
-            value={dayjs(confirmedSessionInput)}
-            onChange={(session) => {
-              const dayjsSession = dayjs(session);
-              const sessionToString = new Date(
-                dayjsSession.toDate()
-              ).toLocaleTimeString("en-US");
-              console.log("session", sessionToString);
-              setConfirmSessionInput(sessionToString);
-            }}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
-      <br></br>
-      <Button onClick={addLogisticHandler}>Submit</Button>
+        <br></br>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["TimePicker"]}>
+            <TimePicker
+              label="Time"
+              // defaultValue={dayjs()}
+              value={dayjs(confirmedSessionInput)}
+              onChange={(session) => {
+                const dayjsSession = dayjs(session);
+                const sessionToString = new Date(
+                  dayjsSession.toDate()
+                ).toLocaleTimeString("en-US");
+                console.log("session", sessionToString);
+                setConfirmSessionInput(sessionToString);
+              }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <br></br>
+        <Button onClick={addLogisticHandler}>Submit</Button>
+      </div>
     </div>
+
   );
 }
