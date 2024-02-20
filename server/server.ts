@@ -54,8 +54,8 @@ app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
 
 
 // ------Logistic routes------------------------------------------------------
-app.use("/logistic", isLoggedIn, logisticController.router);
-app.use("/logistic-mix", isLoggedIn, logisticMixController.router);
+app.use("/", isLoggedIn, logisticController.router);
+app.use("/", isLoggedIn, logisticMixController.router);
 
 // ------Other routes------------------------------------------------------
 // app.get("/hi", isLoggedIn, (req, res) => {

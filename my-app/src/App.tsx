@@ -10,7 +10,8 @@ import { Nav, Button, NavbarBrand, FormControl } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { AuthGuard } from "./utils/authGuard";
 import { getUserInfo } from "./hook/userAPI";
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
 import FinalConfirmPage from "./Components/FinalConfirmPage";
@@ -23,21 +24,23 @@ function App() {
   const location = useLocation();
   const shouldShowNavBar = location.pathname !== "/notFoundPage";
   const shouldShowWelcomePage = location.pathname === "/";
-  const isLoggedIn = useSelector((state: IRootState) => state.auth.isAuthenticated)
+  const isLoggedIn = useSelector(
+    (state: IRootState) => state.auth.isAuthenticated
+  );
   const navigate = useNavigate();
   const userData = useSelector((state: IRootState) => state.auth.userData);
-  const [username, setUserName] = useState('')
+  const [username, setUserName] = useState("");
   // ------------------
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       getUserInfo(token)
         .then((userData) => {
           dispatch(loginSuccess(userData.eng_given_name));
         })
         .catch((error) => {
-          console.error('Error fetching user data', error);
+          console.error("Error fetching user data", error);
         });
     }
   }, [dispatch]);
@@ -46,28 +49,30 @@ function App() {
   useEffect(() => {
     if (userData?.eng_given_name) {
       setUserName(userData?.eng_given_name);
-      sessionStorage.setItem("user", JSON.stringify({ user: userData?.eng_given_name }))
-    }
-    else {
-      let name = '';
+      sessionStorage.setItem(
+        "user",
+        JSON.stringify({ user: userData?.eng_given_name })
+      );
+    } else {
+      let name = "";
       try {
-        name = JSON.parse(sessionStorage.getItem("user") || '{}')?.user;
+        name = JSON.parse(sessionStorage.getItem("user") || "{}")?.user;
       } catch (error) { }
       if (name) {
         setUserName(name);
       }
     }
-  }, [userData?.eng_given_name])
+  }, [userData?.eng_given_name]);
   // ---------------------
 
   const handleLogout = () => {
-    dispatch(logout())
-    localStorage.removeItem('token');
-    navigate('/')
+    dispatch(logout());
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   // ------------------
-  console.log('userData?.eng_given_name', userData?.eng_given_name)
+  // console.log("userData?.eng_given_name", userData?.eng_given_name);
   return (
     <div className="bigContainer">
 
@@ -86,7 +91,6 @@ function App() {
           )}
           <NavBarControl />
         </Nav.Item>
-
       </nav>
 
       {/* <div className="welcomePage">
@@ -115,16 +119,12 @@ function App() {
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-        <Route element={<AuthGuard />} >
-
-          <Route path="/Upload" element={<UploadPage />} />
-
-        </Route>
+        <Route path="/Upload" element={<UploadPage />} />
+        <Route element={<AuthGuard />}></Route>
       </Routes>
 
       <br />
-
-    </div >
+    </div>
   );
 }
 
