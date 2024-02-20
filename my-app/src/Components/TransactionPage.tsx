@@ -55,18 +55,24 @@ export default function TransactionPage() {
       updateTransaction({
         room: roomInput,
         building: buildingInput,
+        street: streetInput,
+        district: districtInput,
+        contact_number: contactNumberInput,
+        contact_name: contactNameInput,
+        confirmed_date: confirmedDateInput,
+        confirmed_session: confirmedSessionInput,
       })
     );
     onAddLogistic.mutate();
     // {
     //   room: roomInput,
     //   building: buildingInput,
-    //   street: streetInput,
-    //   district: districtInput,
-    //   contact_number: contactNumberInput,
-    //   contact_name: contactNameInput,
-    //   confirmed_date: confirmedDateInput,
-    //   confirmed_session: confirmedSessionInput,
+      // street: streetInput,
+      // district: districtInput,
+      // contact_number: contactNumberInput,
+      // contact_name: contactNameInput,
+      // confirmed_date: confirmedDateInput,
+      // confirmed_session: confirmedSessionInput,
     // }
 
     // navigate("/FinalConfirmPage");
