@@ -8,7 +8,7 @@ export function useGetLogisticInfo() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["logistic"],
         queryFn: async () => {
-            const res = await fetch(`${source}/logisticlist`,{
+            const res = await fetch(`${source}/finaldonateconfirm`,{
               headers:{
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
               }
@@ -73,7 +73,7 @@ export async function addLogisticColumn(
     confirmed_session?: string,
     user_id?: number
   ) {
-    const res = await fetch(`${source}/edit/${id}`, {
+    const res = await fetch(`${source}/finaldonateconfirm/edit/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

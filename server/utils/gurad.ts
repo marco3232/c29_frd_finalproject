@@ -38,7 +38,7 @@ export async function isLoggedIn(
         const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
         req.user = decoded;
 
-        console.log("guard.ts check", req.user)
+        // console.log("guard.ts check", req.user)
 
         return next();
     } catch (e) {

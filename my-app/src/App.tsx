@@ -114,9 +114,9 @@ function App() {
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+        <Route path="/Upload" element={<UploadPage />} />
         <Route element={<AuthGuard />} >
 
-          <Route path="/Upload" element={<UploadPage />} />
 
         </Route>
       </Routes>
