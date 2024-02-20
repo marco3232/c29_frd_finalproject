@@ -51,5 +51,6 @@ export async function addNewItems(
     }),
   });
   let resp = await res.json();
+  console.log("resp",resp)
   return resp.message;
 }

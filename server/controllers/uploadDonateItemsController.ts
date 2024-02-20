@@ -10,9 +10,7 @@ export class UploadDonateItemsController {
 
   create = async (req: Request, res: Response) => {
     let items = req.body;
-    let result = await this.uploadDonateItemsService.createDonateItem(
-      items
-    );
+    let result = await this.uploadDonateItemsService.createDonateItem(items);
 
     if (result) res.status(200).json({ message: "success" });
     else
@@ -20,9 +18,4 @@ export class UploadDonateItemsController {
         .status(500)
         .json({ message: "internal server error,cannot insert new item" });
   };
-
-
-  
-  
-  
 }

@@ -16,31 +16,34 @@ export default function UploadPage() {
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
   const [donationList, setDonationList] = useState<
-    Array<{ id: number, item_name: {
-      id: number, 
-      name: string
-    }; quantity: number }>
+    Array<{
+      id: number;
+      item_name: {
+        id: number;
+        name: string;
+      };
+      quantity: number;
+    }>
   >([]);
 
-  const itemList: string | Array<{ id:number, item_name: string, qty:number }> = useItems();
-
-  
+  const itemList:
+    | string
+    | Array<{ id: number; item_name: string; qty: number }> = useItems();
 
   const [selectedItem, setSelectedItem] = useState<{
-    id: number,
-    name: string
+    id: number;
+    name: string;
   }>();
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedItemName = event.target.options[event.target.selectedIndex].text
-    console.log(selectedItemName)
+    const selectedItemName =
+      event.target.options[event.target.selectedIndex].text;
+    console.log(selectedItemName);
 
     setSelectedItem({
       id: parseInt(event.target.value),
-      name: selectedItemName
+      name: selectedItemName,
     });
   };
-
-  
 
   const [quantity, setQuantity] = useState<number>(0);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,14 +53,15 @@ export default function UploadPage() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
+  // ---------------------------------------------------------------
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-
-      const newItem = { 
+      const newItem = {
         id: donationList.length + 1,
-        item_name: selectedItem, 
-        quantity: (quantity) };
+        item_name: selectedItem,
+        quantity: quantity,
+      };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
       // setQuantity(0); // Reset quantity after adding to the list
@@ -65,11 +69,8 @@ export default function UploadPage() {
   };
 
   const OnAddNewItems = useMutation({
-    mutationFn: async (data: {
-      donate_item_id: number,
-      qty: number
-    }
-    ) => addNewItems( data.donate_item_id, data.qty),
+    mutationFn: async (data: { donate_item_id: number; qty: number }) =>
+      addNewItems(data.donate_item_id, data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
@@ -83,12 +84,10 @@ export default function UploadPage() {
   // }
   // console.log("onadd??", addNewItemHandler)
 
-
   const handleDelete = (id: number) => {
-    const updatedList = donationList.filter(item => item.id !== id);
+    const updatedList = donationList.filter((item) => item.id !== id);
     setDonationList(updatedList);
   };
-
 
   return (
     <div className="uploadForm">
@@ -138,24 +137,31 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          donationList.forEach((item, index) => {
-            const { item_name, quantity } = item;
-            OnAddNewItems.mutate({ donate_item_id: item_name.id, qty: quantity });
-          });
-          
-          // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
-          console.log("check qty",quantity)
-          console.log("check id",selectedItem)
-          setInput("");
-          navigate('/Transaction')
-        }}>
+        <MDBBtn
+          className="uploadBtn"
+          color="info"
+          size="lg"
+          onClick={() => {
+            donationList.forEach((item, index) => {
+              const { item_name, quantity } = item;
+              OnAddNewItems.mutate({
+                donate_item_id: item_name.id,
+                qty: quantity,
+              });
+            });
+
+            // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
+            console.log("check qty", quantity);
+            console.log("check id", selectedItem);
+            setInput("");
+            navigate("/Transaction");
+          }}
+        >
           提交
         </MDBBtn>
       </form>
-      {/* <button onClick={() => navigate('/Transaction')}>NEXT</button> */}
+      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
       <ListGroup as="ul">
-        
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.id}>
             {item.item_name.name} - Quantity: {item.quantity}
@@ -164,9 +170,15 @@ export default function UploadPage() {
             <span
               className="delete-link"
               onClick={() => handleDelete(item.id)}
-              onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
-              onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
-            >[Delete]</span>
+              onMouseOver={(e) =>
+                (e.currentTarget.style.textDecoration = "underline")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.textDecoration = "none")
+              }
+            >
+              [Delete]
+            </span>
           </ListGroup.Item>
         ))}
       </ListGroup>

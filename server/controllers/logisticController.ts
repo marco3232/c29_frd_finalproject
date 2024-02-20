@@ -41,11 +41,6 @@ export class LogisticController {
         .json({ message: "internal server error,cannot insert new item" });
   };
 
-  // list = async (req: Request, res: Response) => {
-  //   let list = await this.logisticService.getLogistic();
-  //   res.status(200).json({ data: list });
-  // };
-
   list = async (req: Request, res: Response) => {
     // console.log("this is list", req.body);
     let list = await this.logisticService.getAll();
