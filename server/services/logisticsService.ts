@@ -80,7 +80,7 @@ export class LogisticService {
           "logistic_items.donate_item_id"
         )
         .join("logistics", "logistics.id", "=", "logistic_items.logistic_id");
-      console.log(rows);
+      // console.log(rows);
       return rows;
     } catch (error) {
       console.error(error); // handle errors
