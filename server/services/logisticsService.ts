@@ -58,6 +58,19 @@ export class LogisticService {
 
   async getAll() {
     try {
+      // const rows: ItemType[] = await this.knex.raw(`
+      //     select
+      //         li.qty as quantity
+      //       , di.item_name as item_name
+      //       , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
+      //       , u.email as email
+      //       from logistic_items li
+      //       left join logistics l on l.id = li.logistic_id
+      //       inner join users u on u.id = l.user_id
+      //       inner join donate_items di on di.id = li.donate_item_id
+      //       where u.id = ?
+      // `, [userId])
+      // console.log(rows);
       const rows: ItemType[] = await this.knex("donate_items")
         .select("*")
         .join(
