@@ -17,6 +17,7 @@ import {
 } from "../slice/logisticSlice";
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
 import "../css/InputAddressPage.module.css"
+import { MDBBtn } from "mdb-react-ui-kit";
 
 //-------------------------------------------------------------------------------------------
 
@@ -65,17 +66,17 @@ export default function TransactionPage() {
       })
     );
     onAddLogistic.mutate();
-    console.log("check mutate",onAddLogistic.mutate)
-    console.log("check result",addLogisticHandler)
+    console.log("check mutate", onAddLogistic.mutate)
+    console.log("check result", addLogisticHandler)
     // {
     //   room: roomInput,
     //   building: buildingInput,
-      // street: streetInput,
-      // district: districtInput,
-      // contact_number: contactNumberInput,
-      // contact_name: contactNameInput,
-      // confirmed_date: confirmedDateInput,
-      // confirmed_session: confirmedSessionInput,
+    // street: streetInput,
+    // district: districtInput,
+    // contact_number: contactNumberInput,
+    // contact_name: contactNameInput,
+    // confirmed_date: confirmedDateInput,
+    // confirmed_session: confirmedSessionInput,
     // }
 
     navigate("/FinalConfirmPage");
@@ -243,7 +244,14 @@ export default function TransactionPage() {
           </DemoContainer>
         </LocalizationProvider>
         <br></br>
-        <Button onClick={addLogisticHandler}>Submit</Button>
+        <MDBBtn
+          className="uploadBtn"
+          color="info"
+          size="lg"
+          onClick={addLogisticHandler}
+        >
+          提交
+        </MDBBtn>
       </div>
     </div>
 

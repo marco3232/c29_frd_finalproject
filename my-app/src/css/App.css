@@ -32,6 +32,7 @@ max-width: 100%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     display: flex;
     justify-content: center;
+    width: 0px
 }
 
 .navBarControl {
@@ -39,7 +40,8 @@ max-width: 100%;
 }
 
 .offcanvas-body{
-font-size: 20px;
+font-size: 20px;   
+width: 100%;
 }
 
 .nav-link {
@@ -69,6 +71,9 @@ font-size: 20px;
 
 .navText {
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;;
 }
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
@@ -236,7 +241,6 @@ width: 70%;
 .welcomePage {
     display: flex;
     justify-content: center;
-    max-width:100%;
 }
 #banner {
     height: 350px;
