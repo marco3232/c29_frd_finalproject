@@ -11,56 +11,65 @@ import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useNow } from "@mui/x-date-pickers/internals";
+import {
+  clearForm,
+  updateTransaction,
+} from "../slice/logisticSlice";
+import { useAppDispatch, useAppSelector } from "../hook/hooks";
 
 //-------------------------------------------------------------------------------------------
 
 export default function TransactionPage() {
+  const dispatch = useAppDispatch();
+  const donationList = useAppSelector((state) => state.logistic.donationList);
+  const transaction = useAppSelector((state) => state.logistic.transaction);
+
   // -----------react query-----------------------
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const onAddLogistic = useMutation({
-    mutationFn: async (data: {
-      room?: string;
-      building?: string;
-      street?: string;
-      district?: string;
-      contact_number?: string;
-      contact_name?: string;
-      confirmed_date?: string;
-      confirmed_session?: string;
-      // user_id?: number;
-    }) =>
+    mutationFn: async () =>
       addLogisticColumn(
-        data.room,
-        data.building,
-        data.street,
-        data.district,
-        data.contact_number,
-        data.contact_name,
-        data.confirmed_date,
-        data.confirmed_session
-        // data.user_id
+        donationList,
+        transaction
+        // data.room,
+        // data.building,
+        // data.street,
+        // data.district,
+        // data.contact_number,
+        // data.contact_name,
+        // data.confirmed_date,
+        // data.confirmed_session
       ),
-    onSuccess: () =>
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["logistic"],
         exact: true,
-      }),
+      });
+      dispatch(clearForm());
+    },
   });
 
   const addLogisticHandler = () => {
-    onAddLogistic.mutate({
-      room: roomInput,
-      building: buildingInput,
-      street: streetInput,
-      district: districtInput,
-      contact_number: contactNumberInput,
-      contact_name: contactNameInput,
-      confirmed_date: confirmedDateInput,
-      confirmed_session: confirmedSessionInput,
-      // user_id: userIdInput,
-    });
-    navigate("/FinalConfirmPage");
+    dispatch(
+      updateTransaction({
+        room: roomInput,
+        building: buildingInput,
+      })
+    );
+    onAddLogistic.mutate();
+    // {
+    //   room: roomInput,
+    //   building: buildingInput,
+    //   street: streetInput,
+    //   district: districtInput,
+    //   contact_number: contactNumberInput,
+    //   contact_name: contactNameInput,
+    //   confirmed_date: confirmedDateInput,
+    //   confirmed_session: confirmedSessionInput,
+    // }
+
+    // navigate("/FinalConfirmPage");
   };
 
   const [roomInput, setRoomInput] = useState("");
