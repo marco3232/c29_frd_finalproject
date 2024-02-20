@@ -59,7 +59,7 @@ export default class AuthController {
 
   async login(req: Request, res: Response) {
     let { email, password, role } = req.body;
-    let result = await this.authService.login(email, password);
+    let result = await this.authService.login(email, password, role);
 
     if (result.flag) {
       console.log("authController Check Login . Role: ", result.role)

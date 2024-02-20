@@ -15,7 +15,7 @@ export class AuthService {
   // ---------------------------------------------------------------
 
   // ---------------------------------------------------------------
-  async login(email: string, password: string) {
+  async login(email: string, password: string, role:string) {
     const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
     const passwordMatch = await bcrypt.compare(password, userInfoQuery.password);
@@ -23,13 +23,13 @@ export class AuthService {
       return { flag: false, message: "Incorrect password" };
     }
 
-    const role = userInfoQuery.role;
+    
 
     const payload = {
       id: userInfoQuery.id,
       email: userInfoQuery.email,
       data: userInfoQuery.eng_given_name,
-      role: role
+      role: userInfoQuery.role
     };
 
     if (passwordMatch) {
