@@ -19,9 +19,9 @@ export default function UploadPage() {
     Array<{ id: number; item_name: string; quantity: number }>
   >([]);
 
-  const itemList: string | Array<{ id:number, item_name: string, qty:number }> = useItems();
-
-  
+  const itemList:
+    | string
+    | Array<{ id: number; item_name: string; qty: number }> = useItems();
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +36,7 @@ export default function UploadPage() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
-// ---------------------------------------------------------------
+  // ---------------------------------------------------------------
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
@@ -65,10 +65,12 @@ export default function UploadPage() {
     },
   });
 
+  // const addNewItemHandler = () => {
+  //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
+  // }
+  // console.log("onadd??", addNewItemHandler)
 
-  
 
-// ---------------------------------------------------------------
   const handleDelete = (id: number) => {
     const updatedList = donationList.filter((item) => item.id !== id);
     setDonationList(updatedList);
@@ -122,18 +124,31 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
-          console.log("check qty",quantity)
-          console.log("check id",selectedItem)
-          setInput("");
-        }}>
+        <MDBBtn
+          className="uploadBtn"
+          color="info"
+          size="lg"
+          onClick={() => {
+            donationList.forEach((item, index) => {
+              const { item_name, quantity } = item;
+              OnAddNewItems.mutate({
+                logistic_id: 2,
+                donate_item_id: parseInt(item_name),
+                qty: quantity,
+              });
+            });
+
+            // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
+            console.log("check qty", quantity);
+            console.log("check id", selectedItem);
+            setInput("");
+          }}
+        >
           提交
         </MDBBtn>
       </form>
       <button onClick={() => navigate("/Transaction")}>NEXT</button>
       <ListGroup as="ul">
-        
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.item_name}>
             {item.item_name} - Quantity: {item.quantity}
