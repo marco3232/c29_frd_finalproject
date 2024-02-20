@@ -58,7 +58,7 @@ export async function addLogisticColumn(
   });
 
   let resp = await res.json();
-  console.log("check logistic api",resp)
+  console.log("check logistic api", resp)
   return resp.message;
 }
 export async function editLogisticColumn(

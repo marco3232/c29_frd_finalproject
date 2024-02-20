@@ -11,7 +11,7 @@ const permit = new Bearer({
 interface User {
     id: number
     mobile_phone: number
-    eng_given_name: string
+    eng_given_name: string   
 }
 
 declare global {
