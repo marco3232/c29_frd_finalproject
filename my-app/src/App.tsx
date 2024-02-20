@@ -4,7 +4,7 @@ import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
-import TransactionPage from "./Components/TransactionPage";
+import TransactionPage from "./Page/TransactionPage";
 import { Routes, Route, useNavigate, useLocation, Form } from "react-router-dom";
 import { Nav, Button, NavbarBrand, FormControl } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
@@ -14,9 +14,9 @@ import { getUserInfo } from "./hook/userAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
-import FinalConfirmPage from "./Components/FinalConfirmPage";
 import Admin from "./Components/Admin";
 import banner from "./image/pexels-matthias-zomer-339620.jpg"
+import FinalConfirmPage from "./Page/FinalConfirmPage";
 
 // --------------------------------------------------------------------------------
 
@@ -64,6 +64,7 @@ function App() {
       }
     }
   }, [userData?.eng_given_name]);
+
   // ---------------------
 
   const handleLogout = () => {
@@ -82,7 +83,7 @@ function App() {
         <Nav.Item className="logIn_logOutBtn">
           {isLoggedIn ? (
             <div className="logInStatus">
-              <p className="pWelcome"><b>Welcome ,  {username}</b>!</p>
+              <p className="pWelcome"><b>Welcome,{username}</b></p>
               <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (
@@ -123,7 +124,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
 
         <Route element={<AuthGuard />} >
-        
+
 
           <Route path="/Upload" element={<UploadPage />} />
 

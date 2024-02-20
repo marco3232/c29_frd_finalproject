@@ -4,13 +4,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 import { useNavigate } from "react-router-dom";
-
+import { DonationType, updateDonationList } from "../slice/logisticSlice"
+import { useAppDispatch } from "../hook/hooks";
 type ItemProps = {
   // id: number;
   // name: string;
 };
 
 export default function UploadPage() {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
@@ -26,6 +28,19 @@ export default function UploadPage() {
     }>
   >([]);
 
+  const nextStep = () => {
+    const donationListMapped: DonationType[] = donationList.map(item => (
+      {
+        id: item.id,
+        itemName: item.item_name.name,
+        quantity:item.quantity
+      }
+    ))
+    
+    dispatch(updateDonationList(donationListMapped))
+    // setInput("");
+    navigate("/Transaction");
+  }
   const itemList:
     | string
     | Array<{ id: number; item_name: string; qty: number }> = useItems();
@@ -64,20 +79,20 @@ export default function UploadPage() {
       };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
-      // setQuantity(0); // Reset quantity after adding to the list
+      setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
-  const OnAddNewItems = useMutation({
-    mutationFn: async (data: { donate_item_id: number; qty: number }) =>
-      addNewItems(data.donate_item_id, data.qty),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["donate_items"],
-        exact: true,
-      });
-    },
-  });
+  // const OnAddNewItems = useMutation({
+  //   mutationFn: async (data: { donate_item_id: number; qty: number }) =>
+  //     addNewItems(data.donate_item_id, data.qty),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["donate_items"],
+  //       exact: true,
+  //     });
+  //   },
+  // });
 
   // const addNewItemHandler = () => {
   //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
@@ -107,7 +122,7 @@ export default function UploadPage() {
             <option value="">請選擇</option>
             {Array.isArray(itemList) && itemList.length > 0 ? (
               itemList.map((entry) => (
-                <option value={entry.id}>{entry.item_name}</option>
+                <option key={entry.id} value={entry.id}>{entry.item_name}</option>
               ))
             ) : (
               <option value="">No Item List</option>
@@ -123,7 +138,7 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button onClick={addPreSubmitHandler}> + + </button>
+            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}>   預覽   </button>
             <br />
             <br />
           </b>
@@ -141,21 +156,7 @@ export default function UploadPage() {
           className="uploadBtn"
           color="info"
           size="lg"
-          onClick={() => {
-            donationList.forEach((item, index) => {
-              const { item_name, quantity } = item;
-              OnAddNewItems.mutate({
-                donate_item_id: item_name.id,
-                qty: quantity,
-              });
-            });
-
-            // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
-            console.log("check qty", quantity);
-            console.log("check id", selectedItem);
-            setInput("");
-            navigate("/Transaction");
-          }}
+          onClick={nextStep}
         >
           提交
         </MDBBtn>
@@ -180,6 +181,7 @@ export default function UploadPage() {
               [Delete]
             </span>
           </ListGroup.Item>
+
         ))}
       </ListGroup>
     </div>

@@ -11,55 +11,73 @@ import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useNow } from "@mui/x-date-pickers/internals";
+import {
+  clearForm,
+  updateTransaction,
+} from "../slice/logisticSlice";
+import { useAppDispatch, useAppSelector } from "../hook/hooks";
+import "../css/InputAddressPage.module.css"
 
 //-------------------------------------------------------------------------------------------
 
 export default function TransactionPage() {
+  const dispatch = useAppDispatch();
+  const donationList = useAppSelector((state) => state.logistic.donationList);
+  const transaction = useAppSelector((state) => state.logistic.transaction);
+
   // -----------react query-----------------------
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const onAddLogistic = useMutation({
-    mutationFn: async (data: {
-      room?: string;
-      building?: string;
-      street?: string;
-      district?: string;
-      contact_number?: string;
-      contact_name?: string;
-      confirmed_date?: string;
-      confirmed_session?: string;
-      // user_id?: number;
-    }) =>
+    mutationFn: async () =>
       addLogisticColumn(
-        data.room,
-        data.building,
-        data.street,
-        data.district,
-        data.contact_number,
-        data.contact_name,
-        data.confirmed_date,
-        data.confirmed_session
-        // data.user_id
+        donationList,
+        transaction
+        // data.room,
+        // data.building,
+        // data.street,
+        // data.district,
+        // data.contact_number,
+        // data.contact_name,
+        // data.confirmed_date,
+        // data.confirmed_session
       ),
-    onSuccess: () =>
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["logistic"],
         exact: true,
-      }),
+      });
+      dispatch(clearForm());
+    },
   });
 
   const addLogisticHandler = () => {
-    onAddLogistic.mutate({
-      room: roomInput,
-      building: buildingInput,
-      street: streetInput,
-      district: districtInput,
-      contact_number: contactNumberInput,
-      contact_name: contactNameInput,
-      confirmed_date: confirmedDateInput,
-      confirmed_session: confirmedSessionInput,
-      // user_id: userIdInput,
-    });
+    dispatch(
+      updateTransaction({
+        room: roomInput,
+        building: buildingInput,
+        street: streetInput,
+        district: districtInput,
+        contact_number: contactNumberInput,
+        contact_name: contactNameInput,
+        confirmed_date: confirmedDateInput,
+        confirmed_session: confirmedSessionInput,
+      })
+    );
+    onAddLogistic.mutate();
+    console.log("check mutate",onAddLogistic.mutate)
+    console.log("check result",addLogisticHandler)
+    // {
+    //   room: roomInput,
+    //   building: buildingInput,
+      // street: streetInput,
+      // district: districtInput,
+      // contact_number: contactNumberInput,
+      // contact_name: contactNameInput,
+      // confirmed_date: confirmedDateInput,
+      // confirmed_session: confirmedSessionInput,
+    // }
+
     navigate("/FinalConfirmPage");
   };
 
@@ -71,6 +89,8 @@ export default function TransactionPage() {
   const [confirmedDateInput, setConfirmDateInput] = useState("");
   const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
+
+
   // -----------react query-----------------------
 
   const [region, setRegion] = useState("");
@@ -185,46 +205,47 @@ export default function TransactionPage() {
             setRoomInput(e.target.value);
           }}
         />
-      </div>
-      <br></br>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DatePicker"]}>
-          <DatePicker
-            label="Date"
-            // defaultValue={dayjs()}
-            value={dayjs(confirmedDateInput)}
-            onChange={(date) => {
-              const dayjsDate = dayjs(date);
-              const dateToString = new Date(
-                dayjsDate.toDate()
-              ).toLocaleDateString("en-US");
-              console.log("date", dateToString);
-              setConfirmDateInput(dateToString);
-            }}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
+        <br></br>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="Date"
+              // defaultValue={dayjs()}
+              value={dayjs(confirmedDateInput)}
+              onChange={(date) => {
+                const dayjsDate = dayjs(date);
+                const dateToString = new Date(
+                  dayjsDate.toDate()
+                ).toLocaleDateString("en-US");
+                console.log("date", dateToString);
+                setConfirmDateInput(dateToString);
+              }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
 
-      <br></br>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["TimePicker"]}>
-          <TimePicker
-            label="Time"
-            // defaultValue={dayjs()}
-            value={dayjs(confirmedSessionInput)}
-            onChange={(session) => {
-              const dayjsSession = dayjs(session);
-              const sessionToString = new Date(
-                dayjsSession.toDate()
-              ).toLocaleTimeString("en-US");
-              console.log("session", sessionToString);
-              setConfirmSessionInput(sessionToString);
-            }}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
-      <br></br>
-      <Button onClick={addLogisticHandler}>Submit</Button>
+        <br></br>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["TimePicker"]}>
+            <TimePicker
+              label="Time"
+              // defaultValue={dayjs()}
+              value={dayjs(confirmedSessionInput)}
+              onChange={(session) => {
+                const dayjsSession = dayjs(session);
+                const sessionToString = new Date(
+                  dayjsSession.toDate()
+                ).toLocaleTimeString("en-US");
+                console.log("session", sessionToString);
+                setConfirmSessionInput(sessionToString);
+              }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <br></br>
+        <Button onClick={addLogisticHandler}>Submit</Button>
+      </div>
     </div>
+
   );
 }

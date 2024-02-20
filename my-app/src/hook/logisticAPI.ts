@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { DonationType, TransactionType } from "../slice/logisticSlice";
 //-------------------------------------------------------------------------------------------
 
 const source = "http://localhost:8080";
@@ -28,39 +29,31 @@ export function useGetLogisticInfo() {
 }
 
 export async function addLogisticColumn(
-  room?: string,
-  building?: string,
-  street?: string,
-  district?: string,
-  contact_number?: string,
-  contact_name?: string,
-  confirmed_date?: string,
-  confirmed_session?: string,
-  user_id?: number
+  donationList: DonationType[],
+  Transaction: TransactionType 
 ) {
-  const res = await fetch(`${source}/logistic`, {
+  const body = {
+    donationList,
+    Transaction
+  }
+  console.log({
+    body
+  })
+  const res = await fetch(`${source}/logisticmix`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({
-      room: room,
-      building: building,
-      street: street,
-      district: district,
-      contact_number: contact_number,
-      contact_name: contact_name,
-      confirmed_date: confirmed_date,
-      confirmed_session: confirmed_session,
-      user_id: user_id,
-    }),
+    body: JSON.stringify(body),
   });
 
   let resp = await res.json();
-  console.log("check logistic api",resp)
+  console.log("check logistic api", resp)
   return resp.message;
 }
+
+
 export async function editLogisticColumn(
   id: number,
   room?: string,

@@ -19,7 +19,7 @@ type ItemType = {
 };
 
 export class LogisticService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
 
   private logisticTable() {
     return this.knex("logistics");
@@ -47,7 +47,7 @@ export class LogisticService {
         confirmed_date: confirmed_date_input,
         confirmed_session: confirmed_session_input,
         user_id: user_id_input,
-      });
+      })
 
       return true;
     } catch (error) {

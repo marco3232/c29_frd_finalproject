@@ -3,47 +3,52 @@ import jwtSimple from "jwt-simple";
 import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
 import bcrypt from "bcrypt";
+import { useInRouterContext } from "react-router-dom";
 // -----------------------------------------------------------------------------------------------
 
 export class AuthService {
-  public constructor(private knex: Knex) {}
+  public constructor(private knex: Knex) { }
   table() {
     return this.knex("users");
   }
 
   // ---------------------------------------------------------------
 
-    // ---------------------------------------------------------------
+  // ---------------------------------------------------------------
+  async login(email: string, password: string, role:string) {
+    const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-    async login(email: string, password: string,role:string) {
-        const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
+    const passwordMatch = await bcrypt.compare(password, userInfoQuery.password);
+    if (!passwordMatch) {
+      return { flag: false, message: "Incorrect password" };
+    }
 
-        if (!userInfoQuery) {
-            return { flag: false, message: "User not found" }
-        }
+    
 
-        const passwordMatch = await bcrypt.compare(password, userInfoQuery.password)
-        if (!passwordMatch) {
-            return { flag: false, message: "Incorrect password" }
-        }
+    const payload = {
+      id: userInfoQuery.id,
+      email: userInfoQuery.email,
+      data: userInfoQuery.eng_given_name,
+      role: userInfoQuery.role
+    };
 
+    if (passwordMatch) {
+      const payload = {
+        id: userInfoQuery.id,
+        email: userInfoQuery.email,
+        data: userInfoQuery.eng_given_name,
+        role: userInfoQuery.role,
+      };
 
-        if (passwordMatch) {
-            const payload = {
-                id: userInfoQuery.id,
-                email: userInfoQuery.email,
-                data: userInfoQuery.eng_given_name,
-                role:userInfoQuery.role,
-            };
+      const token = jwtSimple.encode(payload, jwt.jwtSecret);
+      return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role };
+    } else {
+      return { flag: false, message: "Incorrect password" }
 
-            const token = jwtSimple.encode(payload, jwt.jwtSecret);
-            return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token ,role};
-        } else {
-            return { flag: false, message: "Incorrect password" }
-
-        }
+    }
   }
-  
+
+
   // -----------------------------------------------------------------------------------------------
 
   async register(
