@@ -48,6 +48,7 @@ export class LogisticService {
         confirmed_session: confirmed_session_input,
         user_id: user_id_input,
       });
+
       return true;
     } catch (error) {
       console.log(error);
