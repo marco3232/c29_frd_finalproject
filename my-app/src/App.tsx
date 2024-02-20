@@ -70,7 +70,7 @@ function App() {
   };
 
   // ------------------
-  console.log("userData?.eng_given_name", userData?.eng_given_name);
+  // console.log("userData?.eng_given_name", userData?.eng_given_name);
   return (
     <div className="bigContainer">
       <nav className="banContainer">
@@ -118,6 +118,7 @@ function App() {
         <Route path="/Register" element={<RegisterForm />} />
         <Route path="/notFoundPage" element={<NotFoundPage />} />
         <Route path="/Donate" element={<DonateItemPage />} />
+        <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route path="/Upload" element={<UploadPage />} />

@@ -70,7 +70,6 @@ export default function UploadPage() {
   // }
   // console.log("onadd??", addNewItemHandler)
 
-
   const handleDelete = (id: number) => {
     const updatedList = donationList.filter((item) => item.id !== id);
     setDonationList(updatedList);
@@ -142,12 +141,13 @@ export default function UploadPage() {
             console.log("check qty", quantity);
             console.log("check id", selectedItem);
             setInput("");
+            navigate("/Transaction");
           }}
         >
           提交
         </MDBBtn>
       </form>
-      <button onClick={() => navigate("/Transaction")}>NEXT</button>
+      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
       <ListGroup as="ul">
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.item_name}>

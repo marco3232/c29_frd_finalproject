@@ -59,7 +59,7 @@ export default function TransactionPage() {
       confirmed_session: confirmedSessionInput,
       // user_id: userIdInput,
     });
-    navigate("/");
+    navigate("/FinalConfirmPage");
   };
 
   const [roomInput, setRoomInput] = useState("");
@@ -71,7 +71,7 @@ export default function TransactionPage() {
   const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
   // -----------react query-----------------------
-  
+
   const [region, setRegion] = useState("");
   const [districtOptions, setDistrictOptions] = useState<string[]>([]);
   const [districtInput, setDistrictInput] = useState("");
@@ -190,6 +190,7 @@ export default function TransactionPage() {
         <DemoContainer components={["DatePicker"]}>
           <DatePicker
             label="Date"
+            // defaultValue={dayjs()}
             value={dayjs(confirmedDateInput)}
             onChange={(date) => {
               const dayjsDate = dayjs(date);
@@ -208,6 +209,7 @@ export default function TransactionPage() {
         <DemoContainer components={["TimePicker"]}>
           <TimePicker
             label="Time"
+            // defaultValue={dayjs()}
             value={dayjs(confirmedSessionInput)}
             onChange={(session) => {
               const dayjsSession = dayjs(session);

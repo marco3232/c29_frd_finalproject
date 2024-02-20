@@ -66,10 +66,7 @@ export class LogisticService {
           "logistic_items.donate_item_id"
         )
         .join("logistics", "logistics.id", "=", "logistic_items.logistic_id");
-      return rows;
-
-      console.log(rows); // handle the result as needed
-
+      console.log(rows);
       return rows;
     } catch (error) {
       console.error(error); // handle errors
