@@ -5,6 +5,7 @@ const source = "http://localhost:8080";
 interface DonateItem {
   id: number;
   item_name: string;
+  qty:number
 }
 
 export function useItems() {
@@ -35,7 +36,6 @@ export function useItems() {
 //-------------------------------------------------------------------------------------------
 
 export async function addNewItems(
-  logistic_id_input: number,
   donate_item_id_input: number,
   qty_input: number
 ) {
@@ -46,11 +46,11 @@ export async function addNewItems(
       "Authorization":`Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
-      logistic_id: logistic_id_input,
       donate_item_id: donate_item_id_input,
       qty: qty_input,
     }),
   });
   let resp = await res.json();
+  console.log("resp",resp)
   return resp.message;
 }

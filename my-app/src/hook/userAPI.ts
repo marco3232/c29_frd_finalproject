@@ -65,7 +65,7 @@ export async function getUserInfo(token: string) {
         method: 'GET',
         headers: {
             "Content-Type": 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
         }
     });
     const data = await response.json();

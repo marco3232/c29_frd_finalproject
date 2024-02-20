@@ -61,59 +61,24 @@ export async function isAdminLoggedIn(
     next: express.NextFunction
   ) {
     try {
-      const token = permit.check(req);
-      if (!token) {
+        const token = permit.check(req);
+        if (!token) {
+            return res.status(401).json({ msg: "Permission Denied" });
+        }
+
+        const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
+        req.user = decoded;
+
+        // console.log("guard.ts check", req.user)
+
+        return next();
+    } catch (e) {
         return res.status(401).json({ msg: "Permission Denied" });
       }
   
-      const decoded: Omit<User, "password"> = jwtSimple.decode(
-        token,
-        jwt.jwtSecret
-      );
-      if (decoded.role !== 'admin') {
-        return res.status(401).json({ msg: "Please login in Admin role" });
-      }
-      req.user ={
-          id: decoded.id,
-          email: decoded.email,
-          role: decoded.role
-      }
-      console.log("guard.ts check", req.user);
-      return next();
-    } catch (e) {
-      return res.status(401).json({ msg: "Permission Denied" });
     }
-  }
 
 
-// export async function updateIsAdmin(
-//   req: express.Request,
-//   res: express.Response,
-//   next: express.NextFunction
-// ) {
-//   try {
-
-//     const result = await 
-    
-//     // if (result){
-        
-//     // }
-//     console.log("answer:", result)
-//     // if ( role){
-//     //     if (role === "admin"){
-
-//     //         res.status(200).json({ massage: "Admin login success" })
-//     //     }
-//     // }else{
-//     //     res.status(400).json({
-//     //         message:"Role is not admin"
-//     //     })
-//     // }
-//     return 
-//   } catch (e) {
-//     return res.status(400).json({ msg: "Role or Id not present" });
-//   }
-// }
 //-------------------------------------------------------------------------------------------
 export default {
     jwtSecret: "nmyJTwyxqlwGy2gcmeQJdQ0I4z9JWP2BojmNU8YEo8rjfuzgNZ",
