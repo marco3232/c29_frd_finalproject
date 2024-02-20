@@ -167,7 +167,7 @@ export default function UploadPage() {
         <ListGroup as="ul">
           {donationList.map((item, index) => (
             <ListGroup.Item key={item.id}>
-              <b>{item.item_name.name}</b> - Quantity: <b>{item.quantity}</b>
+              <b>{item.item_name.name}</b> - Quantity: {item.quantity}
               {"\u00A0\u00A0"}
               {"\u00A0\u00A0"}
               {"\u00A0\u00A0"}
