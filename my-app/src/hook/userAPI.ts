@@ -55,6 +55,7 @@ export async function loginUser({ email, password }: { email: string, password: 
     } catch (error: any) {
         throw new Error(error.message);
     }
+
 }
 
 //-------------------------------------------------------------------------------------------

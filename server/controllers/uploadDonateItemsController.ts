@@ -5,6 +5,7 @@ export class UploadDonateItemsController {
   router = express.Router();
   constructor(private uploadDonateItemsService: UploadDonateItemsService) {
     this.router.post("/upload", this.create);
+    this.router.get("/upload/items", this.list);
   }
 
   // create = async (req: Request, res: Response) => {
@@ -54,5 +55,10 @@ export class UploadDonateItemsController {
       return res.status(500).json({ message: "Internal server error", error });
     }
   };
-  
+
+  list = async (req: Request, res: Response) => {
+    // console.log("this is list", req.body);
+    let list = await this.uploadDonateItemsService.getAll();
+    res.status(200).json({ data: list });
+  };
 }

@@ -52,14 +52,15 @@ app.use("/auth", authController.router);
 app.use("/donate", isLoggedIn, itemController.router);
 app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
 
+
 // ------Logistic routes------------------------------------------------------
 app.use("/", isLoggedIn, logisticController.router);
 app.use("/", isLoggedIn, logisticMixController.router);
 
 // ------Other routes------------------------------------------------------
-app.get("/hi", isLoggedIn, (req, res) => {
-  res.send(`Welcome, ${req.user?.eng_given_name}!`);
-});
+// app.get("/hi", isLoggedIn, (req, res) => {
+//   res.send(`Welcome, ${req.user?.eng_given_name}!`);
+// });
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);

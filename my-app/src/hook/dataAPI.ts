@@ -11,11 +11,12 @@ export function useItems() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["donate_items"],
     queryFn: async () => {
-      const res = await fetch(`${source}/donate/items`, {
+      const res = await fetch(`${source}/donate/items`,{
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          "Authorization":`Bearer ${localStorage.getItem('token')}`
         },
-      });
+      })
+
       const result = await res.json();
       return result.data as DonateItem[];
     },
@@ -42,7 +43,7 @@ export async function addNewItems(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
+      "Authorization":`Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
       logistic_id: logistic_id_input,
@@ -54,31 +55,3 @@ export async function addNewItems(
   console.log("resp",resp)
   return resp.message;
 }
-
-
-
-
-// type ItemData = {
-//   logistic_id: number;
-//   donate_item_id: number;
-//   qty: number;
-// }
-// export async function addNewItems(items:ItemData[]
-    
-//   ) {
-//     const res = await fetch(`${source}/donate/upload`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Authorization": `Bearer ${localStorage.getItem("token")}`
-//       },
-//       body: JSON.stringify({
-//         logistic_id: items,
-//         donate_item_id: items,
-//         qty: items,
-//       }),
-//     });
-//     let resp = await res.json();
-//     console.log("resp",resp)
-//     return resp.message;
-//   }
