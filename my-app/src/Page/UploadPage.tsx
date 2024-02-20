@@ -180,6 +180,7 @@ export default function UploadPage() {
               [Delete]
             </span>
           </ListGroup.Item>
+
         ))}
       </ListGroup>
     </div>
