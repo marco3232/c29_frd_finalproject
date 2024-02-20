@@ -5,11 +5,7 @@ import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 import { useNavigate } from "react-router-dom";
 
-type ItemProps = {
-  // id: number;
-  //   name: string;
-  // count: number;
-};
+
 
 export default function UploadPage() {
   const navigate = useNavigate();
@@ -17,18 +13,16 @@ export default function UploadPage() {
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
   const [donationList, setDonationList] = useState<
-    Array<{ id: number, item_name: string; quantity: number }>
+    Array<{ id: number; item_name: string; quantity: number }>
   >([]);
 
-  const itemList: string | Array<{ id:number, item_name: string }> = useItems();
-
+  const itemList: string | Array<{ id: number; item_name: string }> =
+    useItems();
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedItem(event.target.value);
   };
-
-  
 
   const [quantity, setQuantity] = useState<number>(0);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,14 +32,15 @@ export default function UploadPage() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
+// ---------------------------------------------------------------
 
   const addPreSubmitHandler = () => {
     if (selectedItem && quantity) {
-
-      const newItem = { 
+      const newItem = {
         id: donationList.length + 1,
-        item_name: selectedItem, 
-        quantity: (quantity) };
+        item_name: selectedItem,
+        quantity: quantity,
+      };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
       // setQuantity(0); // Reset quantity after adding to the list
@@ -54,31 +49,26 @@ export default function UploadPage() {
 
   const OnAddNewItems = useMutation({
     mutationFn: async (data: {
-      logistic_id: number,
-      donate_item_id: number,
-      qty: number
-    }
-    ) => addNewItems(data.logistic_id, data.donate_item_id, data.qty),
+      logistic_id: number;
+      donate_item_id: number;
+      qty: number;
+    }) => addNewItems(data.logistic_id, data.donate_item_id, data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
         exact: true,
       });
     },
-
   });
 
-  // const addNewItemHandler = () => {
-  //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
-  // }
-  // console.log("onadd??", addNewItemHandler)
 
+  
 
+// ---------------------------------------------------------------
   const handleDelete = (id: number) => {
-    const updatedList = donationList.filter(item => item.id !== id);
+    const updatedList = donationList.filter((item) => item.id !== id);
     setDonationList(updatedList);
   };
-
 
   return (
     <div className="uploadForm">
@@ -128,16 +118,16 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
-          OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
-          console.log("check qty",quantity)
-          console.log("check id",selectedItem)
-          setInput("");
-        }}>
+        <MDBBtn
+          className="uploadBtn"
+          color="info"
+          size="lg"
+          onClick={addNewItemHandler}
+        >
           提交
         </MDBBtn>
       </form>
-      <button onClick={() => navigate('/Transaction')}>NEXT</button>
+      <button onClick={() => navigate("/Transaction")}>NEXT</button>
       <ListGroup as="ul">
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.id}>
@@ -147,9 +137,15 @@ export default function UploadPage() {
             <span
               className="delete-link"
               onClick={() => handleDelete(item.id)}
-              onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
-              onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
-            >[Delete]</span>
+              onMouseOver={(e) =>
+                (e.currentTarget.style.textDecoration = "underline")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.textDecoration = "none")
+              }
+            >
+              [Delete]
+            </span>
           </ListGroup.Item>
         ))}
       </ListGroup>
