@@ -127,7 +127,7 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
+        <MDBBtn className="uploadBtn" color="info" size="lg"  onClick={() => {
           donationList.forEach((item, index) => {
             const { item_name, quantity } = item;
             OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(item_name), qty: quantity });
