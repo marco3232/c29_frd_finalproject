@@ -39,7 +39,7 @@ export async function addLogisticColumn(
   console.log({
     body
   })
-  const res = await fetch(`${source}/logistic`, {
+  const res = await fetch(`${source}/logisticmix`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,6 +52,8 @@ export async function addLogisticColumn(
   console.log("check logistic api",resp)
   return resp.message;
 }
+
+
 export async function editLogisticColumn(
   id: number,
   room?: string,

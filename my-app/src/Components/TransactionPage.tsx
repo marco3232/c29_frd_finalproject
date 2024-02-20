@@ -64,6 +64,8 @@ export default function TransactionPage() {
       })
     );
     onAddLogistic.mutate();
+    console.log("check mutate",onAddLogistic.mutate)
+    console.log("check result",addLogisticHandler)
     // {
     //   room: roomInput,
     //   building: buildingInput,
@@ -75,7 +77,7 @@ export default function TransactionPage() {
       // confirmed_session: confirmedSessionInput,
     // }
 
-    // navigate("/FinalConfirmPage");
+    navigate("/FinalConfirmPage");
   };
 
   const [roomInput, setRoomInput] = useState("");

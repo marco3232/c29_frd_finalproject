@@ -33,7 +33,7 @@ export default function UploadPage() {
       {
         id: item.id,
         itemName: item.item_name.name,
-        quantity
+        quantity:item.quantity
       }
     ))
     
