@@ -13,12 +13,13 @@ import { loginSuccess } from '../slice/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notification } from 'antd';
+import { parseJwt } from '../utils/authGuard';
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
     const dispatch = useDispatch();
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('123456');
+    const [email, setEmail] = useState('admin01@gmail.com');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
@@ -30,6 +31,8 @@ export function LoginForm() {
         onSuccess: (data) => {
             const notify = () => toast("Login successful");
             localStorage.setItem('token', data.token)
+            const payload = parseJwt(data.token)
+            console.log(payload)
             setIsLoggedIn(true);
             dispatch(loginSuccess(data.data))
             Swal.fire({
@@ -37,7 +40,13 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
-            navigate('/')
+            if(payload.role === "admin") {
+                navigate('/admin')
+
+            }else{
+
+                navigate('/')
+            }
         },
         onError: (data) => {
             Swal.fire({
@@ -94,6 +103,7 @@ export function LoginForm() {
                         id="formControlLg"
                         type="email"
                         size="lg"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <MDBInput
@@ -102,6 +112,7 @@ export function LoginForm() {
                         id="formControlLg"
                         type="password"
                         size="lg"
+                        value= {password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 

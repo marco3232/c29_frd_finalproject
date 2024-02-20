@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
 import FinalConfirmPage from "./Components/FinalConfirmPage";
+import Admin from "./Components/Admin";
 // --------------------------------------------------------------------------------
 
 function App() {
@@ -114,7 +115,10 @@ function App() {
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+        <Route path="/admin" element={<Admin />} />
+
         <Route element={<AuthGuard />} >
+        
 
           <Route path="/Upload" element={<UploadPage />} />
 

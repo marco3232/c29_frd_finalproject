@@ -15,7 +15,10 @@ import { LogisticController } from "./controllers/logisticController";
 import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
 //-----------
-import { isLoggedIn } from "./utils/gurad";
+import { isAdminLoggedIn, isLoggedIn } from "./utils/gurad";
+import AdminController from "./controllers/adminController";
+import { AdminService } from "./services/adminService";
+// import { updateIsAdmin } from "./utils/gurad"
 //-----------
 const app = express();
 const knexConfig = require("./knexfile");
@@ -30,9 +33,11 @@ const itemService = new ItemService(knex);
 const uploadDonateItemsService = new UploadDonateItemsService(knex);
 const logisticService = new LogisticService(knex);
 const logisticMixService = new LogisticMixService(knex);
+const adminService = new AdminService(knex)
 
 
 // ------Initialize controllers------------------------------------------------------
+const adminController = new AdminController(adminService);
 
 const authController = new AuthController(authService);
 const itemController = new ItemController(itemService);
@@ -43,8 +48,10 @@ const logisticMixController = new LogisticMixController(logisticMixService);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
+// ------Admin routes --
+app.use("/admin", isAdminLoggedIn, adminController.router)
 // ------Auth routes------------------------------------------------------
 app.use("/auth", authController.router);
 
@@ -64,6 +71,7 @@ app.use("/logistic-mix", isLoggedIn, logisticMixController.router);
 
 app.post("/login", authController.router);
 app.get("/register", authController.router);
+
 
 
 // ------Port------------------------------------------------------
