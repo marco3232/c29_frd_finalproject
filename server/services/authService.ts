@@ -15,7 +15,7 @@ export class AuthService {
 
     // ---------------------------------------------------------------
 
-    async login(email: string, password: string) {
+    async login(email: string, password: string,role:string) {
         const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
         if (!userInfoQuery) {
@@ -32,11 +32,12 @@ export class AuthService {
             const payload = {
                 id: userInfoQuery.id,
                 email: userInfoQuery.email,
-                data: userInfoQuery.eng_given_name
+                data: userInfoQuery.eng_given_name,
+                role:userInfoQuery.role,
             };
 
             const token = jwtSimple.encode(payload, jwt.jwtSecret);
-            return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token };
+            return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token ,role};
         } else {
             return { flag: false, message: "Incorrect password" }
 

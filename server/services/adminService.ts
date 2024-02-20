@@ -31,7 +31,7 @@ export class AdminService {
     return userInfoQuery;
   }
 
-  multipleTable(){
-    return this.knex("donate_items","logistic_items","logistics")
-  }
+  // multipleTable(){
+  //   return this.knex("donate_items","logistic_items","logistics")
+  // }
 }
