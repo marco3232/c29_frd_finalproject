@@ -1,5 +1,5 @@
 
-import NotFoundImage from '../notFoundPage.gif';
+import NotFoundImage from '../image/notFoundPage.gif';
 import { useNavigate } from 'react-router-dom';
 
 //-------------------------------------------------------------------------------------------
