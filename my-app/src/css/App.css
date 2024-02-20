@@ -6,21 +6,22 @@ body {
 display: flex;
 justify-content: center;
 flex-wrap: wrap;
+max-width: 100%;
+
 }
 
 .bigContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 100%;
-    width:75%;
-
+    width: 70%;
 }
 
 .banContainer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center ;
-    width: 100%;
+    width:100%;
 }
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
@@ -31,7 +32,6 @@ flex-wrap: wrap;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
 }
 
 .navBarControl {
@@ -43,10 +43,10 @@ font-size: 20px;
 }
 
 .nav-link {
-    color: black !important;
+    color: rgb(85, 84, 84) !important;
 }
 .nav-link:hover{
-    color:rgb(16, 16, 16) !important;
+    color:rgb(69, 191, 209) !important;
     font-weight: bold;
 }
 .dropdown-item {
@@ -59,13 +59,16 @@ font-size: 20px;
 
 .navbarSecondControl {
     margin-left: 0px !important;
-    width: 80%;  
 }
 
 .uploadSubmitForm {
     display: flex;
     align-items: center;
     flex-direction: column
+}
+
+.navText {
+    font-weight: bold;
 }
 /* --Register From------------------------------------------------------------------------------------------------------- */
 
@@ -126,7 +129,6 @@ font-size: 20px;
 }
 
 .loginForm {
-    width: 80% !important;
     padding-top: 100px;
     justify-content: center;
     display: flex;
@@ -196,7 +198,8 @@ color:red
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
 .logIn_logOutBtn{
-padding-top: 50px;; 
+padding-top: 20px;; 
+width: 70%;
 }
 
 .logInStatus {
@@ -204,15 +207,16 @@ padding-top: 50px;;
     align-items: center;
     font-size: 25px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    height: 40px;
+    height: 20px;
     justify-content: flex-end;
-    margin-left: 800px  !important;
+    margin-bottom: 20px;
+    width: 95%;
 }
 
 .logOutBtn {
-    margin-left: 25px;
+    margin-left: 20px;
     font-weight: bold !important;
-    height: 40px;
+    height: 35px;
 }
 
 .loginFormBtn {
@@ -229,17 +233,21 @@ padding-top: 50px;;
     width: 70%;
 }
 
+.welcomePage {
+    display: flex;
+    justify-content: center;
+    max-width:100%;
+}
 #banner {
-    width: 900px;
-    height: 400px
+    height: 350px;
+    width: 100%;
 }
 
 
 .pWelcome {
     display: flex;
-    padding-top: 10px;
-    width: 100%;
-
+    align-content: center;
+    padding-top: 15px;
 }
 
 .uploadAddItemBtn {

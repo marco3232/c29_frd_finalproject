@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
 import Admin from "./Components/Admin";
-import banner from "./image/pexels-matthias-zomer-339620.jpg"
+import banner from "./image/homePage.png"
+// import banner from "./image/Untitled-1.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
 
 // --------------------------------------------------------------------------------
@@ -77,7 +78,6 @@ function App() {
   // console.log("userData?.eng_given_name", userData?.eng_given_name);
   return (
     <div className="bigContainer">
-
       <nav className="banContainer">
         <Nav.Link id="shopName" onClick={() => navigate('/')} > shopName</Nav.Link>
         <Nav.Item className="logIn_logOutBtn">
@@ -108,7 +108,7 @@ function App() {
       {
         shouldShowWelcomePage && (
           <div className="welcomePage">
-            <img src={banner} alt="Matthias Zomer" id="banner" />
+            <img src={banner} id="banner" />
           </div>
         )
       }
