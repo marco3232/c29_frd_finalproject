@@ -16,16 +16,28 @@ export default function UploadPage() {
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
   const [donationList, setDonationList] = useState<
-    Array<{ id: number, item_name: string; quantity: number }>
+    Array<{ id: number, item_name: {
+      id: number, 
+      name: string
+    }; quantity: number }>
   >([]);
 
   const itemList: string | Array<{ id:number, item_name: string, qty:number }> = useItems();
 
   
 
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState<{
+    id: number,
+    name: string
+  }>();
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedItem(event.target.value);
+    const selectedItemName = event.target.options[event.target.selectedIndex].text
+    console.log(selectedItemName)
+
+    setSelectedItem({
+      id: parseInt(event.target.value),
+      name: selectedItemName
+    });
   };
 
   
@@ -54,11 +66,10 @@ export default function UploadPage() {
 
   const OnAddNewItems = useMutation({
     mutationFn: async (data: {
-      logistic_id: number,
       donate_item_id: number,
       qty: number
     }
-    ) => addNewItems(data.logistic_id, data.donate_item_id, data.qty),
+    ) => addNewItems( data.donate_item_id, data.qty),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["donate_items"],
@@ -91,7 +102,7 @@ export default function UploadPage() {
           <select
             className="donateItemList"
             name="selectDonate"
-            value={selectedItem}
+            value={selectedItem?.id}
             onChange={handleItemChange}
           >
             <option value="">請選擇</option>
@@ -119,7 +130,7 @@ export default function UploadPage() {
           </b>
           <h5>
             <b>
-              確認捐贈物品 : {selectedItem} <br />
+              確認捐贈物品 : {selectedItem?.name} <br />
               <br />
               確認數量 : {quantity}
             </b>
@@ -127,26 +138,27 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn className="uploadBtn" color="info" size="lg"  onClick={() => {
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
           donationList.forEach((item, index) => {
             const { item_name, quantity } = item;
-            OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(item_name), qty: quantity });
+            OnAddNewItems.mutate({ donate_item_id: item_name.id, qty: quantity });
           });
           
           // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
           console.log("check qty",quantity)
           console.log("check id",selectedItem)
           setInput("");
+          navigate('/Transaction')
         }}>
           提交
         </MDBBtn>
       </form>
-      <button onClick={() => navigate('/Transaction')}>NEXT</button>
+      {/* <button onClick={() => navigate('/Transaction')}>NEXT</button> */}
       <ListGroup as="ul">
         
         {donationList.map((item, index) => (
-          <ListGroup.Item key={item.item_name}>
-            {item.item_name} - Quantity: {item.quantity}
+          <ListGroup.Item key={item.id}>
+            {item.item_name.name} - Quantity: {item.quantity}
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
             <span

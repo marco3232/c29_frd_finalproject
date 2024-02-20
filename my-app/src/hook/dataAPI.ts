@@ -36,7 +36,6 @@ export function useItems() {
 //-------------------------------------------------------------------------------------------
 
 export async function addNewItems(
-  logistic_id_input: number,
   donate_item_id_input: number,
   qty_input: number
 ) {
@@ -47,7 +46,6 @@ export async function addNewItems(
       "Authorization":`Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
-      logistic_id: logistic_id_input,
       donate_item_id: donate_item_id_input,
       qty: qty_input,
     }),
