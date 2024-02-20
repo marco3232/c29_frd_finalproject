@@ -5,6 +5,7 @@ const source = "http://localhost:8080";
 interface DonateItem {
   id: number;
   item_name: string;
+  qty:number
 }
 
 export function useItems() {

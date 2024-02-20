@@ -19,8 +19,9 @@ export default function UploadPage() {
     Array<{ id: number; item_name: string; quantity: number }>
   >([]);
 
-  const itemList: string | Array<{ id: number; item_name: string }> =
-    useItems();
+  const itemList: string | Array<{ id:number, item_name: string, qty:number }> = useItems();
+
+  
 
   const [selectedItem, setSelectedItem] = useState("");
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -121,17 +122,18 @@ export default function UploadPage() {
         </label>
         <br />
         <br />
-        <MDBBtn
-          className="uploadBtn"
-          color="info"
-          size="lg"
-          onClick={addNewItemHandler}
-        >
+        <MDBBtn className="uploadBtn" color="info" size="lg" onClick={() => {
+          OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
+          console.log("check qty",quantity)
+          console.log("check id",selectedItem)
+          setInput("");
+        }}>
           提交
         </MDBBtn>
       </form>
       <button onClick={() => navigate("/Transaction")}>NEXT</button>
       <ListGroup as="ul">
+        
         {donationList.map((item, index) => (
           <ListGroup.Item key={item.item_name}>
             {item.item_name} - Quantity: {item.quantity}

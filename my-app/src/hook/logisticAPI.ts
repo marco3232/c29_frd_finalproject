@@ -7,25 +7,25 @@ export function useGetLogisticInfo() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["logistic"],
     queryFn: async () => {
-      const res = await fetch(`${source}/logisticlist`, {
+      const res = await fetch(`${source}/finaldonateconfirm`, {
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      const result = await res.json()
-      return result.data
-    }
-  })
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const result = await res.json();
+      return result.data;
+    },
+  });
 
-  if (isLoading || isFetching) return "Data Loading"
+  if (isLoading || isFetching) return "Data Loading";
   if (error) {
-    return "Error "
+    return "Error ";
   }
   if (!data) {
-    return []
+    return [];
   }
   return data;
-};
+}
 
 export async function addLogisticColumn(
   room?: string,
@@ -42,7 +42,7 @@ export async function addLogisticColumn(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       room: room,
@@ -76,7 +76,7 @@ export async function editLogisticColumn(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       id: id,
@@ -92,5 +92,5 @@ export async function editLogisticColumn(
     }),
   });
   let resp = await res.json();
-  return resp.message
+  return resp.message;
 }

@@ -5,8 +5,8 @@ export class LogisticController {
   router = express.Router();
   constructor(private logisticService: LogisticService) {
     this.router.post("/logistic", this.create);
-    this.router.get("/logisticlist", this.list);
-    this.router.put("/logisticlist/edit/:id", this.edit);
+    this.router.get("/finaldonateconfirm", this.list);
+    this.router.put("/finaldonateconfirm/edit/:id", this.edit);
   }
 
   create = async (req: Request, res: Response) => {
@@ -41,8 +41,14 @@ export class LogisticController {
         .json({ message: "internal server error,cannot insert new item" });
   };
 
+  // list = async (req: Request, res: Response) => {
+  //   let list = await this.logisticService.getLogistic();
+  //   res.status(200).json({ data: list });
+  // };
+
   list = async (req: Request, res: Response) => {
-    let list = await this.logisticService.getLogistic();
+    // console.log("this is list", req.body);
+    let list = await this.logisticService.getAll();
     res.status(200).json({ data: list });
   };
 
