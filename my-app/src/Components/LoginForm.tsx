@@ -40,10 +40,10 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
-            if(payload.role === "admin") {
+            if (payload.role === "admin") {
                 navigate('/admin')
 
-            }else{
+            } else {
 
                 navigate('/')
             }
@@ -112,7 +112,7 @@ export function LoginForm() {
                         id="formControlLg"
                         type="password"
                         size="lg"
-                        value= {password}
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 

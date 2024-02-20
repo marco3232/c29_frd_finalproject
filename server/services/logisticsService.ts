@@ -19,7 +19,7 @@ type ItemType = {
 };
 
 export class LogisticService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
 
   private logisticTable() {
     return this.knex("logistics");

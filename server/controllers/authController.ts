@@ -64,11 +64,12 @@ export default class AuthController {
     let result = await this.authService.login(email, password);
 
     if (result.flag) {
+      console.log("authController Check Login . Role: ", result.role)
       res.json({
         message: result.message,
         token: result.token,
         data: result.data,
-        // role: result.role,
+        role: result.role
       });
     } else {
       res.status(400).json({ message: result.message });

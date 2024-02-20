@@ -64,7 +64,7 @@ export default function UploadPage() {
       };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
-      // setQuantity(0); // Reset quantity after adding to the list
+      setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
@@ -123,7 +123,7 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button onClick={addPreSubmitHandler}> + + </button>
+            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}> + + </button>
             <br />
             <br />
           </b>
