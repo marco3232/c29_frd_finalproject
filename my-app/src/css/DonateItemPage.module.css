@@ -9,7 +9,7 @@
 }
 
 .title {
-    width: 70%;
+    width: 45%;
     text-align: center;
     justify-content: center;
     font-size: 40px;
@@ -27,6 +27,7 @@
 }
 
 .uploadBtn {
-    width: 25%;
+    width: 45%;
     margin-top: 30px;
+
 }
