@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "./store";
 import { loginSuccess, logout } from "./slice/authSlice";
 import FinalConfirmPage from "./Components/FinalConfirmPage";
+import Admin from "./Components/Admin";
 import banner from "./image/pexels-matthias-zomer-339620.jpg"
 
 // --------------------------------------------------------------------------------
@@ -119,8 +120,14 @@ function App() {
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-        <Route path="/Upload" element={<UploadPage />} />
-        <Route element={<AuthGuard />}></Route>
+        <Route path="/admin" element={<Admin />} />
+
+        <Route element={<AuthGuard />} >
+        
+
+          <Route path="/Upload" element={<UploadPage />} />
+
+        </Route>
       </Routes>
 
       <br />
