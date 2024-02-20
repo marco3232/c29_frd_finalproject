@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content:center; 
     width: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 100px;
     object-fit: contain;
     box-shadow: 0px !important;
 }
@@ -29,5 +29,4 @@
 .uploadBtn {
     width: 45%;
     margin-top: 30px;
-
 }
