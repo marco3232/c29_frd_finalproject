@@ -211,7 +211,7 @@ export default function TransactionPage() {
           <TimePicker
             label="Time"
             // defaultValue={dayjs()}
-            value={dayjs(confirmedDateInput)}
+            value={dayjs(confirmedSessionInput)}
             onChange={(session) => {
               const dayjsSession = dayjs(session);
               const sessionToString = new Date(
