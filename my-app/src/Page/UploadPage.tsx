@@ -79,7 +79,7 @@ export default function UploadPage() {
       };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
-      // setQuantity(0); // Reset quantity after adding to the list
+      setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
@@ -138,7 +138,7 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button onClick={addPreSubmitHandler}> + + </button>
+            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}>   預覽   </button>
             <br />
             <br />
           </b>
@@ -181,6 +181,7 @@ export default function UploadPage() {
               [Delete]
             </span>
           </ListGroup.Item>
+
         ))}
       </ListGroup>
     </div>

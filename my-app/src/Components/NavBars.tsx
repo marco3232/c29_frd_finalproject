@@ -34,9 +34,6 @@ function NavBarControl() {
                                 <Nav.Link onClick={() => navigate('')}>產品</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
 
                                 <NavDropdown
                                     title="服務項目"

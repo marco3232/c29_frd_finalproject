@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class AdminService {
-  public constructor(private knex: Knex) {}
+  public constructor(private knex: Knex) { }
   table() {
     return this.knex("users");
   }
@@ -27,7 +27,7 @@ export class AdminService {
       .select("eng_given_name")
       .select("mobile_phone")
       .select("role")
-    
+
     return userInfoQuery;
   }
 

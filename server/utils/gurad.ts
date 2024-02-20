@@ -6,60 +6,63 @@ import { request } from "http";
 //-------------------------------------------------------------------------------------------
 
 const permit = new Bearer({
-  query: "access_token",
+    query: "access_token",
 });
 
 
 
 interface User {
-  id: number;
-  email: string;
-  role: string;
+    id: number;
+    email: string;
+    role: string;
 }
 
 declare global {
-  namespace Express {
-    interface Request {
-      user?: Omit<User, "password">;
+    namespace Express {
+        interface Request {
+            user?: Omit<User, "password">;
+        }
     }
-  }
 }
 
 //-------------------------------------------------------------------------------------------
 
 export async function isLoggedIn(
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
 ) {
-  try {
-    const token = permit.check(req);
-    if (!token) {
-      return res.status(401).json({ msg: "Permission Denied" });
-    }
+    try {
+        const token = permit.check(req);
+        if (!token) {
+            return res.status(401).json({ msg: "Permission Denied" });
+        }
 
-    const decoded: Omit<User, "password"> = jwtSimple.decode(
-      token,
-      jwt.jwtSecret
-    );
-    req.user ={
-        id: decoded.id,
-        email: decoded.email,
-        role: decoded.role
+        const decoded: Omit<User, "password"> = jwtSimple.decode(
+            token,
+            jwt.jwtSecret
+        );
+        req.user = {
+            id: decoded.id,
+            email: decoded.email,
+            role: decoded.role
+        }
+        console.log("guard.ts check", req.user);
+        return next();
+    } catch (e) {
+        return res.status(401).json({ msg: "Permission Denied" });
     }
     // console.log("guard.ts check", req.user);
     return next();
-  } catch (e) {
-    return res.status(401).json({ msg: "Permission Denied" });
-  }
-}
+  } 
+
 
 
 export async function isAdminLoggedIn(
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
-  ) {
+) {
     try {
         const token = permit.check(req);
         if (!token) {
@@ -74,9 +77,9 @@ export async function isAdminLoggedIn(
         return next();
     } catch (e) {
         return res.status(401).json({ msg: "Permission Denied" });
-      }
-  
     }
+
+}
 
 
 //-------------------------------------------------------------------------------------------

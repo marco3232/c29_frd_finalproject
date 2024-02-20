@@ -230,8 +230,16 @@ padding-top: 50px;;
 .pWelcome {
     display: flex;
     padding-top: 10px;
-    width: 200px;
+    width: 100%;
 
+}
+
+.uploadAddItemBtn {
+    background-color: rgb(229, 228, 228);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20%;
+    border: solid 1px ;
 }
 
 
@@ -249,4 +257,17 @@ padding-top: 50px;;
     height: 250px;
     border: solid 1px;
     margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+.form-label  {
+    color: black !important;
+    font-weight: bold !important;
 }
