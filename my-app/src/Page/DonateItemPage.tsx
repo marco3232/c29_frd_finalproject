@@ -7,10 +7,23 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import "../css/App.css"
 import "../css/DonateItemPage.module.css"
+import { useAppSelector } from "../hook/hooks";
 
 
 export default function DonateItemPage() {
   const navigate = useNavigate();
+  const userRole = useAppSelector(state => state.auth.role);
+  const isAdmin = () => userRole === 'admin'
+
+  const handleEditDeleteAdd = (id: number) => {
+    if (isAdmin()) {
+      console.log("Admin functionality: Edit/Delete/Add");
+
+    } else {
+
+    }
+  }
+
   return (
     <div className={styles.title}>
       <span className={styles.header}>器材募集 </span>

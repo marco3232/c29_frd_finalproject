@@ -123,7 +123,6 @@ function App() {
         <Route path="/" element={""} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route path="/admin" element={<Admin />} />
-
         {/* <Route element={<AuthGuard />} >
          */}
         <Route element={<AuthGuard />} >
@@ -131,7 +130,6 @@ function App() {
           {/* </Route> */}
         </Route>
       </Routes>
-
       <br />
     </div >
   );
