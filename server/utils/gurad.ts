@@ -45,7 +45,7 @@ export async function isLoggedIn(
             email: decoded.email,
             role: decoded.role
         }
-        console.log("guard.ts check", req.user);
+        // console.log("guard.ts check", req.user);
         return next();
     } catch (e) {
         return res.status(401).json({ msg: "Permission Denied" });
@@ -70,7 +70,7 @@ export async function isAdminLoggedIn(
         const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
         req.user = decoded;
 
-        console.log("guard.ts check", req.user)
+        // console.log("guard.ts check", req.user)
 
         return next();
     } catch (e) {

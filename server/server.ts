@@ -72,6 +72,23 @@ app.use("/", isLoggedIn, logisticMixController.router);
 // });
 
 app.post("/login", authController.router);
+app.post("/donate", (req, res) => {
+  const donationData = req.body
+  res.status(200).json({ message: "申請已提交" })
+})
+app.put("/approveDonation/:donationId", (req, res) => {
+  const donationId = req.params.donationId
+  const { approved } = req.body
+  if (approved) {
+    res.status(200).json({ message: "已成功批准" })
+  } else {
+    res.status(200).json({ message: "拒絕申請" })
+  }
+})
+
+
+
+
 app.get("/register", authController.router);
 
 

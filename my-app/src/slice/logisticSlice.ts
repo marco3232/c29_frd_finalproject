@@ -61,9 +61,27 @@ export const logisticSlice = createSlice({
         state = initialState
        },
     },
+    // extraReducers: (builder) => {
+    //     builder.addCase(submitLogistic.fulfilled, (state, action) => {
+
+    //     })
+    // }
 
 });
 
+// export const submitLogistic = createAsyncThunk(
+//     'logistic/create',
+//     async () => {
+//         try {
+//             console.log({
+//                 initialState
+//             })
+         
+//         } catch (error) {
+           
+//         }
+//     }
+// );
 
 
 export default logisticSlice.reducer;

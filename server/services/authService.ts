@@ -1,6 +1,5 @@
 import { Knex } from "knex";
 import jwtSimple from "jwt-simple";
-import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
 import bcrypt from "bcrypt";
 // -----------------------------------------------------------------------------------------------
@@ -17,22 +16,24 @@ export class AuthService {
   async login(email: string, password: string, role: string) {
     const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-    const comparePassword = await bcrypt.compare(password, userInfoQuery.password);
+    if (userInfoQuery && userInfoQuery.password) {
+      const comparePassword = await bcrypt.compare(password, userInfoQuery.password);
 
+      if (comparePassword) {
+        const payload = {
+          id: userInfoQuery.id,
+          email: userInfoQuery.email,
+          data: userInfoQuery.eng_given_name,
+          role: userInfoQuery.role,
+        };
 
-    if (comparePassword) {
-      const payload = {
-        id: userInfoQuery.id,
-        email: userInfoQuery.email,
-        data: userInfoQuery.eng_given_name,
-        role: userInfoQuery.role,
-      };
-
-      const token = jwtSimple.encode(payload, jwt.jwtSecret);
-      return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role };
+        const token = jwtSimple.encode(payload, jwt.jwtSecret);
+        return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role: userInfoQuery.role };
+      } else {
+        return { flag: false, message: "Incorrect password" };
+      }
     } else {
-      return { flag: false, message: "Incorrect password" }
-
+      return { flag: false, message: "User not found" };
     }
   }
 
@@ -95,6 +96,18 @@ export class AuthService {
       return queryResult.length;
     } catch (error: any) {
       throw new Error("Error retrieving user email: " + error.message);
+    }
+  }
+
+  // -----------------------------------------------------------------------------------------------
+
+  async getUserIdByEmail(email: string): Promise<number | null> {
+    try {
+      const user = await this.knex("users").select("id").where("email", email).first();
+      return user ? user.id : null;
+    } catch (error) {
+      console.error("Error retrieving user ID:", error);
+      return null;
     }
   }
 }

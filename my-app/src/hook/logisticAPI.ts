@@ -8,12 +8,13 @@ export function useGetLogisticInfo() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["logistic"],
     queryFn: async () => {
-      const res = await fetch(`${source}/finaldonateconfirm`, {
+      const res = await fetch(`${source}/finaldonateconfirmMix`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
       });
       const result = await res.json();
+      console.log("result",result.data)
       return result.data;
     },
   });
@@ -30,11 +31,11 @@ export function useGetLogisticInfo() {
 
 export async function addLogisticColumn(
   donationList: DonationType[],
-  Transaction: TransactionType 
+  transaction: TransactionType
 ) {
   const body = {
     donationList,
-    Transaction
+    transaction
   }
   console.log({
     body
@@ -89,7 +90,7 @@ export async function editLogisticColumn(
   return resp.message;
 }
 
-export  function useAdminCheck_LogisticInfo_3() {
+export function useAdminCheck_LogisticInfo_3() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["adminLogistic"],
     queryFn: async () => {

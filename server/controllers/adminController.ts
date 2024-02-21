@@ -10,7 +10,7 @@ export default class AdminController {
 
   constructor(private adminService: AdminService) {
     this.router.get("/userInfo", this.userInfo.bind(this));
-    this.router.post("/logistics", this.logistics.bind(this));
+    // this.router.post("/logistics", this.logistics.bind(this));
   }
 
   async userInfo(req: Request, res: Response): Promise<void> {

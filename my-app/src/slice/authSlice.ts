@@ -8,6 +8,7 @@ import { getUserInfo } from '../hook/userAPI';
 
 interface AuthState {
     isAuthenticated: boolean;
+    role: string
     userData: {
         eng_given_name: string
     }
@@ -17,6 +18,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     isAuthenticated: !!localStorage.getItem('token'),
+    role: 'admin',
     userData: {
         eng_given_name: ''
     }
