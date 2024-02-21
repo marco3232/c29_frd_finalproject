@@ -33,10 +33,12 @@ const ApproveDonationPage: React.FC<Props> = ({ donationId }) => {
 
     return (
         <div>
-            <h2>審批捐贈申請</h2>
+            <h1>審批捐贈申請</h1>
             {!approved && (
                 <div>
                     <button onClick={handleApprove}>批准</button>
+                    {"\u00A0\u00A0"}
+
                     <button onClick={handleReject}>拒絕</button>
                 </div>
             )}

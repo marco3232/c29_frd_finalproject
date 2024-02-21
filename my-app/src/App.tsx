@@ -18,6 +18,7 @@ import banner from "./image/homePage.png"
 // import banner from "./image/Untitled-1.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
 import { AuthGuard } from "./utils/authGuard";
+import ApproveDonationPage from "./Components/ApproveDonation";
 
 // --------------------------------------------------------------------------------
 
@@ -121,6 +122,7 @@ function App() {
         <Route path="/Donate" element={<DonateItemPage />} />
         <Route path="/Transaction" element={<TransactionPage />} />
         <Route path="/" element={""} />
+        <Route path="/ApproveDonationPage" element={<ApproveDonationPage donationId={0} />} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route path="/admin" element={<Admin />} />
         {/* <Route element={<AuthGuard />} >

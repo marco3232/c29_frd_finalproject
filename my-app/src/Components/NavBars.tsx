@@ -36,8 +36,7 @@ function NavBarControl() {
                                 <Nav.Link onClick={() => navigate('/Upload')}>聯合國我們</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</Nav.Link>
 
 
                                 <NavDropdown
