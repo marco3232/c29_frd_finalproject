@@ -31,17 +31,7 @@ export class AdminService {
     return userInfoQuery;
   }
 
-<<<<<<< HEAD
-    async logistics(room:string, building:string){
-      const infoQuery = await this.knex("logistics").select("*")
-
-      console.log("march answer:",infoQuery)
-
-      return infoQuery
-    }
-=======
   // multipleTable(){
   //   return this.knex("donate_items","logistic_items","logistics")
   // }
->>>>>>> 73e956b850ff543be87f649742616c7e243275ce
 }
