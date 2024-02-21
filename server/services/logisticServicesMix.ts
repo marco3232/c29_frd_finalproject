@@ -51,6 +51,12 @@ export class LogisticMixService {
         console.log("check d id",donation.id)
       }
 
+        // await this.table2(trx).insert({
+        //   qty: donationList,
+        //   donate_item_id: donationList,
+        //   logistic_id: logistic_id,
+        // });
+
       await trx.commit();
       return true;
     } catch (error) {
