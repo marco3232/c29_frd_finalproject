@@ -101,7 +101,7 @@ export default function FinalConfirmPage() {
         <Form className="logisticForm">
           {getLogisticList.map((entry) => (
             <Row className="logisticRow" key={entry.id} >
-              <h3>Logistic ID: {entry.logistic_id}</h3>
+              <h3>Logistic ID: {entry.user_id}</h3>
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
                   <Form.Label>目的</Form.Label>
@@ -173,7 +173,9 @@ export default function FinalConfirmPage() {
         </Form>
 
       ) : (
-        <h3>No data available</h3>
+        <div id="finalConfirmNodata">
+          <h3>No data available</h3>
+        </div>
       )
       }
     </div >

@@ -21,7 +21,7 @@ export class LogisticController {
       confirmed_session,
       user_id,
     } = req.body;
-    console.log("check req..body",req.body)
+    console.log("check req..body", req.body)
 
     let result = await this.logisticService.addLogistic(
       room,
