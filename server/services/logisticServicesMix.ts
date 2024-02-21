@@ -74,7 +74,7 @@ export class LogisticMixService {
         where u.id = ?`,
         [userId]
       );
-
+      // console.log("rows??",rows)
       return rows;
     } catch (error) {
       console.error(error); // handle errors
