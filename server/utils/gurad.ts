@@ -54,7 +54,7 @@ export async function isLoggedIn(
     }
     // console.log("guard.ts check", req.user);
     return next();
-  } 
+}
 
 
 

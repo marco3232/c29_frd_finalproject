@@ -6,9 +6,8 @@ import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Page/TransactionPage";
 import { Routes, Route, useNavigate, useLocation, Form } from "react-router-dom";
-import { Nav, Button, NavbarBrand, FormControl } from "react-bootstrap";
+import { Nav, Button } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
-import { AuthGuard } from "./utils/authGuard";
 import { getUserInfo } from "./hook/userAPI";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +17,7 @@ import Admin from "./Components/Admin";
 import banner from "./image/homePage.png"
 // import banner from "./image/Untitled-1.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
+import { AuthGuard } from "./utils/authGuard";
 
 // --------------------------------------------------------------------------------
 
@@ -48,6 +48,7 @@ function App() {
   }, [dispatch]);
 
   // --------------
+
   useEffect(() => {
     if (userData?.eng_given_name) {
       setUserName(userData?.eng_given_name);
@@ -123,16 +124,16 @@ function App() {
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         <Route path="/admin" element={<Admin />} />
 
+        {/* <Route element={<AuthGuard />} >
+         */}
         <Route element={<AuthGuard />} >
-
-
           <Route path="/Upload" element={<UploadPage />} />
-
+          {/* </Route> */}
         </Route>
       </Routes>
 
       <br />
-    </div>
+    </div >
   );
 }
 
