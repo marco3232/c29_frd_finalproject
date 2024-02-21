@@ -21,7 +21,7 @@ export class LogisticMixController {
   router = express.Router();
   constructor(private logisticMixService: LogisticMixService) {
     this.router.post("/logisticmix", this.create);
-    // this.router.get("/finaldonateconfirm", this.list)
+    this.router.get("/finaldonateconfirmMix", this.list)
     // this.router.put("/finaldonateconfirm/edit/{id}", this.edit)
   }
 
@@ -76,7 +76,7 @@ export class LogisticMixController {
   // };
 
   list = async (req:Request, res: Response) => {
-    let list = await this.logisticMixService.getAllLogisticInfo()
+    let list = await this.logisticMixService.getAllLogisticInfo(3)
     res.status(200).json({data: list})
   }
 }
