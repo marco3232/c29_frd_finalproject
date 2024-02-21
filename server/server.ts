@@ -52,7 +52,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 // ------Admin routes --
+<<<<<<< HEAD
+app.use("/admin", isAdminLoggedIn, adminController.router)
+app.use("/logistics",isAdminLoggedIn,adminController.router)
+=======
 // app.use("/admin", isAdminLoggedIn, adminController.router)
+>>>>>>> 73e956b850ff543be87f649742616c7e243275ce
 // ------Auth routes------------------------------------------------------
 app.use("/auth", authController.router);
 

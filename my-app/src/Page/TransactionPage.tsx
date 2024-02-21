@@ -16,7 +16,7 @@ import {
   updateTransaction,
 } from "../slice/logisticSlice";
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
-import "../css/InputAddressPage.module.css"
+import "../css/InputAddressPage.module.css";
 import { MDBBtn } from "mdb-react-ui-kit";
 
 //-------------------------------------------------------------------------------------------
@@ -30,25 +30,21 @@ export default function TransactionPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const onAddLogistic = useMutation({
-    mutationFn: async () =>
+    mutationFn: async () => {
+      console.log({ donationList, transaction });
       addLogisticColumn(
         donationList,
         transaction
-        // data.room,
-        // data.building,
-        // data.street,
-        // data.district,
-        // data.contact_number,
-        // data.contact_name,
-        // data.confirmed_date,
-        // data.confirmed_session
-      ),
+      )
+    },
+ 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["logistic"],
-        exact: true,
-      });
+      // queryClient.invalidateQueries({
+      //   queryKey: ["logistic"],
+      //   exact: true,
+      // });
       dispatch(clearForm());
+      navigate("/FinalConfirmPage");
     },
   });
 
@@ -65,9 +61,10 @@ export default function TransactionPage() {
         confirmed_session: confirmedSessionInput,
       })
     );
+
     onAddLogistic.mutate();
-    console.log("check mutate", onAddLogistic.mutate)
-    console.log("check result", addLogisticHandler)
+    // console.log("check mutate",onAddLogistic.mutate)
+    // console.log("check result",addLogisticHandler)
     // {
     //   room: roomInput,
     //   building: buildingInput,
@@ -78,8 +75,6 @@ export default function TransactionPage() {
     // confirmed_date: confirmedDateInput,
     // confirmed_session: confirmedSessionInput,
     // }
-
-    navigate("/FinalConfirmPage");
   };
 
   const [roomInput, setRoomInput] = useState("");
@@ -90,7 +85,6 @@ export default function TransactionPage() {
   const [confirmedDateInput, setConfirmDateInput] = useState("");
   const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
-
 
   // -----------react query-----------------------
 
@@ -254,6 +248,5 @@ export default function TransactionPage() {
         </MDBBtn>
       </div>
     </div>
-
   );
 }

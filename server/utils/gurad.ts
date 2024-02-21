@@ -32,11 +32,19 @@ export async function isLoggedIn(
     res: express.Response,
     next: express.NextFunction
 ) {
+<<<<<<< HEAD
+  try {
+    const token = permit.check(req);
+    if (!token) {
+      return res.status(401).json({ msg: "Permission Denied x 1" });
+    }
+=======
     try {
         const token = permit.check(req);
         if (!token) {
             return res.status(401).json({ msg: "Permission Denied" });
         }
+>>>>>>> 73e956b850ff543be87f649742616c7e243275ce
 
         const decoded: Omit<User, "password"> = jwtSimple.decode(
             token,
@@ -47,13 +55,19 @@ export async function isLoggedIn(
             email: decoded.email,
             role: decoded.role
         }
-        console.log("guard.ts check", req.user);
+        // console.log("guard.ts check", req.user);
         return next();
     } catch (e) {
         return res.status(401).json({ msg: "Permission Denied" });
     }
     // console.log("guard.ts check", req.user);
     return next();
+<<<<<<< HEAD
+  } catch (e) {
+    return res.status(401).json({ msg: "Permission Denied x 1.5" });
+  }
+=======
+>>>>>>> 73e956b850ff543be87f649742616c7e243275ce
 }
 
 
@@ -66,13 +80,13 @@ export async function isAdminLoggedIn(
     try {
         const token = permit.check(req);
         if (!token) {
-            return res.status(401).json({ msg: "Permission Denied" });
+            return res.status(401).json({ msg: "Permission Denied x 2" });
         }
 
         const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
         req.user = decoded;
 
-        // console.log("guard.ts check", req.user)
+        console.log("guard.ts check", req.user)
 
         return next();
     } catch (e) {

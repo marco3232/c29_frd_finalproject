@@ -82,7 +82,7 @@ export default function FinalConfirmPage() {
         building: string;
         street: string;
         district: string;
-        contact_number: number | null;
+        contact_number: number ;
         contact_name: string;
         confirmed_date: string;
         confirmed_session: string;
@@ -152,34 +152,36 @@ export default function FinalConfirmPage() {
         <Col key={entry.id}>
           <Form.Group>
            
-            <Form.Label>Purpose</Form.Label>
+            <Form.Label>目的</Form.Label>
             <Form.Control value={entry.purpose} />
-            <Form.Label>Donate Item</Form.Label>
+            
+            <Form.Label>捐贈物品</Form.Label>
             <Form.Control value={entry.item_name} />
-            <Form.Label>Quantity</Form.Label>
+            <Form.Label>數量</Form.Label>
             <Form.Control value={entry.qty} />
-            <Form.Label>Room</Form.Label>
+
+            <Form.Label>樓 / 室</Form.Label>
             <Form.Control value={entry.room} />
-            <Form.Label>Building</Form.Label>
+            <Form.Label>大廈 / 屋</Form.Label>
             <Form.Control value={entry.building} />
-            <Form.Label>street</Form.Label>
+            <Form.Label>街道</Form.Label>
             <Form.Control value={entry.street} />
             <Form.Label>區域</Form.Label>
-            <Form.Select onChange={handleRegionChange} value={region}>
+            {/* <Form.Select onChange={handleRegionChange} value={region}>
               <option></option>
               <option>香港島</option>
               <option>九龍區</option>
               <option>新界區</option>
-            </Form.Select>
-            <Form.Label>district</Form.Label>
+            </Form.Select> */}
+            <Form.Label>地區</Form.Label>
             <Form.Control value={entry.district} />
-            <Form.Label>contact_number</Form.Label>
-            {/* <Form.Control value={entry.contact_number} />
-            <Form.Label>contact_name</Form.Label> */}
+            <Form.Label>聯絡人電話</Form.Label>
+            <Form.Control value={entry.contact_number} />
+            <Form.Label>聯絡人姓名</Form.Label>
             <Form.Control value={entry.contact_name} />
-            <Form.Label>confirmed_date</Form.Label>
+            <Form.Label>確認交收日期</Form.Label>
             <Form.Control value={entry.confirmed_date} />
-            <Form.Label>confirmed_session</Form.Label>
+            <Form.Label>確認交收時間</Form.Label>
             <Form.Control value={entry.confirmed_session} />
           </Form.Group>
           {/* Other fields as needed, using Form.Group, Form.Label, Form.Control, etc. */}
