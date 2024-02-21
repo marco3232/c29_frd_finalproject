@@ -47,7 +47,7 @@ export async function isLoggedIn(
             email: decoded.email,
             role: decoded.role
         }
-        console.log("guard.ts check", req.user);
+        // console.log("guard.ts check", req.user);
         return next();
     } catch (e) {
         return res.status(401).json({ msg: "Permission Denied" });

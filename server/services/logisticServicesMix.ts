@@ -1,4 +1,5 @@
 import { Knex } from "knex";
+import { DonationType } from "../controllers/logisticControllerMix";
 
 export class LogisticMixService {
   constructor(private knex: Knex) { }
@@ -21,13 +22,11 @@ export class LogisticMixService {
     confirmed_date_input: string,
     confirmed_session_input: string,
     user_id_input: number,
-    qty_input: number,
-    donate_item_id_input: number,
-    logistic_id_input: number
+    donationList: DonationType[],
   ) {
     const trx = await this.knex.transaction();
     try {
-      await this.table(trx).insert({
+      const logisticReturning = await this.table(trx).insert({
         room: room_input,
         building: building_input,
         street: street_input,
@@ -37,13 +36,17 @@ export class LogisticMixService {
         confirmed_date: confirmed_date_input,
         confirmed_session: confirmed_session_input,
         user_id: user_id_input,
-      });
+      }).returning("id");
 
-      await this.table2(trx).insert({
-        qty: qty_input,
-        donate_item_id: donate_item_id_input,
-        logistic_id: logistic_id_input,
-      });
+      const logistic_id = logisticReturning[0].id
+      for (let donation of donationList) {
+        await this.table2(trx).insert({
+          qty: donation.quantity,
+          donate_item_id: donation.id,
+          logistic_id: logistic_id,
+        });
+      }
+
       await trx.commit();
       return true;
     } catch (error) {
@@ -52,4 +55,35 @@ export class LogisticMixService {
       return false;
     }
   }
+
+  async getAllLogisticInfo() {
+    try {
+      const rows = await this.knex
+      .from('logistic_items')
+      .innerJoin('logistics as logistic', 'logistic.id', 'logistic_items.logistic_id')
+      .innerJoin('donate_items as donate_item', 'donate_item.id', 'logistic_items.donate_item_id')
+      .select(
+        'logistic_items.logistic_id',
+        'logistic_items.donate_item_id',
+        'logistic_items.qty as logistic_items_qty',
+        'logistic.room as logistic_room',
+        'logistic.building as logistic_building',
+        'logistic.street as logistic_street',
+        'logistic.district as logistic_district',
+        'logistic.contact_number as logistic_contact_number',
+        'logistic.contact_name as logistic_contact_name',
+        'logistic.confirmed_date as logistic_confirmed_date',
+        'logistic.confirmed_session as logistic_confirmed_session',
+        'logistic.user_id as logistic_user_id',
+        'donate_item.item_name as donate_item_item_name',
+      )
+        return rows
+    } catch (error) {
+      console.error(error); // handle errors
+      throw new Error(`Error fetching items: ${error}`);
+    }
+  }
+
+
+
 }

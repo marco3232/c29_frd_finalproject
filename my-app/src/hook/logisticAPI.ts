@@ -30,11 +30,11 @@ export function useGetLogisticInfo() {
 
 export async function addLogisticColumn(
   donationList: DonationType[],
-  Transaction: TransactionType 
+  transaction: TransactionType 
 ) {
   const body = {
     donationList,
-    Transaction
+    transaction
   }
   console.log({
     body
