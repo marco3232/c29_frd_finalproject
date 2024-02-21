@@ -35,7 +35,7 @@ export async function isLoggedIn(
   try {
     const token = permit.check(req);
     if (!token) {
-      return res.status(401).json({ msg: "Permission Denied" });
+      return res.status(401).json({ msg: "Permission Denied x 1" });
     }
 
     const decoded: Omit<User, "password"> = jwtSimple.decode(
@@ -50,7 +50,7 @@ export async function isLoggedIn(
     console.log("guard.ts check", req.user);
     return next();
   } catch (e) {
-    return res.status(401).json({ msg: "Permission Denied" });
+    return res.status(401).json({ msg: "Permission Denied x 1.5" });
   }
 }
 
@@ -63,13 +63,13 @@ export async function isAdminLoggedIn(
     try {
         const token = permit.check(req);
         if (!token) {
-            return res.status(401).json({ msg: "Permission Denied" });
+            return res.status(401).json({ msg: "Permission Denied x 2" });
         }
 
         const decoded: Omit<User, 'password'> = jwtSimple.decode(token, jwt.jwtSecret);
         req.user = decoded;
 
-        // console.log("guard.ts check", req.user)
+        console.log("guard.ts check", req.user)
 
         return next();
     } catch (e) {

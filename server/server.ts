@@ -52,6 +52,7 @@ app.use(bodyParser.json())
 
 // ------Admin routes --
 app.use("/admin", isAdminLoggedIn, adminController.router)
+app.use("/logistics",isAdminLoggedIn,adminController.router)
 // ------Auth routes------------------------------------------------------
 app.use("/auth", authController.router);
 

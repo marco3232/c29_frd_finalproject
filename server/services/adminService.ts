@@ -31,7 +31,11 @@ export class AdminService {
     return userInfoQuery;
   }
 
-  multipleTable(){
-    return this.knex("donate_items","logistic_items","logistics")
-  }
+    async logistics(room:string, building:string){
+      const infoQuery = await this.knex("logistics").select("*")
+
+      console.log("march answer:",infoQuery)
+
+      return infoQuery
+    }
 }
