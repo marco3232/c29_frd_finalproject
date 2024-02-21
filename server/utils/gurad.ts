@@ -9,8 +9,6 @@ const permit = new Bearer({
     query: "access_token",
 });
 
-
-
 interface User {
     id: number;
     email: string;
