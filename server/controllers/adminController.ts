@@ -35,7 +35,7 @@ export default class AdminController {
         eng_given_name,
         mobile_phone,
         address_proof_image_path,
-        role,
+        role
       );
 
       res.json(userData);
@@ -45,18 +45,15 @@ export default class AdminController {
     }
   }
 
-  async logistics(req:Request, res:Response):Promise<void>{
-    try{
-      let {room,building}=req.body;
+  async logistics(req: Request, res: Response): Promise<void> {
+    try {
+     
+      let result = await this.adminService.logistics()
 
-      let logisticsData = await this.adminService.logistics(
-        room,
-        building,
-      );
-        res.json(logisticsData);
-
-    }catch(error){
-      res.status(400).json({message: "i m died"})
+      res.json(result)
+    } catch (e: any) {
+      res.status(400).json({ message: e.message });
+      return;
     }
   }
 }

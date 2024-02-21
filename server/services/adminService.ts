@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class AdminService {
-  public constructor(private knex: Knex) { }
+  public constructor(private knex: Knex) {}
   table() {
     return this.knex("users");
   }
@@ -26,22 +26,27 @@ export class AdminService {
       .select("eng_surname")
       .select("eng_given_name")
       .select("mobile_phone")
-      .select("role")
+      .select("role");
 
     return userInfoQuery;
   }
 
-<<<<<<< HEAD
-    async logistics(room:string, building:string){
-      const infoQuery = await this.knex("logistics").select("*")
+  async logistics() {
+    try {
+      // const infoQuery = await this.knex("logistics")
+      //   .join("users", "logistics.user_id", "users.id")
+      // .select("logistics.users_id",);
+      const infoQuery = await this.knex("logistics")
+        .join("users", "logistics.user_id", "user.id")
+        .select("logistics.user_id","user.id")
+        .where("logistics.user_id","user_id")
 
-      console.log("march answer:",infoQuery)
+        
+      console.log("march answer:", infoQuery);
 
-      return infoQuery
+      return infoQuery;
+    } catch (e) {
+      throw new Error(`Error fetching items:${e}`);
     }
-=======
-  // multipleTable(){
-  //   return this.knex("donate_items","logistic_items","logistics")
-  // }
->>>>>>> 73e956b850ff543be87f649742616c7e243275ce
+  }
 }

@@ -16,7 +16,7 @@ export async function seed(knex: Knex): Promise<void> {
           confirmed_session:"12:00",
           tried:true,
           rescheduled:true,
-          user_id: 4,
+          user_id: 3,
      },
        
     ]);
