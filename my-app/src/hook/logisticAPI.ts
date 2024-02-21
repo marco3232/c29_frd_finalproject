@@ -30,7 +30,7 @@ export function useGetLogisticInfo() {
 
 export async function addLogisticColumn(
   donationList: DonationType[],
-  transaction: TransactionType 
+  transaction: TransactionType
 ) {
   const body = {
     donationList,
@@ -89,7 +89,7 @@ export async function editLogisticColumn(
   return resp.message;
 }
 
-export  function useAdminCheck_LogisticInfo_3() {
+export function useAdminCheck_LogisticInfo_3() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["adminLogistic"],
     queryFn: async () => {

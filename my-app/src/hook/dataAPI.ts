@@ -59,6 +59,13 @@ export async function addNewItems(
 
 //-------------------------------------------------------------------------------------------
 
+export async function confirmDonateItem() {
+
+
+
+
+
+}
 
 // export const fetchItemData = async (itemId: number) => {
 //   try {
