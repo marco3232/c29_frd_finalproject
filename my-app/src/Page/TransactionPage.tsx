@@ -98,10 +98,11 @@ export default function TransactionPage() {
 
     switch (selectedRegion) {
       case "香港島":
-        setDistrictOptions(["中西區", "灣仔區", "東區", "南區", "其他"]);
+        setDistrictOptions(["請選擇","中西區", "灣仔區", "東區", "南區", "其他"]);
         break;
       case "九龍區":
         setDistrictOptions([
+          "請選擇",
           "九龍城區",
           "觀塘區",
           "深水埗區",
@@ -112,6 +113,7 @@ export default function TransactionPage() {
         break;
       case "新界區":
         setDistrictOptions([
+          "請選擇",
           "葵青區",
           "荃灣區",
           "離島區",
@@ -205,8 +207,8 @@ export default function TransactionPage() {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="Date"
-              // defaultValue={dayjs()}
-              value={dayjs(confirmedDateInput)}
+              defaultValue={dayjs()}
+              // value={dayjs(confirmedDateInput)}
               onChange={(date) => {
                 const dayjsDate = dayjs(date);
                 const dateToString = new Date(
@@ -224,8 +226,8 @@ export default function TransactionPage() {
           <DemoContainer components={["TimePicker"]}>
             <TimePicker
               label="Time"
-              // defaultValue={dayjs()}
-              value={dayjs(confirmedSessionInput)}
+              defaultValue={dayjs()}
+              // value={dayjs(confirmedSessionInput)}
               onChange={(session) => {
                 const dayjsSession = dayjs(session);
                 const sessionToString = new Date(

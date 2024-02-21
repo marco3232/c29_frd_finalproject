@@ -8,9 +8,9 @@ export function useGetLogisticInfo() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["logistic"],
     queryFn: async () => {
-      const res = await fetch(`${source}/finaldonateconfirm`, {
+      const res = await fetch(`${source}/finaldonateconfirmMix`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
       });
       const result = await res.json();

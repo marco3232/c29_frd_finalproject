@@ -18,6 +18,5 @@ export async function seed(knex: Knex): Promise<void> {
           rescheduled:true,
           user_id: 4,
      },
-       
     ]);
 };

@@ -78,19 +78,20 @@ export default function FinalConfirmPage() {
         id: number;
         uuid?: number;
         purpose?: string;
-        room: string;
-        building: string;
-        street: string;
+        // room: string;
+        // building: string;
+        // street: string;
+        address:string;
         district: string;
-        contact_number: number ;
-        contact_name: string;
+        number: number ;
+        name: string;
         confirmed_date: string;
         confirmed_session: string;
         user_id?: number;
         item_name?:string;
         logistic_id?:number;
         donate_item_id?:number;
-        qty:number;
+        quantity:number;
       }> = useGetLogisticInfo();
   console.log("getall", getLogisticList);
 
@@ -151,34 +152,35 @@ export default function FinalConfirmPage() {
       {getLogisticList.map((entry) => (
         <Col key={entry.id}>
           <Form.Group>
-           
             <Form.Label>目的</Form.Label>
             <Form.Control value={entry.purpose} />
             
             <Form.Label>捐贈物品</Form.Label>
             <Form.Control value={entry.item_name} />
             <Form.Label>數量</Form.Label>
-            <Form.Control value={entry.qty} />
-
-            <Form.Label>樓 / 室</Form.Label>
+            <Form.Control value={entry.quantity} />
+            <Form.Label>地址</Form.Label>
+            <Form.Control value={entry.address} />
+            
+            {/* <Form.Label>樓 / 室</Form.Label>
             <Form.Control value={entry.room} />
             <Form.Label>大廈 / 屋</Form.Label>
             <Form.Control value={entry.building} />
             <Form.Label>街道</Form.Label>
-            <Form.Control value={entry.street} />
-            <Form.Label>區域</Form.Label>
+            <Form.Control value={entry.street} /> */}
+            {/* <Form.Label>區域</Form.Label> */}
             {/* <Form.Select onChange={handleRegionChange} value={region}>
               <option></option>
               <option>香港島</option>
               <option>九龍區</option>
               <option>新界區</option>
             </Form.Select> */}
-            <Form.Label>地區</Form.Label>
-            <Form.Control value={entry.district} />
+            {/* <Form.Label>地區</Form.Label>
+            <Form.Control value={entry.district} /> */}
             <Form.Label>聯絡人電話</Form.Label>
-            <Form.Control value={entry.contact_number} />
+            <Form.Control value={entry.number} />
             <Form.Label>聯絡人姓名</Form.Label>
-            <Form.Control value={entry.contact_name} />
+            <Form.Control value={entry.name} />
             <Form.Label>確認交收日期</Form.Label>
             <Form.Control value={entry.confirmed_date} />
             <Form.Label>確認交收時間</Form.Label>
@@ -189,6 +191,8 @@ export default function FinalConfirmPage() {
       ))}
     </Row>
   </Form>
+
+  
       ) : (
         <h3>No data available</h3>
       )}

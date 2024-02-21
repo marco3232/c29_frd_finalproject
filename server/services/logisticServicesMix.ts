@@ -58,23 +58,30 @@ export class LogisticMixService {
     }
   }
 
-  async getAllLogisticInfo(userId: number) {
+  async getAllLogisticInfo(user_id:number) {
     try {
       const rows = await this.knex.raw(
         `
         select
-          li.qty as quantity
-        , di.item_name as item_name
-        , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
-        , u.email as email
+		  di.item_name as item_name
+    , li.qty as quantity
+		, l.contact_name as name
+		, l.contact_number as number
+		, l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
+		, u.email as email
+    , l.purpose as purpose
+    , l.district as district
+    , l.confirmed_date as confirmed_date
+    , l.confirmed_session as confirmed_session
         from logistic_items li 
         inner join logistics l on l.id = li.logistic_id
         inner join users u on u.id = l.user_id
         inner join donate_items di on di.id = li.donate_item_id
-        where u.id = ?`,
-        [userId ]
+        where u.id = ?`
+        [user_id]
       );
 
+      console.log("check rows",)
       return rows;
     } catch (error) {
       console.error(error); // handle errors
