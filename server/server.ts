@@ -18,7 +18,7 @@ import { LogisticMixController } from "./controllers/logisticControllerMix";
 
 import AdminController from "./controllers/adminController";
 import { AdminService } from "./services/adminService";
-import { isLoggedIn } from "./utils/gurad";
+import { isAdminLoggedIn, isLoggedIn } from "./utils/gurad";
 // import { updateIsAdmin } from "./utils/gurad"
 //-----------
 const app = express();
@@ -52,7 +52,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 // ------Admin routes --
-// app.use("/admin", isAdminLoggedIn, adminController.router)
+app.use("/admin", isAdminLoggedIn, adminController.router)
+app.use("/logistics",isAdminLoggedIn,adminController.router)
 // ------Auth routes------------------------------------------------------
 app.use("/auth", authController.router);
 
