@@ -72,9 +72,9 @@ export class LogisticMixService {
         inner join users u on u.id = l.user_id
         inner join donate_items di on di.id = li.donate_item_id
         where u.id = ?`,
-        [userId ]
+        [userId]
       );
-
+      // console.log("rows??",rows)
       return rows;
     } catch (error) {
       console.error(error); // handle errors
