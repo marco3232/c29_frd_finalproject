@@ -77,11 +77,10 @@ export class LogisticMixService {
         inner join logistics l on l.id = li.logistic_id
         inner join users u on u.id = l.user_id
         inner join donate_items di on di.id = li.donate_item_id
-        where u.id = ?`
+        where u.id = ?`,
         [user_id]
       );
-
-      console.log("check rows",)
+      // console.log("rows??",rows)
       return rows;
     } catch (error) {
       console.error(error); // handle errors

@@ -14,6 +14,7 @@ export function useGetLogisticInfo() {
         },
       });
       const result = await res.json();
+      console.log("result",result.data)
       return result.data;
     },
   });

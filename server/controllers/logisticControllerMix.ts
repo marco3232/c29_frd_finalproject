@@ -77,8 +77,8 @@ export class LogisticMixController {
 
   list = async (req:Request, res: Response) => {
     const user_id = req.user?.id;
-    // console.log("check userid",user_id)
     let list = await this.logisticMixService.getAllLogisticInfo(user_id!)
     res.status(200).json({data: list.rows})
+    console.log("controller?",list.rows)
   }
 }
