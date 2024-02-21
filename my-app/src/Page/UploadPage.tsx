@@ -80,6 +80,7 @@ export default function UploadPage() {
         quantity: quantity,
       };
       setDonationList([...donationList, newItem]);
+      // setSelectedItem(""); // Reset selected item after adding to the list
       setQuantity(0); // Reset quantity after adding to the list
     }
   };
@@ -167,8 +168,8 @@ export default function UploadPage() {
           {donationList.map((item, index) => (
             <ListGroup.Item key={item.id}>
               <b>{item.item_name.name}</b> - Quantity: {item.quantity}
-              {"\u00A0\u00A0"}
-              {"\u00A0\u00A0"}
+              {/* {"\u00A0\u00A0"} */}
+              {/* {"\u00A0\u00A0"} */}
               {"\u00A0\u00A0"}
               {"\u00A0\u00A0"}
               <span

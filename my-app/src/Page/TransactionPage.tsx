@@ -10,7 +10,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { useNow } from "@mui/x-date-pickers/internals";
 import {
   clearForm,
   updateTransaction,
@@ -29,6 +28,7 @@ export default function TransactionPage() {
   // -----------react query-----------------------
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
   const onAddLogistic = useMutation({
     mutationFn: async () => {
       console.log({ donationList, transaction });
@@ -63,18 +63,7 @@ export default function TransactionPage() {
     );
 
     onAddLogistic.mutate();
-    // console.log("check mutate",onAddLogistic.mutate)
-    // console.log("check result",addLogisticHandler)
-    // {
-    //   room: roomInput,
-    //   building: buildingInput,
-    // street: streetInput,
-    // district: districtInput,
-    // contact_number: contactNumberInput,
-    // contact_name: contactNameInput,
-    // confirmed_date: confirmedDateInput,
-    // confirmed_session: confirmedSessionInput,
-    // }
+
   };
 
   const [roomInput, setRoomInput] = useState("");
@@ -98,7 +87,7 @@ export default function TransactionPage() {
 
     switch (selectedRegion) {
       case "香港島":
-        setDistrictOptions(["請選擇","中西區", "灣仔區", "東區", "南區", "其他"]);
+        setDistrictOptions(["請選擇", "中西區", "灣仔區", "東區", "南區", "其他"]);
         break;
       case "九龍區":
         setDistrictOptions([
@@ -163,7 +152,6 @@ export default function TransactionPage() {
           <option>九龍區</option>
           <option>新界區</option>
         </Form.Select>
-
         <Form.Label>地區</Form.Label>
         <Form.Select
           value={districtInput}
