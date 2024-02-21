@@ -36,7 +36,6 @@ function NavBarControl() {
                                 <Nav.Link onClick={() => navigate('/Upload')}>聯絡我們</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</Nav.Link>
 
 
                                 <NavDropdown
@@ -47,6 +46,7 @@ function NavBarControl() {
                                     <NavDropdown.Item onClick={() => navigate('/Transaction')}>Transaction</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                             {/* <Form className="searchBox d-flex">

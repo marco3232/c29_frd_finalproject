@@ -57,8 +57,8 @@ export class LogisticMixController {
     } catch (e: any) {
       console.log(e);
       res
-          .status(500)
-          .json({ message: e.message });
+        .status(500)
+        .json({ message: e.message });
     }
   };
 

@@ -21,13 +21,13 @@ export default function FinalConfirmPage() {
 
   const OnEditItem = useMutation({
     mutationFn: async (data: {
-      id:number,
-      building:string
-    }) => editLogisticColumn(data.id,data.building),
-    onSuccess: ()=>
+      id: number,
+      building: string
+    }) => editLogisticColumn(data.id, data.building),
+    onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey:["logistic"],
-        exact:true,
+        queryKey: ["logistic"],
+        exact: true,
       }),
   })
 
@@ -69,7 +69,7 @@ export default function FinalConfirmPage() {
     }
   };
   const [districtOptions, setDistrictOptions] = useState<string[]>([]);
-    const [districtInput, setDistrictInput] = useState("");
+  const [districtInput, setDistrictInput] = useState("");
 
 
   const getLogisticList:
@@ -194,8 +194,11 @@ export default function FinalConfirmPage() {
 
   
       ) : (
-        <h3>No data available</h3>
-      )}
-    </div>
+        <div id="finalConfirmNodata">
+          <h3>No data available</h3>
+        </div>
+      )
+      }
+    </div >
   );
 }

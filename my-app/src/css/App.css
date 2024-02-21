@@ -307,3 +307,39 @@ width: 70%;
 width: 1.1em ;
 }
 
+
+
+/* ------finalConfirmPage------------------------------------------------------------------------------------------ */
+
+
+.logisticConfirm {
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+
+.logisticRow {
+    width: 100%;
+    border-bottom: solid 2px;
+    padding: 20px;
+}
+
+
+.logisticConfirmCard {
+    width: 17rem;
+}
+
+.form-label {
+    margin-bottom: 0rem !important
+}
+.form-control {
+    margin-bottom: 1rem !important;
+}
+
+#finalConfirmNodata {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
