@@ -6,6 +6,8 @@ import ListGroup from "react-bootstrap/esm/ListGroup";
 import { useNavigate } from "react-router-dom";
 import { DonationType, updateDonationList } from "../slice/logisticSlice"
 import { useAppDispatch } from "../hook/hooks";
+import deleteIcon from "../image/deleteIcon.jpeg"
+
 type ItemProps = {
   // id: number;
   // name: string;
@@ -33,10 +35,10 @@ export default function UploadPage() {
       {
         id: item.id,
         itemName: item.item_name.name,
-        quantity:item.quantity
+        quantity: item.quantity
       }
     ))
-    
+
     dispatch(updateDonationList(donationListMapped))
     // setInput("");
     navigate("/Transaction");
@@ -138,7 +140,6 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button className="uploadAddItemBtn" onClick={addPreSubmitHandler}>   預覽   </button>
             <br />
             <br />
           </b>
@@ -149,9 +150,44 @@ export default function UploadPage() {
               確認數量 : {quantity}
             </b>
           </h5>
+          <MDBBtn
+            className="uploadAddItemBtn" onClick={addPreSubmitHandler}
+            color="secondary"
+          >
+            增加
+          </MDBBtn>
+
         </label>
         <br />
         <br />
+
+      </form>
+      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
+      <div className="uploadSubmitForm">
+        <ListGroup as="ul">
+          {donationList.map((item, index) => (
+            <ListGroup.Item key={item.id}>
+              <b>{item.item_name.name}</b> - Quantity: {item.quantity}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              <span
+                className="delete_link"
+                onClick={() => handleDelete(item.id)}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.textDecoration = "underline")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.textDecoration = "none")
+                }
+              >
+                <img className="deleteIcon " src={deleteIcon}></img>
+              </span>
+            </ListGroup.Item>
+
+          ))}
+        </ListGroup>
         <MDBBtn
           className="uploadBtn"
           color="info"
@@ -160,30 +196,7 @@ export default function UploadPage() {
         >
           提交
         </MDBBtn>
-      </form>
-      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
-      <ListGroup as="ul">
-        {donationList.map((item, index) => (
-          <ListGroup.Item key={item.id}>
-            {item.item_name.name} - Quantity: {item.quantity}
-            {"\u00A0\u00A0"}
-            {"\u00A0\u00A0"}
-            <span
-              className="delete-link"
-              onClick={() => handleDelete(item.id)}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.textDecoration = "underline")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.textDecoration = "none")
-              }
-            >
-              [Delete]
-            </span>
-          </ListGroup.Item>
-
-        ))}
-      </ListGroup>
+      </div>
     </div>
   );
 }

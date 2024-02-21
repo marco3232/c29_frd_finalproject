@@ -10,6 +10,7 @@ export default class AdminController {
 
   constructor(private adminService: AdminService) {
     this.router.get("/userInfo", this.userInfo.bind(this));
+    this.router.post("/logistics", this.logistics.bind(this));
   }
 
   async userInfo(req: Request, res: Response): Promise<void> {
@@ -41,6 +42,21 @@ export default class AdminController {
     } catch (e: any) {
       res.status(400).json({ message: e.message });
       return;
+    }
+  }
+
+  async logistics(req:Request, res:Response):Promise<void>{
+    try{
+      let {room,building}=req.body;
+
+      let logisticsData = await this.adminService.logistics(
+        room,
+        building,
+      );
+        res.json(logisticsData);
+
+    }catch(error){
+      res.status(400).json({message: "i m died"})
     }
   }
 }

@@ -30,10 +30,15 @@ function NavBarControl() {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="justify-content-end flex-grow-1 pe-5">
-                                <Nav.Link onClick={() => navigate('')}>產品</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Donate')}>捐贈物資</Nav.Link>
+                            <Nav className="navText justify-content-end flex-grow-1 pe-5">
+                                <Nav.Link onClick={() => navigate('')}>物資贈予</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>聯合國我們</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+
 
                                 <NavDropdown
                                     title="服務項目"
@@ -45,7 +50,7 @@ function NavBarControl() {
                                     <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                            <Form className="searchBox d-flex">
+                            {/* <Form className="searchBox d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
@@ -53,7 +58,7 @@ function NavBarControl() {
                                     aria-label="Search"
                                 />
                                 <Button id="searchBtn" variant="outline-success">Search</Button>
-                            </Form>
+                            </Form> */}
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>

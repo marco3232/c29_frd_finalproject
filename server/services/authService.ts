@@ -3,7 +3,6 @@ import jwtSimple from "jwt-simple";
 import { comparePassword } from "../utils/hash";
 import jwt from "../utils/jwt";
 import bcrypt from "bcrypt";
-import { useInRouterContext } from "react-router-dom";
 // -----------------------------------------------------------------------------------------------
 
 export class AuthService {
@@ -15,24 +14,13 @@ export class AuthService {
   // ---------------------------------------------------------------
 
   // ---------------------------------------------------------------
-  async login(email: string, password: string, role:string) {
+  async login(email: string, password: string, role: string) {
     const userInfoQuery = await this.knex("users").select("*").where("email", email).first();
 
-    const passwordMatch = await bcrypt.compare(password, userInfoQuery.password);
-    if (!passwordMatch) {
-      return { flag: false, message: "Incorrect password" };
-    }
+    const comparePassword = await bcrypt.compare(password, userInfoQuery.password);
 
-    
 
-    const payload = {
-      id: userInfoQuery.id,
-      email: userInfoQuery.email,
-      data: userInfoQuery.eng_given_name,
-      role: userInfoQuery.role
-    };
-
-    if (passwordMatch) {
+    if (comparePassword) {
       const payload = {
         id: userInfoQuery.id,
         email: userInfoQuery.email,
