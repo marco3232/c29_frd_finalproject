@@ -56,8 +56,8 @@ export class LogisticMixController {
     } catch (e: any) {
       console.log(e);
       res
-          .status(500)
-          .json({ message: e.message });
+        .status(500)
+        .json({ message: e.message });
     }
   };
 
@@ -75,8 +75,8 @@ export class LogisticMixController {
   //       .json({ message: "internal server error,cannot insert new item" });
   // };
 
-  list = async (req:Request, res: Response) => {
+  list = async (req: Request, res: Response) => {
     let list = await this.logisticMixService.getAllLogisticInfo(3)
-    res.status(200).json({data: list})
+    res.status(200).json({ data: list })
   }
 }
