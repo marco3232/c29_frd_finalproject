@@ -45,10 +45,10 @@ export class LogisticMixService {
         console.log("check donation",donation)
         await this.table2(trx).insert({
           qty: donation.quantity,
-          donate_item_id: donation.id,
+          // donate_item_id: donation.id,
           logistic_id: logistic_id,
         });
-        console.log("check d id",donation.id)
+        // console.log("check d id",donation.id)
       }
 
         // await this.table2(trx).insert({
