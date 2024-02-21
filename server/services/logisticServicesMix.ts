@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class LogisticMixService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table(trx: Knex | null) {
     let t = !trx ? this.knex : trx;
     return t("logistics");
@@ -16,9 +16,9 @@ export class LogisticMixService {
     building_input: string,
     street_input: string,
     district_input: string,
-    contact_number_input: number,
+    contact_number_input: string,
     contact_name_input: string,
-    confirmed_date_input: Date,
+    confirmed_date_input: string,
     confirmed_session_input: string,
     user_id_input: number,
     qty_input: number,

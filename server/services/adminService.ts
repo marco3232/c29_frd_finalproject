@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class AdminService {
-  public constructor(private knex: Knex) {}
+  public constructor(private knex: Knex) { }
   table() {
     return this.knex("users");
   }
@@ -27,10 +27,11 @@ export class AdminService {
       .select("eng_given_name")
       .select("mobile_phone")
       .select("role")
-    
+
     return userInfoQuery;
   }
 
+<<<<<<< HEAD
     async logistics(room:string, building:string){
       const infoQuery = await this.knex("logistics").select("*")
 
@@ -38,4 +39,9 @@ export class AdminService {
 
       return infoQuery
     }
+=======
+  // multipleTable(){
+  //   return this.knex("donate_items","logistic_items","logistics")
+  // }
+>>>>>>> 73e956b850ff543be87f649742616c7e243275ce
 }

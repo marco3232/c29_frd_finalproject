@@ -18,8 +18,8 @@ import { parseJwt } from '../utils/authGuard';
 
 export function LoginForm() {
     const dispatch = useDispatch();
-    const [password, setPassword] = useState('123456');
-    const [email, setEmail] = useState('admin01@gmail.com');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
@@ -40,10 +40,10 @@ export function LoginForm() {
                 icon: 'success',
                 showConfirmButton: false
             });
-            if(payload.role === "admin") {
+            if (payload.role === "admin") {
                 navigate('/admin')
 
-            }else{
+            } else {
 
                 navigate('/')
             }
@@ -112,7 +112,7 @@ export function LoginForm() {
                         id="formControlLg"
                         type="password"
                         size="lg"
-                        value= {password}
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 

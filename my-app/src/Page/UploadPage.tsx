@@ -4,6 +4,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 import { useNavigate } from "react-router-dom";
+import { DonationType, updateDonationList } from "../slice/logisticSlice"
+import { useAppDispatch } from "../hook/hooks";
+import deleteIcon from "../image/deleteIcon.jpeg"
 
 type ItemProps = {
   // id: number;
@@ -11,6 +14,7 @@ type ItemProps = {
 };
 
 export default function UploadPage() {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
@@ -26,6 +30,19 @@ export default function UploadPage() {
     }>
   >([]);
 
+  const nextStep = () => {
+    const donationListMapped: DonationType[] = donationList.map(item => (
+      {
+        id: item.id,
+        itemName: item.item_name.name,
+        quantity: item.quantity
+      }
+    ))
+
+    dispatch(updateDonationList(donationListMapped))
+    // setInput("");
+    navigate("/Transaction");
+  }
   const itemList:
     | string
     | Array<{ id: number; item_name: string; qty: number }> = useItems();
@@ -64,20 +81,20 @@ export default function UploadPage() {
       };
       setDonationList([...donationList, newItem]);
       // setSelectedItem(""); // Reset selected item after adding to the list
-      // setQuantity(0); // Reset quantity after adding to the list
+      setQuantity(0); // Reset quantity after adding to the list
     }
   };
 
-  const OnAddNewItems = useMutation({
-    mutationFn: async (data: { donate_item_id: number; qty: number }) =>
-      addNewItems(data.donate_item_id, data.qty),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["donate_items"],
-        exact: true,
-      });
-    },
-  });
+  // const OnAddNewItems = useMutation({
+  //   mutationFn: async (data: { donate_item_id: number; qty: number }) =>
+  //     addNewItems(data.donate_item_id, data.qty),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["donate_items"],
+  //       exact: true,
+  //     });
+  //   },
+  // });
 
   // const addNewItemHandler = () => {
   //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
@@ -107,7 +124,7 @@ export default function UploadPage() {
             <option value="">請選擇</option>
             {Array.isArray(itemList) && itemList.length > 0 ? (
               itemList.map((entry) => (
-                <option value={entry.id}>{entry.item_name}</option>
+                <option key={entry.id} value={entry.id}>{entry.item_name}</option>
               ))
             ) : (
               <option value="">No Item List</option>
@@ -123,7 +140,6 @@ export default function UploadPage() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-            <button onClick={addPreSubmitHandler}> + + </button>
             <br />
             <br />
           </b>
@@ -134,54 +150,53 @@ export default function UploadPage() {
               確認數量 : {quantity}
             </b>
           </h5>
+          <MDBBtn
+            className="uploadAddItemBtn" onClick={addPreSubmitHandler}
+            color="secondary"
+          >
+            增加
+          </MDBBtn>
+
         </label>
         <br />
         <br />
+
+      </form>
+      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
+      <div className="uploadSubmitForm">
+        <ListGroup as="ul">
+          {donationList.map((item, index) => (
+            <ListGroup.Item key={item.id}>
+              <b>{item.item_name.name}</b> - Quantity: {item.quantity}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
+              <span
+                className="delete_link"
+                onClick={() => handleDelete(item.id)}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.textDecoration = "underline")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.textDecoration = "none")
+                }
+              >
+                <img className="deleteIcon " src={deleteIcon}></img>
+              </span>
+            </ListGroup.Item>
+
+          ))}
+        </ListGroup>
         <MDBBtn
           className="uploadBtn"
           color="info"
           size="lg"
-          onClick={() => {
-            donationList.forEach((item, index) => {
-              const { item_name, quantity } = item;
-              OnAddNewItems.mutate({
-                donate_item_id: item_name.id,
-                qty: quantity,
-              });
-            });
-
-            // OnAddNewItems.mutate({ logistic_id: 2, donate_item_id: parseInt(selectedItem), qty: quantity });
-            console.log("check qty", quantity);
-            console.log("check id", selectedItem);
-            setInput("");
-            navigate("/Transaction");
-          }}
+          onClick={nextStep}
         >
           提交
         </MDBBtn>
-      </form>
-      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
-      <ListGroup as="ul">
-        {donationList.map((item, index) => (
-          <ListGroup.Item key={item.id}>
-            {item.item_name.name} - Quantity: {item.quantity}
-            {"\u00A0\u00A0"}
-            {"\u00A0\u00A0"}
-            <span
-              className="delete-link"
-              onClick={() => handleDelete(item.id)}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.textDecoration = "underline")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.textDecoration = "none")
-              }
-            >
-              [Delete]
-            </span>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      </div>
     </div>
   );
 }
