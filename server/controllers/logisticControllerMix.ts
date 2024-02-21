@@ -32,6 +32,7 @@ export class LogisticMixController {
         transaction,
       }: { donationList: DonationType[]; transaction: TransactionType } =
         req.body;
+        console.log("check req body",req.body)
       // console.log("check req body", req.body);
       const user_id = req.user?.id;
       let result = await this.logisticMixService.createLogisticMix(
@@ -79,6 +80,6 @@ export class LogisticMixController {
     const user_id = req.user?.id;
     let list = await this.logisticMixService.getAllLogisticInfo(user_id!)
     res.status(200).json({data: list.rows})
-    console.log("controller?",list.rows)
+    // console.log("controller?",list.rows)
   }
 }

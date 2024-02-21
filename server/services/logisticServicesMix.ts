@@ -42,11 +42,13 @@ export class LogisticMixService {
 
       const logistic_id = logisticReturning[0].id;
       for (let donation of donationList) {
+        console.log("check donation",donation)
         await this.table2(trx).insert({
           qty: donation.quantity,
           donate_item_id: donation.id,
           logistic_id: logistic_id,
         });
+        console.log("check d id",donation.id)
       }
 
       await trx.commit();
@@ -58,7 +60,7 @@ export class LogisticMixService {
     }
   }
 
-  async getAllLogisticInfo(user_id:number) {
+  async getAllLogisticInfo(userId:number) {
     try {
       const rows = await this.knex.raw(
         `
@@ -78,7 +80,7 @@ export class LogisticMixService {
         inner join users u on u.id = l.user_id
         inner join donate_items di on di.id = li.donate_item_id
         where u.id = ?`,
-        [user_id]
+        [userId]
       );
       // console.log("rows??",rows)
       return rows;
