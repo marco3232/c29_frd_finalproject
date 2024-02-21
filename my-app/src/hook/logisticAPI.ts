@@ -10,7 +10,7 @@ export function useGetLogisticInfo() {
     queryFn: async () => {
       const res = await fetch(`${source}/finaldonateconfirm`, {
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       const result = await res.json();
@@ -43,13 +43,13 @@ export async function addLogisticColumn(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(body),
   });
 
   let resp = await res.json();
-  console.log("check logistic api", resp)
+  console.log("check logistic api", resp);
   return resp.message;
 }
 
@@ -89,3 +89,28 @@ export async function editLogisticColumn(
   return resp.message;
 }
 
+export  function useAdminCheck_LogisticInfo_3() {
+  const { isLoading, error, data, isFetching } = useQuery({
+    queryKey: ["adminLogistic"],
+    queryFn: async () => {
+      const res = await fetch(`${source}/logistics/logistics`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      let result = await res.json();
+      console.log("march answer:", result);
+      return result;
+    },
+  });
+  if (isLoading || isFetching) return "Data Loading";
+  if (error) {
+    return "Error ";
+  }
+  if (!data) {
+    return [];
+  }
+  return data;
+}

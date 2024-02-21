@@ -17,6 +17,7 @@ import {
 } from "../slice/logisticSlice";
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
 import "../css/InputAddressPage.module.css";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 //-------------------------------------------------------------------------------------------
 
@@ -237,7 +238,14 @@ export default function TransactionPage() {
           </DemoContainer>
         </LocalizationProvider>
         <br></br>
-        <Button onClick={addLogisticHandler}>Submit</Button>
+        <MDBBtn
+          className="uploadBtn"
+          color="info"
+          size="lg"
+          onClick={addLogisticHandler}
+        >
+          提交
+        </MDBBtn>
       </div>
     </div>
   );
