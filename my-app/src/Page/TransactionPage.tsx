@@ -61,7 +61,6 @@ export default function TransactionPage() {
       })
     );
 
-    // dispatch(submitLogistic())
     onAddLogistic.mutate();
     // console.log("check mutate",onAddLogistic.mutate)
     // console.log("check result",addLogisticHandler)
@@ -83,8 +82,7 @@ export default function TransactionPage() {
   const [contactNumberInput, setContactNumberInput] = useState("");
   const [contactNameInput, setContactNameInput] = useState("");
   const [confirmedDateInput, setConfirmDateInput] = useState("");
-  const [confirmedSessionInput, setConfirmSessionInput] =
-    useState("");
+  const [confirmedSessionInput, setConfirmSessionInput] = useState("");
   // const [userIdInput, setUserIdInput] = useState("");
 
   // -----------react query-----------------------
