@@ -33,7 +33,7 @@ export default function UploadPage() {
   const nextStep = () => {
     const donationListMapped: DonationType[] = donationList.map(item => (
       {
-        id: item.id,
+        id: item.item_name.id,
         itemName: item.item_name.name,
         quantity: item.quantity
       }
