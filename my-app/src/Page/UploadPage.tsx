@@ -80,7 +80,6 @@ export default function UploadPage() {
         quantity: quantity,
       };
       setDonationList([...donationList, newItem]);
-      // setSelectedItem(""); // Reset selected item after adding to the list
       setQuantity(0); // Reset quantity after adding to the list
     }
   };
