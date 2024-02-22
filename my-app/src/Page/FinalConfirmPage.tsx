@@ -8,6 +8,7 @@ import { Form, Col, Row } from "react-bootstrap";
 import { useState } from "react";
 
 import { queryClient } from "..";
+import React from "react";
 
 
 
@@ -89,6 +90,7 @@ export default function FinalConfirmPage() {
       logistic_id?: number;
       donate_item_id?: number;
       quantity: number;
+      item_list?:string
     }> = useGetLogisticInfo();
   console.log("getall", getLogisticList);
 
@@ -107,16 +109,16 @@ export default function FinalConfirmPage() {
               </Col>
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
-                  <Form.Label>捐贈物品</Form.Label>
-                  <Form.Control value={entry.item_name} />
+                  <Form.Label>捐贈物品及數量</Form.Label>
+                  <Form.Control value={entry.item_list} />
                 </Form.Group>
               </Col>
-              <Col className="logisticConfirmContainer">
+              {/* <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
                   <Form.Label>捐贈數量</Form.Label>
                   <Form.Control value={entry.quantity} />
                 </Form.Group>
-              </Col>
+              </Col> */}
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
                   <Form.Label>地址</Form.Label>
@@ -151,6 +153,9 @@ export default function FinalConfirmPage() {
             </Row>
           ))}
         </Form>
+
+
+
 
       ) : (
         <div id="finalConfirmNodata">

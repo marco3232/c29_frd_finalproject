@@ -47,6 +47,7 @@ export default class AdminController {
     }
   }
 
+
   async logisticsOrder(req: Request, res: Response): Promise<void> {
     try {
      
@@ -64,10 +65,13 @@ export default class AdminController {
       const logisticsId = req.body.logisticsId
       let result = await this.adminService.logisticsItem(logisticsId)
 
-      res.json(result)
-    } catch (e: any) {
-      res.status(400).json({ message: e.message });
-      return;
-    }
-  }
+  //     res.json(result)
+  //   } catch (e: any) {
+  //     res.status(400).json({ message: e.message });
+  //     return;
+  //   }
+  // }
+}
+} 
+
 }
