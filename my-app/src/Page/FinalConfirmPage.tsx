@@ -106,6 +106,12 @@ export default function FinalConfirmPage() {
                   <Form.Label>目的</Form.Label>
                   <Form.Control value={entry.purpose} />
                 </Form.Group>
+              </Col> 
+              <Col className="logisticConfirmContainer">
+                <Form.Group className="logisticConfirmCard">
+                  <Form.Label>運單號</Form.Label>
+                  <Form.Control value={entry.uuid} />
+                </Form.Group>
               </Col>
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">

@@ -33,13 +33,19 @@ export class AdminService {
 
   async logisticsOrder() {
     try {
-      // const infoQuery = await this.knex("logistics")
+     
+      // const infoQuery = await this.knex("logistics").select("*")
       //   .join("users", "logistics.user_id", "users.id")
-      // .select("logistics.users_id",);
-      const infoQuery = await this.knex("logistics").select("*")
-        .join("users", "logistics.user_id", "users.id")
-        
         //  .where("logistics.user_id",3)
+        const infoQuery = await this.knex("donate_items")
+        .select("*")
+        .join(
+          "logistic_items",
+          "donate_items.id",
+          "=",
+          "logistic_items.donate_item_id"
+        )
+        .join("logistics", "logistics.id", "=", "logistic_items.logistic_id")
 
         
       console.log("march answer:", infoQuery);

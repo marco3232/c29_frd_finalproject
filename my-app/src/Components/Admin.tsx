@@ -75,9 +75,9 @@ export default function Admin() {
                         status: string;
                       }) => (
                         <tr>
-                        <td>{entry.id}</td>
-                        <td>{entry.uuid}</td>
+
                         <td>{entry.purpose}</td>
+                        <td>{entry.uuid}</td>
                         <td>{entry.chi_surname}</td>
                         <td>{entry.mobile_phone}</td>
                         <td>{entry.street}</td>
