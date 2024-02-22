@@ -2,7 +2,7 @@ import { Knex } from "knex";
 import { DonationType } from "../controllers/logisticControllerMix";
 
 export class LogisticMixService {
-  constructor(private knex: Knex) { }
+  constructor(private knex: Knex) {}
   table(trx: Knex | null) {
     let t = !trx ? this.knex : trx;
     return t("logistics");
@@ -42,20 +42,14 @@ export class LogisticMixService {
 
       const logistic_id = logisticReturning[0].id;
       for (let donation of donationList) {
-        console.log("check donation",donation)
+        console.log("check donation", donation);
         await this.table2(trx).insert({
           qty: donation.quantity,
-          // donate_item_id: donation.id,
+          donate_item_id: donation.id,
           logistic_id: logistic_id,
         });
         // console.log("check d id",donation.id)
       }
-
-        // await this.table2(trx).insert({
-        //   qty: donationList,
-        //   donate_item_id: donationList,
-        //   logistic_id: logistic_id,
-        // });
 
       await trx.commit();
       return true;
@@ -66,7 +60,7 @@ export class LogisticMixService {
     }
   }
 
-  async getAllLogisticInfo(userId:number) {
+  async getAllLogisticInfo(userId: number) {
     try {
       const rows = await this.knex.raw(
         `
