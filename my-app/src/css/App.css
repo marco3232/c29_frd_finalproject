@@ -323,7 +323,9 @@ width: 1.1em ;
 .logisticRow {
     width: 100%;
     border-bottom: solid 2px;
-    padding: 20px;
+    padding: 2rem;
+    display: flex;
+    padding-left: 10rem;
 }
 
 

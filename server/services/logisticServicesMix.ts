@@ -42,13 +42,13 @@ export class LogisticMixService {
 
       const logistic_id = logisticReturning[0].id;
       for (let donation of donationList) {
-        console.log("check donation",donation)
+        console.log("check donation", donation)
         await this.table2(trx).insert({
           qty: donation.quantity,
           donate_item_id: donation.id,
           logistic_id: logistic_id,
         });
-        console.log("check d id",donation.id)
+        console.log("check d id", donation.id)
       }
 
       await trx.commit();
@@ -60,7 +60,7 @@ export class LogisticMixService {
     }
   }
 
-  async getAllLogisticInfo(userId:number) {
+  async getAllLogisticInfo(userId: number) {
     try {
       const rows = await this.knex.raw(
         `
