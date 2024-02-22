@@ -39,7 +39,7 @@ export class AdminService {
       const infoQuery = await this.knex("logistics").select("*")
         .join("users", "logistics.user_id", "users.id")
         
-         .where("logistics.user_id",3)
+        //  .where("logistics.user_id",3)
 
         
       console.log("march answer:", infoQuery);

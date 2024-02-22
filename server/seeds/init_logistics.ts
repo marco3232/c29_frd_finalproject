@@ -41,6 +41,11 @@ export async function seed(knex: Knex): Promise<void> {
       donate_item_id: "1",
       qty: 1,
     },
+    {
+      logistic_id: "2",
+      donate_item_id: "2",
+      qty: 2,
+    },
   ]);
 
 }

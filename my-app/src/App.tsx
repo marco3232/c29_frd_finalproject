@@ -19,6 +19,7 @@ import banner from "./image/homePage.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
 import { AuthGuard } from "./utils/authGuard";
 import ApproveDonationPage from "./Components/ApproveDonation";
+import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 
 // --------------------------------------------------------------------------------
 
@@ -71,6 +72,7 @@ function App() {
   // ---------------------
 
   const handleLogout = () => {
+    console.log("Logout")
     dispatch(logout());
     localStorage.removeItem("token");
     navigate("/");
@@ -124,11 +126,12 @@ function App() {
         <Route path="/" element={""} />
         <Route path="/ApproveDonationPage" element={<ApproveDonationPage donationId={0} />} />
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-        <Route path="/admin" element={<Admin />} />
         {/* <Route element={<AuthGuard />} >
          */}
         <Route element={<AuthGuard />} >
+         <Route path="/admin" element={<Admin />} />
           <Route path="/Upload" element={<UploadPage />} />
+          <Route path="/AdminConfirm" element={<AdminConfirmPage />} />
           {/* </Route> */}
         </Route>
       </Routes>

@@ -18,7 +18,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     isAuthenticated: !!localStorage.getItem('token'),
-    role: 'admin',
+    role: '',
     userData: {
         eng_given_name: ''
     }
@@ -31,13 +31,23 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         loginSuccess: (state, action: PayloadAction<any>) => {
-            state.userData.eng_given_name = action.payload;
-            state.isAuthenticated = true;
+            const payload = action.payload;
+            if (payload) {
+                console.log({payload})
+
+                state.userData.eng_given_name = action.payload.username;
+                state.role = action.payload.role
+                state.isAuthenticated = true;
+            }
         },
         logout: (state) => {
             state.userData.eng_given_name = '';
             localStorage.removeItem('token');
             state.isAuthenticated = false;
+            state.role = ''
+
+
+
         }
     },
     extraReducers: (builder) => {

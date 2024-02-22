@@ -32,9 +32,11 @@ export function LoginForm() {
             const notify = () => toast("Login successful");
             localStorage.setItem('token', data.token)
             const payload = parseJwt(data.token)
-            console.log(payload)
+            const username = data.data
+            payload["username"] = username
+            console.log({payload})
             setIsLoggedIn(true);
-            dispatch(loginSuccess(data.data))
+            dispatch(loginSuccess(payload))
             Swal.fire({
                 title: "Login successful",
                 icon: 'success',
