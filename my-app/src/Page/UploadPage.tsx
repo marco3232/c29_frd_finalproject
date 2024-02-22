@@ -193,6 +193,7 @@ export default function UploadPage() {
           color="info"
           size="lg"
           onClick={nextStep}
+
         >
           提交
         </MDBBtn>

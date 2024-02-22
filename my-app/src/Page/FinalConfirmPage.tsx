@@ -90,7 +90,7 @@ export default function FinalConfirmPage() {
       logistic_id?: number;
       donate_item_id?: number;
       quantity: number;
-      item_list?:string
+      item_list?: string
     }> = useGetLogisticInfo();
   console.log("getall", getLogisticList);
 
@@ -106,7 +106,7 @@ export default function FinalConfirmPage() {
                   <Form.Label>目的</Form.Label>
                   <Form.Control value={entry.purpose} />
                 </Form.Group>
-              </Col> 
+              </Col>
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
                   <Form.Label>運單號</Form.Label>

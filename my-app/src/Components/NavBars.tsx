@@ -30,11 +30,11 @@ function NavBarControl() {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="navText justify-content-end flex-grow-1 pe-5">
+                            <Nav className="navText flex-grow-1 pe-5">
                                 <Nav.Link onClick={() => navigate('')}>物資贈予</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>聯絡我們</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/')}>聯絡我們</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/')}>Upload</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
 
 
