@@ -8,9 +8,9 @@ import {
     MDBRow,
     MDBCol
 } from 'mdb-react-ui-kit';
-import imgOne from "../image/wepik-export-20240219074454zLiq.jpeg"
-import imgTwo from "../image/physical-therapy-senior-woman-with-wheelchair-park.jpg"
-import imgThree from "../image/istockphoto-1187677618-612x612.jpg"
+import imgOne from "../image/img1.jpeg"
+import imgTwo from "../image/img2.jpg"
+import imgThree from "../image/img3.jpg"
 
 
 

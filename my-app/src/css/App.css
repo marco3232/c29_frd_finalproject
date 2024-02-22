@@ -15,6 +15,9 @@ max-width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    min-height:94vh;
+    flex:1
+
 }
 
 .banContainer {
@@ -35,11 +38,18 @@ height: 11rem;
     height: 5rem;
     background-color: rgba(158, 205, 234, 0.382);
     display: flex;
-    justify-content:center
+    justify-content:center;
+
 }
 .footText {
     padding-top: 1rem;
     width: 14rem
+}
+
+.contentWrapper {
+    flex:1;
+    display: flex;
+    flex-direction: column; 
 }
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 
@@ -79,25 +89,28 @@ width: 100%;
     width: 50%;
 }
 /* --Register From------------------------------------------------------------------------------------------------------- */
-
+.registercontrol {
+    display: flex;
+    flex-direction: row;
+}
 .RegisterFormContainer  {
-    padding-top: 100px !important;
-    width: 500px !important;
+    padding-bottom: 5rem; 
+    width:40rem !important;
     display: flex;
     justify-content: center;
     flex-direction: row;
-   flex-wrap: wrap ;
+    flex-wrap: wrap ;
     }
 
 .registerTitle{
     font-weight: bold;
-    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
+    padding-bottom: 2rem ;
 }
 
 .roleLabel{
-    margin-top: 20px;
+    margin-top: 1rem;
     color: black;
 }
 
@@ -130,14 +143,11 @@ width: 100%;
 
 /* --Login Form------------------------------------------------------------------------------------------------------- */
 .loginFormContainer{
-    padding-top: 20px !important;
-    width: 500px !important;
     display: flex;
     justify-content: center;
 }
 
 .loginForm {
-    padding-top: 100px;
     justify-content: center;
     display: flex;
 }
@@ -146,34 +156,38 @@ width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
 }
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
 }
 
-.forgotPw {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.loginInput {
+    width: 25rem;
+    margin: 1rem;
 }
 .forgotPw:hover {
     color: red;
+}
+
+.form-outline{
+/* margin-top: 2rem; */
 }
 
 .registerHere:hover {
 color:red
 }
 
-.loginBtn {
+.forgotPassword {
     font-weight: bold !important;
     line-height: 1 !important;
-    padding-top: 50px !important;
+    padding-top: 2rem !important;
 }
+
+
 
 
 /* --Upload Form------------------------------------------------------------------------------------------------------- */
@@ -226,6 +240,7 @@ color:red
 
 .loginFormBtn {
     font-weight: bold !important;
+    margin: 2rem !important;
 }
 
 .logInBtn {
@@ -374,9 +389,6 @@ width: 1.1em ;
 
 .form-label {
     margin-bottom: 0rem !important
-}
-.form-control {
-    margin-bottom: 1rem !important;
 }
 
 #finalConfirmNodata {

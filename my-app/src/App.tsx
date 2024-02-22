@@ -6,7 +6,7 @@ import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Page/TransactionPage";
 import { Routes, Route, useNavigate, useLocation, Form } from "react-router-dom";
-import { Nav, Button } from "react-bootstrap";
+import { Nav, Button, Carousel } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
 import { getUserInfo } from "./hook/userAPI";
 import logo from "../src/image/老友所遺banner.png"
@@ -82,7 +82,7 @@ function App() {
     // ------------------
     // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
-        <div className="bigContainer">
+        <><div className="bigContainer">
             <nav className="banContainer">
                 <Nav.Link>
                     <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
@@ -101,40 +101,41 @@ function App() {
                     <NavBarControl />
                 </Nav.Item>
             </nav>
-            {
-                shouldShowWelcomePage && (
-                    <>
-                        <div className="welcomePage">
-                            <HomePageCarousel />
-                            {/* <img src={banner} id="banner" /> */}
-                        </div><div className="bodyContent">
-                            <BodyContent />
-                        </div></>
-                )
-            }
+            {shouldShowWelcomePage && (
+                <>
+                    <div className="welcomePage">
+                        <HomePageCarousel />
+                        {/* <img src={banner} id="banner" /> */}
+                    </div><div className="bodyContent">
+                        <BodyContent />
+                    </div></>
+            )}
+            <div className="contentWrapper">
+                <Routes>
+                    <Route path="/Login" element={<LoginForm />} />
+                    <Route path="/Register" element={<RegisterForm />} />
+                    <Route path="/notFoundPage" element={<NotFoundPage />} />
+                    <Route path="/Donate" element={<DonateItemPage />} />
+                    <Route path="/Transaction" element={<TransactionPage />} />
+                    <Route path="/" element={""} />
+                    <Route path="/ApproveDonationPage" element={<ApproveDonationPage donationId={0} />} />
+                    <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route element={<AuthGuard />}>
+                        <Route path="/Upload" element={<UploadPage />} />
+                    </Route>
+                </Routes>
+                <br />
+            </div>
+
+        </div>
             <div className='footContainer'>
                 <div className="footText">
                     <a>聯絡我們: +852-88888888</a>
                     <a> ©2024 老友所遺 </a>
                     {/* <a>社會福利署 : https://www.swd.gov.hk/tc/pubsvc/elderly/cat_commsupp/elderly_centres/ </a> */}
                 </div>
-            </div>
-            <Routes>
-                <Route path="/Login" element={<LoginForm />} />
-                <Route path="/Register" element={<RegisterForm />} />
-                <Route path="/notFoundPage" element={<NotFoundPage />} />
-                <Route path="/Donate" element={<DonateItemPage />} />
-                <Route path="/Transaction" element={<TransactionPage />} />
-                <Route path="/" element={""} />
-                <Route path="/ApproveDonationPage" element={<ApproveDonationPage donationId={0} />} />
-                <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route element={<AuthGuard />} >
-                    <Route path="/Upload" element={<UploadPage />} />
-                </Route>
-            </Routes>
-            <br />
-        </div >
+            </div></>
     );
 }
 
