@@ -7,8 +7,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("checkin_id").unsigned().references("id").inTable("checkins");
     table.integer("user_id").unsigned().references("id").inTable("users");
     table.enum("type", ["rent", "giveaway"]).notNullable();
-    table.decimal("deposit_charge");
-    table.decimal("rent_charge");
+
     table
       .enum("status", [
         "to-be-confirmed",
