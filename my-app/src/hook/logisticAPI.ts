@@ -14,7 +14,7 @@ export function useGetLogisticInfo() {
         },
       });
       const result = await res.json();
-      console.log("result",result.data)
+      console.log("result", result.data)
       return result.data;
     },
   });
@@ -65,7 +65,8 @@ export async function editLogisticColumn(
   contact_name?: string,
   confirmed_date?: string,
   confirmed_session?: string,
-  user_id?: number
+  user_id?: number,
+  created_at?: string
 ) {
   const res = await fetch(`${source}/edit/${id}`, {
     method: "PUT",
@@ -84,6 +85,7 @@ export async function editLogisticColumn(
       confirmed_date: confirmed_date,
       confirmed_session: confirmed_session,
       user_id: user_id,
+      created_at: created_at
     }),
   });
   let resp = await res.json();

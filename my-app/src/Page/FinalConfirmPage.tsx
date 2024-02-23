@@ -90,7 +90,8 @@ export default function FinalConfirmPage() {
       logistic_id?: number;
       donate_item_id?: number;
       quantity: number;
-      item_list?: string
+      item_list?: string,
+      created_at: number
     }> = useGetLogisticInfo();
   console.log("getall", getLogisticList);
 
@@ -100,63 +101,61 @@ export default function FinalConfirmPage() {
         <Form className="logisticForm">
           <h1 className="logisticTitle">捐贈記錄</h1>
           {getLogisticList.map((entry) => (
-            <Row className="logisticRow" key={entry.id} >
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>目的</Form.Label>
-                  <Form.Control value={entry.purpose} />
-                </Form.Group>
-              </Col>
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>運單號</Form.Label>
-                  <Form.Control value={entry.uuid} />
-                </Form.Group>
-              </Col>
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>捐贈物品及數量</Form.Label>
-                  <Form.Control value={entry.item_list} />
-                </Form.Group>
-              </Col>
-              {/* <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>捐贈數量</Form.Label>
-                  <Form.Control value={entry.quantity} />
-                </Form.Group>
-              </Col> */}
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>地址</Form.Label>
-                  <Form.Control value={entry.address} />
-                </Form.Group>
-              </Col>
+            <><a>
+            </a>
+              <Row className="logisticRow" key={entry.id}>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>目的</Form.Label>
+                    <Form.Control value={entry.purpose} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>運單號</Form.Label>
+                    <Form.Control value={entry.uuid} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>捐贈物品及數量</Form.Label>
+                    <Form.Control value={entry.item_list} />
+                  </Form.Group>
+                </Col>
 
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>聯絡人姓名</Form.Label>
-                  <Form.Control value={entry.name} />
-                </Form.Group>
-              </Col>
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>聯絡人電話</Form.Label>
-                  <Form.Control value={entry.number} />
-                </Form.Group>
-              </Col>
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>確認交收日期</Form.Label>
-                  <Form.Control value={entry.confirmed_date} />
-                </Form.Group>
-              </Col>
-              <Col className="logisticConfirmContainer">
-                <Form.Group className="logisticConfirmCard">
-                  <Form.Label>確認交收時間</Form.Label>
-                  <Form.Control value={entry.confirmed_session} />
-                </Form.Group>
-              </Col>
-            </Row>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>地址</Form.Label>
+                    <Form.Control value={entry.address} />
+                  </Form.Group>
+                </Col>
+
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>聯絡人姓名</Form.Label>
+                    <Form.Control value={entry.name} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>聯絡人電話</Form.Label>
+                    <Form.Control value={entry.number} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>確認交收日期</Form.Label>
+                    <Form.Control value={entry.confirmed_date} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>確認交收時間</Form.Label>
+                    <Form.Control value={entry.confirmed_session} />
+                  </Form.Group>
+                </Col>
+
+              </Row></>
           ))}
         </Form>
 
