@@ -35,7 +35,7 @@ function NavBarControl() {
                                 <Nav.Link onClick={() => navigate('')}>主頁</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/AboutUs')}>關於我們</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                {/* <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link> */}
                                 {
                                     role && role === 'admin' && (
                                         <Nav.Link onClick={() => navigate('/Admin')}>Admin</Nav.Link>

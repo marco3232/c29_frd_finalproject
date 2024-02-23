@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class AdminService {
-  public constructor(private knex: Knex) {}
+  public constructor(private knex: Knex) { }
   table() {
     return this.knex("users");
   }
@@ -33,11 +33,11 @@ export class AdminService {
 
   async logisticsOrder() {
     try {
-     
+
       // const infoQuery = await this.knex("logistics").select("*")
       //   .join("users", "logistics.user_id", "users.id")
-        //  .where("logistics.user_id",3)
-        const infoQuery = await this.knex("donate_items")
+      //  .where("logistics.user_id",3)
+      const infoQuery = await this.knex("donate_items")
         .select("*")
         .join(
           "logistic_items",
@@ -47,23 +47,23 @@ export class AdminService {
         )
         .join("logistics", "logistics.id", "=", "logistic_items.logistic_id")
 
-        
+
       console.log("march answer:", infoQuery);
 
       return infoQuery;
     } catch (e) {
       throw new Error(`Error fetching items:${e}`);
-    }   
+    }
   }
 
   async logisticsItem(logisticsId: number) {
     try {
       return await this.knex("logistic_items").select("*")
-      .join("donate_items", "donate_items.id", "logistic_items.donate_item_id")
-      .where("logistic_id", logisticsId)
+        .join("donate_items", "donate_items.id", "logistic_items.donate_item_id")
+        .where("logistic_id", logisticsId)
     } catch (e) {
       throw new Error(`Error fetching items:${e}`);
-    }   
+    }
   }
 
 }
