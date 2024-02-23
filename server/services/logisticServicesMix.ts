@@ -83,7 +83,7 @@ export class LogisticMixService {
     }
   }
 
-  async getAllLogisticInfo(userId:number) {
+  async getAllLogisticInfo(userId: number) {
     try {
       const rows = await this.knex.raw(
         `    select logistic_id,max(cast(uuid as varchar)) as uuid,max(purpose) as purpose,max(address) as address,max(name) as name,max(number) as number,max(confirmed_date) as confirmed_date,max(confirmed_session) as confirmed_session,string_agg(item_details,';  ')as item_list

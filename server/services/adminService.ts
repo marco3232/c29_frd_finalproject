@@ -31,15 +31,21 @@ export class AdminService {
     return userInfoQuery;
   }
 
-  async logistics() {
+  async logisticsOrder() {
     try {
-      // const infoQuery = await this.knex("logistics")
+     
+      // const infoQuery = await this.knex("logistics").select("*")
       //   .join("users", "logistics.user_id", "users.id")
-      // .select("logistics.users_id",);
-      const infoQuery = await this.knex("logistics")
-        .join("users", "logistics.user_id", "user.id")
-        .select("logistics.user_id","user.id")
-        .where("logistics.user_id","user_id")
+        //  .where("logistics.user_id",3)
+        const infoQuery = await this.knex("donate_items")
+        .select("*")
+        .join(
+          "logistic_items",
+          "donate_items.id",
+          "=",
+          "logistic_items.donate_item_id"
+        )
+        .join("logistics", "logistics.id", "=", "logistic_items.logistic_id")
 
         
       console.log("march answer:", infoQuery);
@@ -47,6 +53,18 @@ export class AdminService {
       return infoQuery;
     } catch (e) {
       throw new Error(`Error fetching items:${e}`);
-    }
+    }   
   }
+
+  async logisticsItem(logisticsId: number) {
+    try {
+      return await this.knex("logistic_items").select("*")
+      .join("donate_items", "donate_items.id", "logistic_items.donate_item_id")
+      .where("logistic_id", logisticsId)
+    } catch (e) {
+      throw new Error(`Error fetching items:${e}`);
+    }   
+  }
+
 }
+

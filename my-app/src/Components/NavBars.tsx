@@ -7,13 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router';
 import "../css/App.css"
+import { useAppSelector } from '../hook/hooks';
 
 // --------------------------------------------------------------------------------
 
 function NavBarControl() {
     const expandSize = 'lg'
     const navigate = useNavigate();
-
+    const role = useAppSelector(state => state.auth.role)
     return (
         <>
 
@@ -30,12 +31,16 @@ function NavBarControl() {
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="navText justify-content-end flex-grow-1 pe-5">
+                            <Nav className="navText flex-grow-1 pe-5">
                                 <Nav.Link onClick={() => navigate('')}>物資贈予</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>聯絡我們</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                {
+                                    role && role === 'admin' && (
+                                        <Nav.Link onClick={() => navigate('/Admin')}>Admin</Nav.Link>
+                                    )
+                                }
 
 
                                 <NavDropdown
@@ -46,7 +51,7 @@ function NavBarControl() {
                                     <NavDropdown.Item onClick={() => navigate('/Transaction')}>Transaction</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</NavDropdown.Item>
+                                    {/* <NavDropdown.Item onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</NavDropdown.Item> */}
                                 </NavDropdown>
                             </Nav>
                             {/* <Form className="searchBox d-flex">

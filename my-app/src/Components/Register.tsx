@@ -99,13 +99,13 @@ const RegisterForm = () => {
       <MDBCardBody className='RegisterFormBody'>
         <h3 className='registerTitle'>Registration </h3>
         <form className="registerFormFetch" onSubmit={handleRegister}>
-          <MDBRow>
+          <MDBRow className="registercontrol">
             {/* <MDBCol md='6' className="d-none d-md-block">
               <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp' alt="Sample photo" className="rounded-start" fluid />
             </MDBCol> */}
-            <MDBCol md='6' className='firstNameInput'>
+            <MDBCol md='6' className='firstNameInput '>
               <MDBInput
-                wrapperClass='mb-4'
+                wrapperClass=''
                 label='First Name　　　　(Option)'
                 size='lg'
                 type='text'
@@ -145,7 +145,7 @@ const RegisterForm = () => {
               />
             </MDBCol>
             <MDBInput
-              wrapperClass='mb-4'
+              wrapperClass='mb-4 lastNameInput'
               label='Your Email'
               size='lg'
               type='email'
@@ -153,7 +153,7 @@ const RegisterForm = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <MDBInput
-              wrapperClass='mb-4'
+              wrapperClass='mb-4 lastNameInput'
               label='Phone Number'
               size='lg'
               type='phoneNumber'
@@ -161,7 +161,7 @@ const RegisterForm = () => {
               onChange={(e) => setPhoneNumber(Number(e.target.value))}
             />
             <MDBInput
-              wrapperClass='mb-4'
+              wrapperClass='mb-4 lastNameInput'
               label='Password'
               size='lg'
               type='password'
@@ -169,7 +169,7 @@ const RegisterForm = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <MDBInput
-              wrapperClass='mb-4'
+              wrapperClass='mb-4 lastNameInput'
               label='Confirm your password'
               size='lg'
               type='password'

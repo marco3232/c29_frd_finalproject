@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notification } from 'antd';
 import { parseJwt } from '../utils/authGuard';
+import { ClassNames } from '@emotion/react';
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
@@ -32,9 +33,11 @@ export function LoginForm() {
             const notify = () => toast("Login successful");
             localStorage.setItem('token', data.token)
             const payload = parseJwt(data.token)
-            console.log(payload)
+            const username = data.data
+            payload["username"] = username
+            console.log({payload})
             setIsLoggedIn(true);
-            dispatch(loginSuccess(data.data))
+            dispatch(loginSuccess(payload))
             Swal.fire({
                 title: "Login successful",
                 icon: 'success',
@@ -96,28 +99,32 @@ export function LoginForm() {
                     <h3 className="loginTitle" style={{ letterSpacing: "1px" }} >
                         Login
                     </h3>
+                    <div className='loginInput'>
+                        <MDBInput
+                            wrapperClass=""
+                            label="Email address"
+                            id="formControlLg"
+                            type="email"
+                            size="lg"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className='loginInput'>
 
-                    <MDBInput
-                        wrapperClass="mb-4 mx-5 w-100"
-                        label="Email address"
-                        id="formControlLg"
-                        type="email"
-                        size="lg"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <MDBInput
-                        wrapperClass="mb-4 mx-5 w-100"
-                        label="Password"
-                        id="formControlLg"
-                        type="password"
-                        size="lg"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        <MDBInput
+                            wrapperClass=""
+                            label="Password"
+                            id="formControlLg"
+                            type="password"
+                            size="lg"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
                     <MDBBtn
-                        className="loginFormBtn mb-4 px-5 mx-5 w-100"
+                        className="loginFormBtn "
                         color="info"
                         size="lg"
                         type="submit"
@@ -125,14 +132,17 @@ export function LoginForm() {
                     >
                         {isSubmitting ? 'Logging in...' : 'Login'}
                     </MDBBtn>
-                    <p className="small mb-5 pb-lg-2 ms-1"><a className="text-muted" href="#!">Forgot password?</a></p>
-                    <p className='ms-1'>Don't have an account? <a href="/register" className="link-info">Register here</a></p>
+                    <p className="forgotPassword"><a className="text-muted">Forgot password?</a></p>
+                    <p className='ms-1'>Don't have an account?   <a href="/register" className="registerHere"> Register here</a></p>
 
                 </form>
                 <div>
                 </div>
-            </div>
+            </div >
+
         </MDBContainer >
+
+
     );
 }
 
