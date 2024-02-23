@@ -33,7 +33,7 @@ export const authSlice = createSlice({
         loginSuccess: (state, action: PayloadAction<any>) => {
             const payload = action.payload;
             if (payload) {
-                console.log({payload})
+                console.log({ payload })
 
                 state.userData.eng_given_name = action.payload.username;
                 state.role = action.payload.role
@@ -41,8 +41,8 @@ export const authSlice = createSlice({
             }
         },
         logout: (state) => {
-            state.userData.eng_given_name = '';
             localStorage.removeItem('token');
+            state.userData.eng_given_name = '';
             state.isAuthenticated = false;
             state.role = ''
 

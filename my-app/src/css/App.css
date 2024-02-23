@@ -16,8 +16,7 @@ max-width: 100%;
     justify-content: center;
     width: 100%;
     min-height:94vh;
-    flex:1
-
+    flex:1;
 }
 
 .banContainer {
@@ -153,6 +152,7 @@ width: 100%;
 .loginForm {
     justify-content: center;
     display: flex;
+    position:relative; bottom:5rem ;
 }
 
 .loginFormFetch {
@@ -416,13 +416,44 @@ padding-bottom: 1rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 50rem;
 }
 
 #aboutUsImg {
-width:50rem;
+    /* position:relative; bottom:4.5rem ; */
+    width:40rem;
 }
 
 .aboutUsContent {
     padding-top: 2rem;
 }
+
+/* ------Admin------------------------------------------------------------------------------------------ */
+
+.adminContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.adminControl {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-select {
+    width: 10rem !important;
+    padding: 5px !important;
+}
+
+.formConfirmContainer {
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+}
+.adminConfirmBtn {
+    border-radius: 5px;
+    width: 5rem;
+    background-color: white;
+    margin-left: 2rem;
+    }
