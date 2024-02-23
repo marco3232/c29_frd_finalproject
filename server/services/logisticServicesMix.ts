@@ -72,8 +72,6 @@ export class LogisticMixService {
         });
     }
 }
-
-
       await trx.commit();
       return true;
     } catch (error) {
