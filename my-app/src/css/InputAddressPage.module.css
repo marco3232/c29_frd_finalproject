@@ -1,5 +1,14 @@
 .contactInfo{
   padding-top: 100px;
-  width: 120%;
+  width:20% ;
+}
 
+.inputAddressContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5rem;
+}
+
+.transactionContainer {
+  padding-bottom: 10rem;
 }

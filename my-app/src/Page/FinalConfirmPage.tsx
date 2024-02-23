@@ -96,9 +96,9 @@ export default function FinalConfirmPage() {
 
   return (
     <div className="logisticConfirm">
-      <h1>捐贈記錄</h1>
       {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
         <Form className="logisticForm">
+          <h1 className="logisticTitle">捐贈記錄</h1>
           {getLogisticList.map((entry) => (
             <Row className="logisticRow" key={entry.id} >
               <Col className="logisticConfirmContainer">

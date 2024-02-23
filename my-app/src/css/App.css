@@ -323,8 +323,9 @@ color:red
 .cardName {
     width: 200px;
     height: 250px;
-    border: solid 1px;
-    margin: 8px;
+    border-bottom: solid 2px;
+    border-color: rgb(41, 173, 244);
+    margin: 10px
 }
 
 
@@ -336,6 +337,7 @@ color:red
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
 .uploadContainer {
     display: flex;
+    padding-bottom: 15rem;
     justify-content: center;
 }
 .form-label  {
@@ -361,11 +363,16 @@ width: 1.1em ;
 
 
 /* ------finalConfirmPage------------------------------------------------------------------------------------------ */
+.logisticTitle {
+display: flex;
+justify-content: center;
+}
 
+.logisticForm{
+    width: 70rem;
+}
 
 .logisticConfirm {
-    padding-top: 50px;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center !important;

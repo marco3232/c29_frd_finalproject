@@ -121,121 +121,123 @@ export default function TransactionPage() {
   };
 
   return (
-    <div>
-      <div className={styles.contactInfo}>
-        <Form>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>聯絡人姓名</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder=""
-              value={contactNameInput}
-              onChange={(e) => {
-                setContactNameInput(e.target.value);
-              }}
-            />
-            <Form.Label>聯絡人電話</Form.Label>
-            <Form.Control
-              type="phoneNumber"
-              placeholder=""
-              value={contactNumberInput}
-              onChange={(e) => {
-                setContactNumberInput(e.target.value);
-              }}
-            />
-          </Form.Group>
-        </Form>
-        <Form.Label>區域</Form.Label>
-        <Form.Select onChange={handleRegionChange} value={region}>
-          <option></option>
-          <option>香港島</option>
-          <option>九龍區</option>
-          <option>新界區</option>
-        </Form.Select>
-        <Form.Label>地區</Form.Label>
-        <Form.Select
-          value={districtInput}
-          onChange={(e) => {
-            setDistrictInput(e.target.value);
-          }}
-        >
-          {districtOptions.map((district, index) => (
-            <option key={index}>{district}</option>
-          ))}
-        </Form.Select>
-        <Form.Label>街道</Form.Label>
-        <Form.Control
-          type="street"
-          placeholder=""
-          value={streetInput}
-          onChange={(e) => {
-            setStreetInput(e.target.value);
-          }}
-        />
-        <Form.Label>大廈 / 屋</Form.Label>
-        <Form.Control
-          type="building"
-          placeholder=""
-          value={buildingInput}
-          onChange={(e) => {
-            setBuildingInput(e.target.value);
-          }}
-        />
-        <Form.Label>樓 / 室</Form.Label>
-        <Form.Control
-          type="flat-room"
-          placeholder=""
-          value={roomInput}
-          onChange={(e) => {
-            setRoomInput(e.target.value);
-          }}
-        />
-        <br></br>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["DatePicker"]}>
-            <DatePicker
-              label="Date"
-              defaultValue={dayjs()}
-              // value={dayjs(confirmedDateInput)}
-              onChange={(date) => {
-                const dayjsDate = dayjs(date);
-                const dateToString = new Date(
-                  dayjsDate.toDate()
-                ).toLocaleDateString("en-US");
-                console.log("date", dateToString);
-                setConfirmDateInput(dateToString);
-              }}
-            />
-          </DemoContainer>
-        </LocalizationProvider>
+    <div className={styles.transactionContainer}>
+      <div className={styles.inputAddressContainer}>
+        <div className={styles.contactInfo}>
+          <Form>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>聯絡人姓名</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder=""
+                value={contactNameInput}
+                onChange={(e) => {
+                  setContactNameInput(e.target.value);
+                }}
+              />
+              <Form.Label>聯絡人電話</Form.Label>
+              <Form.Control
+                type="phoneNumber"
+                placeholder=""
+                value={contactNumberInput}
+                onChange={(e) => {
+                  setContactNumberInput(e.target.value);
+                }}
+              />
+            </Form.Group>
+          </Form>
+          <Form.Label>區域</Form.Label>
+          <Form.Select onChange={handleRegionChange} value={region}>
+            <option></option>
+            <option>香港島</option>
+            <option>九龍區</option>
+            <option>新界區</option>
+          </Form.Select>
+          <Form.Label>地區</Form.Label>
+          <Form.Select
+            value={districtInput}
+            onChange={(e) => {
+              setDistrictInput(e.target.value);
+            }}
+          >
+            {districtOptions.map((district, index) => (
+              <option key={index}>{district}</option>
+            ))}
+          </Form.Select>
+          <Form.Label>街道</Form.Label>
+          <Form.Control
+            type="street"
+            placeholder=""
+            value={streetInput}
+            onChange={(e) => {
+              setStreetInput(e.target.value);
+            }}
+          />
+          <Form.Label>大廈 / 屋</Form.Label>
+          <Form.Control
+            type="building"
+            placeholder=""
+            value={buildingInput}
+            onChange={(e) => {
+              setBuildingInput(e.target.value);
+            }}
+          />
+          <Form.Label>樓 / 室</Form.Label>
+          <Form.Control
+            type="flat-room"
+            placeholder=""
+            value={roomInput}
+            onChange={(e) => {
+              setRoomInput(e.target.value);
+            }}
+          />
+          <br></br>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                label="Date"
+                defaultValue={dayjs()}
+                // value={dayjs(confirmedDateInput)}
+                onChange={(date) => {
+                  const dayjsDate = dayjs(date);
+                  const dateToString = new Date(
+                    dayjsDate.toDate()
+                  ).toLocaleDateString("en-US");
+                  console.log("date", dateToString);
+                  setConfirmDateInput(dateToString);
+                }}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
 
-        <br></br>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["TimePicker"]}>
-            <TimePicker
-              label="Time"
-              defaultValue={dayjs()}
-              // value={dayjs(confirmedSessionInput)}
-              onChange={(session) => {
-                const dayjsSession = dayjs(session);
-                const sessionToString = new Date(
-                  dayjsSession.toDate()
-                ).toLocaleTimeString("en-US");
-                console.log("session", sessionToString);
-                setConfirmSessionInput(sessionToString);
-              }}
-            />
-          </DemoContainer>
-        </LocalizationProvider>
-        <br></br>
-        <MDBBtn
-          className="uploadBtn"
-          color="info"
-          size="lg"
-          onClick={addLogisticHandler}
-        >
-          提交
-        </MDBBtn>
+          <br></br>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["TimePicker"]}>
+              <TimePicker
+                label="Time"
+                defaultValue={dayjs()}
+                // value={dayjs(confirmedSessionInput)}
+                onChange={(session) => {
+                  const dayjsSession = dayjs(session);
+                  const sessionToString = new Date(
+                    dayjsSession.toDate()
+                  ).toLocaleTimeString("en-US");
+                  console.log("session", sessionToString);
+                  setConfirmSessionInput(sessionToString);
+                }}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <br></br>
+          <MDBBtn
+            className="uploadBtn"
+            color="info"
+            size="lg"
+            onClick={addLogisticHandler}
+          >
+            提交
+          </MDBBtn>
+        </div>
       </div>
     </div>
   );

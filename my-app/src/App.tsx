@@ -110,22 +110,20 @@ function App() {
                         <BodyContent />
                     </div></>
             )}
-            <Routes>
-                <div className="contentWrapper">
+            <div className="contentWrapper">
+                <Routes>
                     <Route path="/Login" element={<LoginForm />} />
                     <Route path="/Register" element={<RegisterForm />} />
                     <Route path="/notFoundPage" element={<NotFoundPage />} />
                     <Route path="/Donate" element={<DonateItemPage />} />
                     <Route path="/Transaction" element={<TransactionPage />} />
-                    <Route path="/" element={""} />
-                    <Route path="/ApproveDonationPage" element={<ApproveDonationPage donationId={0} />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                    <Route path="/admin" element={<Admin />} />
                     <Route element={<AuthGuard />}>
+                        <Route path="/admin" element={<Admin />} />
                         <Route path="/Upload" element={<UploadPage />} />
                     </Route>
-                </div >
-            </Routes>
+                </Routes>
+            </div >
             <br />
         </div >
             <div className='footContainer'>
