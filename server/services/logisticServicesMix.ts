@@ -40,15 +40,37 @@ export class LogisticMixService {
         })
         .returning("id");
 
+      // const logistic_id = logisticReturning[0].id;
+      // for (let donation of donationList) {
+      //   console.log("check donation", donation);
+      //   await this.table2(trx).insert({
+      //     qty: donation.quantity,
+      //     donate_item_id: donation.id,
+      //     logistic_id: logistic_id,
+      //   });
+      //   // console.log("check d id",donation.id)
+      // }
+
       const logistic_id = logisticReturning[0].id;
       for (let donation of donationList) {
         console.log("check donation", donation);
-        await this.table2(trx).insert({
-          qty: donation.quantity,
-          donate_item_id: donation.id,
-          logistic_id: logistic_id,
-        });
-        // console.log("check d id",donation.id)
+        if (donation.quantity > 1) {
+          // If quantity is more than 1, break it down into individual entries
+          for (let i = 0; i < donation.quantity; i++) {
+            await this.table2(trx).insert({
+              qty: 1, // Insert 1 quantity for each iteration
+              donate_item_id: donation.id,
+              logistic_id: logistic_id,
+            });
+          }
+        } else {
+          // If quantity is 1, insert as is
+          await this.table2(trx).insert({
+            qty: donation.quantity,
+            donate_item_id: donation.id,
+            logistic_id: logistic_id,
+          });
+        }
       }
 
       await trx.commit();
@@ -82,10 +104,11 @@ export class LogisticMixService {
               inner join users u on u.id = l.user_id
               inner join donate_items di on di.id = li.donate_item_id where u.id = ?)
           group by logistic_id`,
-          
+
         [userId]
       );
-      console.log("rows??",rows)
+
+      console.log("rows??", rows);
       return rows;
     } catch (error) {
       console.error(error); // handle errors
