@@ -14,6 +14,8 @@ import { LogisticService } from "./services/logisticsService";
 import { LogisticController } from "./controllers/logisticController";
 import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
+import { CheckInService } from "./services/checkInService";
+import { CheckInController } from "./controllers/checkInController";
 //-----------
 
 import AdminController from "./controllers/adminController";
@@ -45,6 +47,8 @@ const itemController = new ItemController(itemService);
 const uploadDonateItemsController = new UploadDonateItemsController(uploadDonateItemsService);
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
+// const checkInController new CheckInController(CheckInService);
+
 
 app.use(cors());
 app.use(express.json());
@@ -65,6 +69,10 @@ app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
 // ------Logistic routes------------------------------------------------------
 app.use("/", isLoggedIn, logisticController.router);
 app.use("/", isLoggedIn, logisticMixController.router);
+
+// ------CheckIn routes------------------------------------------------------
+// app.use("/", isLoggedIn, CheckInController.router);
+
 
 // ------Other routes------------------------------------------------------
 // app.get("/hi", isLoggedIn, (req, res) => {
