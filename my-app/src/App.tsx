@@ -128,12 +128,12 @@ function App() {
         <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
         {/* <Route element={<AuthGuard />} >
          */}
-        <Route element={<AuthGuard />} >
+        {/* <Route element={<AuthGuard />} > */}
          <Route path="/admin" element={<Admin />} />
           <Route path="/Upload" element={<UploadPage />} />
-          <Route path="/AdminConfirm" element={<AdminConfirmPage />} />
+          <Route path="/AdminConfirm/:id" element={<AdminConfirmPage />} />
           {/* </Route> */}
-        </Route>
+        {/* </Route> */}
       </Routes>
       <br />
     </div >
