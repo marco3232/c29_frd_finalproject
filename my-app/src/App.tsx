@@ -127,7 +127,6 @@ function App() {
                 </Routes>
                 <br />
             </div>
-
         </div>
             <div className='footContainer'>
                 <div className="footText">

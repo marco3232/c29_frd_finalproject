@@ -10,7 +10,7 @@ export default function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveItem((prevItem) => (prevItem === 3 ? 1 : prevItem + 1));
-        }, 20000);
+        }, 10000);
 
         return () => {
             clearInterval(interval);

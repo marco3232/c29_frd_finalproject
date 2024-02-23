@@ -47,10 +47,12 @@ height: 11rem;
 }
 
 .contentWrapper {
-    flex:1;
     display: flex;
     flex-direction: column; 
+    width: 100%;
 }
+
+
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 
 .navBarControl {
@@ -142,6 +144,7 @@ width: 100%;
 
 
 /* --Login Form------------------------------------------------------------------------------------------------------- */
+
 .loginFormContainer{
     display: flex;
     justify-content: center;
@@ -173,10 +176,6 @@ width: 100%;
     color: red;
 }
 
-.form-outline{
-/* margin-top: 2rem; */
-}
-
 .registerHere:hover {
 color:red
 }
@@ -196,7 +195,6 @@ color:red
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-    margin-top: 100px;
     max-width: 100%;
     width: 500px;
     }
@@ -220,7 +218,7 @@ color:red
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
 .statusContainer{
-    margin-top: 2.7rem !important;
+    margin-top: 1rem !important;
 }
 
 .logInStatus {
@@ -250,7 +248,8 @@ color:red
 }
 
 .donateItemContainer {
-    width: 70%;
+    display: flex;
+    justify-content: center;
 }
 
 .welcomePage {
@@ -304,17 +303,12 @@ color:red
 }
 
 .card-title {
-    font-size: ;
     font-weight: bold;
 }
 
 .card-body {
     margin-top: 2rem;
     margin-left: 4rem;
-}
-
-h5{
-    /* font-weight: bold !important; */
 }
   
 /* ------DonateItem------------------------------------------------------------------------------------------ */
@@ -340,7 +334,10 @@ h5{
 
 
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
-
+.uploadContainer {
+    display: flex;
+    justify-content: center;
+}
 .form-label  {
     color: black !important;
     /* font-weight: bold !important; */
