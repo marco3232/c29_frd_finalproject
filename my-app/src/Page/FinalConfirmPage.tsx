@@ -90,15 +90,15 @@ export default function FinalConfirmPage() {
       logistic_id?: number;
       donate_item_id?: number;
       quantity: number;
-      item_list?:string
+      item_list?: string
     }> = useGetLogisticInfo();
   console.log("getall", getLogisticList);
 
   return (
     <div className="logisticConfirm">
-      <h1>捐贈記錄</h1>
       {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
         <Form className="logisticForm">
+          <h1 className="logisticTitle">捐贈記錄</h1>
           {getLogisticList.map((entry) => (
             <Row className="logisticRow" key={entry.id} >
               <Col className="logisticConfirmContainer">
@@ -106,7 +106,7 @@ export default function FinalConfirmPage() {
                   <Form.Label>目的</Form.Label>
                   <Form.Control value={entry.purpose} />
                 </Form.Group>
-              </Col> 
+              </Col>
               <Col className="logisticConfirmContainer">
                 <Form.Group className="logisticConfirmCard">
                   <Form.Label>運單號</Form.Label>

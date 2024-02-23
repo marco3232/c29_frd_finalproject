@@ -80,6 +80,7 @@ export default function UploadPage() {
         quantity: quantity,
       };
       setDonationList([...donationList, newItem]);
+      // setSelectedItem(""); // Reset selected item after adding to the list
       setQuantity(0); // Reset quantity after adding to the list
     }
   };
@@ -106,95 +107,96 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="uploadForm">
-      <form className="selectItem" onSubmit={handleSubmit}>
-        <label>
-          <h3>
-            <b>請選擇捐贈物品：</b>
-          </h3>
+    <div className="uploadContainer">
+      <div className="uploadForm">
+        <form className="selectItem" onSubmit={handleSubmit}>
+          <label>
+            <h3>
+              <b>請選擇捐贈物品：</b>
+            </h3>
+            <br />
+
+            <select
+              className="donateItemList"
+              name="selectDonate"
+              value={selectedItem?.id}
+              onChange={handleItemChange}
+            >
+              <option value="">請選擇</option>
+              {Array.isArray(itemList) && itemList.length > 0 ? (
+                itemList.map((entry) => (
+                  <option key={entry.id} value={entry.id}>{entry.item_name}</option>
+                ))
+              ) : (
+                <option value="">No Item List</option>
+              )}
+            </select>
+
+            {"\u00A0\u00A0"}
+            {"\u00A0\u00A0"}
+            <b>
+              數量 :{" "}
+              <input
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              />
+              <br />
+              <br />
+            </b>
+            <h5>
+              <b>
+                確認捐贈物品 : {selectedItem?.name} <br />
+                <br />
+                確認數量 : {quantity}
+              </b>
+            </h5>
+            <MDBBtn
+              className="uploadAddItemBtn" onClick={addPreSubmitHandler}
+              color="secondary"
+            >
+              增加
+            </MDBBtn>
+
+          </label>
+          <br />
           <br />
 
-          <select
-            className="donateItemList"
-            name="selectDonate"
-            value={selectedItem?.id}
-            onChange={handleItemChange}
-          >
-            <option value="">請選擇</option>
-            {Array.isArray(itemList) && itemList.length > 0 ? (
-              itemList.map((entry) => (
-                <option key={entry.id} value={entry.id}>{entry.item_name}</option>
-              ))
-            ) : (
-              <option value="">No Item List</option>
-            )}
-          </select>
+        </form>
+        {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
+        <div className="uploadSubmitForm">
+          <ListGroup as="ul">
+            {donationList.map((item, index) => (
+              <ListGroup.Item key={item.id}>
+                <b>{item.item_name.name}</b> - Quantity: {item.quantity}
+                {"\u00A0\u00A0"}
+                {"\u00A0\u00A0"}
+                <span
+                  className="delete_link"
+                  onClick={() => handleDelete(item.id)}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.textDecoration = "underline")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.textDecoration = "none")
+                  }
+                >
+                  <img className="deleteIcon " src={deleteIcon}></img>
+                </span>
+              </ListGroup.Item>
 
-          {"\u00A0\u00A0"}
-          {"\u00A0\u00A0"}
-          <b>
-            數量 :{" "}
-            <input
-              type="number"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-            />
-            <br />
-            <br />
-          </b>
-          <h5>
-            <b>
-              確認捐贈物品 : {selectedItem?.name} <br />
-              <br />
-              確認數量 : {quantity}
-            </b>
-          </h5>
+            ))}
+          </ListGroup>
           <MDBBtn
-            className="uploadAddItemBtn" onClick={addPreSubmitHandler}
-            color="secondary"
+            className="uploadBtn"
+            color="info"
+            size="lg"
+            onClick={nextStep}
+
           >
-            增加
+            提交
           </MDBBtn>
-
-        </label>
-        <br />
-        <br />
-
-      </form>
-      {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
-      <div className="uploadSubmitForm">
-        <ListGroup as="ul">
-          {donationList.map((item, index) => (
-            <ListGroup.Item key={item.id}>
-              <b>{item.item_name.name}</b> - Quantity: {item.quantity}
-              {"\u00A0\u00A0"}
-              {"\u00A0\u00A0"}
-              {"\u00A0\u00A0"}
-              {"\u00A0\u00A0"}
-              <span
-                className="delete_link"
-                onClick={() => handleDelete(item.id)}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.textDecoration = "underline")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.textDecoration = "none")
-                }
-              >
-                <img className="deleteIcon " src={deleteIcon}></img>
-              </span>
-            </ListGroup.Item>
-
-          ))}
-        </ListGroup>
-        <MDBBtn
-          className="uploadBtn"
-          color="info"
-          size="lg"
-          onClick={nextStep}
-        >
-          提交
-        </MDBBtn>
+        </div>
       </div>
     </div>
   );
