@@ -30,7 +30,7 @@ max-width: 100%;
 
 #homePageLogo {
 width: 25rem;
-height: 11rem;
+height: 12rem;
 }
 
 .footContainer {
@@ -325,7 +325,7 @@ color:red
     height: 250px;
     border-bottom: solid 2px;
     border-color: rgb(41, 173, 244);
-    margin: 10px
+    margin: 1rem;
 }
 
 
@@ -366,6 +366,7 @@ width: 1.1em ;
 .logisticTitle {
 display: flex;
 justify-content: center;
+padding-bottom: 1rem;
 }
 
 .logisticForm{
@@ -380,7 +381,7 @@ justify-content: center;
 
 .logisticRow {
     width: 100%;
-    border-bottom: solid 2px;
+    border-top: solid 2px;
     padding: 2rem;
     display: flex;
     padding-left: 10rem;
@@ -389,6 +390,7 @@ justify-content: center;
 
 .logisticConfirmCard {
     width: 25rem;
+    margin-bottom: 1rem;
 }
 
 .form-label {
@@ -399,4 +401,28 @@ justify-content: center;
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+
+
+/* ------aboutUs------------------------------------------------------------------------------------------ */
+
+.aboutUsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.aboutUsControl {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 60rem;
+}
+
+#aboutUsImg {
+width:50rem;
+}
+
+.aboutUsContent {
+    padding-top: 2rem;
 }

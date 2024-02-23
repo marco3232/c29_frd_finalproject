@@ -35,7 +35,7 @@ export function LoginForm() {
             const payload = parseJwt(data.token)
             const username = data.data
             payload["username"] = username
-            console.log({payload})
+            console.log({ payload })
             setIsLoggedIn(true);
             dispatch(loginSuccess(payload))
             Swal.fire({
