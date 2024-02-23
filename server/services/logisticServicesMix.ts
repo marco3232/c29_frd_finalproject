@@ -2,7 +2,7 @@ import { Knex } from "knex";
 import { DonationType } from "../controllers/logisticControllerMix";
 
 export class LogisticMixService {
-  constructor(private knex: Knex) { }
+  constructor(private knex: Knex) {}
   table(trx: Knex | null) {
     let t = !trx ? this.knex : trx;
     return t("logistics");
@@ -103,10 +103,11 @@ export class LogisticMixService {
               inner join users u on u.id = l.user_id
               inner join donate_items di on di.id = li.donate_item_id where u.id = ?)
           group by logistic_id`,
-          
+
         [userId]
       );
-      console.log("rows??",rows)
+
+      console.log("rows??", rows);
       return rows;
     } catch (error) {
       console.error(error); // handle errors

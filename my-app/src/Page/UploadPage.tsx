@@ -4,9 +4,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewItems, useItems } from "../hook/dataAPI";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 import { useNavigate } from "react-router-dom";
-import { DonationType, updateDonationList } from "../slice/logisticSlice"
+import { DonationType, updateDonationList } from "../slice/logisticSlice";
 import { useAppDispatch } from "../hook/hooks";
-import deleteIcon from "../image/deleteIcon.jpeg"
+import deleteIcon from "../image/deleteIcon.jpeg";
 
 type ItemProps = {
   // id: number;
@@ -14,7 +14,7 @@ type ItemProps = {
 };
 
 export default function UploadPage() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
@@ -31,25 +31,25 @@ export default function UploadPage() {
   >([]);
 
   const nextStep = () => {
-    const donationListMapped: DonationType[] = donationList.map(item => (
-      {
-        id: item.item_name.id,
-        itemName: item.item_name.name,
-        quantity: item.quantity
-      }
-    ))
+    const donationListMapped: DonationType[] = donationList.map((item) => ({
+      id: item.item_name.id,
+      itemName: item.item_name.name,
+      quantity: item.quantity,
+    }));
 
-    dispatch(updateDonationList(donationListMapped))
+    dispatch(updateDonationList(donationListMapped));
     // setInput("");
     navigate("/Transaction");
-  }
+  };
   const itemList:
     | string
-    | Array<{ id: number; item_name: string; qty: number }> = useItems();
+    | Array<{ id: number; item_name: string; qty: number; image?: string }> =
+    useItems();
 
   const [selectedItem, setSelectedItem] = useState<{
     id: number;
     name: string;
+    // image:string
   }>();
   const handleItemChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedItemName =
@@ -59,6 +59,7 @@ export default function UploadPage() {
     setSelectedItem({
       id: parseInt(event.target.value),
       name: selectedItemName,
+      // image:event.target.src
     });
   };
 
@@ -125,12 +126,22 @@ export default function UploadPage() {
               <option value="">請選擇</option>
               {Array.isArray(itemList) && itemList.length > 0 ? (
                 itemList.map((entry) => (
-                  <option key={entry.id} value={entry.id}>{entry.item_name}</option>
+                  <option key={entry.id} value={entry.id}>
+                    {entry.item_name}
+                  </option>
+                  // <img src={entry.image}></img>
                 ))
               ) : (
                 <option value="">No Item List</option>
               )}
             </select>
+            <div>
+              {Array.isArray(itemList) && itemList.length > 0 ? (
+                itemList.map((entry) => <img src={entry.image}></img>)
+              ) : (
+                <h1>No Item List</h1>
+              )}
+            </div>
 
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
@@ -152,16 +163,15 @@ export default function UploadPage() {
               </b>
             </h5>
             <MDBBtn
-              className="uploadAddItemBtn" onClick={addPreSubmitHandler}
+              className="uploadAddItemBtn"
+              onClick={addPreSubmitHandler}
               color="secondary"
             >
               增加
             </MDBBtn>
-
           </label>
           <br />
           <br />
-
         </form>
         {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
         <div className="uploadSubmitForm">
@@ -184,7 +194,6 @@ export default function UploadPage() {
                   <img className="deleteIcon " src={deleteIcon}></img>
                 </span>
               </ListGroup.Item>
-
             ))}
           </ListGroup>
           <MDBBtn
@@ -192,7 +201,6 @@ export default function UploadPage() {
             color="info"
             size="lg"
             onClick={nextStep}
-
           >
             提交
           </MDBBtn>
