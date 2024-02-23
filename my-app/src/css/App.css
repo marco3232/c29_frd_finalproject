@@ -14,29 +14,50 @@ max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 70%;
+    width: 100%;
+    min-height:94vh;
+    flex:1
+
 }
 
 .banContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center ;
-    width:100%;
+    width: 100%;
+    padding-left: 5rem;
 }
+
+#homePageLogo {
+width: 25rem;
+height: 11rem;
+}
+
+.footContainer {
+    width: 100%;
+    height: 5rem;
+    background-color: rgba(158, 205, 234, 0.382);
+    display: flex;
+    justify-content:center;
+
+}
+.footText {
+    padding-top: 1rem;
+    width: 14rem
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+}
+
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 
-#shopName {
-    font-weight: bold;
-    font-size: 50px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    display: flex;
-    justify-content: center;
-    width: 0px
-}
-
 .navBarControl {
     box-shadow: none !important;
+    padding-left: 9rem !important;
 }
 
 .offcanvas-body{
@@ -59,10 +80,6 @@ width: 100%;
     align-items: center;
 }
 
-.navbarSecondControl {
-    margin-left: 0px !important;
-}
-
 .uploadSubmitForm {
     display: flex;
     align-items: center;
@@ -71,30 +88,31 @@ width: 100%;
 
 .navText {
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    flex-wrap:wrap;;
+    width: 50%;
 }
 /* --Register From------------------------------------------------------------------------------------------------------- */
-
+.registercontrol {
+    display: flex;
+    flex-direction: row;
+}
 .RegisterFormContainer  {
-    padding-top: 100px !important;
-    width: 500px !important;
+    padding-bottom: 5rem; 
+    width:40rem !important;
     display: flex;
     justify-content: center;
     flex-direction: row;
-   flex-wrap: wrap ;
+    flex-wrap: wrap ;
     }
 
 .registerTitle{
     font-weight: bold;
-    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
+    padding-bottom: 2rem ;
 }
 
 .roleLabel{
-    margin-top: 20px;
+    margin-top: 1rem;
     color: black;
 }
 
@@ -126,15 +144,13 @@ width: 100%;
 
 
 /* --Login Form------------------------------------------------------------------------------------------------------- */
+
 .loginFormContainer{
-    padding-top: 20px !important;
-    width: 500px !important;
     display: flex;
     justify-content: center;
 }
 
 .loginForm {
-    padding-top: 100px;
     justify-content: center;
     display: flex;
 }
@@ -143,20 +159,18 @@ width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
 }
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
 }
 
-.forgotPw {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.loginInput {
+    width: 25rem;
+    margin: 1rem;
 }
 .forgotPw:hover {
     color: red;
@@ -166,11 +180,13 @@ width: 100%;
 color:red
 }
 
-.loginBtn {
+.forgotPassword {
     font-weight: bold !important;
     line-height: 1 !important;
-    padding-top: 50px !important;
+    padding-top: 2rem !important;
 }
+
+
 
 
 /* --Upload Form------------------------------------------------------------------------------------------------------- */
@@ -179,7 +195,6 @@ color:red
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-    margin-top: 100px;
     max-width: 100%;
     width: 500px;
     }
@@ -202,9 +217,8 @@ color:red
 
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
-.logIn_logOutBtn{
-padding-top: 20px;; 
-width: 70%;
+.statusContainer{
+    margin-top: 1rem !important;
 }
 
 .logInStatus {
@@ -212,10 +226,8 @@ width: 70%;
     align-items: center;
     font-size: 25px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    height: 20px;
     justify-content: flex-end;
-    margin-bottom: 20px;
-    width: 95%;
+    width: 45rem;
 }
 
 .logOutBtn {
@@ -226,6 +238,7 @@ width: 70%;
 
 .loginFormBtn {
     font-weight: bold !important;
+    margin: 2rem !important;
 }
 
 .logInBtn {
@@ -235,16 +248,18 @@ width: 70%;
 }
 
 .donateItemContainer {
-    width: 70%;
+    display: flex;
+    justify-content: center;
 }
 
 .welcomePage {
     display: flex;
     justify-content: center;
+    /* background: linear-gradient(to right, rgb(242 , 246, 253), rgb(150, 195, 241)); */
+    width: 100%;
 }
 #banner {
-    height: 350px;
-    width: 100%;
+    height: 400px;
 }
 
 
@@ -263,6 +278,39 @@ width: 70%;
 }
 
 
+/* -----Body Content--------------------------------------------------------------------------- */
+.bodyContent {
+    width: 77rem;
+}
+.homePageCardContainer {
+    margin-top: 2rem !important;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.homePageCard {
+    --mdb-card-box-shadow:0px !important;
+    display: flex;
+    flex-direction: row !important;
+    width: 75rem;
+    height: 20rem !important;
+    margin: 1rem;
+}
+.homePageImg {
+    width: 20rem;
+    height: 19rem;
+    border-radius: 50%;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body {
+    margin-top: 2rem;
+    margin-left: 4rem;
+}
+  
 /* ------DonateItem------------------------------------------------------------------------------------------ */
 
 .css-hkdbh3-MuiPaper-root-MuiCard-root {
@@ -275,8 +323,9 @@ width: 70%;
 .cardName {
     width: 200px;
     height: 250px;
-    border: solid 1px;
-    margin: 8px;
+    border-bottom: solid 2px;
+    border-color: rgb(41, 173, 244);
+    margin: 10px
 }
 
 
@@ -286,7 +335,11 @@ width: 70%;
 
 
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
-
+.uploadContainer {
+    display: flex;
+    padding-bottom: 15rem;
+    justify-content: center;
+}
 .form-label  {
     color: black !important;
     /* font-weight: bold !important; */
@@ -310,11 +363,16 @@ width: 1.1em ;
 
 
 /* ------finalConfirmPage------------------------------------------------------------------------------------------ */
+.logisticTitle {
+display: flex;
+justify-content: center;
+}
 
+.logisticForm{
+    width: 70rem;
+}
 
 .logisticConfirm {
-    padding-top: 50px;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center !important;
@@ -323,7 +381,9 @@ width: 1.1em ;
 .logisticRow {
     width: 100%;
     border-bottom: solid 2px;
-    padding: 20px;
+    padding: 2rem;
+    display: flex;
+    padding-left: 10rem;
 }
 
 
@@ -333,9 +393,6 @@ width: 1.1em ;
 
 .form-label {
     margin-bottom: 0rem !important
-}
-.form-control {
-    margin-bottom: 1rem !important;
 }
 
 #finalConfirmNodata {

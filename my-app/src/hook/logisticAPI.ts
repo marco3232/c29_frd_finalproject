@@ -94,7 +94,7 @@ export function useAdminCheck_LogisticInfo_3() {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["adminLogistic"],
     queryFn: async () => {
-      const res = await fetch(`${source}/logistics/logistics`, {
+      const res = await fetch(`${source}/logistics/logisticsOrder`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

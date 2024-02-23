@@ -40,7 +40,9 @@ export async function loginUser({ email, password }: { email: string, password: 
         const res = await fetch(`${source}/auth/login`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+
             },
             body: JSON.stringify({ email, password }),
         });

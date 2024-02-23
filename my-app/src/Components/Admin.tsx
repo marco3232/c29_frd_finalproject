@@ -1,42 +1,116 @@
 import { useAdminCheck_LogisticInfo_3 } from "../hook/logisticAPI";
-import "../css/Admin.module.css"
+import "../css/Admin.module.css";
+import { Form, Table } from "react-bootstrap";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Admin() {
+  const navigate = useNavigate();
+
   const AdminLogisticData = useAdminCheck_LogisticInfo_3();
-  console.log("march answer:", AdminLogisticData);
+  console.log("march answer_3:", AdminLogisticData);
+
+  const dispatch = useDispatch<AppDispatch>
+  const [input, setInput] = useState("");
+
+  // const queryClient = useQueryClient();
+  // const OnToggleItem = useMutation({
+  //   mutationFn: async (id: number) => OnToggleItem(id),
+  //   onSuccess: () =>
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["todoItems"],
+  //       exact: true,
+  //     }),
+  // });
 
   return (
     <>
-      <div>Admin page</div>
-      {AdminLogisticData &&
-        Array.isArray(AdminLogisticData) &&
-        AdminLogisticData.map(
-          (entry: {
-            id: number;
-            uuid: string;
-            room: string;
-            building: string;
-            street: string;
-            district: string;
-            contact_number: number;
-            contact_name: string;
-            confirmed_date: string;
-            confirmed_session: string;
-          }) => (
-            <div className="adminLogistics">
-              <li>{entry.id}</li>
-              <li>{entry.uuid}</li>
-              <li>{entry.room}</li>
-              <li>{entry.building}</li>
-              <li>{entry.street}</li>
-              <li>{entry.district}</li>
-              <li>{entry.contact_number}</li>
-              <li>{entry.contact_name}</li>
-              <li>{entry.confirmed_date}</li>
-              <li>{entry.confirmed_session}</li>
-            </div>
-          )
-        )}
+      <div>
+        <h3>Logistics Page</h3>
+      </div>
+            <>
+              <div>
+                <Table responsive="sm">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>Uuid</th>
+                      <th>Purpose</th>
+                      <th>Chi_surname</th>
+                      <th>mobile_phone</th>
+                      <th>Street</th>
+                      <th>Districts</th>
+                      <th>Contact_number</th>
+                      <th>Contact_name</th>
+                      <th>Confirmed_date</th>
+                      <th>Confirmed_session</th>
+                      <th>Tried</th>
+                      {/* <th>Rescheduled</th> */}
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+                    (AdminLogisticData &&
+                    Array.isArray(AdminLogisticData)) &&
+                    AdminLogisticData.map(
+                      (entry: {
+                        id: number;
+                        
+                        uuid: string;
+                        purpose: string;
+                        chi_surname:string;
+                        mobile_phone: number;
+                        street: string;
+                        district: string;
+                        contact_number: number;
+                        contact_name: string;
+                        confirmed_date: string;
+                        confirmed_session: string;
+                        tried: boolean | string;
+                        rescheduled: boolean | string;
+                        status: string;
+                      }) => (
+                        <tr>
+
+                        <td>{entry.purpose}</td>
+                        <td>{entry.uuid}</td>
+                        <td>{entry.chi_surname}</td>
+                        <td>{entry.mobile_phone}</td>
+                        <td>{entry.street}</td>
+                        <td>{entry.district}</td>
+                        <td>{entry.contact_number}</td>
+                        <td>{entry.contact_name}</td>
+                        <td>{entry.confirmed_date}</td>
+                        <td>{entry.confirmed_session}</td>
+                        <td>{String(entry.tried)}</td>
+                        <Form>
+                        <option>{entry.status}</option>
+                        <option></option>
+                        </Form>
+                     
+                    <Form.Select aria-label="Default select example">
+                              
+
+                      <option value="1">CheckIn</option>
+                      <option value="2">Reject</option>
+                      {/* <option value="3">Three</option> */}
+                    </Form.Select>
+                    <button onClick={()=>navigate('/AdminConfirm')}>next</button>
+                        </tr> 
+                      )
+                    )
+                  }
+
+              
+                  </tbody>
+                </Table>
+              </div>
+            </>
+
     </>
   );
 }
