@@ -20,13 +20,13 @@ export default function App() {
     return (
         <MDBCarousel activeItem={activeItem}>
             <MDBCarouselItem itemId={1}>
-                <img src={banner} className='d-block w-100' alt='.....' />
+                <img src={banner} className='' />
             </MDBCarouselItem>
             <MDBCarouselItem itemId={2}>
-                <img src={banner2} className='d-block w-100' alt='...' />
+                <img src={banner2} className='' />
             </MDBCarouselItem>
             <MDBCarouselItem itemId={3}>
-                <img src={banner3} className='d-block w-100' alt='...' />
+                <img src={banner3} className='' />
             </MDBCarouselItem>
         </MDBCarousel>
     );

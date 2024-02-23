@@ -8,12 +8,12 @@ import { getUserInfo } from '../hook/userAPI';
 export interface TransactionType {
     room: string,
     building: string,
-    street:string,
-    district:string,
-    contact_number:string,
-    contact_name:string,
-    confirmed_date:string,
-    confirmed_session:string,
+    street: string,
+    district: string,
+    contact_number: string,
+    contact_name: string,
+    confirmed_date: string,
+    confirmed_session: string,
 
 }
 
@@ -26,7 +26,7 @@ export interface DonationType {
 export interface LogisticFormState {
     donationList: DonationType[]
     transaction: TransactionType
-    
+
 }
 
 // ---------------------------------------------------------------
@@ -36,12 +36,12 @@ const initialState: LogisticFormState = {
     transaction: {
         room: '',
         building: '',
-        street:'',
-        district:'',
-        contact_number:'',
-        contact_name:'',
-        confirmed_date:'',
-        confirmed_session:''
+        street: '',
+        district: '',
+        contact_number: '',
+        contact_name: '',
+        confirmed_date: '',
+        confirmed_session: ''
     }
 }
 
@@ -51,15 +51,15 @@ export const logisticSlice = createSlice({
     name: 'logistic',
     initialState,
     reducers: {
-       updateDonationList: (state: LogisticFormState, action: PayloadAction<DonationType[]>) => {
-        state.donationList = action.payload
-       },
-       updateTransaction: (state: LogisticFormState, action: PayloadAction<TransactionType>) => {
-        state.transaction = action.payload
-       },
-       clearForm: (state: LogisticFormState) => {
-        state = initialState
-       },
+        updateDonationList: (state: LogisticFormState, action: PayloadAction<DonationType[]>) => {
+            state.donationList = action.payload
+        },
+        updateTransaction: (state: LogisticFormState, action: PayloadAction<TransactionType>) => {
+            state.transaction = action.payload
+        },
+        clearForm: (state: LogisticFormState) => {
+            state = initialState
+        },
     },
     // extraReducers: (builder) => {
     //     builder.addCase(submitLogistic.fulfilled, (state, action) => {
@@ -76,9 +76,9 @@ export const logisticSlice = createSlice({
 //             console.log({
 //                 initialState
 //             })
-         
+
 //         } catch (error) {
-           
+
 //         }
 //     }
 // );

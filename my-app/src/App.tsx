@@ -20,6 +20,7 @@ import { AuthGuard } from "./utils/authGuard";
 import ApproveDonationPage from "./Components/ApproveDonation";
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
+import { AboutUs } from "./Components/AboutUs";
 
 
 
@@ -114,9 +115,9 @@ function App() {
                 <Routes>
                     <Route path="/Login" element={<LoginForm />} />
                     <Route path="/Register" element={<RegisterForm />} />
-                    <Route path="/notFoundPage" element={<NotFoundPage />} />
                     <Route path="/Donate" element={<DonateItemPage />} />
                     <Route path="/Transaction" element={<TransactionPage />} />
+                    <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />

@@ -32,10 +32,10 @@ function NavBarControl() {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="navText flex-grow-1 pe-5">
-                                <Nav.Link onClick={() => navigate('')}>物資贈予</Nav.Link>
+                                <Nav.Link onClick={() => navigate('')}>主頁</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>聯絡我們</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/AboutUs')}>關於我們</Nav.Link>
+                                {/* <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link> */}
                                 {
                                     role && role === 'admin' && (
                                         <Nav.Link onClick={() => navigate('/Admin')}>Admin</Nav.Link>
