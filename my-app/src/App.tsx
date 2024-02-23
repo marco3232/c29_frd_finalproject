@@ -110,8 +110,8 @@ function App() {
                         <BodyContent />
                     </div></>
             )}
-            <div className="contentWrapper">
-                <Routes>
+            <Routes>
+                <div className="contentWrapper">
                     <Route path="/Login" element={<LoginForm />} />
                     <Route path="/Register" element={<RegisterForm />} />
                     <Route path="/notFoundPage" element={<NotFoundPage />} />
@@ -124,10 +124,10 @@ function App() {
                     <Route element={<AuthGuard />}>
                         <Route path="/Upload" element={<UploadPage />} />
                     </Route>
-                </Routes>
-                <br />
-            </div>
-        </div>
+                </div >
+            </Routes>
+            <br />
+        </div >
             <div className='footContainer'>
                 <div className="footText">
                     <a>聯絡我們: +852-88888888</a>

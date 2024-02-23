@@ -7,13 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router';
 import "../css/App.css"
+import { useAppSelector } from '../hook/hooks';
 
 // --------------------------------------------------------------------------------
 
 function NavBarControl() {
     const expandSize = 'lg'
     const navigate = useNavigate();
-
+    const role = useAppSelector(state => state.auth.role)
     return (
         <>
 
@@ -33,9 +34,13 @@ function NavBarControl() {
                             <Nav className="navText flex-grow-1 pe-5">
                                 <Nav.Link onClick={() => navigate('')}>物資贈予</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/')}>聯絡我們</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/')}>Upload</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/Upload')}>聯絡我們</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link>
+                                {
+                                    role && role === 'admin' && (
+                                        <Nav.Link onClick={() => navigate('/Admin')}>Admin</Nav.Link>
+                                    )
+                                }
 
 
                                 <NavDropdown
