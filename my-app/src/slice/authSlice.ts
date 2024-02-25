@@ -2,6 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserInfo } from '../hook/userAPI';
+import { useDateField } from '@mui/x-date-pickers/DateField/useDateField';
 
 // ---------------------------------------------------------------
 
@@ -15,9 +16,12 @@ interface AuthState {
 }
 
 // ---------------------------------------------------------------
+const token = localStorage.getItem('token');
+const isAuthenticated = !!token;
+
 
 const initialState: AuthState = {
-    isAuthenticated: !!localStorage.getItem('token'),
+    isAuthenticated: isAuthenticated,
     role: '',
     userData: {
         eng_given_name: ''
@@ -30,19 +34,19 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        loginSuccess: (state, action: PayloadAction<any>) => {
+        loginSuccess: (state, action: PayloadAction<{ username: string; role: string }>) => {
             const payload = action.payload;
             if (payload) {
                 console.log({ payload })
 
-                state.userData.eng_given_name = action.payload.username;
+                state.userData.eng_given_name = payload.username;
                 state.role = action.payload.role
                 state.isAuthenticated = true;
             }
         },
         logout: (state) => {
-            localStorage.removeItem('token');
             state.userData.eng_given_name = '';
+            localStorage.removeItem('token');
             state.isAuthenticated = false;
             state.role = ''
 
@@ -54,8 +58,10 @@ export const authSlice = createSlice({
         builder
             .addCase(fetchUserInfo.fulfilled, (state, action) => {
                 state.userData.eng_given_name = action.payload;
+                state.isAuthenticated = true;
             })
             .addCase(fetchUserInfo.rejected, (state, action) => {
+                state.isAuthenticated = false;
             });
     }
 });
@@ -91,23 +97,37 @@ export const login = createAsyncThunk(
 
 export const fetchUserInfo = createAsyncThunk(
     'auth/fetchUserInfo',
-    async (_, { rejectWithValue }) => {
+    async (_, { rejectWithValue, dispatch }) => {
         try {
             const token = localStorage.getItem('token');
             if (!token) {
+                dispatch(logout());
                 throw new Error('Token not found');
             }
 
-            const userInfo = await getUserInfo(token);
-            return userInfo;
+            const response = await fetch('/auth/validateToken', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                dispatch(logout());
+                throw new Error('Token is invalid');
+            }
+            const userData = await response.json();
+            dispatch(loginSuccess({ username: 'username', role: 'role' }));
+            return userData.username;
         } catch (error: any) {
-            console.error('Error fetching user info:', error);
-            return rejectWithValue(error.message);
+            dispatch(logout());
+            throw error;
         }
     }
-)
+);
 
-//-------------------------------------------------------------------------------------------
+
+//-------------------------------------------- Joy joy, a joke what are you look up?-----------------------------------------------
 
 export default authSlice.reducer;
 export const { loginSuccess, logout } = authSlice.actions;

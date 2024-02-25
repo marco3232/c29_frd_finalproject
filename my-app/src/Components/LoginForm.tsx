@@ -24,16 +24,25 @@ export function LoginForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
-
+    const [username, setUsername] = useState('');
     // -----------------------------------------------
+
+    useEffect(() => {
+        const storedUsername = sessionStorage.getItem('user');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
+
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
         onSuccess: (data) => {
-            const notify = () => toast("Login successful");
-            localStorage.setItem('token', data.token)
             const payload = parseJwt(data.token)
             const username = data.data
+            setUsername(username);
+            sessionStorage.setItem("user", username);
+            localStorage.setItem('token', data.token)
             payload["username"] = username
             console.log({ payload })
             setIsLoggedIn(true);
@@ -41,7 +50,8 @@ export function LoginForm() {
             Swal.fire({
                 title: "Login successful",
                 icon: 'success',
-                showConfirmButton: false
+                showConfirmButton: false,
+                timer: 1000
             });
             if (payload.role === "admin") {
                 navigate('/admin')
@@ -68,6 +78,7 @@ export function LoginForm() {
     })
 
 
+
     // -----------------------------------------------
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,6 +99,8 @@ export function LoginForm() {
             console.error('Error during login:', error);
         }
     };
+
+
 
     // -----------------------------------------------
 
