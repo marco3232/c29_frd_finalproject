@@ -441,6 +441,10 @@ padding-bottom: 1rem;
     flex-wrap: wrap;
 }
 
+.adminLogisticsControl {
+    margin: 10rem;
+}
+
 .form-select {
     width: 10rem !important;
     padding: 5px !important;

@@ -33,7 +33,7 @@ export default function Admin() {
       <div className="adminControl">
         <Table responsive="sm">
           <thead>
-            <tr>
+            <tr className="adminLogisticsControl">
               <th>id</th>
               <th>Uuid</th>
               <th>Purpose</th>
