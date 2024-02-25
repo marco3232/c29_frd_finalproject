@@ -15,7 +15,18 @@ export function AdminConfirmPage() {
   //  const queryClient = useQueryClient()
   const items = useAdminCheckIn_Confirm_3(parseInt(id!));
 
-  console.log(items);
+//   console.log(items.qty);
+
+console.log("march",items.logistic_id)
+
+  for(let e of items){
+      if(e.qty>1){
+          for(let i = 0; i < e.qty; i++){
+              
+            }
+        }
+    
+  }
   // console.log(AdminCheckInConfirm)
   // const OnEditItem = useMutation({
   //     mutationFn: async (data: {
@@ -48,23 +59,28 @@ export function AdminConfirmPage() {
               <th>Table heading</th>
               <th>Table heading</th>
               <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
+            
             </tr>
           </thead>
           {items &&
             Array.isArray(items) &&
-            items.map((entry: {}, index) => (
+            items.map((entry: {
+                id:number;
+                logistic_id:number;
+                donate_item_id:2;
+                qty:number;
+                item_name:string;
+
+            }, index) => (
+
+                
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
+                  <td>{entry.item_name}</td>
+                  <td>{entry.qty}</td>
+                  <td>{entry.logistic_id}</td>
+                 
                 </tr>
               </tbody>
             ))}

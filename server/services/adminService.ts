@@ -46,25 +46,49 @@ export class AdminService {
         inner join users u on u.id = l.user_id
       `
       const infoQuery = await this.knex.raw(sql)
-  //     const infoQuery = await this.knex.raw(`select
-  //     di.item_name||  ' X ' || li.qty as item_details
-  //    , l.uuid as uuid
-  // , l.id as logistic_id
-  // , l.contact_name as name
-  // , l.contact_number as number
-  // , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
-  // , u.email as email
-  //     , l.purpose as purpose
-  //   , l.district as district
-  //   , l.confirmed_date as confirmed_date
-  //   , l.confirmed_session as confirmed_session
-  //     from logistic_items li 
-  //     inner join logistics l on l.id = li.logistic_id
-  //     inner join users u on u.id = l.user_id
-  //     inner join donate_items di on di.id = li.donate_item_id`)
+
+      const itemsInfoQuery = await this.knex.raw(`select
+      di.item_name||  ' X ' || li.qty as item_details
+     , l.uuid as uuid
+  , l.id as logistic_id
+  , l.contact_name as name
+  , l.contact_number as number
+  , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
+  , u.email as email
+      , l.purpose as purpose
+    , l.district as district
+    , l.confirmed_date as confirmed_date
+    , l.confirmed_session as confirmed_session
+      from logistic_items li 
+      inner join logistics l on l.id = li.logistic_id
+      inner join users u on u.id = l.user_id
+      inner join donate_items di on di.id = li.donate_item_id`)
+
+
+        const itemsInfoQuery_2 = await this.knex.raw(`select logistic_id,max(cast(uuid as varchar)) as uuid,max(purpose) as purpose,max(address) as address,max(name) as name,max(number) as number,max(confirmed_date) as confirmed_date,max(confirmed_session) as confirmed_session,string_agg(item_details,';  ')as item_list
+        FROM 
+        (select
+              di.item_name||  ' X ' || li.qty as item_details
+             , l.uuid as uuid
+          , l.id as logistic_id
+          , l.contact_name as name
+          , l.contact_number as number
+          , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
+          , u.email as email
+              , l.purpose as purpose
+            , l.district as district
+            , l.confirmed_date as confirmed_date
+            , l.confirmed_session as confirmed_session
+              from logistic_items li 
+              inner join logistics l on l.id = li.logistic_id
+              inner join users u on u.id = l.user_id
+              inner join donate_items di on di.id = li.donate_item_id where u.id = ?)
+          group by logistic_id`)
+
     
       
-      
+      console.log("march_answer:", itemsInfoQuery)
+      console.log("march_answer:", itemsInfoQuery_2)
       // ("logistics").select("*")
       //   .join("users", "logistics.user_id", "users.id")
 
