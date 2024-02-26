@@ -51,7 +51,11 @@ export class AdminService {
       // ("logistics").select("*")
       //   .join("users", "logistics.user_id", "users.id")
 
-      console.log("march answer:", infoQuery);
+
+
+  
+        
+
 
       return infoQuery;
     } catch (e) {

@@ -47,8 +47,8 @@ export function LoginForm() {
                 timer: 1000
             });
             if (payload.role === "admin") {
+                sessionStorage.setItem('role', payload.role)
                 navigate('/admin')
-
             } else {
                 navigate('/')
             }

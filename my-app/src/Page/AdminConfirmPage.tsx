@@ -1,14 +1,13 @@
 // import { QueryClient, QueryClientProvider } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { toggleItem, useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
+import {  useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
 import { Form, Table } from "react-bootstrap";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryClient } from "..";
 import { useState } from "react";
 import { toggleButtonClasses } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
-import Swal from "sweetalert2";
+
+
 
 // type Status_OptionProps = {
 //   id: number;
@@ -35,30 +34,36 @@ export function AdminConfirmPage() {
   const items = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
 
-  // console.log("march", items.logistic_id);
-  const OnToggleItem = useMutation({
-    mutationFn: async (id: number) => toggleItem(id),
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: [""],
-        exact: true,
-      }),
-  });
+
+  // const OnToggleItem = useMutation({
+  //   mutationFn: async (id: number) => toggleItem(id),
+  //   onSuccess: () =>
+  //     queryClient.invalidateQueries({
+  //       queryKey: [""],
+  //       exact: true,
+  //     }),
+  // });
+
+  const changeFileUpload = (e: any, index: number) => {
+    const value = e.target.value;
+    console.log(value)
+  }
 
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
-    items[index].status = value;
-    console.log(value, index);
-    queryClient.setQueryData(["adminCheckInConfirm"], items);
+    items[index].status = value
+    console.log({value, index});
+    queryClient.setQueryData(["adminCheckInConfirm"], items)
   };
 
   const onSubmit = async (index: number) => {
-    const item = items[index];
-    // console.log({
-    //     logistic_item_id: item.id,
-    //     qty: item.qty
-    // })
-    console.log("check item", item);
+    const item = items[index]
+    const body = {
+      logistic_item_id: item.id,
+      status: item.status
+
+  }
+    console.log(body)
 
     await fetch(`${source}/checkin`, {
       method: "POST",
@@ -96,6 +101,7 @@ export function AdminConfirmPage() {
               <th>Table heading</th>
               <th>Table heading</th>
               <th>Status</th>
+       
               <th>Operation</th>
             </tr>
           </thead>
@@ -135,6 +141,7 @@ export function AdminConfirmPage() {
                         <option value="lost">Lost</option>
                       </Form.Select>
                     </td>
+              
                     <td>
                       {" "}
                       {/* <button type="submit" onClick={() => onSubmit(index)}> */}

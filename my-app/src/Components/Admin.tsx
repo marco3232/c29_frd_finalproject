@@ -8,7 +8,7 @@ export default function Admin() {
   const navigate = useNavigate();
 
   const AdminLogisticData = useAdminCheck_LogisticInfo_3();
-  // console.log("march answer_3:", AdminLogisticData);
+
 
 
   return (
