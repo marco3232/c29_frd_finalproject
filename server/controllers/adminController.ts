@@ -12,7 +12,6 @@ export default class AdminController {
     this.router.get("/userInfo", this.userInfo.bind(this));
     this.router.post("/logisticsOrder", this.logisticsOrder.bind(this));
     this.router.post("/logisticsItem", this.logisticsItem.bind(this));
-
   }
 
   async userInfo(req: Request, res: Response): Promise<void> {
@@ -47,13 +46,11 @@ export default class AdminController {
     }
   }
 
-
   async logisticsOrder(req: Request, res: Response): Promise<void> {
     try {
-     
-      let result = await this.adminService.logisticsOrder()
+      let result = await this.adminService.logisticsOrder();
 
-      res.json(result)
+      res.json(result);
     } catch (e: any) {
       res.status(400).json({ message: e.message });
       return;
@@ -62,14 +59,13 @@ export default class AdminController {
 
   async logisticsItem(req: Request, res: Response): Promise<void> {
     try {
-      const logisticsId = req.body.logisticsId
-      let result = await this.adminService.logisticsItem(logisticsId)
+      const logisticsId = req.body.logisticsId;
+      let result = await this.adminService.logisticsItem(logisticsId);
 
-      res.json(result)
+      res.json(result);
     } catch (e: any) {
       res.status(400).json({ message: e.message });
       return;
     }
   }
 }
-
