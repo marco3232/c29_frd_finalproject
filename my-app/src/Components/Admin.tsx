@@ -27,90 +27,81 @@ export default function Admin() {
   // });
 
   return (
-    <>
-      <div>
-        <h3>Logistics Page</h3>
-      </div>
-            <>
-              <div>
-                <Table responsive="sm">
-                  <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>Uuid</th>
-                      <th>Purpose</th>
-                      <th>Chi_surname</th>
-                      <th>mobile_phone</th>
-                      <th>Street</th>
-                      <th>Districts</th>
-                      <th>Contact_number</th>
-                      <th>Contact_name</th>
-                      <th>Confirmed_date</th>
-                      <th>Confirmed_session</th>
-                      <th>Tried</th>
-                      {/* <th>Rescheduled</th> */}
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {
-                    (AdminLogisticData &&
-                    Array.isArray(AdminLogisticData)) &&
-                    AdminLogisticData.map(
-                      (entry: {
-                        id: number;
-                        
-                        uuid: string;
-                        purpose: string;
-                        chi_surname:string;
-                        mobile_phone: number;
-                        street: string;
-                        district: string;
-                        contact_number: number;
-                        contact_name: string;
-                        confirmed_date: string;
-                        confirmed_session: string;
-                        tried: boolean | string;
-                        rescheduled: boolean | string;
-                        status: string;
-                      }) => (
-                        <tr>
+    <><div className="adminContainer">
+      <h3>Logistics Page</h3>
+    </div>
+      <div className="adminControl">
+        <Table responsive="sm">
+          <thead>
+            <tr className="adminLogisticsControl">
+              <th>id</th>
+              <th>Uuid</th>
+              <th>Purpose</th>
+              <th>Chi_surname</th>
+              <th>mobile_phone</th>
+              <th>Street</th>
+              <th>Districts</th>
+              <th>Contact_number</th>
+              <th>Contact_name</th>
+              <th>Confirmed_date</th>
+              <th>Confirmed_session</th>
+              <th>Tried</th>
+              {/* <th>Rescheduled</th> */}
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody className="tbody">
+            {(AdminLogisticData &&
+              Array.isArray(AdminLogisticData)) &&
+              AdminLogisticData.map(
+                (entry: {
+                  id: number;
+                  uuid: string;
+                  purpose: string;
+                  chi_surname: string;
+                  mobile_phone: number;
+                  street: string;
+                  district: string;
+                  contact_number: number;
+                  contact_name: string;
+                  confirmed_date: string;
+                  confirmed_session: string;
+                  tried: boolean | string;
+                  rescheduled: boolean | string;
+                  status: string;
+                }) => (
+                  <tr>
 
-                        <td>{entry.purpose}</td>
-                        <td>{entry.uuid}</td>
-                        <td>{entry.chi_surname}</td>
-                        <td>{entry.mobile_phone}</td>
-                        <td>{entry.street}</td>
-                        <td>{entry.district}</td>
-                        <td>{entry.contact_number}</td>
-                        <td>{entry.contact_name}</td>
-                        <td>{entry.confirmed_date}</td>
-                        <td>{entry.confirmed_session}</td>
-                        <td>{String(entry.tried)}</td>
-                        <Form>
-                        <option>{entry.status}</option>
-                        <option></option>
-                        </Form>
-                     
-                    <Form.Select aria-label="Default select example">
-                              
+                    <td>{entry.purpose}</td>
+                    <td>{entry.uuid}</td>
+                    <td>{entry.chi_surname}</td>
+                    <td>{entry.mobile_phone}</td>
+                    <td>{entry.street}</td>
+                    <td>{entry.district}</td>
+                    <td>{entry.contact_number}</td>
+                    <td>{entry.contact_name}</td>
+                    <td>{entry.confirmed_date}</td>
+                    <td>{entry.confirmed_session}</td>
+                    <td>{String(entry.tried)}</td>
+                    <Form>
+                      <option>{entry.status}</option>
+                      <option></option>
+                    </Form>
+                    <div className="formConfirmContainer">
+                      <Form.Select aria-label="DefaultsSelectExample">
+                        <option value="1">CheckIn</option>
+                        <option value="2">Reject</option>
+                        {/* <option value="3">Three</option> */}
+                      </Form.Select>
+                      <button className="adminConfirmBtn" onClick={() => navigate('/AdminConfirm')}>next</button>
+                    </div>
+                  </tr>
+                )
+              )}
 
-                      <option value="1">CheckIn</option>
-                      <option value="2">Reject</option>
-                      {/* <option value="3">Three</option> */}
-                    </Form.Select>
-                    <button onClick={()=>navigate('/AdminConfirm')}>next</button>
-                        </tr> 
-                      )
-                    )
-                  }
 
-              
-                  </tbody>
-                </Table>
-              </div>
-            </>
-
-    </>
+          </tbody>
+        </Table>
+      </div></>
   );
 }

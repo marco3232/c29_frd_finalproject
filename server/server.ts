@@ -14,6 +14,8 @@ import { LogisticService } from "./services/logisticsService";
 import { LogisticController } from "./controllers/logisticController";
 import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
+import { CheckInService } from "./services/checkInService";
+import { CheckInController } from "./controllers/checkInController";
 //-----------
 
 import AdminController from "./controllers/adminController";
@@ -35,7 +37,7 @@ const uploadDonateItemsService = new UploadDonateItemsService(knex);
 const logisticService = new LogisticService(knex);
 const logisticMixService = new LogisticMixService(knex);
 const adminService = new AdminService(knex)
-
+const checkInService = new CheckInService(knex)
 
 // ------Initialize controllers------------------------------------------------------
 const adminController = new AdminController(adminService);
@@ -45,11 +47,13 @@ const itemController = new ItemController(itemService);
 const uploadDonateItemsController = new UploadDonateItemsController(uploadDonateItemsService);
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
+const checkInController = new CheckInController(checkInService);
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+
 
 // ------Admin routes --
 app.use("/admin", isAdminLoggedIn, adminController.router)
@@ -65,6 +69,10 @@ app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
 // ------Logistic routes------------------------------------------------------
 app.use("/", isLoggedIn, logisticController.router);
 app.use("/", isLoggedIn, logisticMixController.router);
+
+// ------CheckIn routes------------------------------------------------------
+app.use("/", isLoggedIn, checkInController.router);
+
 
 // ------Other routes------------------------------------------------------
 // app.get("/hi", isLoggedIn, (req, res) => {

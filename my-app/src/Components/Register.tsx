@@ -106,7 +106,7 @@ const RegisterForm = () => {
             <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='Last Name　　　　(Option)'
+                label='Last Name'
                 size='lg'
                 type='text'
                 value={lastName}
@@ -116,7 +116,7 @@ const RegisterForm = () => {
             <MDBCol md='6' className='lastNameInput '>
               <MDBInput
                 wrapperClass=''
-                label='First Name　　　　(Option)'
+                label='First Name'
                 size='lg'
                 type='text'
                 value={firstName}
@@ -127,7 +127,7 @@ const RegisterForm = () => {
             <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='姓氏　　　　　　　(Option)'
+                label='姓氏　　　　　　　　　　　(Option)'
                 size='lg'
                 type='text'
                 value={chiSurname}
@@ -137,7 +137,7 @@ const RegisterForm = () => {
             <MDBCol md='6' className='lastNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='名稱　　　　　　　(Option)'
+                label='名稱　　　　　　　　　　　(Option)'
                 size='lg'
                 id='form2'
                 type='text'
