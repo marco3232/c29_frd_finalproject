@@ -57,7 +57,6 @@ export const authSlice = createSlice({
             const payload = action.payload;
             if (payload) {
                 console.log({ payload })
-
                 state.userData.eng_given_name = payload.username;
                 state.role = action.payload.role
                 state.isAuthenticated = true;
@@ -67,10 +66,7 @@ export const authSlice = createSlice({
             state.userData.eng_given_name = '';
             localStorage.removeItem('token');
             state.isAuthenticated = false;
-            state.role = ''
-
-
-
+            state.role = '';
         }
     },
     extraReducers: (builder) => {

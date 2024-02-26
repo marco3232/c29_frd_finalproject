@@ -11,9 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../hook/userAPI';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../slice/authSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { notification } from 'antd';
 import { parseJwt } from '../utils/authGuard';
 import loginImg from "../image/pexels-photo-5790837.webp"
 // --------------------------------------------------------------------------------
@@ -28,13 +25,8 @@ export function LoginForm() {
     const [username, setUsername] = useState('');
     // -----------------------------------------------
 
-    useEffect(() => {
-        const storedUsername = sessionStorage.getItem('user');
-        if (storedUsername) {
-            setUsername(storedUsername);
-        }
-    }, []);
 
+    // -----------------------------------------------
 
     const { mutate: loginMutate } = useMutation({
         mutationFn: loginUser,
@@ -58,10 +50,12 @@ export function LoginForm() {
                 navigate('/admin')
 
             } else {
-
                 navigate('/')
             }
         },
+
+        // -----------------------------------------------
+
         onError: (data) => {
             Swal.fire({
                 title: "Login failed",
@@ -77,8 +71,6 @@ export function LoginForm() {
             setIsSubmitting(false);
         }
     })
-
-
 
     // -----------------------------------------------
 
