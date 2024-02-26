@@ -20,8 +20,8 @@ import { AuthGuard } from "./utils/authGuard";
 
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
-import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 import { AboutUs } from "./Components/AboutUs";
+import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 
 
 
