@@ -87,47 +87,4 @@ export class CheckInService {
         }
     }
     
-    
-
-    
-
-    
-    // async addCheckIn(
-    //     item_image_path:string,
-    //     user_id:number,
-    //     logistic_id:number,
-    //     donate_item_id:number,
-    //     goods_status:string
-    // ){
-    //     try {
-    //         let returningId = await this.knex
-    //     ('logistic_items')
-    //     .innerJoin('donate_items as donate_item', 'donate_item.id', 'logistic_items.donate_item_id')
-    //     .innerJoin('logistics as logistic', 'logistic.id', 'logistic_items.logistic_id')
-    //     .select(
-    //     'logistic_items.donate_item_id',
-    //     'logistic_items.logistic_id',
-    //     'donate_item.item_name as donate_item_item_name',
-    //     'logistic.user_id as logistic_user_id',
-    //     )
-    //     .returning("user_id")
-    //     .returning("logistic_id")
-    //     .returning("donate_item_id")
-
-    //         const user_id = returningId[0].id
-
-    //         await this.checkinTable().insert({
-    //             item_image_path: item_image_path,
-    //             serial_number : generateSerialNumber(),
-    //             user_id: user_id,
-    //             // logistic_id: logistic_id_input,
-    //             // donate_item_id: donate_item_id_input
-    //         }
-    //         );
-    //         return true;
-    //     } catch (error) {
-    //         console.log(error);
-    //         return false;
-    //     }
-    // }
 }

@@ -84,25 +84,36 @@ export class LogisticMixService {
   async getAllLogisticInfo(userId: number) {
     try {
       const rows = await this.knex.raw(
-        `    select logistic_id,max(cast(uuid as varchar)) as uuid,max(purpose) as purpose,max(address) as address,max(name) as name,max(number) as number,max(confirmed_date) as confirmed_date,max(confirmed_session) as confirmed_session,string_agg(item_details,';  ')as item_list
-        FROM 
-        (select
-              di.item_name||  ' X ' || li.qty as item_details
-             , l.uuid as uuid
-          , l.id as logistic_id
-          , l.contact_name as name
-          , l.contact_number as number
-          , l.room || ', ' || l.building ||  ', ' || l.street ||  ', ' || l.district as address
-          , u.email as email
-              , l.purpose as purpose
-            , l.district as district
-            , l.confirmed_date as confirmed_date
-            , l.confirmed_session as confirmed_session
-              from logistic_items li 
-              inner join logistics l on l.id = li.logistic_id
-              inner join users u on u.id = l.user_id
-              inner join donate_items di on di.id = li.donate_item_id where u.id = ?)
-          group by logistic_id`,
+        `  SELECT
+        logistic_id,
+        max(cast(uuid as varchar)) as uuid,
+        max(purpose) as purpose,
+        max(address) as address,
+        max(name) as name,
+        max(number) as number,
+        max(confirmed_date) as confirmed_date,
+        max(confirmed_session) as confirmed_session,
+        string_agg(item_details, '; ') as item_list
+        FROM
+        (SELECT
+        di.item_name || ' X ' || SUM(li.qty) as item_details,
+        l.uuid as uuid,
+        l.id as logistic_id,
+        l.contact_name as name,
+        l.contact_number as number,
+        l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district as address,
+        u.email as email,
+        l.purpose as purpose,
+        l.district as district,
+        l.confirmed_date as confirmed_date,
+        l.confirmed_session as confirmed_session
+        FROM logistic_items li
+        INNER JOIN logistics l ON l.id = li.logistic_id
+        INNER JOIN users u ON u.id = l.user_id
+        INNER JOIN donate_items di ON di.id = li.donate_item_id
+        WHERE u.id = ?
+        GROUP BY di.item_name, l.uuid, l.id, l.contact_name, l.contact_number, l.room, l.building, l.street, l.district, u.email, l.purpose, l.district, l.confirmed_date, l.confirmed_session) AS distinct_items
+        GROUP BY logistic_id;`,
 
         [userId]
       );
