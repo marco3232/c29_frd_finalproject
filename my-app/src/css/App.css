@@ -98,7 +98,7 @@ width: 100%;
 }
 .RegisterFormContainer  {
     padding-bottom: 5rem; 
-    width:40rem !important;
+    width: 40rem !important;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -110,6 +110,13 @@ width: 100%;
     display: flex;
     justify-content: center;
     padding-bottom: 2rem ;
+}
+
+.registerImg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
 }
 
 .roleLabel{
@@ -327,7 +334,7 @@ width: 100%;
 }
 
 .card-body {
-    height: 50rem;
+    height: 60rem !important;
 }
   
 .homePageCardControl {
@@ -444,6 +451,7 @@ padding-bottom: 1rem;
 
 .aboutUsContent {
     padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 /* ------Admin------------------------------------------------------------------------------------------ */
