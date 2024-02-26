@@ -5,10 +5,17 @@ export class CheckInController {
   router = express.Router();
   constructor(private checkInService: CheckInService) {
     this.router.get("/checkin", this.list);
+    this.router.get("/inventory", this.inventory);
+
     this.router.get("/precheckin", this.precheckinlist);
     this.router.post("/checkin", this.create);
   }
 
+  inventory = async (req: Request, res: Response) => {
+    // console.log("this is list", req.body);
+    let list = await this.checkInService.getInventory();
+    res.status(200).json({ data: list });
+  }; 
   list = async (req: Request, res: Response) => {
     // console.log("this is list", req.body);
     let list = await this.checkInService.getAll();
