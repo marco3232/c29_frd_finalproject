@@ -5,8 +5,8 @@ export async function up(knex: Knex): Promise<void> {
     table.increments("id").primary();
     table.uuid("uuid").defaultTo(knex.fn.uuid());
     table
-      .enum("purpose", ["donation", "deliver", "return"])
-      .defaultTo("donation");
+      .enum("purpose", ["捐贈", "租借", "回收"])
+      .defaultTo("捐贈");
     table.string("room");
     table.string("building");
     table.string("street");

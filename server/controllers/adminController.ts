@@ -28,11 +28,9 @@ export default class AdminController {
     }
 
 
-
   async logisticsOrder(req: Request, res: Response): Promise<void> {
     try {
-     
-      let result = await this.adminService.logisticsOrder()
+      let result = await this.adminService.logisticsOrder();
 
       res.json(result.rows)
     } catch (e: any) {
@@ -41,4 +39,3 @@ export default class AdminController {
     }
   }
 }
-
