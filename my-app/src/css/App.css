@@ -14,6 +14,7 @@ max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 25rem;
     width: 100%;
     min-height:94vh;
     flex:1;

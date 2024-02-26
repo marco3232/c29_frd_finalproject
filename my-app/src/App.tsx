@@ -93,50 +93,51 @@ function App() {
     // ------------------
     // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
-        <><div className="bigContainer">
-            <nav className="banContainer">
-                <Nav.Link>
-                    <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
-                </Nav.Link>
-                <Nav.Item className="statusContainer">
-                    {isLoggedIn ? (
-                        <div className="logInStatus">
-                            <p className="pWelcome"><b>{username}, 你好 !</b></p>
-                            <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
-                        </div>
-                    ) : (
-                        <div className="logInStatus">
-                            <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
-                        </div>
-                    )}
-                    <NavBarControl />
-                </Nav.Item>
-            </nav>
-            {shouldShowWelcomePage && (
-                <>
-                    <div className="welcomePage">
-                        <HomePageCarousel />
-                        {/* <img src={banner} id="banner" /> */}
-                    </div><div className="bodyContent">
-                        <BodyContent />
-                    </div></>
-            )}
-            <div className="contentWrapper">
-                <Routes>
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route path="/Register" element={<RegisterForm />} />
-                    <Route path="/Donate" element={<DonateItemPage />} />
-                    <Route path="/Transaction" element={<TransactionPage />} />
-                    <Route path="/AboutUs" element={<AboutUs />} />
-                    <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                    <Route element={<AuthGuard />}>
-                        <Route path="/admin" element={<Admin />} />
-                        <Route path="/Upload" element={<UploadPage />} />
-                    </Route>
-                </Routes>
+        <>
+            <div className="bigContainer">
+                <nav className="banContainer">
+                    <Nav.Link>
+                        <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
+                    </Nav.Link>
+                    <Nav.Item className="statusContainer">
+                        {isLoggedIn ? (
+                            <div className="logInStatus">
+                                <p className="pWelcome"><b>{username}, 你好 !</b></p>
+                                <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
+                            </div>
+                        ) : (
+                            <div className="logInStatus">
+                                <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
+                            </div>
+                        )}
+                        <NavBarControl />
+                    </Nav.Item>
+                </nav>
+                {shouldShowWelcomePage && (
+                    <>
+                        <div className="welcomePage">
+                            <HomePageCarousel />
+                            {/* <img src={banner} id="banner" /> */}
+                        </div><div className="bodyContent">
+                            <BodyContent />
+                        </div></>
+                )}
+                <div className="contentWrapper">
+                    <Routes>
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route path="/Register" element={<RegisterForm />} />
+                        <Route path="/Donate" element={<DonateItemPage />} />
+                        <Route path="/Transaction" element={<TransactionPage />} />
+                        <Route path="/AboutUs" element={<AboutUs />} />
+                        <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+                        <Route element={<AuthGuard />}>
+                            <Route path="/admin" element={<Admin />} />
+                            <Route path="/Upload" element={<UploadPage />} />
+                        </Route>
+                    </Routes>
+                </div >
+                <br />
             </div >
-            <br />
-        </div >
             <div className='footContainer'>
                 <div className="footText">
                     <a>聯絡我們: +852-88888888</a>
