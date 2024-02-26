@@ -103,30 +103,31 @@ const RegisterForm = () => {
             {/* <MDBCol md='6' className="d-none d-md-block">
               <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp' alt="Sample photo" className="rounded-start" fluid />
             </MDBCol> */}
-            <MDBCol md='6' className='firstNameInput '>
-              <MDBInput
-                wrapperClass=''
-                label='First Name　　　　(Option)'
-                size='lg'
-                type='text'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </MDBCol>
-            <MDBCol md='6' className='lastNameInput'>
+            <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='Last Name　　　　(Option)'
+                label='Last Name'
                 size='lg'
                 type='text'
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </MDBCol>
+            <MDBCol md='6' className='lastNameInput '>
+              <MDBInput
+                wrapperClass=''
+                label='First Name'
+                size='lg'
+                type='text'
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </MDBCol>
+
             <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='姓氏　　　　　　　(Option)'
+                label='姓氏　　　　　　　　　　　(Option)'
                 size='lg'
                 type='text'
                 value={chiSurname}
@@ -136,7 +137,7 @@ const RegisterForm = () => {
             <MDBCol md='6' className='lastNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
-                label='名稱　　　　　　　(Option)'
+                label='名稱　　　　　　　　　　　(Option)'
                 size='lg'
                 id='form2'
                 type='text'

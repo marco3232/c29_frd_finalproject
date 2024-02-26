@@ -3,8 +3,9 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("checkins", (table) => {
     table.increments("id").primary();
-    table.uuid("uuid").defaultTo(knex.fn.uuid());
+    // table.uuid("uuid").defaultTo(knex.fn.uuid());
     table.string("item_image_path");
+    table.string("serial_number");
     table.integer("user_id").unsigned().references("id").inTable("users");
     table
       .integer("logistic_id")
@@ -24,7 +25,7 @@ export async function up(knex: Knex): Promise<void> {
         "disposed",
         "lost",
       ])
-      .defaultTo("normal");
+      // .defaultTo("normal");
     table
       .enum("order_status", [
         "rejected",

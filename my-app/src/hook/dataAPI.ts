@@ -19,6 +19,7 @@ export function useItems() {
       })
 
       const result = await res.json();
+      console.log("dataAPI?",result)
       return result.data as DonateItem[];
     },
   });

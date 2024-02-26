@@ -29,7 +29,7 @@ export default function Admin() {
                       <th>Contact_number</th>
                       <th>Confirmed_date</th>
                       <th>Confirmed_session</th>
-                      <th>Status</th>
+                      <th>Operation</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -62,21 +62,9 @@ export default function Admin() {
                         <td>{entry.number}</td>
                         <td>{entry.confirmed_date}</td>
                         <td>{entry.confirmed_session}</td>
-                          <td>
-                        <Form.Select>
-                        <option value="in-storage">In-storage</option>
-                        <option value="in-transit">In-transit</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cancelled">Cancelled</option>
-                        </Form.Select>
-                        </td>
                      
                         <td>
-                    <Form.Select aria-label="Default select example">
-                      <option value="checkIn">CheckIn</option>
-                      <option value="reject">Reject</option>
-                      {/* <option value="3">Three</option> */}
-                    </Form.Select>
+               
                         <button onClick={()=>navigate(`/AdminConfirm/${entry.logistic_id}`)}>next</button>
 
                         </td>

@@ -26,4 +26,15 @@ export function useAdminCheckIn_Confirm_3(id: number) {
       return [];
     }
     return data;
+
+}
+
+export async function toggleItem(id: number) {
+  const res = await fetch(`${source}/checkIns/${id}`, {
+    method: "PUT",
+  });
+
+  const resp = await res.json();
+
+  return resp.message as string;
 }

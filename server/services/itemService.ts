@@ -14,7 +14,7 @@ export class ItemService {
 
 
   async getAll() {
-    let rows: ItemType[] = await this.table().select("item_name", "id").orderBy("id", "asc");
+    let rows: ItemType[] = await this.table().select("item_name", "id","image").orderBy("id", "asc");
 
     return rows;
   }

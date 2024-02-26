@@ -17,10 +17,11 @@ import Admin from "./Components/Admin";
 import banner from "./image/homePage.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
 import { AuthGuard } from "./utils/authGuard";
-import ApproveDonationPage from "./Components/ApproveDonation";
+
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
 import { AdminConfirmPage } from "./Page/AdminConfirmPage";
+import { AboutUs } from "./Components/AboutUs";
 
 
 
@@ -29,7 +30,7 @@ import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 function App() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const shouldShowNavBar = location.pathname !== "/notFoundPage";
+    const shouldShowNavBar = location.pathname !== "/notFoundPage" && location.pathname !== "/login";
     const shouldShowWelcomePage = location.pathname === "/";
     const isLoggedIn = useSelector(
         (state: IRootState) => state.auth.isAuthenticated
@@ -44,7 +45,9 @@ function App() {
         if (token) {
             getUserInfo(token)
                 .then((userData) => {
-                    dispatch(loginSuccess(userData.eng_given_name));
+                    dispatch(loginSuccess(userData));
+                    localStorage.setItem("userData", JSON.stringify(userData));
+                    sessionStorage.setItem("username", userData?.eng_given_name);
                 })
                 .catch((error) => {
                     console.error("Error fetching user data", error);
@@ -53,6 +56,13 @@ function App() {
     }, [dispatch]);
 
     // --------------
+    useEffect(() => {
+        const savedUsername = localStorage.getItem("username");
+        if (savedUsername) {
+            setUserName(savedUsername);
+        }
+    }, []);
+
 
     useEffect(() => {
         if (userData?.eng_given_name) {
@@ -77,7 +87,8 @@ function App() {
     const handleLogout = () => {
         dispatch(logout());
         localStorage.removeItem("token");
-        navigate("/");
+        sessionStorage.removeItem("username");
+        navigate("/login");
     };
 
   // ------------------
@@ -86,7 +97,7 @@ function App() {
     // ------------------
     // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
-        <><div className="bigContainer">
+        <div className="bigContainer">
             <nav className="banContainer">
                 <Nav.Link>
                     <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
@@ -118,9 +129,9 @@ function App() {
                 <Routes>
                     <Route path="/Login" element={<LoginForm />} />
                     <Route path="/Register" element={<RegisterForm />} />
-                    <Route path="/notFoundPage" element={<NotFoundPage />} />
                     <Route path="/Donate" element={<DonateItemPage />} />
                     <Route path="/Transaction" element={<TransactionPage />} />
+                    <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />
@@ -129,15 +140,14 @@ function App() {
                     </Route>
                 </Routes>
             </div >
-            <br />
-        </div >
             <div className='footContainer'>
                 <div className="footText">
                     <a>聯絡我們: +852-88888888</a>
                     <a> ©2024 老友所遺 </a>
                     {/* <a>社會福利署 : https://www.swd.gov.hk/tc/pubsvc/elderly/cat_commsupp/elderly_centres/ </a> */}
                 </div>
-            </div></>
+            </div>
+        </div>
     );
 }
 
