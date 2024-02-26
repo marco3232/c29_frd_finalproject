@@ -54,7 +54,7 @@ export class AdminService {
 
   
         
-      console.log("march answer:", infoQuery);
+
 
       return infoQuery;
     } catch (e) {

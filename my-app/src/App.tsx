@@ -22,6 +22,7 @@ import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
 import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 import { AboutUs } from "./Components/AboutUs";
+import { RentalPage } from "./Page/RentalPage";
 
 
 
@@ -40,20 +41,20 @@ function App() {
     const [username, setUserName] = useState("");
     // ------------------
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            getUserInfo(token)
-                .then((userData) => {
-                    dispatch(loginSuccess(userData));
-                    localStorage.setItem("userData", JSON.stringify(userData));
-                    sessionStorage.setItem("username", userData?.eng_given_name);
-                })
-                .catch((error) => {
-                    console.error("Error fetching user data", error);
-                });
-        }
-    }, [dispatch]);
+    // useEffect(() => {
+    //     const token = localStorage.getItem("token");
+    //     if (token) {
+    //         getUserInfo(token)
+    //             .then((userData) => {
+    //                 dispatch(loginSuccess(userData));
+    //                 localStorage.setItem("userData", JSON.stringify(userData));
+    //                 sessionStorage.setItem("username", userData?.eng_given_name);
+    //             })
+    //             .catch((error) => {
+    //                 console.error("Error fetching user data", error);
+    //             });
+    //     }
+    // }, [dispatch]);
 
     // --------------
     useEffect(() => {
@@ -133,6 +134,7 @@ function App() {
                     <Route path="/Transaction" element={<TransactionPage />} />
                     <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+                    <Route path="/" element={<RentalPage/>}/>
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/Upload" element={<UploadPage />} />

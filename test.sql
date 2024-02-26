@@ -23,4 +23,4 @@
 
 
 
-
+select * from checkins where serial_number = ?; 

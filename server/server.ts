@@ -21,6 +21,8 @@ import { CheckInController } from "./controllers/checkInController";
 import AdminController from "./controllers/adminController";
 import { AdminService } from "./services/adminService";
 import { isAdminLoggedIn, isLoggedIn } from "./utils/gurad";
+import { RentController } from "./controllers/rentController";
+import {  rentItemService } from "./services/rentService";
 // import { updateIsAdmin } from "./utils/gurad"
 //-----------
 const app = express();
@@ -38,16 +40,17 @@ const logisticService = new LogisticService(knex);
 const logisticMixService = new LogisticMixService(knex);
 const adminService = new AdminService(knex)
 const checkInService = new CheckInService(knex)
+const rentService = new rentItemService(knex)
 
 // ------Initialize controllers------------------------------------------------------
 const adminController = new AdminController(adminService);
-
 const authController = new AuthController(authService);
 const itemController = new ItemController(itemService);
 const uploadDonateItemsController = new UploadDonateItemsController(uploadDonateItemsService);
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
 const checkInController = new CheckInController(checkInService);
+const rentController = new RentController(rentService)
 
 
 app.use(cors());
@@ -64,7 +67,7 @@ app.use("/auth", authController.router);
 // ------Donate routes------------------------------------------------------
 app.use("/donate", isLoggedIn, itemController.router);
 app.use("/donate", isLoggedIn, uploadDonateItemsController.router);
-
+app.use("/rent", isLoggedIn, rentController.router)
 
 // ------Logistic routes------------------------------------------------------
 app.use("/", isLoggedIn, logisticController.router);

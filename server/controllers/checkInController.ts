@@ -18,28 +18,28 @@ export class CheckInController {
   create = async (req: Request, res: Response) => {
     try {
       const {
-        item_image_path,
+        // item_image_path,
         // serial_number,
-        user_id,
-        logistic_id,
-        donate_item_id,
+        // user_id,
+        logistic_item_id,
+        // donate_item_id,
         goods_status
       } = req.body;
       // Call the service method to add check-in
-      const result = await this.checkInService.addCheckIn(
-        item_image_path,
-        // serial_number,
-        user_id,
-        logistic_id,
-        donate_item_id,
-        goods_status
-      );
+      // const result = await this.checkInService.addCheckIn(
+      //   item_image_path,
+      //   // serial_number,
+      //   user_id,
+      //   logistic_id,
+      //   donate_item_id,
+      //   goods_status
+      // );
 
-      if (result) {
+      // if (result) {
         return res.status(201).json({ message: "Check-in added successfully" });
-      } else {
-        return res.status(500).json({ message: "Failed to add check-in" });
-      }
+      // } else {
+        // return res.status(500).json({ message: "Failed to add check-in" });
+      // }
     } catch (error) {
       console.error("Error adding check-in:", error);
       return res.status(500).json({ message: "Internal Server Error" });
