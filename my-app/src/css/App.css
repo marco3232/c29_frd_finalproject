@@ -14,10 +14,10 @@ max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 25rem;
     width: 100%;
     min-height:94vh;
-    flex:1
-
+    flex:1;
 }
 
 .banContainer {
@@ -160,33 +160,41 @@ width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
+    margin-left: 5rem;
+    height: 40rem;
 }
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
 }
 
 .loginInput {
-    width: 25rem;
+    width: 20rem;
     margin: 1rem;
 }
-.forgotPw:hover {
-    color: red;
+.loginInput2 {
+    width: 20rem;
+    margin: 1rem;
 }
 
 .registerHere:hover {
 color:red
 }
 
-.forgotPassword {
-    font-weight: bold !important;
-    line-height: 1 !important;
-    padding-top: 2rem !important;
+#loginImg {
+    width: 25rem;
+    border-radius: 2em;
 }
 
-
+.loginFooter {
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin-top: 1rem;
+}
 
 
 /* --Upload Form------------------------------------------------------------------------------------------------------- */
@@ -228,6 +236,7 @@ color:red
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     justify-content: flex-end;
     width: 45rem;
+    height: 5rem;
 }
 
 .logOutBtn {
@@ -238,13 +247,13 @@ color:red
 
 .loginFormBtn {
     font-weight: bold !important;
+    width: 10rem;
     margin: 2rem !important;
 }
 
 .logInBtn {
     font-weight: bold !important;
     height: 40px !important;
-
 }
 
 .donateItemContainer {
@@ -277,7 +286,10 @@ color:red
     margin-top: 10px;
 }
 
-
+.loginFormControl {
+    height: 45rem;
+    margin-bottom: 5rem;
+}
 /* -----Body Content--------------------------------------------------------------------------- */
 .bodyContent {
     width: 77rem;
@@ -307,8 +319,7 @@ color:red
 }
 
 .card-body {
-    margin-top: 2rem;
-    margin-left: 4rem;
+    height: 50rem;
 }
   
 /* ------DonateItem------------------------------------------------------------------------------------------ */
@@ -323,9 +334,9 @@ color:red
 .cardName {
     width: 200px;
     height: 250px;
-    border-bottom: solid 2px;
-    border-color: rgb(41, 173, 244);
+    /* border-bottom: solid 2px; */
     margin: 1rem;
+    filter: drop-shadow(10px 5px 5px rgb(41, 173, 244));
 }
 
 
@@ -339,10 +350,6 @@ color:red
     display: flex;
     padding-bottom: 15rem;
     justify-content: center;
-}
-.form-label  {
-    color: black !important;
-    /* font-weight: bold !important; */
 }
 
 .list-group-item{
@@ -416,13 +423,49 @@ padding-bottom: 1rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 50rem;
 }
 
 #aboutUsImg {
-width:50rem;
+    /* position:relative; bottom:4.5rem ; */
+    width:40rem;
 }
 
 .aboutUsContent {
-    padding-top: 2rem;
+    padding-top: 4rem;
 }
+
+/* ------Admin------------------------------------------------------------------------------------------ */
+
+.adminContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.adminControl {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.adminLogisticsControl {
+    margin: 10rem;
+}
+
+.form-select {
+    width: 10rem !important;
+    padding: 5px !important;
+}
+
+.formConfirmContainer {
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+}
+.adminConfirmBtn {
+    border-radius: 5px;
+    width: 5rem;
+    background-color: white;
+    margin-left: 2rem;
+    }
+
