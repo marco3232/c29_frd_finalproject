@@ -62,6 +62,7 @@ export function LoginForm() {
                 text: data.message || "Unknown error",
                 icon: 'error',
                 showConfirmButton: false,
+                timer: 1000
             })
         },
         onMutate: () => {

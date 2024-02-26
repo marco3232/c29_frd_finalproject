@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import NotFoundPage from "./Page/NotFoundPage";
 import NavBarControl from "./Components/NavBars";
 import UploadPage from "./Page/UploadPage";
 import DonateItemPage from "./Page/DonateItemPage";
 import RegisterForm from "./Components/Register";
 import TransactionPage from "./Page/TransactionPage";
-import { Routes, Route, useNavigate, useLocation, Form } from "react-router-dom";
-import { Nav, Button, Carousel } from "react-bootstrap";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Nav, Button } from "react-bootstrap";
 import { LoginForm } from "./Components/LoginForm";
-import { getUserInfo } from "./hook/userAPI";
 import logo from "../src/image/老友所遺banner.png"
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "./store";
-import { loginSuccess, logout } from "./slice/authSlice";
+import { logout } from "./slice/authSlice";
 import Admin from "./Components/Admin";
-import banner from "./image/homePage.png"
 import FinalConfirmPage from "./Page/FinalConfirmPage";
 import { AuthGuard } from "./utils/authGuard";
-
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
 import { AboutUs } from "./Components/AboutUs";
@@ -144,7 +140,7 @@ function App() {
                     <Route path="/Transaction" element={<TransactionPage />} />
                     <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                    <Route path="/" element={<RentalPage/>}/>
+                    <Route path="/" element={<RentalPage />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/Upload" element={<UploadPage />} />

@@ -13,7 +13,8 @@ export function AuthGuard() {
             Swal.fire({
                 title: "Please sign in to continue",
                 icon: 'error',
-                showConfirmButton: false
+                showConfirmButton: false,
+                timer: 1000
             });;
         }
     }, [isAuthenticated]);

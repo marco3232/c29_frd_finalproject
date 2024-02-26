@@ -28,8 +28,8 @@ max-width: 100%;
 }
 
 #homePageLogo {
-width: 25rem;
-height: 12rem;
+    width: 25rem;
+    height: 12rem;
 }
 
 .footContainer {
@@ -38,7 +38,7 @@ height: 12rem;
     background-color: rgba(158, 205, 234, 0.382);
     display: flex;
     justify-content:center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
 }
