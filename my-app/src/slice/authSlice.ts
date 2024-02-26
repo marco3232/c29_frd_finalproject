@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserInfo } from '../hook/userAPI';
 import { useDateField } from '@mui/x-date-pickers/DateField/useDateField';
+import { jwtDecode } from "jwt-decode";
 
 // ---------------------------------------------------------------
 
@@ -20,13 +21,31 @@ const token = localStorage.getItem('token');
 const isAuthenticated = !!token;
 
 
-const initialState: AuthState = {
-    isAuthenticated: isAuthenticated,
-    role: '',
-    userData: {
-        eng_given_name: ''
+const initialStateFunc = () => {
+    let data = {
+        isAuthenticated: isAuthenticated,
+        role: '',
+        userData: {
+            eng_given_name: ''
+        }
     }
+    const token = localStorage.getItem("token")
+    console.log(token)
+
+    if (token) {
+        const decoded: any = jwtDecode(token);
+        data = {
+            isAuthenticated: true,
+            role: decoded.role,
+            userData: {
+                eng_given_name: decoded.data
+            }
+        }
+    }
+    return data
 }
+
+const initialState: AuthState = initialStateFunc()
 
 // ---------------------------------------------------------------
 

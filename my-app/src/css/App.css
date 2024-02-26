@@ -152,7 +152,6 @@ width: 100%;
 .loginForm {
     justify-content: center;
     display: flex;
-    position:relative; bottom:5rem ;
 }
 
 .loginFormFetch {
@@ -160,33 +159,41 @@ width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
+    margin-left: 5rem;
+    height: 40rem;
 }
 .loginTitle {
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
 }
 
 .loginInput {
-    width: 25rem;
+    width: 20rem;
     margin: 1rem;
 }
-.forgotPw:hover {
-    color: red;
+.loginInput2 {
+    width: 20rem;
+    margin: 1rem;
 }
 
 .registerHere:hover {
 color:red
 }
 
-.forgotPassword {
-    font-weight: bold !important;
-    line-height: 1 !important;
-    padding-top: 2rem !important;
+#loginImg {
+    width: 25rem;
+    border-radius: 2em;
 }
 
-
+.loginFooter {
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin-top: 1rem;
+}
 
 
 /* --Upload Form------------------------------------------------------------------------------------------------------- */
@@ -238,13 +245,13 @@ color:red
 
 .loginFormBtn {
     font-weight: bold !important;
+    width: 10rem;
     margin: 2rem !important;
 }
 
 .logInBtn {
     font-weight: bold !important;
     height: 40px !important;
-
 }
 
 .donateItemContainer {
@@ -277,7 +284,10 @@ color:red
     margin-top: 10px;
 }
 
-
+.loginFormControl {
+    height: 45rem;
+    margin-bottom: 5rem;
+}
 /* -----Body Content--------------------------------------------------------------------------- */
 .bodyContent {
     width: 77rem;
@@ -307,8 +317,7 @@ color:red
 }
 
 .card-body {
-    margin-top: 2rem;
-    margin-left: 4rem;
+    height: 50rem;
 }
   
 /* ------DonateItem------------------------------------------------------------------------------------------ */
@@ -323,9 +332,9 @@ color:red
 .cardName {
     width: 200px;
     height: 250px;
-    border-bottom: solid 2px;
-    border-color: rgb(41, 173, 244);
+    /* border-bottom: solid 2px; */
     margin: 1rem;
+    filter: drop-shadow(10px 5px 5px rgb(41, 173, 244));
 }
 
 
@@ -339,10 +348,6 @@ color:red
     display: flex;
     padding-bottom: 15rem;
     justify-content: center;
-}
-.form-label  {
-    color: black !important;
-    /* font-weight: bold !important; */
 }
 
 .list-group-item{
@@ -461,3 +466,4 @@ padding-bottom: 1rem;
     background-color: white;
     margin-left: 2rem;
     }
+

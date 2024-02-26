@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import {
     MDBBtn,
+    MDBCol,
     MDBContainer,
     MDBInput,
 } from "mdb-react-ui-kit";
@@ -14,7 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notification } from 'antd';
 import { parseJwt } from '../utils/authGuard';
-import { ClassNames } from '@emotion/react';
+import loginImg from "../image/pexels-photo-5790837.webp"
 // --------------------------------------------------------------------------------
 
 export function LoginForm() {
@@ -105,56 +106,62 @@ export function LoginForm() {
     // -----------------------------------------------
 
     return (
-
-        <MDBContainer fluid className="loginFormContainer">
-            <div className="loginForm">
-                <form className='loginFormFetch' onSubmit={handleLogin}>
-                    <h3 className="loginTitle" style={{ letterSpacing: "1px" }} >
-                        Login
-                    </h3>
-                    <div className='loginInput'>
-                        <MDBInput
-                            wrapperClass=""
-                            label="Email address"
-                            id="formControlLg"
-                            type="email"
-                            size="lg"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className='loginInput'>
-
-                        <MDBInput
-                            wrapperClass=""
-                            label="Password"
-                            id="formControlLg"
-                            type="password"
-                            size="lg"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-
-                    <MDBBtn
-                        className="loginFormBtn "
-                        color="info"
-                        size="lg"
-                        type="submit"
-                        disabled={isSubmitting}
-                    >
-                        {isSubmitting ? 'Logging in...' : 'Login'}
-                    </MDBBtn>
-                    <p className="forgotPassword"><a className="text-muted">Forgot password?</a></p>
-                    <p className='ms-1'>Don't have an account?   <a href="/register" className="registerHere"> Register here</a></p>
-
-                </form>
-                <div>
+        <div className='loginFormControl'>
+            <MDBContainer fluid className="loginFormContainer">
+                <div className='loginImg'>
+                    <MDBCol sm='6' className='d-none d-sm-block px-0'>
+                        <img src={loginImg} id='loginImg' />
+                    </MDBCol>
                 </div>
-            </div >
+                <div className="loginForm">
+                    <form className='loginFormFetch' onSubmit={handleLogin}>
+                        <h3 className="loginTitle" style={{ letterSpacing: "1px" }} >
+                            Login
+                        </h3>
+                        <div className='loginInput'>
+                            <MDBInput
+                                wrapperClass=""
+                                label="Email address"
+                                id="formControlLg"
+                                type="email"
+                                size="lg"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className='loginInput2'>
 
-        </MDBContainer >
+                            <MDBInput
+                                wrapperClass=""
+                                label="Password"
+                                id="formControlLg"
+                                type="password"
+                                size="lg"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
 
+                        <MDBBtn
+                            className="loginFormBtn "
+                            color="info"
+                            size="lg"
+                            type="submit"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Logging in...' : 'Login'}
+                        </MDBBtn>
+                        <div className='loginFooter'>
+                            <p className='registerHereForm'>Don't have an account?<a href="/register" className="registerHere">　Register here</a></p>
+                        </div>
+
+                    </form>
+                    <div>
+                    </div>
+                </div >
+
+            </MDBContainer >
+        </div>
 
     );
 }
