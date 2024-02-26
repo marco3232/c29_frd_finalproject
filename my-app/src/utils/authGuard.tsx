@@ -18,6 +18,9 @@ export function AuthGuard() {
         }
     }, [isAuthenticated]);
 
+    console.log({
+        isAuthenticated
+    })
     if (isAuthenticated) {
         return <Outlet />;
     } else {
