@@ -125,15 +125,17 @@ function App() {
                     <NavBarControl />
                 </Nav.Item>
             </nav>
-            {shouldShowWelcomePage && (
-                <>
-                    <div className="welcomePage">
-                        <HomePageCarousel />
-                        {/* <img src={banner} id="banner" /> */}
-                    </div><div className="bodyContent">
-                        <BodyContent />
-                    </div></>
-            )}
+            {
+                shouldShowWelcomePage && (
+                    <>
+                        <div className="welcomePage">
+                            <HomePageCarousel />
+                            {/* <img src={banner} id="banner" /> */}
+                        </div><div className="bodyContent">
+                            <BodyContent />
+                        </div></>
+                )
+            }
             <div className="contentWrapper">
                 <Routes>
                     <Route path="/Login" element={<LoginForm />} />
