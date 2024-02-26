@@ -29,11 +29,12 @@ import { AboutUs } from "./Components/AboutUs";
 function App() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const shouldShowNavBar = location.pathname !== "/notFoundPage" && location.pathname !== "/login";
+    const shouldShowAdminBtn = location.pathname !== "/notFoundPage" && location.pathname !== "/login";
     const shouldShowWelcomePage = location.pathname === "/";
     const isLoggedIn = useSelector(
         (state: IRootState) => state.auth.isAuthenticated
     );
+    const isAdmin = useSelector((state: IRootState) => state.auth.role === 'admin')
     const navigate = useNavigate();
     const userData = useSelector((state: IRootState) => state.auth.userData);
     const [username, setUserName] = useState("");
@@ -41,6 +42,7 @@ function App() {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const role = localStorage.getItem('role')
         if (token) {
             getUserInfo(token)
                 .then((userData) => {
@@ -55,13 +57,14 @@ function App() {
     }, [dispatch]);
 
     // --------------
-    useEffect(() => {
-        const savedUsername = localStorage.getItem("username");
-        if (savedUsername) {
-            setUserName(savedUsername);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedUsername = localStorage.getItem("username");
+    //     if (savedUsername) {
+    //         setUserName(savedUsername);
+    //     }
+    // }, []);
 
+    // ------------------
 
     useEffect(() => {
         if (userData?.eng_given_name) {
@@ -80,6 +83,12 @@ function App() {
             }
         }
     }, [userData?.eng_given_name]);
+
+    // ---------------------
+
+
+
+
 
     // ---------------------
 
@@ -122,6 +131,8 @@ function App() {
                             <BodyContent />
                         </div></>
                 )}
+
+
                 <div className="contentWrapper">
                     <Routes>
                         <Route path="/login" element={<LoginForm />} />
