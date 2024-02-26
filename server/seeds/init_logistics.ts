@@ -5,8 +5,9 @@ export async function seed(knex: Knex): Promise<void> {
   await knex("logistics").del();
   await knex("logistic_items").del();
 
-  // Inserts seed entries
-  await knex("logistics").insert([
+
+  // Inserts seed entries for logistics table
+  const logistics = await knex("logistics").insert([
     {
       room: "3",
       building: "happy tower",

@@ -20,6 +20,7 @@ import { AuthGuard } from "./utils/authGuard";
 
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
+import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 import { AboutUs } from "./Components/AboutUs";
 
 
@@ -101,53 +102,52 @@ function App() {
 
     // ------------------
     // console.log("userData?.eng_given_name", userData?.eng_given_name);
+
+    // ------------------
+    // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
-        <>
-            <div className="bigContainer">
-                <nav className="banContainer">
-                    <Nav.Link>
-                        <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
-                    </Nav.Link>
-                    <Nav.Item className="statusContainer">
-                        {isLoggedIn ? (
-                            <div className="logInStatus">
-                                <p className="pWelcome"><b>{username}, 你好 !</b></p>
-                                <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
-                            </div>
-                        ) : (
-                            <div className="logInStatus">
-                                <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
-                            </div>
-                        )}
-                        <NavBarControl />
-                    </Nav.Item>
-                </nav>
-                {shouldShowWelcomePage && (
-                    <>
-                        <div className="welcomePage">
-                            <HomePageCarousel />
-                            {/* <img src={banner} id="banner" /> */}
-                        </div><div className="bodyContent">
-                            <BodyContent />
-                        </div></>
-                )}
-
-
-                <div className="contentWrapper">
-                    <Routes>
-                        <Route path="/login" element={<LoginForm />} />
-                        <Route path="/Register" element={<RegisterForm />} />
-                        <Route path="/Donate" element={<DonateItemPage />} />
-                        <Route path="/Transaction" element={<TransactionPage />} />
-                        <Route path="/AboutUs" element={<AboutUs />} />
-                        <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                        <Route element={<AuthGuard />}>
-                            <Route path="/admin" element={<Admin />} />
-                            <Route path="/Upload" element={<UploadPage />} />
-                        </Route>
-                    </Routes>
-                </div >
-                <br />
+        <div className="bigContainer">
+            <nav className="banContainer">
+                <Nav.Link>
+                    <img id="homePageLogo" onClick={() => navigate('/')} src={logo}></img>
+                </Nav.Link>
+                <Nav.Item className="statusContainer">
+                    {isLoggedIn ? (
+                        <div className="logInStatus">
+                            <p className="pWelcome"><b>Welcome,{username}</b></p>
+                            <Button className="logOutBtn" variant="dark" onClick={handleLogout}>Logout</Button>
+                        </div>
+                    ) : (
+                        <div className="logInStatus">
+                            <Button className="logInBtn" variant="secondary" onClick={() => navigate('/login')}>Login</Button>
+                        </div>
+                    )}
+                    <NavBarControl />
+                </Nav.Item>
+            </nav>
+            {shouldShowWelcomePage && (
+                <>
+                    <div className="welcomePage">
+                        <HomePageCarousel />
+                        {/* <img src={banner} id="banner" /> */}
+                    </div><div className="bodyContent">
+                        <BodyContent />
+                    </div></>
+            )}
+            <div className="contentWrapper">
+                <Routes>
+                    <Route path="/Login" element={<LoginForm />} />
+                    <Route path="/Register" element={<RegisterForm />} />
+                    <Route path="/Donate" element={<DonateItemPage />} />
+                    <Route path="/Transaction" element={<TransactionPage />} />
+                    <Route path="/AboutUs" element={<AboutUs />} />
+                    <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
+                    <Route element={<AuthGuard />}>
+                        <Route path="/admin" element={<Admin />} />
+                        <Route path="/Upload" element={<UploadPage />} />
+                        <Route path="/AdminConfirm/:id" element={<AdminConfirmPage />} />
+                    </Route>
+                </Routes>
             </div >
             <div className='footContainer'>
                 <div className="footText">
@@ -155,7 +155,8 @@ function App() {
                     <a> ©2024 老友所遺 </a>
                     {/* <a>社會福利署 : https://www.swd.gov.hk/tc/pubsvc/elderly/cat_commsupp/elderly_centres/ </a> */}
                 </div>
-            </div></>
+            </div>
+        </div>
     );
 }
 
