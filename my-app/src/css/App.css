@@ -116,6 +116,7 @@ width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 3rem;
 }
 
 .roleLabel{
@@ -333,7 +334,7 @@ width: 100%;
 }
 
 .card-body {
-    height: 50rem;
+    height: 60rem !important;
 }
   
 .homePageCardControl {
