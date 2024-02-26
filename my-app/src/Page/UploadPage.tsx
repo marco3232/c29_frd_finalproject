@@ -135,13 +135,13 @@ export default function UploadPage() {
                 <option value="">No Item List</option>
               )}
             </select>
-            <div>
+            {/* <div>
               {Array.isArray(itemList) && itemList.length > 0 ? (
                 itemList.map((entry) => <img src={entry.image}></img>)
               ) : (
                 <h1>No Item List</h1>
               )}
-            </div>
+            </div> */}
 
             {"\u00A0\u00A0"}
             {"\u00A0\u00A0"}
