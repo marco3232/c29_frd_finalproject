@@ -104,7 +104,7 @@ export function useAdminCheck_LogisticInfo_3() {
         },
       });
       let result = await res.json();
-      console.log("march answer:", result);
+
       return result;
     },
   });
