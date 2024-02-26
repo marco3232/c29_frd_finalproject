@@ -4,7 +4,7 @@ export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
   await knex("logistics").del();
   await knex("logistic_items").del();
- 
+
 
   // Inserts seed entries for logistics table
   const logistics = await knex("logistics").insert([
@@ -36,7 +36,6 @@ export async function seed(knex: Knex): Promise<void> {
     },
   ]);
 
-  // Inserts seed entries for logistic_items table
   await knex("logistic_items").insert([
     {
       logistic_id: "1",
@@ -54,4 +53,5 @@ export async function seed(knex: Knex): Promise<void> {
       qty: 1,
     }
   ]);
+
 }

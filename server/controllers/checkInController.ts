@@ -5,11 +5,18 @@ export class CheckInController {
   router = express.Router();
   constructor(private checkInService: CheckInService) {
     this.router.get("/checkin", this.list);
+    this.router.get("/inventory", this.inventory);
+
     this.router.get("/precheckin", this.precheckinlist);
     this.router.post("/checkin", this.create);
     this.router.put("/updatestatus",this.update)
   }
 
+  inventory = async (req: Request, res: Response) => {
+    // console.log("this is list", req.body);
+    let list = await this.checkInService.getInventory();
+    res.status(200).json({ data: list });
+  }; 
   list = async (req: Request, res: Response) => {
     // console.log("this is list", req.body);
     let list = await this.checkInService.getAll();
@@ -37,11 +44,11 @@ export class CheckInController {
         goods_status
       );
 
-      if (result) {
+      // if (result) {
         return res.status(201).json({ message: "Check-in added successfully" });
-      } else {
-        return res.status(500).json({ message: "Failed to add check-in" });
-      }
+      // } else {
+        // return res.status(500).json({ message: "Failed to add check-in" });
+      // }
     } catch (error) {
       console.error("Error adding check-in:", error);
       return res.status(500).json({ message: "Internal Server Error" });
