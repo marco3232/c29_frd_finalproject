@@ -13,7 +13,7 @@ export default function App() {
   }
 
   return (
-    <MDBCarousel MDBCarousel activeItem={activeItem} slide={false} interval={4000} >
+    <MDBCarousel MDBCarousel activeItem={activeItem} slide={false} interval={5000} >
       <MDBCarouselItem itemId={1}>
         <img src={banner} className='d-block w-100' style={{ objectFit: 'cover' }} alt='.....' />
       </MDBCarouselItem>
