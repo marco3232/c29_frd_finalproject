@@ -37,7 +37,7 @@ const uploadDonateItemsService = new UploadDonateItemsService(knex);
 const logisticService = new LogisticService(knex);
 const logisticMixService = new LogisticMixService(knex);
 const adminService = new AdminService(knex)
-
+const checkInService = new CheckInService(knex)
 
 // ------Initialize controllers------------------------------------------------------
 const adminController = new AdminController(adminService);
@@ -47,13 +47,13 @@ const itemController = new ItemController(itemService);
 const uploadDonateItemsController = new UploadDonateItemsController(uploadDonateItemsService);
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
-// const checkInController new CheckInController(CheckInService);
+const checkInController = new CheckInController(checkInService);
 
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+
 
 // ------Admin routes --
 app.use("/admin", isAdminLoggedIn, adminController.router)
@@ -71,7 +71,7 @@ app.use("/", isLoggedIn, logisticController.router);
 app.use("/", isLoggedIn, logisticMixController.router);
 
 // ------CheckIn routes------------------------------------------------------
-// app.use("/", isLoggedIn, CheckInController.router);
+app.use("/", isLoggedIn, checkInController.router);
 
 
 // ------Other routes------------------------------------------------------
