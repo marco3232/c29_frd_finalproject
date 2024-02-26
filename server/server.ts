@@ -16,11 +16,14 @@ import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
 import { CheckInService } from "./services/checkInService";
 import { CheckInController } from "./controllers/checkInController";
+// import { checkOutService } from "./services/checkOutService"
+// import { checkOutController } from "./controllers/checkOutController";
 //-----------
 
 import AdminController from "./controllers/adminController";
 import { AdminService } from "./services/adminService";
 import { isAdminLoggedIn, isLoggedIn } from "./utils/gurad";
+import { CheckOutController } from "./controllers/checkOutController";
 // import { updateIsAdmin } from "./utils/gurad"
 //-----------
 const app = express();
@@ -38,6 +41,7 @@ const logisticService = new LogisticService(knex);
 const logisticMixService = new LogisticMixService(knex);
 const adminService = new AdminService(knex)
 const checkInService = new CheckInService(knex)
+// const checkOutService = new CheckOutService(knex)
 
 // ------Initialize controllers------------------------------------------------------
 const adminController = new AdminController(adminService);
@@ -48,6 +52,7 @@ const uploadDonateItemsController = new UploadDonateItemsController(uploadDonate
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
 const checkInController = new CheckInController(checkInService);
+// const checkOutController = new CheckOutController(checkOutService)
 
 
 app.use(cors());
