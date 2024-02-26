@@ -18,6 +18,9 @@ import { AppDispatch } from "../store";
 //   lost: string;
 // };
 
+const source = "http://localhost:8080";
+
+
 export function AdminConfirmPage() {
   let { id } = useParams();
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ export function AdminConfirmPage() {
   const items = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
 
-  console.log("march", items.logistic_id);
+  // console.log("march", items.logistic_id);
   const OnToggleItem = useMutation({
     mutationFn: async (id: number) => toggleItem(id),
     onSuccess: () =>
@@ -51,19 +54,23 @@ export function AdminConfirmPage() {
 
   const onSubmit = async (index: number) => {
     const item = items[index]
-    console.log({
-        logistic_item_id: item.id,
-        qty: item.qty
-    })
+    // console.log({
+    //     logistic_item_id: item.id,
+    //     qty: item.qty
+    // })
+    console.log("check item",item)
 
-    await fetch("/checkin", {
+    await fetch(`${source}/checkin`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
             logistic_item_id: item.id,
-            qty: item.qty
+            logistic_id:item.logistic_id,
+            donate_item_id: item.donate_item_id,
+            goods_status:item.status,
         })
     })
   }
@@ -109,7 +116,8 @@ export function AdminConfirmPage() {
                     <td>{entry.qty}</td>
                     <td>
                       <Form.Select onChange={(e) => changeStatus(e, index)}>
-                        <option value="normal">normal</option>
+                        <option value="none">請選擇</option>
+                        <option value="normal">Normal</option>
                         <option value="repairing">Repairing</option>
                         <option value="rented">Rented</option>
                         <option value="disposed">Disposed</option>

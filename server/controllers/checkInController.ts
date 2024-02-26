@@ -18,18 +18,19 @@ export class CheckInController {
   create = async (req: Request, res: Response) => {
     try {
       const {
-        item_image_path,
-        // serial_number,
-        user_id,
+        // item_image_path,
+        logistic_item_id,
+        // user_id,
         logistic_id,
         donate_item_id,
         goods_status
       } = req.body;
+      console.log("check req body",req.body)
       // Call the service method to add check-in
       const result = await this.checkInService.addCheckIn(
-        item_image_path,
-        // serial_number,
-        user_id,
+        // item_image_path,
+        logistic_item_id,
+        // user_id,
         logistic_id,
         donate_item_id,
         goods_status
