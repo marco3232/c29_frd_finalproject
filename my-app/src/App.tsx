@@ -20,9 +20,9 @@ import { AuthGuard } from "./utils/authGuard";
 
 import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
-import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 import { AboutUs } from "./Components/AboutUs";
 import { RentalPage } from "./Page/RentalPage";
+import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 
 
 
@@ -31,11 +31,12 @@ import { RentalPage } from "./Page/RentalPage";
 function App() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const shouldShowNavBar = location.pathname !== "/notFoundPage" && location.pathname !== "/login";
+    const shouldShowAdminBtn = location.pathname !== "/notFoundPage" && location.pathname !== "/login";
     const shouldShowWelcomePage = location.pathname === "/";
     const isLoggedIn = useSelector(
         (state: IRootState) => state.auth.isAuthenticated
     );
+    const isAdmin = useSelector((state: IRootState) => state.auth.role === 'admin')
     const navigate = useNavigate();
     const userData = useSelector((state: IRootState) => state.auth.userData);
     const [username, setUserName] = useState("");
@@ -57,13 +58,14 @@ function App() {
     // }, [dispatch]);
 
     // --------------
-    useEffect(() => {
-        const savedUsername = localStorage.getItem("username");
-        if (savedUsername) {
-            setUserName(savedUsername);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedUsername = localStorage.getItem("username");
+    //     if (savedUsername) {
+    //         setUserName(savedUsername);
+    //     }
+    // }, []);
 
+    // ------------------
 
     useEffect(() => {
         if (userData?.eng_given_name) {
@@ -85,6 +87,12 @@ function App() {
 
     // ---------------------
 
+
+
+
+
+    // ---------------------
+
     const handleLogout = () => {
         dispatch(logout());
         localStorage.removeItem("token");
@@ -92,9 +100,9 @@ function App() {
         navigate("/login");
     };
 
-  // ------------------
-  // console.log("userData?.eng_given_name", userData?.eng_given_name);
- 
+    // ------------------
+    // console.log("userData?.eng_given_name", userData?.eng_given_name);
+
     // ------------------
     // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
@@ -117,15 +125,17 @@ function App() {
                     <NavBarControl />
                 </Nav.Item>
             </nav>
-            {shouldShowWelcomePage && (
-                <>
-                    <div className="welcomePage">
-                        <HomePageCarousel />
-                        {/* <img src={banner} id="banner" /> */}
-                    </div><div className="bodyContent">
-                        <BodyContent />
-                    </div></>
-            )}
+            {
+                shouldShowWelcomePage && (
+                    <>
+                        <div className="welcomePage">
+                            <HomePageCarousel />
+                            {/* <img src={banner} id="banner" /> */}
+                        </div><div className="bodyContent">
+                            <BodyContent />
+                        </div></>
+                )
+            }
             <div className="contentWrapper">
                 <Routes>
                     <Route path="/Login" element={<LoginForm />} />

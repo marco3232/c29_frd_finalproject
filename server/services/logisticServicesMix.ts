@@ -72,7 +72,6 @@ export class LogisticMixService {
           });
         }
       }
-
       await trx.commit();
       return true;
     } catch (error) {
@@ -119,7 +118,7 @@ export class LogisticMixService {
         [userId]
       );
 
-      console.log("rows??", rows);
+      // console.log("rows??", rows);
       return rows;
     } catch (error) {
       console.error(error); // handle errors

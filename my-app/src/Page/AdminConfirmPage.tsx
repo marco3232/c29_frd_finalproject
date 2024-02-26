@@ -18,6 +18,9 @@ import { toggleButtonClasses } from "@mui/material";
 //   lost: string;
 // };
 
+const source = "http://localhost:8080";
+
+
 export function AdminConfirmPage() {
   let { id } = useParams();
   const navigate = useNavigate();
@@ -63,12 +66,18 @@ export function AdminConfirmPage() {
   }
     console.log(body)
 
-    await fetch("/checkin", {
+    await fetch(`${source}/checkin`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify({
+            logistic_item_id: item.id,
+            logistic_id:item.logistic_id,
+            donate_item_id: item.donate_item_id,
+            goods_status:item.status,
+        })
     })
   }
   //   const { isLoading, error, data } = useQuery("repoData", () =>
@@ -114,7 +123,8 @@ export function AdminConfirmPage() {
                     <td>{entry.qty}</td>
                     <td>
                       <Form.Select onChange={(e) => changeStatus(e, index)}>
-                        <option value="normal">normal</option>
+                        <option value="none">請選擇</option>
+                        <option value="normal">Normal</option>
                         <option value="repairing">Repairing</option>
                         <option value="rented">Rented</option>
                         <option value="disposed">Disposed</option>
