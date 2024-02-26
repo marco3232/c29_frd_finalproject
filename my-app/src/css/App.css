@@ -98,7 +98,7 @@ width: 100%;
 }
 .RegisterFormContainer  {
     padding-bottom: 5rem; 
-    width:40rem !important;
+    width: 40rem !important;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -110,6 +110,12 @@ width: 100%;
     display: flex;
     justify-content: center;
     padding-bottom: 2rem ;
+}
+
+.registerImg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .roleLabel{

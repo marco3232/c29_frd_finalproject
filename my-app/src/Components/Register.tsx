@@ -12,6 +12,8 @@ import {
 import { createUser } from "../hook/userAPI";
 import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
+import registerImg from "../image/inclusion-7197545_1280.png"
+
 
 //-------------------------------------------------------------------------------------------
 
@@ -96,6 +98,9 @@ const RegisterForm = () => {
 
   return (
     <MDBContainer fluid className='RegisterFormContainer' >
+      <div className="registerImg">
+        <img src={registerImg}></img>
+      </div>
       <MDBCardBody className='RegisterFormBody'>
         <h3 className='registerTitle'>Registration </h3>
         <form className="registerFormFetch" onSubmit={handleRegister}>
