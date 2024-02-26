@@ -98,12 +98,12 @@ width: 100%;
     flex-direction: row;
 }
 .RegisterFormContainer  {
-    padding-bottom: 5rem; 
     width: 40rem !important;
     display: flex;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap ;
+    height: 70rem;
     }
 
 .registerTitle{
@@ -118,6 +118,7 @@ width: 100%;
     justify-content: center;
     flex-direction: column;
     margin-bottom: 3rem;
+    width: 70rem;
 }
 
 .roleLabel{
@@ -271,17 +272,6 @@ width: 100%;
     /* margin-bottom: 1rem; */
 }
 
-.welcomePage {
-    display: flex;
-    justify-content: center;
-    margin-top: 5rem;
-    width: 100%;
-}
-#banner {
-    height: 400px;
-}
-
-
 .pWelcome {
     display: flex;
     align-content: center;
@@ -358,12 +348,6 @@ padding: 3rem;
     filter: drop-shadow(10px 5px 5px rgb(41, 173, 244));
 }
 
-
-
-
-
-
-
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
 .uploadContainer {
     display: flex;
@@ -385,8 +369,6 @@ padding: 3rem;
 .deleteIcon {
 width: 1.1em ;
 }
-
-
 
 /* ------finalConfirmPage------------------------------------------------------------------------------------------ */
 .logisticTitle {
@@ -428,8 +410,6 @@ padding-bottom: 1rem;
     display: flex;
     justify-content: center;
 }
-
-
 
 /* ------aboutUs------------------------------------------------------------------------------------------ */
 
@@ -489,3 +469,9 @@ padding-bottom: 1rem;
     margin-left: 2rem;
     }
 
+
+/* ------Carousel------------------------------------------------------------------------------------------ */
+
+.carouselContainer {
+    width: 75rem;
+}

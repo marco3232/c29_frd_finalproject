@@ -36,30 +36,6 @@ function App() {
     const navigate = useNavigate();
     const userData = useSelector((state: IRootState) => state.auth.userData);
     const [username, setUserName] = useState("");
-    // ------------------
-
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token");
-    //     if (token) {
-    //         getUserInfo(token)
-    //             .then((userData) => {
-    //                 dispatch(loginSuccess(userData));
-    //                 localStorage.setItem("userData", JSON.stringify(userData));
-    //                 sessionStorage.setItem("username", userData?.eng_given_name);
-    //             })
-    //             .catch((error) => {
-    //                 console.error("Error fetching user data", error);
-    //             });
-    //     }
-    // }, [dispatch]);
-
-    // --------------
-    // useEffect(() => {
-    //     const savedUsername = localStorage.getItem("username");
-    //     if (savedUsername) {
-    //         setUserName(savedUsername);
-    //     }
-    // }, []);
 
     // ------------------
 
@@ -83,12 +59,6 @@ function App() {
 
     // ---------------------
 
-
-
-
-
-    // ---------------------
-
     const handleLogout = () => {
         dispatch(logout());
         localStorage.removeItem("token");
@@ -97,10 +67,7 @@ function App() {
     };
 
     // ------------------
-    // console.log("userData?.eng_given_name", userData?.eng_given_name);
 
-    // ------------------
-    // console.log("userData?.eng_given_name", userData?.eng_given_name);
     return (
         <div className="bigContainer">
             <nav className="banContainer">
