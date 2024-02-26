@@ -244,7 +244,7 @@ width: 100%;
     font-size: 25px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
     justify-content: flex-end;
-    width: 45rem;
+    width: 38rem;
     height: 5rem;
 }
 
@@ -268,7 +268,7 @@ width: 100%;
 .donateItemContainer {
     display: flex;
     justify-content: center;
-    margin-bottom: 10rem;
+    /* margin-bottom: 1rem; */
 }
 
 .welcomePage {

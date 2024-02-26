@@ -30,10 +30,10 @@ export class AuthService {
         const token = jwtSimple.encode(payload, jwt.jwtSecret);
         return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role: userInfoQuery.role };
       } else {
-        return { flag: false, message: "Incorrect password" };
+        return { flag: false, message: "Sorry, Incorrect password" };
       }
     } else {
-      return { flag: false, message: "User not found" };
+      return { flag: false, message: "Sorry, User not found" };
     }
   }
 
@@ -51,23 +51,23 @@ export class AuthService {
   ) {
     try {
       if (!email || !hashed || !mobile_phone) {
-        throw new Error("Missing required fields");
+        throw new Error("Sorry,Missing required fields");
       }
 
       const existingUser = await this.table().where("email", email).first();
       if (existingUser) {
-        throw new Error("Email already exists");
+        throw new Error("Sorry, Email already exists");
       }
 
       const existingUserByPhone = await this.table()
         .where("mobile_phone", mobile_phone)
         .first();
       if (existingUserByPhone) {
-        throw new Error("Phone number already exists");
+        throw new Error("Sorry, Phone number already exists");
       }
 
       if (String(mobile_phone).length != 8) {
-        throw new Error("Phone number must be 8 digits");
+        throw new Error("Sorry, Phone number must be 8 digits");
       }
 
       const data = {

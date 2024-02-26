@@ -44,7 +44,7 @@ export function LoginForm() {
                 title: "Login successful",
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 1500
             });
             if (payload.role === "admin") {
                 sessionStorage.setItem('role', payload.role)
@@ -58,11 +58,10 @@ export function LoginForm() {
 
         onError: (data) => {
             Swal.fire({
-                title: "Login failed",
-                text: data.message || "Unknown error",
+                title: data.message || "Unknown error",
                 icon: 'error',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 2000
             })
         },
         onMutate: () => {
@@ -79,10 +78,10 @@ export function LoginForm() {
         e.preventDefault();
         if (!password || !email) {
             return Swal.fire({
-                title: "Login failed",
-                text: "Email and password cannot be empty",
+                title: "Sorry, Email and password cannot be empty",
                 icon: 'error',
                 showConfirmButton: false,
+                timer: 2000
             })
         }
 

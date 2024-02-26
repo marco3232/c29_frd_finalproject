@@ -14,7 +14,7 @@ export function AuthGuard() {
                 title: "Please sign in to continue",
                 icon: 'error',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 2000
             });;
         }
     }, [isAuthenticated]);
