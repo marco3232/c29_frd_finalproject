@@ -6,6 +6,14 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("logistic_id").references("id").inTable("logistics");
     table.integer("donate_item_id").references("id").inTable("donate_items");
     table.integer("qty");
+    table
+      .enum("goods_status", [
+        "normal",
+        "repairing",
+        "rented",
+        "disposed",
+        "lost",
+      ])
     table.timestamps(false, true);
   });
 }
