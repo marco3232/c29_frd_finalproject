@@ -8,6 +8,7 @@ import { useState } from "react";
 import { toggleButtonClasses } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
+import Swal from "sweetalert2";
 
 // type Status_OptionProps = {
 //   id: number;
@@ -19,7 +20,6 @@ import { AppDispatch } from "../store";
 // };
 
 const source = "http://localhost:8080";
-
 
 export function AdminConfirmPage() {
   let { id } = useParams();
@@ -47,33 +47,36 @@ export function AdminConfirmPage() {
 
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
-    items[index].status = value
+    items[index].status = value;
     console.log(value, index);
-    queryClient.setQueryData(["adminCheckInConfirm"], items)
+    queryClient.setQueryData(["adminCheckInConfirm"], items);
   };
 
   const onSubmit = async (index: number) => {
-    const item = items[index]
+    const item = items[index];
     // console.log({
     //     logistic_item_id: item.id,
     //     qty: item.qty
     // })
-    console.log("check item",item)
+    console.log("check item", item);
 
     await fetch(`${source}/checkin`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-            logistic_item_id: item.id,
-            logistic_id:item.logistic_id,
-            donate_item_id: item.donate_item_id,
-            goods_status:item.status,
-        })
-    })
-  }
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        logistic_item_id: item.id,
+        logistic_id: item.logistic_id,
+        donate_item_id: item.donate_item_id,
+        goods_status: item.status,
+      }),
+    });
+  };
+  // --------------------------------------------------------------------------------
+  
+  // ---------------------------------------------------------------------------------------
   //   const { isLoading, error, data } = useQuery("repoData", () =>
   //   fetch("").then(
   //     (res) => res.json(),
@@ -115,6 +118,14 @@ export function AdminConfirmPage() {
                     <td>{entry.item_name}</td>
                     <td>{entry.qty}</td>
                     <td>
+                      {/* <Form.Select onChange={(e) => changeStatus(e, index)}>
+                        <option value="none">請選擇</option>
+                        <option value="normal">Normal</option>
+                        <option value="repairing">Repairing</option>
+                        <option value="rented">Rented</option>
+                        <option value="disposed">Disposed</option>
+                        <option value="lost">Lost</option>
+                      </Form.Select> */}
                       <Form.Select onChange={(e) => changeStatus(e, index)}>
                         <option value="none">請選擇</option>
                         <option value="normal">Normal</option>
@@ -126,7 +137,14 @@ export function AdminConfirmPage() {
                     </td>
                     <td>
                       {" "}
-                      <button type="submit" onClick={() => onSubmit(index)}> 提交</button>
+                      {/* <button type="submit" onClick={() => onSubmit(index)}> */}
+                      <button
+                        type="submit"
+                        id={`submitBtn-${index}`}
+                        onClick={() => onSubmit(index)}
+                      >
+                        提交
+                      </button>
                     </td>
                   </tr>
                 </tbody>
