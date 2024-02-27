@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import CardMedia from "@mui/material/CardMedia";
 
 export function RentalPage() {
+<<<<<<< HEAD
   const navigate = useNavigate();
 
   const RentListData = useRentalPage_3();
@@ -104,3 +105,11 @@ export function RentalPage() {
     </>
   );
 }
+=======
+    return (
+        <>
+            <h1>Rental Page</h1>
+        </>
+    )
+}
+>>>>>>> 57cec499ff73433ed0abf3a9e6a6064ff405e74d

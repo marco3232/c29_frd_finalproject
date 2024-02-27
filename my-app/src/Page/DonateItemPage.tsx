@@ -30,13 +30,14 @@ export default function DonateItemPage() {
         <span className={styles.header}>器材募集 </span>
         <h4 className="mt-5"><b>現接受捐贈以下物品</b></h4>
         <div className={styles.cards}>
-          <Card className="cardName" >
+          <Card className="donateItemCard" >
             <CardMedia
               component="img"
               alt="green iguana"
               height="200"
               image="assets/donate_items_img/輪椅.webp"
               style={{ objectFit: 'contain' }}
+              id="donateItemCardImg"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -45,7 +46,7 @@ export default function DonateItemPage() {
             </CardContent>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -61,7 +62,7 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -77,7 +78,7 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -93,13 +94,14 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
               height="200"
               image="assets/donate_items_img/步行架.webp"
               style={{ objectFit: 'contain' }}
+              id="donateItemCardImg"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -109,7 +111,7 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -125,7 +127,7 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -142,7 +144,7 @@ export default function DonateItemPage() {
             <CardActions></CardActions>
           </Card>
 
-          <Card className="cardName">
+          <Card className="donateItemCard">
             <CardMedia
               component="img"
               alt="green iguana"
@@ -167,7 +169,7 @@ export default function DonateItemPage() {
             onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
           >按此捐贈</span>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

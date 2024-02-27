@@ -30,7 +30,7 @@ const initialStateFunc = () => {
         }
     }
     const token = localStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
 
     if (token) {
         const decoded: any = jwtDecode(token);
@@ -58,7 +58,7 @@ export const authSlice = createSlice({
         loginSuccess: (state, action: PayloadAction<{ username: string; role: string }>) => {
             const payload = action.payload;
             if (payload) {
-                console.log({ payload })
+                // console.log({ payload })
                 state.userData.eng_given_name = payload.username;
                 state.role = action.payload.role
                 state.isAuthenticated = true;

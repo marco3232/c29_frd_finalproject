@@ -21,7 +21,7 @@ export class LogisticMixController {
   router = express.Router();
   constructor(private logisticMixService: LogisticMixService) {
     this.router.post("/logisticmix", this.create);
-    this.router.get("/finaldonateconfirmMix", this.list)
+    this.router.get("/finaldonateconfirmMix", this.list);
     // this.router.put("/finaldonateconfirm/edit/{id}", this.edit)
   }
 
@@ -32,7 +32,6 @@ export class LogisticMixController {
         transaction,
       }: { donationList: DonationType[]; transaction: TransactionType } =
         req.body;
-        console.log("check req body",req.body)
       // console.log("check req body", req.body);
       const user_id = req.user?.id;
       let result = await this.logisticMixService.createLogisticMix(
@@ -56,9 +55,7 @@ export class LogisticMixController {
           .json({ message: "internal server error,cannot insert new item" });
     } catch (e: any) {
       console.log(e);
-      res
-        .status(500)
-        .json({ message: e.message });
+      res.status(500).json({ message: e.message });
     }
   };
 
@@ -76,10 +73,10 @@ export class LogisticMixController {
   //       .json({ message: "internal server error,cannot insert new item" });
   // };
 
-  list = async (req:Request, res: Response) => {
+  list = async (req: Request, res: Response) => {
     const user_id = req.user?.id;
-    let list = await this.logisticMixService.getAllLogisticInfo(user_id!)
-    res.status(200).json({data: list.rows})
+    let list = await this.logisticMixService.getAllLogisticInfo(user_id!);
+    res.status(200).json({ data: list.rows });
     // console.log("controller?",list.rows)
-  }
+  };
 }

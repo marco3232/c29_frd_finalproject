@@ -20,7 +20,6 @@ import { toggleButtonClasses } from "@mui/material";
 
 const source = "http://localhost:8080";
 
-
 export function AdminConfirmPage() {
   let { id } = useParams();
   const navigate = useNavigate();
@@ -79,6 +78,8 @@ export function AdminConfirmPage() {
             goods_status:item.status,
         })
     })
+
+   
   }
   //   const { isLoading, error, data } = useQuery("repoData", () =>
   //   fetch("").then(
@@ -122,6 +123,14 @@ export function AdminConfirmPage() {
                     <td>{entry.item_name}</td>
                     <td>{entry.qty}</td>
                     <td>
+                      {/* <Form.Select onChange={(e) => changeStatus(e, index)}>
+                        <option value="none">請選擇</option>
+                        <option value="normal">Normal</option>
+                        <option value="repairing">Repairing</option>
+                        <option value="rented">Rented</option>
+                        <option value="disposed">Disposed</option>
+                        <option value="lost">Lost</option>
+                      </Form.Select> */}
                       <Form.Select onChange={(e) => changeStatus(e, index)}>
                         <option value="none">請選擇</option>
                         <option value="normal">Normal</option>
@@ -134,7 +143,14 @@ export function AdminConfirmPage() {
               
                     <td>
                       {" "}
-                      <button type="submit" onClick={() => onSubmit(index)}> 提交</button>
+                      {/* <button type="submit" onClick={() => onSubmit(index)}> */}
+                      <button
+                        type="submit"
+                        id={`submitBtn-${index}`}
+                        onClick={() => onSubmit(index)}
+                      >
+                        提交
+                      </button>
                     </td>
                   </tr>
                 </tbody>

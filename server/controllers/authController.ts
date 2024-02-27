@@ -32,7 +32,7 @@ export default class AuthController {
       );
       console.log({ countOfEmailRecord });
       if (countOfEmailRecord > 0) {
-        res.status(400).json({ message: "Email already exists" });
+        res.status(400).json({ message: "Email already exists. Please use a different email address." });
         return;
       }
       let hashed: string = await hashedPassword(req.body.password);

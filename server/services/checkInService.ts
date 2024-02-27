@@ -7,6 +7,7 @@ import { generateSerialNumber } from "../utils/serial_number";
 //     user_id:number;
 // }
 
+
 export class CheckInService {
   constructor(private knex: Knex) {}
 

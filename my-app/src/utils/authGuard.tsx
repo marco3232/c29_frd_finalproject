@@ -13,14 +13,15 @@ export function AuthGuard() {
             Swal.fire({
                 title: "Please sign in to continue",
                 icon: 'error',
-                showConfirmButton: false
+                showConfirmButton: false,
+                timer: 2000
             });;
         }
     }, [isAuthenticated]);
 
-    console.log({
-        isAuthenticated
-    })
+    // console.log({
+    //     isAuthenticated
+    // })
     if (isAuthenticated) {
         return <Outlet />;
     } else {
