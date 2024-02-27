@@ -31,7 +31,7 @@ export interface CheckOutTransactionType {
         let {
           rentalList,
           checkoutTransaction,
-        } : { rentalList : CheckInType[]; checkoutTransaction: CheckOutTransactionType }= 
+        } : { rentalList : CheckInType; checkoutTransaction: CheckOutTransactionType }= 
         req.body;
         console.log("check req body",req.body)
         const user_id = req.user?.id;
@@ -55,7 +55,6 @@ export interface CheckOutTransactionType {
       } catch (error) {
         console.log(error);
         res.status(500).json({message: error})
-
       }
     };
 }

@@ -21,9 +21,9 @@ export class CheckOutService {
     contact_number_input: string,
     contact_name_input: string,
     confirmed_date_input: string,
-    confirmed_session_input: string,
+    confirmed_session_input: string, 
     user_id_input: number,
-    rentalList : CheckInType[]
+    rentalList : CheckInType
   ) {
     const trx = await this.knex.transaction();
     try {
@@ -38,14 +38,15 @@ export class CheckOutService {
           confirmed_date: confirmed_date_input,
           confirmed_session: confirmed_session_input,
           user_id: user_id_input,
+          purpose:"租借",
         })
        
-        for (let rental of rentalList) {
-        console.log("check rental", rental);
+        // for (let rental of rentalList) {
+        // console.log("check rental", rental);
             await this.table2(trx).insert({
-                checkin_id: rental.checkin_id,
+                checkin_id:rentalList.checkin_id
             })
-        }
+        // }
         await trx.commit();
         return true;
     } catch (error) {
