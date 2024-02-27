@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { DonationType, updateDonationList } from "../slice/logisticSlice";
 import { useAppDispatch } from "../hook/hooks";
 import deleteIcon from "../image/deleteIcon.jpeg";
+import Form from 'react-bootstrap/Form';
+
 
 type ItemProps = {
   // id: number;
@@ -101,7 +103,7 @@ export default function UploadPage() {
               </h3>
               <br />
 
-              <select
+              <Form.Select
                 className="donateItemList"
                 name="selectDonate"
                 value={selectedItem?.id}
@@ -118,20 +120,12 @@ export default function UploadPage() {
                 ) : (
                   <option value="">No Item List</option>
                 )}
-              </select>
-              {/* <div>
-              {Array.isArray(itemList) && itemList.length > 0 ? (
-                itemList.map((entry) => <img src={entry.image}></img>)
-              ) : (
-                <h1>No Item List</h1>
-              )}
-            </div> */}
-
+              </Form.Select>
               {"\u00A0\u00A0"}
               {"\u00A0\u00A0"}
               <b>
                 數量 :{" "}
-                <input
+                <input id="uploadPageInput"
                   type="number"
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
@@ -191,6 +185,6 @@ export default function UploadPage() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
