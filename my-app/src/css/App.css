@@ -525,7 +525,43 @@ padding-bottom: 1rem;
     filter: drop-shadow(20px 20px 10px #cde6f5);
 }
 
+/* ------Transaction Page------------------------------------------------------------------------------------------ */
 
 .MuiFormControl-root {
     width: 50rem !important;
+}
+
+/* ------Rental Page------------------------------------------------------------------------------------------ */
+
+.rentalPageControl {
+
+    display: flex;   
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.rentalPageContainer {
+    width: 70rem;
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.rentalPageCardControl {
+    display: flex;
+    width: 15rem;
+    margin: 2rem;
+}
+
+.rentalPageCard {
+
+}
+
+.rentalPageCardImg {
+    background-color: white;
+}
+.fade {
+    width:  40rem !important;
 }
