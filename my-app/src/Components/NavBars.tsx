@@ -34,7 +34,7 @@ function NavBarControl() {
                             <Nav className="navText flex-grow-1 pe-5">
                                 <Nav.Link onClick={() => navigate('')}>主頁</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/Donate')}>物資捐贈</Nav.Link>
-                                <Nav.Link onClick={() => navigate('/Rent')}>rentItem</Nav.Link>
+                                <Nav.Link onClick={() => navigate('/RentalPage')}>RentItem</Nav.Link>
                                 <Nav.Link onClick={() => navigate('/AboutUs')}>關於我們</Nav.Link>
                                 {/* <Nav.Link onClick={() => navigate('/Upload')}>Upload</Nav.Link> */}
                                 {

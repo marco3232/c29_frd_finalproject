@@ -22,7 +22,7 @@ export class CheckOutService {
     confirmed_date_input: string,
     confirmed_session_input: string, 
     user_id_input: number,
-    rentalList: CheckInType[]
+    checkInIds: number[]
   ) {
     const trx = await this.knex.transaction();
     try {
@@ -53,12 +53,9 @@ export class CheckOutService {
     //       }
     //     }
     //   }
-
-    const logistic_id = logisticReturning[0].id;
-      for (let checkout of rentalList) {
+      for (let checkInId of checkInIds) {
             await this.table2(trx).insert({
-            logistic_id:logistic_id,
-            checkin_id: checkout.id,
+            checkin_id: checkInId,
             user_id: user_id_input,
             type: "rent",
             status: "in-use",
