@@ -37,6 +37,7 @@ export function RentalPage() {
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
     console.log({ donateItemIds })
+    
     navigate("/CheckoutTransaction");
 
   };
