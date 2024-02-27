@@ -12,13 +12,13 @@ export interface CheckOutTransactionType {
     contact_name: string;
     confirmed_date: string;
     confirmed_session: string;
-  }
+}
 
-  export interface CheckOutState {
-    donateItemIds : number[]
+export interface CheckOutState {
+    donateItemIds: number[]
     checkoutTransaction: CheckOutTransactionType
 
-  }
+}
 
 // ---------------------------------------------------------------
 
@@ -41,11 +41,11 @@ const initialState: CheckOutState = {
 export const checkOutSlice = createSlice({
     name: "checkout",
     initialState,
-    reducers:{
-        updateRentalList: (state: CheckOutState, action : PayloadAction<number[]>) => {
+    reducers: {
+        updateRentalList: (state: CheckOutState, action: PayloadAction<number[]>) => {
             state.donateItemIds = action.payload
         },
-        updateCheckOutTransaction: (state: CheckOutState, action : PayloadAction<number[]>) => {
+        updateCheckOutTransaction: (state: CheckOutState, action: PayloadAction<number[]>) => {
             state.donateItemIds = action.payload
         },
         clearForm: (state: CheckOutState) => {
@@ -56,4 +56,4 @@ export const checkOutSlice = createSlice({
 });
 
 export default checkOutSlice.reducer;
-export const {updateRentalList, updateCheckOutTransaction, clearForm} = checkOutSlice.actions;
+export const { updateRentalList, updateCheckOutTransaction, clearForm } = checkOutSlice.actions;

@@ -2,7 +2,7 @@ import { Knex } from "knex";
 
 
 export class CheckOutService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table(trx: Knex | null) {
     let checkOut = !trx ? this.knex : trx;
     return checkOut("logistics");
@@ -20,7 +20,7 @@ export class CheckOutService {
     contact_number_input: string,
     contact_name_input: string,
     confirmed_date_input: string,
-    confirmed_session_input: string, 
+    confirmed_session_input: string,
     user_id_input: number,
     checkInIds: number[]
   ) {

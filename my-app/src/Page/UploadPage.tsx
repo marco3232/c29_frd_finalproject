@@ -21,6 +21,7 @@ export default function UploadPage() {
   const queryClient = useQueryClient();
   const [input, setInput] = useState("");
   const [preSubmit, setPreSubmit] = useState("");
+  const [showImage, setShowImage] = useState(false);
   const [donationList, setDonationList] = useState<
     Array<{
       id: number;
@@ -95,11 +96,12 @@ export default function UploadPage() {
   return (
     <div className="uploadControl">
       <div className="stepImgContainer">
-        <img id="uploadStepImg" src={uploadImg}></img>
+        {showImage && <img id="uploadStepImg" src={uploadImg} alt="Step Image"></img>}
       </div>
       <div className="uploadContainer">
         <div className="uploadForm">
           <form className="selectItem" onSubmit={handleSubmit}>
+            <MDBBtn id="donateStepBtn" onClick={() => setShowImage(!showImage)}>捐贈步驟說明</MDBBtn>
             <h3>
               <b>請選擇捐贈物品：</b>
             </h3>
@@ -145,7 +147,6 @@ export default function UploadPage() {
             <MDBBtn
               className="uploadAddItemBtn"
               onClick={addPreSubmitHandler}
-              color="secondary"
             >
               增加
             </MDBBtn>
