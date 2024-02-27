@@ -6,16 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 
 const MyCarousel = () => {
   return (
-    <Carousel
-      className="carouselContainer"
-      autoPlay
-      interval={1000}
-      infiniteLoop
-      showThumbs={false}
-      showStatus={false}
-      showArrows={false}
-      stopOnHover={true}
-    >
+    <Carousel className='carouselContainer' autoPlay interval={5000} infiniteLoop showThumbs={false} showStatus={false} showArrows={false} stopOnHover={true} >
       <div>
         <img src={banner} alt="Image 1" />
       </div>
