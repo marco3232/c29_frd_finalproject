@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { CheckInType } from "../controllers/checkOutController";
+
 
 export class CheckOutService {
   constructor(private knex: Knex) {}

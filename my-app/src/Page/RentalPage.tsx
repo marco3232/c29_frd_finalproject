@@ -7,9 +7,19 @@ import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
 import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
+import { useAppDispatch } from "../hook/hooks";
+import { updateRentalList } from "../slice/checkOutSlice";
 
 export function RentalPage() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const nextStep = (rentalListMapped: number[]) => {
+
+    dispatch(updateRentalList(rentalListMapped));
+    // setInput("");
+    navigate("/Transaction");
+  };
 
   const RentListData = useRentalPage_3();
 
@@ -97,7 +107,7 @@ export function RentalPage() {
           )
         )}
 
-      <button onClick={submit}>next</button>
+      {/* <button onClick={nextStep}>Next</button> */}
     </>
   );
 }
