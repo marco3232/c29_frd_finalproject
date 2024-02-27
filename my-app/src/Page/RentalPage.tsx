@@ -14,7 +14,7 @@ export function RentalPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const RentListData = useRentalPage_3();
-  
+
   // const nextStep = () => {
   //   let donateItemIds: number[] = [];
   //   dispatch(updateRentalList(donateItemIds));
@@ -23,14 +23,22 @@ export function RentalPage() {
   //   navigate("/Transaction");
   // };
 
-
   const [showA, setShowA] = useState(true);
   const [showB, setShowB] = useState(true);
 
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
-
+  const updateRentalList = (itemIds: number[]) => {
+    return { type: "update rental list", donateItemIds: itemIds };
+  };
+  const submit = () => {
+    dispatch(updateRentalList(Array.from(donateItemIds)));
+    console.log("submit");
+    console.log({ donateItemIds });
+    navigate("/CheckoutTransaction");
+    // KOKOK?
+  };
 
   const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
 
@@ -71,7 +79,7 @@ export function RentalPage() {
                       image={entry.image}
                       style={{ objectFit: "contain" }}
                     />
-                    <Toast >
+                    <Toast>
                       <Toast.Header>
                         <strong className="me-auto">Item:</strong>
                         <small>{entry.item_name}</small>
@@ -87,7 +95,9 @@ export function RentalPage() {
                       <Toast.Body>
                         <div className="mb-3">
                           <Form.Check // prettier-ignore
-                            onChange={() => updateDonateItem(entry.donate_item_id)}
+                            onChange={() =>
+                              updateDonateItem(entry.donate_item_id)
+                            }
                             checked={donateItemIds.has(entry.donate_item_id)}
                           />
                         </div>
@@ -99,10 +109,11 @@ export function RentalPage() {
               )
             )}
         </div>
-
       </div>
       <div className="rentalPageBtnControl">
-        {/* <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn> */}
+        <MDBBtn className="rentalPageBtn" onClick={submit}>
+          next
+        </MDBBtn>
       </div>
     </>
   );
