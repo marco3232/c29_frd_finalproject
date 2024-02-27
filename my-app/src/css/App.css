@@ -1,4 +1,5 @@
 body {
+    min-height: 100vh;
     max-width: 100%;
     background-color: #cde6f522!important;
 }
@@ -16,8 +17,7 @@ max-width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    min-height:94vh;
-    flex:1;
+    min-height: 100vh;
 }
 
 .banContainer {
@@ -39,9 +39,10 @@ max-width: 100%;
     background-color: #cde6f56c;
     display: flex;
     justify-content:center;
-    position: relative;
-    bottom: 0;
+    position:relative;
+    bottom: 0 !important;
     left: 0;
+    margin-top: auto
 }
 .footText {
     padding-top: 1rem;
@@ -54,6 +55,11 @@ max-width: 100%;
     width: 100%;
 }
 
+.welcomePage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 /* --Nav Bar------------------------------------------------------------------------------------------------------- */
 
@@ -288,9 +294,8 @@ width: 100%;
 }
 /* -----Body Content--------------------------------------------------------------------------- */
 .bodyContent {
-    margin-top: 5rem;
+    margin-top: 2rem;
     width: 77rem;
-    height: 80%;
 }
 .homePageCardContainer {
     margin-top: 2rem !important;
@@ -360,7 +365,6 @@ width: 100%;
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
 .uploadContainer {
     display: flex;
-    padding-bottom: 15rem;
     justify-content: center;
 }
 

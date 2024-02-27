@@ -114,14 +114,14 @@ function App() {
                         <Route path="/AdminConfirm/:id" element={<AdminConfirmPage />} />
                     </Route>
                 </Routes>
-            </div >
-            <div className='footContainer'>
-                <div className="footText">
-                    <a>聯絡我們: +852-88888888</a>
-                    <a> ©2024 老友所遺 </a>
-                    {/* <a>社會福利署 : https://www.swd.gov.hk/tc/pubsvc/elderly/cat_commsupp/elderly_centres/ </a> */}
+                <div className='footContainer'>
+                    <div className="footText">
+                        <a>聯絡我們: +852-88888888</a>
+                        <a> ©2024 老友所遺 </a>
+                        {/* <a>社會福利署 : https://www.swd.gov.hk/tc/pubsvc/elderly/cat_commsupp/elderly_centres/ </a> */}
+                    </div>
                 </div>
-            </div>
+            </div >
         </div>
     );
 }
