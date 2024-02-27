@@ -1,6 +1,5 @@
 import { Knex } from "knex";
 
-
 export class CheckOutService {
   constructor(private knex: Knex) { }
   table(trx: Knex | null) {
@@ -64,12 +63,6 @@ export class CheckOutService {
           });
       }
 
-      // for (let rental of rentalList) {
-      // console.log("check rental", rental);
-      //     await this.table2(trx).insert({
-      //         checkin_id: rental.checkin_id,
-      //     })
-      // }
       await trx.commit();
       return true;
     } catch (error) {
