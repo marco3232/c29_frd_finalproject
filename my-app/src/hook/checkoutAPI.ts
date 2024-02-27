@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CheckOutTransactionType, RentalType } from "../slice/checkOutSlice";
+import { CheckOutTransactionType, CheckInType } from "../slice/checkOutSlice";
 
 
 const source = "http://localhost:8080";
@@ -29,7 +29,7 @@ export function useCheckOutInfo() {
 }
 
 export async function addCheckOut(
-    rentalList: RentalType[],
+    rentalList: CheckInType[],
     checkoutTransaction: CheckOutTransactionType
 ) {
     const body = {
