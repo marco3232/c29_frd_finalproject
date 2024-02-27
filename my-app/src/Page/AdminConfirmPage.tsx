@@ -1,6 +1,6 @@
 // import { QueryClient, QueryClientProvider } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import {  useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
+import { useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
 import { Form, Table } from "react-bootstrap";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryClient } from "..";
@@ -52,7 +52,7 @@ export function AdminConfirmPage() {
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
     items[index].status = value
-    console.log({value, index});
+    console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items)
   };
 
@@ -62,24 +62,24 @@ export function AdminConfirmPage() {
       logistic_item_id: item.id,
       status: item.status
 
-  }
+    }
     console.log(body)
 
     await fetch(`${source}/checkin`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-            logistic_item_id: item.id,
-            logistic_id:item.logistic_id,
-            donate_item_id: item.donate_item_id,
-            goods_status:item.status,
-        })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({
+        logistic_item_id: item.id,
+        logistic_id: item.logistic_id,
+        donate_item_id: item.donate_item_id,
+        goods_status: item.status,
+      })
     })
 
-   
+
   }
   //   const { isLoading, error, data } = useQuery("repoData", () =>
   //   fetch("").then(
@@ -100,7 +100,7 @@ export function AdminConfirmPage() {
               <th>Table heading</th>
               <th>Table heading</th>
               <th>Status</th>
-       
+
               <th>Operation</th>
             </tr>
           </thead>
@@ -140,7 +140,7 @@ export function AdminConfirmPage() {
                         <option value="lost">Lost</option>
                       </Form.Select>
                     </td>
-              
+
                     <td>
                       {" "}
                       {/* <button type="submit" onClick={() => onSubmit(index)}> */}

@@ -122,6 +122,9 @@ export default function TransactionPage() {
 
   return (
     <div className={styles.transactionContainer}>
+      <div className={styles.transactionPageTitle}>
+        <h3>聯絡人資料</h3>
+      </div>
       <div className={styles.inputAddressContainer}>
         <div className={styles.contactInfo}>
           <Form>
@@ -146,7 +149,7 @@ export default function TransactionPage() {
               />
             </Form.Group>
           </Form>
-          <Form.Label>區域</Form.Label>
+          <Form.Label className={styles.form_label}>區域</Form.Label>
           <Form.Select onChange={handleRegionChange} value={region}>
             <option></option>
             <option>香港島</option>
@@ -230,7 +233,7 @@ export default function TransactionPage() {
           </LocalizationProvider>
           <br></br>
           <MDBBtn
-            className="uploadBtn"
+            className={styles.transactionPageUploadBtn}
             color="info"
             size="lg"
             onClick={addLogisticHandler}

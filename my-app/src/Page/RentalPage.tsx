@@ -21,7 +21,7 @@ export function RentalPage() {
 
   const submit = () => {
     console.log("submit");
-    console.log({donateItemIds})
+    console.log({ donateItemIds })
   };
 
   const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
@@ -85,8 +85,8 @@ export function RentalPage() {
                   <Toast.Body>
                     <div className="mb-3">
                       <Form.Check // prettier-ignore
-                         onChange={() => updateDonateItem(entry.donate_item_id)}
-                         checked={donateItemIds.has(entry.donate_item_id)}
+                        onChange={() => updateDonateItem(entry.donate_item_id)}
+                        checked={donateItemIds.has(entry.donate_item_id)}
                       />
                     </div>
                   </Toast.Body>
