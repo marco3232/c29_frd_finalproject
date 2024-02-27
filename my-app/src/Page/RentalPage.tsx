@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 import CardMedia from "@mui/material/CardMedia";
 
 export function RentalPage() {
-<<<<<<< HEAD
   const navigate = useNavigate();
 
   const RentListData = useRentalPage_3();
@@ -75,41 +74,15 @@ export function RentalPage() {
                     </div>
                   </Toast.Body>
                 </Toast>
+              </Col>
                 <button onClick={() => navigate(`//${entry.donate_item_id}`)}>
                   next
                 </button>
-              </Col>
+          
               {/* <-----------------------------------------------------> */}
-              <Col md={6} className="mb-2">
-                <Button onClick={toggleShowB} className="mb-2">
-                  Toggle Toast <strong>without</strong> Animation
-                </Button>
-                <Toast onClose={toggleShowB} show={showB} animation={false}>
-                  <Toast.Header>
-                    <img
-                      src="holder.js/20x20?text=%20"
-                      className="rounded me-2"
-                      alt=""
-                    />
-                    <strong className="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                  </Toast.Header>
-                  <Toast.Body>
-                    Woohoo, you're reading this text in a Toast!
-                  </Toast.Body>
-                </Toast>
-              </Col>
             </Row>
           )
         )}
     </>
   );
 }
-=======
-    return (
-        <>
-            <h1>Rental Page</h1>
-        </>
-    )
-}
->>>>>>> 57cec499ff73433ed0abf3a9e6a6064ff405e74d
