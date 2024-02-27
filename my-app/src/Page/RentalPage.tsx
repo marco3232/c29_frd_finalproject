@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
 import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 export function RentalPage() {
   const navigate = useNavigate();
@@ -93,7 +94,9 @@ export function RentalPage() {
         </div>
 
       </div>
-      <button onClick={submit}>next</button>
+      <div className="rentalPageBtnControl">
+        <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn>
+      </div>
     </>
   );
 }
