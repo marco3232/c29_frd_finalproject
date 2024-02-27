@@ -26,7 +26,7 @@ export class CheckOutService {
   ) {
     const trx = await this.knex.transaction();
     try {
-      await this.table(trx).insert({
+        const logisticReturning = await this.table(trx).insert({
         room: room_input,
         building: building_input,
         street: street_input,
@@ -38,7 +38,8 @@ export class CheckOutService {
         user_id: user_id_input,
         purpose:"租借",
         status:"in-transit"
-      });
+      })
+      .returning("id");
 
     //   for (let checkout of rentalList) {
     //     if (checkout.id > 1) {
@@ -52,8 +53,10 @@ export class CheckOutService {
     //       }
     //     }
     //   }
+    const logistic_id = logisticReturning[0].id;
       for (let checkInId of checkInIds) {
             await this.table2(trx).insert({
+            logistic_id:logistic_id,
             checkin_id: checkInId,
             user_id: user_id_input,
             type: "rent",

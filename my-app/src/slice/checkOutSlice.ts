@@ -42,15 +42,15 @@ export const checkOutSlice = createSlice({
     name: "checkout",
     initialState,
     reducers:{
-        // updateRentalList: (state: CheckOutState, action : PayloadAction<CheckInType[]>) => {
-        //     state.rentalList = action.payload
-        // },
-        // updateCheckOutTransaction: (state: CheckOutState, action : PayloadAction<CheckInType[]>) => {
-        //     state.rentalList = action.payload
-        // },
-        // clearForm: (state: CheckOutState) => {
-        //     state = initialState
-        // },
+        updateRentalList: (state: CheckOutState, action : PayloadAction<number[]>) => {
+            state.donateItemIds = action.payload
+        },
+        updateCheckOutTransaction: (state: CheckOutState, action : PayloadAction<number[]>) => {
+            state.donateItemIds = action.payload
+        },
+        clearForm: (state: CheckOutState) => {
+            state = initialState
+        },
     },
 
 });
