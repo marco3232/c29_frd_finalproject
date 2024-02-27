@@ -1,12 +1,21 @@
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import banner from "../image/homePage.png";
 import banner2 from "../image/homePage2.png";
 import banner3 from "../image/homePage3.png";
+import { Carousel } from "react-responsive-carousel";
 
 const MyCarousel = () => {
   return (
-    <Carousel className='carouselContainer' autoPlay interval={1000} infiniteLoop showThumbs={false} showStatus={false} showArrows={false} stopOnHover={true} >
+    <Carousel
+      className="carouselContainer"
+      autoPlay
+      interval={1000}
+      infiniteLoop
+      showThumbs={false}
+      showStatus={false}
+      showArrows={false}
+      stopOnHover={true}
+    >
       <div>
         <img src={banner} alt="Image 1" />
       </div>
