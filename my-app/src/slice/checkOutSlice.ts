@@ -14,12 +14,8 @@ export interface CheckOutTransactionType {
     confirmed_session: string;
   }
 
-  export interface CheckInType {
-    id:number
-  }
-
   export interface CheckOutState {
-    rentalList : CheckInType[]
+    donateItemIds : number[]
     checkoutTransaction: CheckOutTransactionType
 
   }
@@ -27,7 +23,7 @@ export interface CheckOutTransactionType {
 // ---------------------------------------------------------------
 
 const initialState: CheckOutState = {
-    rentalList: [],
+    donateItemIds: [],
     checkoutTransaction: {
         room: '',
         building: '',

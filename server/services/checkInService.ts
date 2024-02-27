@@ -11,6 +11,14 @@ import { generateSerialNumber } from "../utils/serial_number";
 export class CheckInService {
   constructor(private knex: Knex) {}
 
+  async getCheckInIdByDonateItemId(id: number) {
+    const result = await this.checkinTable().select("id").where("donate_item_id", id).limit(1)
+    if (result.length <= 0) {
+      return NaN
+    }
+    return result[0].id
+  } 
+
   private checkinTable() {
     return this.knex("checkins");
   }
