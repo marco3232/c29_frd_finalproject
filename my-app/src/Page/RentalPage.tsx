@@ -7,8 +7,8 @@ import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
 import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
+import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
-import { updateRentalList } from "../slice/checkOutSlice";
 
 export function RentalPage() {
   const dispatch = useAppDispatch();
@@ -110,7 +110,9 @@ export function RentalPage() {
         </div>
 
       </div>
-      <button onClick={submit}>next</button>
+      <div className="rentalPageBtnControl">
+        <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn>
+      </div>
     </>
   );
 }

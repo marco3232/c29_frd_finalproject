@@ -552,16 +552,28 @@ padding-bottom: 1rem;
 .rentalPageCardControl {
     display: flex;
     width: 15rem;
-    margin: 2rem;
+    margin: 1rem !important;
 }
 
 .rentalPageCard {
-
 }
 
 .rentalPageCardImg {
     background-color: white;
 }
+
 .fade {
     width:  40rem !important;
+}
+.rentalPageBtnControl {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+.rentalPageBtn {
+    display: flex;
+    justify-content: center;
+    width: 50rem;
+    background-color: #cde6f5 !important;
+    color: black !important;
 }
