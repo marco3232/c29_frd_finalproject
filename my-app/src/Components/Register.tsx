@@ -35,18 +35,20 @@ const RegisterForm = () => {
     onSuccess: (data) => {
       console.log(data)
       Swal.fire({
-        text: "Registration successful",
+        title: "Registration successful",
         icon: 'success',
         showConfirmButton: false,
+        timer: 1000,
       })
 
       navigate("/");
     },
     onError: (data) => {
       Swal.fire({
-        text: data.message,
+        title: "Sorry," + data.message,
         icon: "error",
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 2000,
       });
     },
   });
@@ -58,41 +60,35 @@ const RegisterForm = () => {
 
     if (passwordInput1 !== passwordInput2) {
       return Swal.fire({
-        text: "The password does not match!",
+        title: "Sorry, The password does not match!",
         icon: "error",
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
     if (!email) {
       return Swal.fire({
-        text: "Email cannot be empty",
+        title: "Sorry, Email cannot be empty",
         icon: "error",
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
     if (!phoneNumber) {
       return Swal.fire({
-        text: "Phone number cannot be empty",
+        title: "Sorry, Phone number cannot be empty",
         icon: "error",
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 2000,
       });
     }
     try {
       const formData = { firstName, lastName, chiSurname, chiGivenName, email, phoneNumber, password };
       mutate(formData);
     } catch (error: any) {
-      console.log(error);
       console.error("Error during registration:", error);
-      if (error.message === "Email already exists") {
-        alert("Email already exists. Please use a different email address.");
-      } else {
-        alert("Error during registration: " + error.message);
-      }
     }
   };
-
-  // -----------------------------------------------
-
 
   // -----------------------------------------------
 
@@ -105,9 +101,6 @@ const RegisterForm = () => {
         <h3 className='registerTitle'>Registration </h3>
         <form className="registerFormFetch" onSubmit={handleRegister}>
           <MDBRow className="registercontrol">
-            {/* <MDBCol md='6' className="d-none d-md-block">
-              <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp' alt="Sample photo" className="rounded-start" fluid />
-            </MDBCol> */}
             <MDBCol md='6' className='firstNameInput'>
               <MDBInput
                 wrapperClass='mb-4'
