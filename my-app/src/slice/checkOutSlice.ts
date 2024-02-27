@@ -45,8 +45,8 @@ export const checkOutSlice = createSlice({
         updateRentalList: (state: CheckOutState, action: PayloadAction<number[]>) => {
             state.donateItemIds = action.payload
         },
-        updateCheckOutTransaction: (state: CheckOutState, action: PayloadAction<number[]>) => {
-            state.donateItemIds = action.payload
+        updateCheckOutTransaction: (state: CheckOutState, action: PayloadAction<CheckOutTransactionType>) => {
+            state.checkoutTransaction = action.payload
         },
         clearForm: (state: CheckOutState) => {
             state = initialState

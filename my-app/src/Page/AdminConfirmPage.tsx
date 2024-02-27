@@ -49,24 +49,25 @@ export function AdminConfirmPage() {
 
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
-    items[index].status = value;
+    items[index].status = value
     console.log({ value, index });
-    queryClient.setQueryData(["adminCheckInConfirm"], items);
+    queryClient.setQueryData(["adminCheckInConfirm"], items)
   };
 
   const onSubmit = async (index: number) => {
     const item = items[index];
     const body = {
       logistic_item_id: item.id,
-      status: item.status,
-    };
-    console.log(body);
+      status: item.status
+
+    }
+    console.log(body)
 
     await fetch(`${source}/checkin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         logistic_item_id: item.id,

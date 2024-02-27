@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CheckOutTransactionType,  } from "../slice/checkOutSlice";
+import { CheckOutTransactionType, } from "../slice/checkOutSlice";
 
 
 const source = "http://localhost:8080";
@@ -27,6 +27,7 @@ export function useCheckOutInfo() {
     }
     return data
 }
+
 
 export async function addCheckOut(
     donateItemIds: number[],

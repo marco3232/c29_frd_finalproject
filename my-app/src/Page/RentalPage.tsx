@@ -7,14 +7,22 @@ import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
 import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
+import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
 
 export function RentalPage() {
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
-
   const RentListData = useRentalPage_3();
+  
+  // const nextStep = () => {
+  //   let donateItemIds: number[] = [];
+  //   dispatch(updateRentalList(donateItemIds));
+  //   console.log({donateItemIds})
+
+  //   navigate("/Transaction");
+  // };
+
 
   const [showA, setShowA] = useState(true);
   const [showB, setShowB] = useState(true);
@@ -22,21 +30,15 @@ export function RentalPage() {
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
-  // const submit = () => {
-  //   console.log("submit");
-  //   console.log({donateItemIds})
-  // };
-  // Assuming you have an action like this
-  // --------------------------------------------------- redux----------------------
   const updateRentalList = (itemIds: number[]) => {
-    return { type: "UPDATE_RENTAL_LIST", donateItemIds: itemIds };
-  };
-
+    return { type: "update rental list", donateItemIds:itemIds }
+  }
   const submit = () => {
-    // Dispatch the action with the selected item ids
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
-    console.log({ donateItemIds });
+    console.log({ donateItemIds })
+    navigate("/CheckoutTransaction");
+
   };
 
   const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
@@ -53,66 +55,64 @@ export function RentalPage() {
 
   return (
     <>
-      {RentListData &&
-        Array.isArray(RentListData) &&
-        RentListData.map(
-          (
-            entry: {
-              donate_item_id: number;
-              item_name: string;
-              deposit_charge: number;
-              rent_charge: number;
-              image: string;
-            },
-            index
-          ) => (
-            <Row key={index}>
-              <Col md={6} className="mb-2">
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  height="200"
-                  image={entry.image}
-                  style={{ objectFit: "contain" }}
-                />
-                <Button onClick={toggleShowA} className="mb-2">
-                  <strong>{entry.item_name}</strong>
-                </Button>
-                <Toast show={showA} onClose={toggleShowA}>
-                  <Toast.Header>
-                    <img
-                      src="holder.js/20x20?text=%20"
-                      className="rounded me-2"
-                      alt=""
+      <div className="rentalPageControl">
+        <div className="rentalPageContainer">
+          {RentListData &&
+            Array.isArray(RentListData) &&
+            RentListData.map(
+              (
+                entry: {
+                  donate_item_id: number;
+                  item_name: string;
+                  deposit_charge: number;
+                  rent_charge: number;
+                  image: string;
+                },
+                index
+              ) => (
+                <Row className="rentalPageCardControl" key={index}>
+                  <Col className="rentalPageCard">
+                    <CardMedia
+                      className="rentalPageCardImg"
+                      component="img"
+                      alt="green iguana"
+                      height="200"
+                      image={entry.image}
+                      style={{ objectFit: "contain" }}
                     />
-                    <strong className="me-auto">Deposit:</strong>
-                    <small>{entry.deposit_charge}元</small>
-                  </Toast.Header>
-                  <Toast.Header>
-                    <img
-                      src="holder.js/20x20?text=%20"
-                      className="rounded me-2"
-                      alt=""
-                    />
-                    <strong className="me-auto">Rent:</strong>
-                    <small>{entry.rent_charge}元/MONTH</small>
-                  </Toast.Header>
-                  <Toast.Body>
-                    <div className="mb-3">
-                      <Form.Check // prettier-ignore
-                        onChange={() => updateDonateItem(entry.donate_item_id)}
-                        checked={donateItemIds.has(entry.donate_item_id)}
-                      />
-                    </div>
-                  </Toast.Body>
-                </Toast>
-              </Col>
-              {/* <-----------------------------------------------------> */}
-            </Row>
-          )
-        )}
+                    <Toast >
+                      <Toast.Header>
+                        <strong className="me-auto">Item:</strong>
+                        <small>{entry.item_name}</small>
+                      </Toast.Header>
+                      <Toast.Header>
+                        <strong className="me-auto">Deposit:</strong>
+                        <small>{entry.deposit_charge}元</small>
+                      </Toast.Header>
+                      <Toast.Header>
+                        <strong className="me-auto">Rent:</strong>
+                        <small>{entry.rent_charge}元/MONTH</small>
+                      </Toast.Header>
+                      <Toast.Body>
+                        <div className="mb-3">
+                          <Form.Check // prettier-ignore
+                            onChange={() => updateDonateItem(entry.donate_item_id)}
+                            checked={donateItemIds.has(entry.donate_item_id)}
+                          />
+                        </div>
+                      </Toast.Body>
+                    </Toast>
+                  </Col>
+                  {/* <-----------------------------------------------------> */}
+                </Row>
+              )
+            )}
+        </div>
 
-      <button onClick={submit}>next</button>
+      </div>
+      <div className="rentalPageBtnControl">
+        <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn>
+      </div>
     </>
   );
 }

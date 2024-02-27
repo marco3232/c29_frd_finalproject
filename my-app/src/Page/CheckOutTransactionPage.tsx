@@ -10,20 +10,18 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import {
-  clearForm,
-  updateTransaction,
-} from "../slice/logisticSlice";
+import { updateRentalList,updateCheckOutTransaction,clearForm} from "../slice/checkOutSlice"
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
 import "../css/InputAddressPage.module.css";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { addCheckOut } from "../hook/checkoutAPI";
 
 //-------------------------------------------------------------------------------------------
 
-export default function TransactionPage() {
+export default function CheckOutTransactionPage() {
   const dispatch = useAppDispatch();
-  const donationList = useAppSelector((state) => state.logistic.donationList);
-  const transaction = useAppSelector((state) => state.logistic.transaction);
+  const rentalList = useAppSelector((state) => state.checkout.donateItemIds);
+  const checkoutTransaction = useAppSelector((state) => state.checkout.checkoutTransaction);
 
   // -----------react query-----------------------
   const navigate = useNavigate();
@@ -31,10 +29,10 @@ export default function TransactionPage() {
 
   const onAddLogistic = useMutation({
     mutationFn: async () => {
-      console.log({ donationList, transaction });
-      addLogisticColumn(
-        donationList,
-        transaction
+      console.log({ rentalList, checkoutTransaction });
+      addCheckOut(
+        rentalList,
+        checkoutTransaction
       )
     },
 
@@ -48,9 +46,9 @@ export default function TransactionPage() {
     },
   });
 
-  const addLogisticHandler = () => {
+  const addCheckOutHandler = () => {
     dispatch(
-      updateTransaction({
+        updateCheckOutTransaction({
         room: roomInput,
         building: buildingInput,
         street: streetInput,
@@ -127,7 +125,7 @@ export default function TransactionPage() {
       </div>
       <div className={styles.inputAddressContainer}>
         <div className={styles.contactInfo}>
-          <h2>請輸入聯絡人資料</h2>
+          <h2>請輸入租借人聯絡資料</h2>
           <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>聯絡人姓名</Form.Label>
@@ -237,7 +235,7 @@ export default function TransactionPage() {
             className={styles.transactionPageUploadBtn}
             color="info"
             size="lg"
-            onClick={addLogisticHandler}
+            onClick={addCheckOutHandler}
           >
             提交
           </MDBBtn>
