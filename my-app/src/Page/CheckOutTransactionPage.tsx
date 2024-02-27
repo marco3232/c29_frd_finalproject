@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { updateRentalList,updateCheckOutTransaction,clearForm} from "../slice/checkOutSlice"
+import { updateRentalList, updateCheckOutTransaction, clearForm } from "../slice/checkOutSlice"
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
 import "../css/InputAddressPage.module.css";
 import { MDBBtn } from "mdb-react-ui-kit";
@@ -48,7 +48,7 @@ export default function CheckOutTransactionPage() {
 
   const addCheckOutHandler = () => {
     dispatch(
-        updateCheckOutTransaction({
+      updateCheckOutTransaction({
         room: roomInput,
         building: buildingInput,
         street: streetInput,
@@ -121,11 +121,10 @@ export default function CheckOutTransactionPage() {
   return (
     <div className={styles.transactionContainer}>
       <div className={styles.transactionPageTitle}>
-        <h3>聯絡人資料</h3>
+        <h3>請輸入租借人聯絡資料</h3>
       </div>
       <div className={styles.inputAddressContainer}>
         <div className={styles.contactInfo}>
-          <h2>請輸入租借人聯絡資料</h2>
           <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>聯絡人姓名</Form.Label>

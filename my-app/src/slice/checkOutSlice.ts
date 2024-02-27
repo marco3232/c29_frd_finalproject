@@ -43,7 +43,7 @@ export const checkOutSlice = createSlice({
     initialState,
     reducers: {
         updateRentalList: (state: CheckOutState, action: PayloadAction<number[]>) => {
-            state.donateItemIds = action.payload
+            state.donateItemIds = action.payload!~ZAaz
         },
         updateCheckOutTransaction: (state: CheckOutState, action: PayloadAction<CheckOutTransactionType>) => {
             state.checkoutTransaction = action.payload
