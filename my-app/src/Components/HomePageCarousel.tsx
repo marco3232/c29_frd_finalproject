@@ -13,15 +13,15 @@ export default function App() {
   }
 
   return (
-    <MDBCarousel MDBCarousel activeItem={activeItem} slide={false} interval={5000} >
+    <MDBCarousel MDBCarousel activeItem={activeItem} slide={false} interval={2000} >
       <MDBCarouselItem itemId={1}>
-        <img src={banner} className='d-block w-100' style={{ objectFit: 'cover' }} alt='.....' />
+        <img src={banner} className='d-block w-100'  style={{ objectFit: 'none' }} alt='.....' />
       </MDBCarouselItem>
       <MDBCarouselItem itemId={2}>
-        <img src={banner2} className='d-block w-100' style={{ objectFit: 'cover' }} alt='...' />
+        <img src={banner2} className='d-block w-100' style={{ objectFit: 'none' }} alt='...' />
       </MDBCarouselItem>
       <MDBCarouselItem itemId={3}>
-        <img src={banner3} className='d-block w-100' style={{ objectFit: 'cover' }} alt='...' />
+        <img src={banner3} className='d-block w-100' style={{ objectFit: 'none' }} alt='...' />
       </MDBCarouselItem>
     </MDBCarousel >
   );
