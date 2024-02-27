@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-// import { CheckOutTransactionType } from "../slice/checkOutSlice";
+import { CheckOutTransactionType,  } from "../slice/checkOutSlice";
 
 
 const source = "http://localhost:8080";
@@ -29,12 +29,12 @@ export function useCheckOutInfo() {
 }
 
 export async function addCheckOut(
-    checkInIds: number[],
-    // checkoutTransaction: CheckOutTransactionType
+    donateItemIds: number[],
+    checkoutTransaction: CheckOutTransactionType
 ) {
     const body = {
-        checkInIds,
-        // checkoutTransaction
+        donateItemIds,
+        checkoutTransaction
     }
     console.log({ body })
     const res = await fetch(`${source}/checkout`, {
