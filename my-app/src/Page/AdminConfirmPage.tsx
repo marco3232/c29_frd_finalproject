@@ -2,8 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
 import { Form, Table } from "react-bootstrap";
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import { useState } from "react";
+
+// --------------------------------------------------------------------------------
 
 const source = "http://localhost:8080";
 
@@ -15,11 +16,14 @@ export function AdminConfirmPage() {
   const items = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
 
+  // ---------------------
 
-  const changeFileUpload = (e: any, index: number) => {
-    const value = e.target.value;
-    console.log(value);
-  };
+  // const changeFileUpload = (e: any, index: number) => {
+  //   const value = e.target.value;
+  //   console.log(value);
+  // };
+
+  // ---------------------
 
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
@@ -29,6 +33,8 @@ export function AdminConfirmPage() {
     console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items);
   };
+
+  // ---------------------
 
   const onSubmit = async (index: number) => {
     const item = items[index];
@@ -53,6 +59,7 @@ export function AdminConfirmPage() {
       return newStatus;
     });
   };
+  // ---------------------
 
   return (
     <>
