@@ -9,6 +9,7 @@ export class CheckInController {
 
     this.router.get("/precheckin", this.precheckinlist);
     this.router.post("/checkin", this.create);
+    this.router.put("/updatestatus",this.update)
   }
 
   inventory = async (req: Request, res: Response) => {
@@ -81,4 +82,14 @@ export class CheckInController {
       return res.status(500).json({ message: "Internal Server Error" });
     }
   };
+
+  update = async (req: Request, res:Response) => {
+    try {
+      
+
+    } catch (error) {
+
+    }
+  }
+
 }

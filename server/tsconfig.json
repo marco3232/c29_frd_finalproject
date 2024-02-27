@@ -12,7 +12,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

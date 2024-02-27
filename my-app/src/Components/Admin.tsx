@@ -21,8 +21,8 @@ export default function Admin() {
                 <Table responsive="sm">
                   <thead>
                     <tr>
+                      <th>UUID</th>
                       <th>Purpose</th>
-                      <th>Uuid</th>
                       <th>Donate items & qty</th>
                       <th>address</th>
                       <th>Contact_name</th>
