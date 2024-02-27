@@ -13,15 +13,16 @@ import { updateRentalList } from "../slice/checkOutSlice";
 export function RentalPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const nextStep = () => {
-    let rentalListMapped: number[] = [];
-    dispatch(updateRentalList(rentalListMapped));
-    // setInput("");
-    navigate("/Transaction");
-  };
-
   const RentListData = useRentalPage_3();
+  
+  // const nextStep = () => {
+  //   let donateItemIds: number[] = [];
+  //   dispatch(updateRentalList(donateItemIds));
+  //   console.log({donateItemIds})
+
+  //   navigate("/Transaction");
+  // };
+
 
   const [showA, setShowA] = useState(true);
   const [showB, setShowB] = useState(true);
@@ -29,7 +30,11 @@ export function RentalPage() {
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
+  const updateRentalList = (itemIds: number[]) => {
+    return { type: "update rental list", donateItemIds:itemIds }
+  }
   const submit = () => {
+    dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
     console.log({donateItemIds})
   };
@@ -107,7 +112,7 @@ export function RentalPage() {
           )
         )}
 
-      <button onClick={nextStep}>Next</button>
+      <button onClick={submit}>Next</button>
     </>
   );
 }
