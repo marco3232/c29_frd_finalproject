@@ -91,34 +91,35 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="uploadContainer">
-      <div className="uploadForm">
-        <form className="selectItem" onSubmit={handleSubmit}>
-          <label>
-            <h3>
-              <b>請選擇捐贈物品：</b>
-            </h3>
-            <br />
+    <div className="uploadControl">
+      <div className="uploadContainer">
+        <div className="uploadForm">
+          <form className="selectItem" onSubmit={handleSubmit}>
+            <label>
+              <h3>
+                <b>請選擇捐贈物品：</b>
+              </h3>
+              <br />
 
-            <select
-              className="donateItemList"
-              name="selectDonate"
-              value={selectedItem?.id}
-              onChange={handleItemChange}
-            >
-              <option value="">請選擇</option>
-              {Array.isArray(itemList) && itemList.length > 0 ? (
-                itemList.map((entry) => (
-                  <option key={entry.id} value={entry.id}>
-                    {entry.item_name}
-                  </option>
-                  // <img src={entry.image}></img>
-                ))
-              ) : (
-                <option value="">No Item List</option>
-              )}
-            </select>
-            {/* <div>
+              <select
+                className="donateItemList"
+                name="selectDonate"
+                value={selectedItem?.id}
+                onChange={handleItemChange}
+              >
+                <option value="">請選擇</option>
+                {Array.isArray(itemList) && itemList.length > 0 ? (
+                  itemList.map((entry) => (
+                    <option key={entry.id} value={entry.id}>
+                      {entry.item_name}
+                    </option>
+                    // <img src={entry.image}></img>
+                  ))
+                ) : (
+                  <option value="">No Item List</option>
+                )}
+              </select>
+              {/* <div>
               {Array.isArray(itemList) && itemList.length > 0 ? (
                 itemList.map((entry) => <img src={entry.image}></img>)
               ) : (
@@ -126,67 +127,68 @@ export default function UploadPage() {
               )}
             </div> */}
 
-            {"\u00A0\u00A0"}
-            {"\u00A0\u00A0"}
-            <b>
-              數量 :{" "}
-              <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-              />
-              <br />
-              <br />
-            </b>
-            <h5>
+              {"\u00A0\u00A0"}
+              {"\u00A0\u00A0"}
               <b>
-                確認捐贈物品 : {selectedItem?.name} <br />
+                數量 :{" "}
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                />
                 <br />
-                確認數量 : {quantity}
+                <br />
               </b>
-            </h5>
+              <h5>
+                <b>
+                  確認捐贈物品 : {selectedItem?.name} <br />
+                  <br />
+                  確認數量 : {quantity}
+                </b>
+              </h5>
+              <MDBBtn
+                className="uploadAddItemBtn"
+                onClick={addPreSubmitHandler}
+                color="secondary"
+              >
+                增加
+              </MDBBtn>
+            </label>
+            <br />
+            <br />
+          </form>
+          {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
+          <div className="uploadSubmitForm">
+            <ListGroup as="ul">
+              {donationList.map((item, index) => (
+                <ListGroup.Item key={item.id}>
+                  <b>{item.item_name.name}</b> - Quantity: {item.quantity}
+                  {"\u00A0\u00A0"}
+                  {"\u00A0\u00A0"}
+                  <span
+                    className="delete_link"
+                    onClick={() => handleDelete(item.id)}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.textDecoration = "underline")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.textDecoration = "none")
+                    }
+                  >
+                    <img className="deleteIcon " src={deleteIcon}></img>
+                  </span>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
             <MDBBtn
-              className="uploadAddItemBtn"
-              onClick={addPreSubmitHandler}
-              color="secondary"
+              className="uploadBtn"
+              color="info"
+              size="lg"
+              onClick={nextStep}
             >
-              增加
+              提交
             </MDBBtn>
-          </label>
-          <br />
-          <br />
-        </form>
-        {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
-        <div className="uploadSubmitForm">
-          <ListGroup as="ul">
-            {donationList.map((item, index) => (
-              <ListGroup.Item key={item.id}>
-                <b>{item.item_name.name}</b> - Quantity: {item.quantity}
-                {"\u00A0\u00A0"}
-                {"\u00A0\u00A0"}
-                <span
-                  className="delete_link"
-                  onClick={() => handleDelete(item.id)}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.textDecoration = "underline")
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.textDecoration = "none")
-                  }
-                >
-                  <img className="deleteIcon " src={deleteIcon}></img>
-                </span>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-          <MDBBtn
-            className="uploadBtn"
-            color="info"
-            size="lg"
-            onClick={nextStep}
-          >
-            提交
-          </MDBBtn>
+          </div>
         </div>
       </div>
     </div>
