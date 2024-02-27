@@ -8,7 +8,7 @@ import { DonationType, updateDonationList } from "../slice/logisticSlice";
 import { useAppDispatch } from "../hook/hooks";
 import deleteIcon from "../image/deleteIcon.jpeg";
 import Form from 'react-bootstrap/Form';
-
+import uploadImg from "../image/uploadPageStep.png"
 
 type ItemProps = {
   // id: number;
@@ -94,65 +94,63 @@ export default function UploadPage() {
 
   return (
     <div className="uploadControl">
+      <div className="stepImgContainer">
+        <img id="uploadStepImg" src={uploadImg}></img>
+      </div>
       <div className="uploadContainer">
         <div className="uploadForm">
           <form className="selectItem" onSubmit={handleSubmit}>
-            <label>
-              <h3>
-                <b>請選擇捐贈物品：</b>
-              </h3>
-              <br />
+            <h3>
+              <b>請選擇捐贈物品：</b>
+            </h3>
+            <br />
 
-              <Form.Select
-                className="donateItemList"
-                name="selectDonate"
-                value={selectedItem?.id}
-                onChange={handleItemChange}
-              >
-                <option value="">請選擇</option>
-                {Array.isArray(itemList) && itemList.length > 0 ? (
-                  itemList.map((entry) => (
-                    <option key={entry.id} value={entry.id}>
-                      {entry.item_name}
-                    </option>
-                    // <img src={entry.image}></img>
-                  ))
-                ) : (
-                  <option value="">No Item List</option>
-                )}
-              </Form.Select>
-              {"\u00A0\u00A0"}
-              {"\u00A0\u00A0"}
+            <Form.Select
+              className="donateItemList"
+              name="selectDonate"
+              value={selectedItem?.id}
+              onChange={handleItemChange}
+            >
+              <option>請選擇</option>
+              {Array.isArray(itemList) && itemList.length > 0 ? (
+                itemList.map((entry) => (
+                  <option key={entry.id} value={entry.id} >
+                    {entry.item_name}
+                  </option>
+                  // <img src={entry.image}></img>
+                ))
+              ) : (
+                <option value="">No Item List</option>
+              )}
+            </Form.Select>
+            {"\u00A0\u00A0"}
+            <b>
+              數量 :{" "}
+              <Form.Control
+                id="uploadPageInput"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              />
+              <br />
+              <br />
+            </b>
+            <h5>
               <b>
-                數量 :{" "}
-                <input id="uploadPageInput"
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                />
+                確認捐贈物品 : {selectedItem?.name} <br />
                 <br />
-                <br />
+                確認數量 : {quantity}
               </b>
-              <h5>
-                <b>
-                  確認捐贈物品 : {selectedItem?.name} <br />
-                  <br />
-                  確認數量 : {quantity}
-                </b>
-              </h5>
-              <MDBBtn
-                className="uploadAddItemBtn"
-                onClick={addPreSubmitHandler}
-                color="secondary"
-              >
-                增加
-              </MDBBtn>
-            </label>
+            </h5>
+            <MDBBtn
+              className="uploadAddItemBtn"
+              onClick={addPreSubmitHandler}
+              color="secondary"
+            >
+              增加
+            </MDBBtn>
             <br />
-            <br />
-          </form>
-          {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
-          <div className="uploadSubmitForm">
+
             <ListGroup as="ul">
               {donationList.map((item, index) => (
                 <ListGroup.Item key={item.id}>
@@ -173,6 +171,7 @@ export default function UploadPage() {
                   </span>
                 </ListGroup.Item>
               ))}
+
             </ListGroup>
             <MDBBtn
               className="uploadBtn"
@@ -182,7 +181,8 @@ export default function UploadPage() {
             >
               提交
             </MDBBtn>
-          </div>
+          </form>
+          {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
         </div>
       </div>
     </div >
