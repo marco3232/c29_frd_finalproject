@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { CheckOutTransactionType, CheckInType } from "../slice/checkOutSlice";
+// import { CheckOutTransactionType } from "../slice/checkOutSlice";
 
 
 const source = "http://localhost:8080";
 
 export function useCheckOutInfo() {
-    const { isLoading, error, data, isFetching} = useQuery ({
-        queryKey:["checkouts"],
+    const { isLoading, error, data, isFetching } = useQuery({
+        queryKey: ["checkouts"],
         queryFn: async () => {
             const res = await fetch(`${source}/checkout`, {
-                headers:{
+                headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 },
             });
@@ -21,7 +21,7 @@ export function useCheckOutInfo() {
     if (isLoading || isFetching) return "Data Loading";
     if (error) {
         return "Error";
-    } 
+    }
     if (!data) {
         return []
     }
@@ -29,14 +29,14 @@ export function useCheckOutInfo() {
 }
 
 export async function addCheckOut(
-    rentalList: CheckInType[],
-    checkoutTransaction: CheckOutTransactionType
+    checkInIds: number[],
+    // checkoutTransaction: CheckOutTransactionType
 ) {
     const body = {
-        rentalList,
-        checkoutTransaction
+        checkInIds,
+        // checkoutTransaction
     }
-    console.log({body})
+    console.log({ body })
     const res = await fetch(`${source}/checkout`, {
         method: "POST",
         headers: {
