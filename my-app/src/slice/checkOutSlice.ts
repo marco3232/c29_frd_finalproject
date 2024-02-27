@@ -15,11 +15,11 @@ export interface CheckOutTransactionType {
   }
 
   export interface CheckInType {
-    checkin_id:number
+    id:number
   }
 
   export interface CheckOutState {
-    rentalList : CheckInType
+    rentalList : CheckInType[]
     checkoutTransaction: CheckOutTransactionType
 
   }
@@ -27,7 +27,7 @@ export interface CheckOutTransactionType {
 // ---------------------------------------------------------------
 
 const initialState: CheckOutState = {
-    rentalList: { checkin_id : 0},
+    rentalList: [],
     checkoutTransaction: {
         room: '',
         building: '',
@@ -46,10 +46,10 @@ export const checkOutSlice = createSlice({
     name: "checkout",
     initialState,
     reducers:{
-        updateRentalList: (state: CheckOutState, action : PayloadAction<CheckInType>) => {
+        updateRentalList: (state: CheckOutState, action : PayloadAction<CheckInType[]>) => {
             state.rentalList = action.payload
         },
-        updateCheckOutTransaction: (state: CheckOutState, action : PayloadAction<CheckInType>) => {
+        updateCheckOutTransaction: (state: CheckOutState, action : PayloadAction<CheckInType[]>) => {
             state.rentalList = action.payload
         },
         clearForm: (state: CheckOutState) => {

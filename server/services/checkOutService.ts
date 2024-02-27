@@ -37,19 +37,28 @@ export class CheckOutService {
         confirmed_session: confirmed_session_input,
         user_id: user_id_input,
         purpose:"租借",
+        status:"in-transit"
       });
 
+    //   for (let checkout of rentalList) {
+    //     if (checkout.id > 1) {
+    //       for (let i = 0; i < checkout.id; i++) {
+    //         await this.table2(trx).insert({
+    //           checkin_id: 1,
+    //           user_id: user_id_input,
+    //           type: "rent",
+    //           status: "in-use",
+    //         });
+    //       }
+    //     }
+    //   }
       for (let checkout of rentalList) {
-        if (checkout.id > 1) {
-          for (let i = 0; i < checkout.id; i++) {
             await this.table2(trx).insert({
-              checkin_id: 1,
-              user_id: 5,
-              type: "rent",
-              status: "in-use",
-            });
-          }
-        }
+            checkin_id: checkout.id,
+            user_id: user_id_input,
+            type: "rent",
+            status: "in-use",
+          });
       }
 
       // for (let rental of rentalList) {
