@@ -54,7 +54,7 @@ const uploadDonateItemsController = new UploadDonateItemsController(uploadDonate
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
 const checkInController = new CheckInController(checkInService);
-const checkOutController = new CheckOutController(checkOutService)
+const checkOutController = new CheckOutController(checkOutService, checkInService)
 const rentController = new RentController(rentService)
 
 

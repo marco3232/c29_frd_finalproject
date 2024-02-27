@@ -3,11 +3,10 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("checkouts", (table) => {
     table.increments("id").primary();
-    table.uuid("uuid").defaultTo(knex.fn.uuid());
     table.integer("checkin_id").unsigned().references("id").inTable("checkins");
     table.integer("user_id").unsigned().references("id").inTable("users");
     table.enum("type", ["rent", "giveaway"]).notNullable();
-
+    table.integer("logistic_id").unsigned().references("id").inTable("logistics");
     table
       .enum("status", [
         "to-be-confirmed",

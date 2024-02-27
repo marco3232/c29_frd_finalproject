@@ -213,27 +213,33 @@ width: 100%;
 /* --Upload Form------------------------------------------------------------------------------------------------------- */
 
 .uploadForm {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-    max-width: 100%;
-    width: 500px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.selectItem {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 .donateItemList {
-    margin-right: 30px;
-    margin-bottom: 40px;
     background-color: white;
-    width: 200px;
-    height: 30px;
+    width: 30rem !important;
+    height: 2.2rem;
 }
 
 .uploadBtn {
     font-weight: bold !important;
     line-height: 1 !important;
-    margin-top: 20px;
+    margin: 2rem;
 }
 
+#uploadPageInput {
+    /* width: 30rem; */
+    height: 2rem;
+}
 
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
@@ -313,6 +319,7 @@ width: 100%;
     background-color: #cde6f56c !important;
     /* border-radius: 2rem !important; */
     border-top-right-radius: 10rem !important;
+    border-top-left-radius: 10rem !important;
     border-bottom-left-radius: 10rem !important;
 }
 .homePageCard2{
@@ -325,6 +332,7 @@ width: 100%;
     background-color: #cde6f56c !important;
     /* border-radius: 2rem !important; */
     border-top-left-radius: 10rem !important;
+    border-top-right-radius: 10rem !important;
     border-bottom-right-radius: 10rem !important;
 }
 #homePageCard2Title {
@@ -363,20 +371,44 @@ width: 100%;
 }
 
 /* ------uploadPage & confirm upload------------------------------------------------------------------------------------------ */
+
+.stepImgContainer {
+    display: flex;
+    justify-content: center;  
+}
+#uploadStepImg {
+    width: 75rem;
+}
+
 .uploadContainer {
     display: flex;
     justify-content: center;
+    margin-top: 5rem;
 }
 
+.uploadControl {
+    justify-content: center;
+}
+
+.list-group{
+    align-items: center;
+}
 .list-group-item{
-    width: 15em;
-    margin: 4px ;
+    width: 20em;
+    align-items: center;
+    height: 2rem;
     border-radius: 5px;
-    border: solid 1px  black !important;
+    border: solid 1px  rgb(222, 222, 222) !important;
     display: flex !important;
     justify-content:space-around;
     padding-right: 5px !important;
     padding-left: 5px  !important;
+    border-top-right-radius: 1rem !important;
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+    margin-top: 1rem;
+
 }
 
 .deleteIcon {
@@ -450,7 +482,7 @@ padding-bottom: 1rem;
 
 /* ------Admin------------------------------------------------------------------------------------------ */
 
-.adminContainer {
+/* .adminContainer {
     display: flex;
     justify-content: center;
 }
@@ -463,14 +495,10 @@ padding-bottom: 1rem;
 
 .adminLogisticsControl {
     margin: 10rem;
-}
+} */
 
-.form-select {
-    width: 10rem !important;
-    padding: 5px !important;
-}
 
-.formConfirmContainer {
+/* .formConfirmContainer {
     display: flex;
     flex-direction: row;
     width: 20rem;
@@ -480,7 +508,7 @@ padding-bottom: 1rem;
     width: 5rem;
     background-color: white;
     margin-left: 2rem;
-    }
+    } */
 
 
 /* ------Carousel------------------------------------------------------------------------------------------ */

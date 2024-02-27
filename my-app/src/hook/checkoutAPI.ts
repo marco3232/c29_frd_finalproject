@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CheckOutTransactionType, CheckInType } from "../slice/checkOutSlice";
+import { CheckOutTransactionType,  } from "../slice/checkOutSlice";
 
 
 const source = "http://localhost:8080";
@@ -29,11 +29,11 @@ export function useCheckOutInfo() {
 }
 
 export async function addCheckOut(
-    rentalList: CheckInType[],
+    donateItemIds: number[],
     checkoutTransaction: CheckOutTransactionType
 ) {
     const body = {
-        rentalList,
+        donateItemIds,
         checkoutTransaction
     }
     console.log({body})
