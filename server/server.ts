@@ -16,8 +16,8 @@ import { LogisticMixService } from "./services/logisticServicesMix";
 import { LogisticMixController } from "./controllers/logisticControllerMix";
 import { CheckInService } from "./services/checkInService";
 import { CheckInController } from "./controllers/checkInController";
-// import { checkOutService } from "./services/checkOutService"
-// import { checkOutController } from "./controllers/checkOutController";
+import { CheckOutService } from "./services/checkOutService"
+import { CheckOutController } from "./controllers/checkOutController";
 //-----------
 
 import AdminController from "./controllers/adminController";
@@ -25,7 +25,7 @@ import { AdminService } from "./services/adminService";
 import { isAdminLoggedIn, isLoggedIn } from "./utils/gurad";
 import { RentController } from "./controllers/rentController";
 import {  rentItemService } from "./services/rentService";
-import { CheckOutController } from "./controllers/checkOutController";
+
 // import { updateIsAdmin } from "./utils/gurad"
 //-----------
 const app = express();
@@ -44,7 +44,7 @@ const logisticMixService = new LogisticMixService(knex);
 const adminService = new AdminService(knex)
 const checkInService = new CheckInService(knex)
 const rentService = new rentItemService(knex)
-// const checkOutService = new CheckOutService(knex)
+const checkOutService = new CheckOutService(knex)
 
 // ------Initialize controllers------------------------------------------------------
 const adminController = new AdminController(adminService);
@@ -54,8 +54,9 @@ const uploadDonateItemsController = new UploadDonateItemsController(uploadDonate
 const logisticController = new LogisticController(logisticService);
 const logisticMixController = new LogisticMixController(logisticMixService);
 const checkInController = new CheckInController(checkInService);
+const checkOutController = new CheckOutController(checkOutService)
 const rentController = new RentController(rentService)
-// const checkOutController = new CheckOutController(checkOutService)
+
 
 
 app.use(cors());
@@ -78,8 +79,9 @@ app.use("/rent", isLoggedIn, rentController.router)
 app.use("/", isLoggedIn, logisticController.router);
 app.use("/", isLoggedIn, logisticMixController.router);
 
-// ------CheckIn routes------------------------------------------------------
+// ------CheckIn & CheckOut routes------------------------------------------------------
 app.use("/", isLoggedIn, checkInController.router);
+app.use("/", isLoggedIn, checkOutController.router);
 
 
 // ------Other routes------------------------------------------------------

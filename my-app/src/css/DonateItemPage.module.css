@@ -3,10 +3,9 @@
     flex-wrap: wrap;
     justify-content:center; 
     width:100%;
-    padding-bottom: 100px;
+    padding-bottom: 10rem;
     object-fit: contain;
     box-shadow: 0px !important;
-
 }
 
 .title {
@@ -27,5 +26,5 @@
 
 .uploadBtn {
     width: 45%;
-    margin-top: 2em;
+    margin-top: 1em;
 }

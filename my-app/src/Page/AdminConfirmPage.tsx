@@ -66,22 +66,21 @@ export function AdminConfirmPage() {
     console.log(body)
 
     await fetch(`${source}/checkin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        logistic_item_id: item.id,
-        logistic_id: item.logistic_id,
-        donate_item_id: item.donate_item_id,
-        goods_status: item.status,
-      }),
-    });
-  };
-  // --------------------------------------------------------------------------------
-  
-  // ---------------------------------------------------------------------------------------
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            logistic_item_id: item.id,
+            logistic_id:item.logistic_id,
+            donate_item_id: item.donate_item_id,
+            goods_status:item.status,
+        })
+    })
+
+   
+  }
   //   const { isLoading, error, data } = useQuery("repoData", () =>
   //   fetch("").then(
   //     (res) => res.json(),

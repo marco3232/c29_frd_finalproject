@@ -15,8 +15,8 @@ export async function seed(knex: Knex): Promise<void> {
       district: "hk island",
       contact_number: "23456789",
       contact_name: "gu",
-      confirmed_date: "06-06-1966",
-      confirmed_session: "12:00",
+      confirmed_date: "3/13/2024",
+      confirmed_session: "11:30:00 AM",
       tried: true,
       rescheduled: true,
       user_id: 3,
@@ -28,8 +28,8 @@ export async function seed(knex: Knex): Promise<void> {
       district: "kowloon island",
       contact_number: "98765432",
       contact_name: "HO HA",
-      confirmed_date: "09-09-1999",
-      confirmed_session: "12:00AM",
+      confirmed_date: "4/20/2024",
+      confirmed_session: "2:20:00 PM",
       tried: true,
       rescheduled: true,
       user_id: 2,
@@ -45,8 +45,13 @@ export async function seed(knex: Knex): Promise<void> {
     {
       logistic_id: "2",
       donate_item_id: "2",
-      qty: 2,
+      qty: 1,
     },
+    {
+      logistic_id: "2",
+      donate_item_id: "2",
+      qty: 1,
+    }
   ]);
 
 }

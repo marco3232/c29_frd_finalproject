@@ -81,26 +81,9 @@ export default function UploadPage() {
         quantity: quantity,
       };
       setDonationList([...donationList, newItem]);
-      // setSelectedItem(""); // Reset selected item after adding to the list
       setQuantity(0); // Reset quantity after adding to the list
     }
   };
-
-  // const OnAddNewItems = useMutation({
-  //   mutationFn: async (data: { donate_item_id: number; qty: number }) =>
-  //     addNewItems(data.donate_item_id, data.qty),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["donate_items"],
-  //       exact: true,
-  //     });
-  //   },
-  // });
-
-  // const addNewItemHandler = () => {
-  //   OnAddNewItems.mutate({ logistic_id: 1, donate_item_id: 1, qty: 1 })
-  // }
-  // console.log("onadd??", addNewItemHandler)
 
   const handleDelete = (id: number) => {
     const updatedList = donationList.filter((item) => item.id !== id);

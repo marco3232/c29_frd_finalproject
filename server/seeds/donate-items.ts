@@ -51,7 +51,7 @@ export async function seed(knex: Knex): Promise<void> {
     },
     {
       item_name: "高背椅",
-      image: "/assets/高背椅.webp",
+      image: "../assets/高背椅.webp",
       rent_charge: 70,
       deposit_charge: 140,
     },
