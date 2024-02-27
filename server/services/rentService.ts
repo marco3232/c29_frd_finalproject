@@ -8,18 +8,19 @@ import { Knex } from "knex";
 //     serial_number:number
 // }
 
-export class rentItemService{
-    constructor(private knex: Knex){}
+export class rentItemService {
+  constructor(private knex: Knex) {}
 
-    async getRentResult(){
-        try{
-        let rentResult= await this.knex("donate_items")
-        .select("*")
-        // .join("checkins")
-
-        return rentResult
-        }catch(error){
-            throw new Error(`Error fetching items: ${error}`)
-        }
+  async getRentResult() {
+    try {
+      let rentResult = `with checkin_record as (
+            Select donate_item_id, count(donate_item_id) from checkins where order_status != 'checkout'  group by donate_item_id
+         ) select checkin_record.*,  donate_items.item_name, donate_items.deposit_charge,donate_items.rent_charge,donate_items.image  from checkin_record  inner join  donate_items on donate_items.id = checkin_record.donate_item_id;
+         `;
+      const result = await this.knex.raw(rentResult);
+      return result.rows;
+    } catch (error) {
+      throw new Error(`Error fetching items: ${error}`);
     }
+  }
 }

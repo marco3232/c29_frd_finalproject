@@ -144,7 +144,7 @@ function App() {
                     <Route path="/Transaction" element={<TransactionPage />} />
                     <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
-                    <Route path="/" element={<RentalPage/>}/>
+                    <Route path="/RentalPage" element={<RentalPage/>}/>
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/Upload" element={<UploadPage />} />
