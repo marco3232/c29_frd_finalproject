@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 
 export class CheckOutService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table(trx: Knex | null) {
     let checkOut = !trx ? this.knex : trx;
     return checkOut("logistics");

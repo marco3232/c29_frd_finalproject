@@ -220,7 +220,6 @@ width: 100%;
 
 .selectItem {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
 }
@@ -233,18 +232,28 @@ width: 100%;
 .uploadBtn {
     font-weight: bold !important;
     line-height: 1 !important;
-    margin: 2rem;
+    margin: 5rem;
 }
 
 #uploadPageInput {
-    /* width: 30rem; */
     height: 2rem;
+}
+
+#donateStepBtn {
+    display: flex;  
+    height: 2rem;
+    width: 7.5rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    background-color: #daeef99c !important;
+    color: black !important;
+    font-weight: bold ;
 }
 
 /* --Btn------------------------------------------------------------------------------------------------------- */
 
 .statusContainer{
-    margin-top: 1rem !important;
+    margin-top: 1rem !important; 
 }
 
 .logInStatus {
@@ -287,11 +296,12 @@ width: 100%;
 }
 
 .uploadAddItemBtn {
-    font-weight: bold !important; 
     font-size: 15px !important;
     padding-top: 5px !important; 
     padding-bottom: 5px !important;
     margin-top: 10px;
+    background-color: #daeef99c !important;
+    color: black !important;
 }
 
 .loginFormControl {
@@ -383,7 +393,8 @@ width: 100%;
 .uploadContainer {
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
+    height: 80rem;
 }
 
 .uploadControl {

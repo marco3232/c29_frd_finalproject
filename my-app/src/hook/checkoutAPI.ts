@@ -5,11 +5,11 @@ import { CheckOutTransactionType,  } from "../slice/checkOutSlice";
 const source = "http://localhost:8080";
 
 export function useCheckOutInfo() {
-    const { isLoading, error, data, isFetching} = useQuery ({
-        queryKey:["checkouts"],
+    const { isLoading, error, data, isFetching } = useQuery({
+        queryKey: ["checkouts"],
         queryFn: async () => {
             const res = await fetch(`${source}/checkout`, {
-                headers:{
+                headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 },
             });
@@ -21,7 +21,7 @@ export function useCheckOutInfo() {
     if (isLoading || isFetching) return "Data Loading";
     if (error) {
         return "Error";
-    } 
+    }
     if (!data) {
         return []
     }
@@ -36,7 +36,7 @@ export async function addCheckOut(
         donateItemIds,
         checkoutTransaction
     }
-    console.log({body})
+    console.log({ body })
     const res = await fetch(`${source}/checkout`, {
         method: "POST",
         headers: {
