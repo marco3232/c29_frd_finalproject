@@ -12,13 +12,13 @@ export interface CheckOutTransactionType {
   confirmed_date: string;
   confirmed_session: string;
 }
-export interface CheckInType {
-  id: number;
-  // itemName: string;
-  // quantity:number;
-  // deposit_charge:number;
-  // rent_charge:number;
-}
+// export interface CheckInType {
+//   id: number;
+//   // itemName: string;
+//   // quantity:number;
+//   // deposit_charge:number;
+//   // rent_charge:number;
+// }
 
 export class CheckOutController {
   router = express.Router();
