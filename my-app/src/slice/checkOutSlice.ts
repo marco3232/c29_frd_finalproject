@@ -15,7 +15,7 @@ export interface CheckOutTransactionType {
   }
 
   export interface CheckInType {
-    id:number;
+    id:number
   }
 
   export interface CheckOutState {
