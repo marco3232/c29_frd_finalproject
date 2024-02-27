@@ -30,17 +30,7 @@ export function RentalPage() {
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
-  const updateRentalList = (itemIds: number[]) => {
-    return { type: "update rental list", donateItemIds:itemIds }
-  }
-  const submit = () => {
-    dispatch(updateRentalList(Array.from(donateItemIds)));
-    console.log("submit");
-    console.log({ donateItemIds })
-    
-    navigate("/CheckoutTransaction");
 
-  };
 
   const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
 
@@ -112,7 +102,7 @@ export function RentalPage() {
 
       </div>
       <div className="rentalPageBtnControl">
-        <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn>
+        {/* <MDBBtn className="rentalPageBtn" onClick={submit}>next</MDBBtn> */}
       </div>
     </>
   );
