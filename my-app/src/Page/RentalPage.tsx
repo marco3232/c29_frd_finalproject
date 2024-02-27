@@ -14,8 +14,8 @@ export function RentalPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const nextStep = (rentalListMapped: number[]) => {
-
+  const nextStep = () => {
+    let rentalListMapped: number[] = [];
     dispatch(updateRentalList(rentalListMapped));
     // setInput("");
     navigate("/Transaction");
@@ -107,7 +107,7 @@ export function RentalPage() {
           )
         )}
 
-      {/* <button onClick={nextStep}>Next</button> */}
+      <button onClick={nextStep}>Next</button>
     </>
   );
 }
