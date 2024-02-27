@@ -7,8 +7,11 @@ import Row from "react-bootstrap/Row";
 import Toast from "react-bootstrap/Toast";
 import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
+import { useAppDispatch } from "../hook/hooks";
 
 export function RentalPage() {
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const RentListData = useRentalPage_3();
@@ -19,9 +22,21 @@ export function RentalPage() {
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
+  // const submit = () => {
+  //   console.log("submit");
+  //   console.log({donateItemIds})
+  // };
+  // Assuming you have an action like this
+  // --------------------------------------------------- redux----------------------
+  const updateRentalList = (itemIds: number[]) => {
+    return { type: "UPDATE_RENTAL_LIST", donateItemIds: itemIds };
+  };
+
   const submit = () => {
+    // Dispatch the action with the selected item ids
+    dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
-    console.log({donateItemIds})
+    console.log({ donateItemIds });
   };
 
   const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
@@ -85,8 +100,8 @@ export function RentalPage() {
                   <Toast.Body>
                     <div className="mb-3">
                       <Form.Check // prettier-ignore
-                         onChange={() => updateDonateItem(entry.donate_item_id)}
-                         checked={donateItemIds.has(entry.donate_item_id)}
+                        onChange={() => updateDonateItem(entry.donate_item_id)}
+                        checked={donateItemIds.has(entry.donate_item_id)}
                       />
                     </div>
                   </Toast.Body>
