@@ -71,19 +71,19 @@ export function RentalPage() {
                       style={{ objectFit: "contain" }}
                     />
                     <Toast>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">物資</strong>
                         <small>{entry.item_name}</small>
                       </Toast.Header>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">按金:</strong>
                         <small>$ {entry.deposit_charge}</small>
                       </Toast.Header>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">租金:</strong>
                         <small>$ {entry.rent_charge}/月</small>
                       </Toast.Header>
-                      <Toast.Body>
+                      <Toast.Body >
                         <div className="mb-3">
                           <Form.Check
                             onChange={() =>
