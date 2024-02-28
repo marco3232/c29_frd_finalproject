@@ -543,6 +543,9 @@ padding-bottom: 1rem;
 
 }
 
+.RentalPage_title__ {
+    width: 100rem;
+}
 .rentalPageContainer {
     width: 70rem;
     display: flex; 

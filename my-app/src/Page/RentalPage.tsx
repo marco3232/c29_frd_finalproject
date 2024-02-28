@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
-import {updateRentalList} from "../slice/checkOutSlice"
+import { updateRentalList } from "../slice/checkOutSlice"
 // --------------------------------------------------------------------------------
 
 export function RentalPage() {
@@ -47,66 +47,66 @@ export function RentalPage() {
     <>
       <div className="rentalPageControl">
         <div className={styles.title}>
-        <span className={styles.header}>以下物品可供租借</span>
-         <div className="rentalPageContainer">
-          {RentListData &&
-            Array.isArray(RentListData) &&
-            RentListData.map(
-              (
-                entry: {
-                  donate_item_id: number;
-                  item_name: string;
-                  deposit_charge: number;
-                  rent_charge: number;
-                  image: string;
-                },
-                index
-              ) => (
-                <Row className="rentalPageCardControl" key={index}>
-                  <Col className="rentalPageCard">
-                    <CardMedia
-                      className="rentalPageCardImg"
-                      component="img"
-                      alt="green iguana"
-                      height="200"
-                      image={entry.image}
-                      style={{ objectFit: "contain" }}
-                    />
-                    <Toast>
-                      <Toast.Header closeButton={false}>
-                        <strong className="me-auto">物資</strong>
-                        <small>{entry.item_name}</small>
-                      </Toast.Header>
-                      <Toast.Header closeButton={false}>
-                        <strong className="me-auto">按金:</strong>
-                        <small>$ {entry.deposit_charge}</small>
-                      </Toast.Header>
-                      <Toast.Header closeButton={false}>
-                        <strong className="me-auto">租金:</strong>
-                        <small>$ {entry.rent_charge}/月</small>
-                      </Toast.Header>
-                      <Toast.Body >
-                        <div className="mb-3">
-                          <Form.Check
-                            onChange={() =>
-                              updateDonateItem(entry.donate_item_id)
-                            }
-                            checked={donateItemIds.has(entry.donate_item_id)}
-                          />
-                        </div>
-                      </Toast.Body>
-                    </Toast>
-                  </Col>
-                  {/* <-----------------------------------------------------> */}
-                </Row>
-              )
-            )}
-        </div>
-      </div>
-      <div className="rentalPageBtnControl">
-        <MDBBtn className="rentalPageBtn" onClick={submit}>
-          下一頁
-        </MDBBtn>
+          <span className={styles.header}>以下物品可供租借</span>
+          <div className="rentalPageContainer">
+            {RentListData &&
+              Array.isArray(RentListData) &&
+              RentListData.map(
+                (
+                  entry: {
+                    donate_item_id: number;
+                    item_name: string;
+                    deposit_charge: number;
+                    rent_charge: number;
+                    image: string;
+                  },
+                  index
+                ) => (
+                  <Row className="rentalPageCardControl" key={index}>
+                    <Col className="rentalPageCard">
+                      <CardMedia
+                        className="rentalPageCardImg"
+                        component="img"
+                        alt="green iguana"
+                        height="200"
+                        image={entry.image}
+                        style={{ objectFit: "contain" }}
+                      />
+                      <Toast>
+                        <Toast.Header closeButton={false}>
+                          <strong className="me-auto">物資</strong>
+                          <small>{entry.item_name}</small>
+                        </Toast.Header>
+                        <Toast.Header closeButton={false}>
+                          <strong className="me-auto">按金:</strong>
+                          <small>$ {entry.deposit_charge}</small>
+                        </Toast.Header>
+                        <Toast.Header closeButton={false}>
+                          <strong className="me-auto">租金:</strong>
+                          <small>$ {entry.rent_charge}/月</small>
+                        </Toast.Header>
+                        <Toast.Body >
+                          <div className="mb-3">
+                            <Form.Check
+                              onChange={() =>
+                                updateDonateItem(entry.donate_item_id)
+                              }
+                              checked={donateItemIds.has(entry.donate_item_id)}
+                            />
+                          </div>
+                        </Toast.Body>
+                      </Toast>
+                    </Col>
+                    {/* <-----------------------------------------------------> */}
+                  </Row>
+                )
+              )}
+          </div>
+          <div className="rentalPageBtnControl">
+            <MDBBtn className="rentalPageBtn" onClick={submit}>
+              下一頁
+            </MDBBtn>
+          </div>
         </div>
       </div>
     </>
