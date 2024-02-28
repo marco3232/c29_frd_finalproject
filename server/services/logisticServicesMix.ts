@@ -101,7 +101,7 @@ export class LogisticMixService {
         l.id as logistic_id,
         l.contact_name as name,
         l.contact_number as number,
-        l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district as address,
+        l.district || ', ' || l.street || ', ' || l.building || ', ' || l.room  as address,
         u.email as email,
         l.purpose as purpose,
         l.district as district,
@@ -113,7 +113,8 @@ export class LogisticMixService {
         INNER JOIN donate_items di ON di.id = li.donate_item_id
         WHERE u.id = ?
         GROUP BY di.item_name, l.uuid, l.id, l.contact_name, l.contact_number, l.room, l.building, l.street, l.district, u.email, l.purpose, l.district, l.confirmed_date, l.confirmed_session) AS distinct_items
-        GROUP BY logistic_id;`,
+        GROUP BY logistic_id
+        order by logistic_id desc;`,
 
         [userId]
       );

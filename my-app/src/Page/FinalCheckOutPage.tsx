@@ -5,7 +5,7 @@ import loadingGif from "../image/loading.gif";
 // -----------------------------------------------------
 
 import { Form, Col, Row, ListGroup } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
@@ -97,6 +97,8 @@ export function FinalCheckOutPage() {
   //     rent_charge:number;
   //   }> = getAmount()
 
+  
+
   return (
     <div className="logisticConfirm">
       {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
@@ -165,13 +167,13 @@ export function FinalCheckOutPage() {
                 <Col className="logisticConfirmContainer">
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>總按金</Form.Label>
-                    <Form.Control value={entry.total_deposit_sum} />
+                    <Form.Control value={`$${entry.total_deposit_sum}`} />
                   </Form.Group>
                 </Col>
                 <Col className="logisticConfirmContainer">
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>總租金</Form.Label>
-                    <Form.Control value={entry.total_rent_price_sum} />
+                    <Form.Control value={`$${entry.total_rent_price_sum}`} />
                   </Form.Group>
                 </Col>
                 <Col className="logisticConfirmContainer">
@@ -182,8 +184,8 @@ export function FinalCheckOutPage() {
                       value={
                         entry.total_rent_price_sum !== undefined &&
                         entry.total_deposit_sum !== undefined
-                          ? Number(entry.total_rent_price_sum) +
-                            Number(entry.total_deposit_sum)
+                          ? `$${Number(entry.total_rent_price_sum) +
+                            Number(entry.total_deposit_sum)}`
                           : "Error: Data not available"
                       }
                     />
@@ -219,3 +221,4 @@ export function FinalCheckOutPage() {
     </div>
   );
 }
+

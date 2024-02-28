@@ -94,7 +94,7 @@ export class CheckOutService {
             checkouts.checkin_id,
             l.uuid AS uuid,
             l.purpose AS purpose,
-            l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district AS address,
+            l.district || ', ' || l.street|| ', ' || l.building || ', ' || l.room AS address,
             l.contact_number AS number,
             l.contact_name AS name,
             l.confirmed_date AS confirmed_date,
@@ -113,7 +113,8 @@ export class CheckOutService {
             l.user_id = ?
     ) AS subquery
     GROUP BY
-        logistic_id;
+        logistic_id
+        order by logistic_id desc;
     
     `,
 

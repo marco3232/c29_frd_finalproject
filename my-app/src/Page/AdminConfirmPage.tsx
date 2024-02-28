@@ -35,6 +35,7 @@ export function AdminConfirmPage() {
     const newStatus = [...status];
     newStatus[index] = value;
     setStatus(newStatus);
+    localStorage.setItem('status', JSON.stringify(newStatus));
     console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items);
   };
@@ -45,15 +46,17 @@ export function AdminConfirmPage() {
     const item = items[index];
     const itemStatus = status[index];
     const body = {
-      logistic_item_id: item.id,
-      status: itemStatus
+      logistic_id: item.logistic_id,
+      donate_item_id: item.donate_item_id,
+      goods_status: itemStatus
     };
+
 
     await fetch(`${source}/checkin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify(body)
     });
@@ -109,11 +112,11 @@ export function AdminConfirmPage() {
                           disabled={status[index] === "已存倉"}
                         >
                           <option value="none">請選擇</option>
-                          <option value="normal">Normal</option>
-                          <option value="repairing">Repairing</option>
-                          <option value="rented">Rented</option>
+                          <option value="normal">狀態良好</option>
+                          <option value="repairing">需要維修</option>
+                          {/* <option value="rented">Rented</option>
                           <option value="disposed">Disposed</option>
-                          <option value="lost">Lost</option>
+                          <option value="lost">Lost</option> */}
                         </Form.Select>
                       </td>
                       <td>

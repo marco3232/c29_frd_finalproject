@@ -200,6 +200,7 @@ export default function TransactionPage() {
               <DatePicker
                 label="Date"
                 defaultValue={dayjs()}
+                minDate={dayjs()}
                 // value={dayjs(confirmedDateInput)}
                 onChange={(date) => {
                   const dayjsDate = dayjs(date);

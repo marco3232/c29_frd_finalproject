@@ -72,18 +72,18 @@ export function RentalPage() {
                     />
                     <Toast>
                       <Toast.Header closeButton={false}>
-                        <strong className="me-auto">Item:</strong>
+                        <strong className="me-auto">物資</strong>
                         <small>{entry.item_name}</small>
                       </Toast.Header>
                       <Toast.Header closeButton={false}>
-                        <strong className="me-auto">Deposit:</strong>
-                        <small>{entry.deposit_charge}元</small>
+                        <strong className="me-auto">按金:</strong>
+                        <small>$ {entry.deposit_charge}</small>
                       </Toast.Header>
                       <Toast.Header closeButton={false}>
-                        <strong className="me-auto">Rent:</strong>
-                        <small>{entry.rent_charge}元/MONTH</small>
+                        <strong className="me-auto">租金:</strong>
+                        <small>$ {entry.rent_charge}/月</small>
                       </Toast.Header>
-                      <Toast.Body>
+                      <Toast.Body >
                         <div className="mb-3">
                           <Form.Check
                             onChange={() =>
