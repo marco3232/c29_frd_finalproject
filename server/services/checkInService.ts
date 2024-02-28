@@ -77,6 +77,7 @@ export class CheckInService {
   ) {
     try {
       if (
+
         goods_status === "repairing" ||
         goods_status === "rented" ||
         goods_status === "disposed" ||

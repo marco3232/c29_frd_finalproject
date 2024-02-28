@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import { CheckInService } from "../services/checkInService";
+import { LogisticService } from "../services/logisticsService";
 
 export class CheckInController {
   router = express.Router();
-  constructor(private checkInService: CheckInService) {
+  constructor(private checkInService: CheckInService, private logisticService: LogisticService) {
     this.router.get("/checkin", this.list);
     this.router.get("/inventory", this.inventory);
 
@@ -34,6 +35,8 @@ export class CheckInController {
         goods_status
       } = req.body;
       console.log("check req body",req.body)
+      // Task: Update goods_status of logistic_items table
+      await this.logisticService.updateGoods_status(logistic_item_id, goods_status);
       // Call the service method to add check-in
       const result = await this.checkInService.addCheckIn(
         // item_image_path,
@@ -43,7 +46,7 @@ export class CheckInController {
         donate_item_id,
         goods_status
       );
-
+        console.log("march",result)
       // if (result) {
         return res.status(201).json({ message: "Check-in added successfully" });
       // } else {

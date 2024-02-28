@@ -18,7 +18,6 @@ export function RentalPage() {
 
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
-
   const submit = () => {
     console.log("submit");
     console.log({donateItemIds})

@@ -75,6 +75,16 @@ export class LogisticService {
     }
   }
 
+  async updateGoods_status(logistic_item_id: number, goods_status: string) {
+    try{
+      await this.knex("logistic_items").insert({goods_status:goods_status,
+      logistic_item_id:logistic_item_id})
+      console.log("updateGoods_status")
+      return true
+    }catch(error){
+      return false
+    }
+  }
 
   async editLogistic(
     targetId: number,
