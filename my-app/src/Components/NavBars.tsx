@@ -48,11 +48,11 @@ function NavBarControl() {
                                     title="服務項目"
                                     id={`offcanvasNavbarDropdown-expand-${expandSize}`}
                                 >
-                                    <NavDropdown.Item onClick={() => navigate('/Upload')}>捐贈物資</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/Transaction')}>Transaction</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navigate('/FinalCheckout')}>FinalCheckOutPage</NavDropdown.Item>
+                                    {/* <NavDropdown.Item onClick={() => navigate('/Upload')}>捐贈物資</NavDropdown.Item> */}
+                                    <NavDropdown.Item onClick={() => navigate('/Transaction')}>捐贈記錄</NavDropdown.Item>
+                                    {/* <NavDropdown.Item onClick={() => navigate('/')}>testing2</NavDropdown.Item> */}
+                                    {/* <NavDropdown.Item onClick={() => navigate('/FinalConfirmPage')}>FinalConfirmPage</NavDropdown.Item> */}
+                                    <NavDropdown.Item onClick={() => navigate('/FinalCheckout')}>租借記錄</NavDropdown.Item>
                                     {/* <NavDropdown.Item onClick={() => navigate('/ApproveDonationPage')}>ApproveDonationPage</NavDropdown.Item> */}
                                 </NavDropdown>
                             </Nav>
