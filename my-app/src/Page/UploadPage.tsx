@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { DonationType, updateDonationList } from "../slice/logisticSlice";
 import { useAppDispatch } from "../hook/hooks";
 import deleteIcon from "../image/deleteIcon.jpeg";
-import Form from 'react-bootstrap/Form';
-import uploadImg from "../image/uploadPageStep.png"
+import Form from "react-bootstrap/Form";
+import uploadImg from "../image/uploadPageStep.png";
 
 type ItemProps = {
   // id: number;
@@ -97,11 +97,15 @@ export default function UploadPage() {
     <div className="uploadContainer">
       <div className="uploadControl">
         <div className="stepImgContainer">
-          {showImage && <img id="uploadStepImg" src={uploadImg} alt="Step Image"></img>}
+          {showImage && (
+            <img id="uploadStepImg" src={uploadImg} alt="Step Image"></img>
+          )}
         </div>
         <div className="uploadForm">
           <form className="selectItem" onSubmit={handleSubmit}>
-            <MDBBtn id="donateStepBtn" onClick={() => setShowImage(!showImage)}>捐贈步驟說明</MDBBtn>
+            <MDBBtn id="donateStepBtn" onClick={() => setShowImage(!showImage)}>
+              捐贈步驟說明
+            </MDBBtn>
             <h3>
               <b>請選擇捐贈物品：</b>
             </h3>
@@ -116,7 +120,7 @@ export default function UploadPage() {
               <option>請選擇</option>
               {Array.isArray(itemList) && itemList.length > 0 ? (
                 itemList.map((entry) => (
-                  <option key={entry.id} value={entry.id} >
+                  <option key={entry.id} value={entry.id}>
                     {entry.item_name}
                   </option>
                   // <img src={entry.image}></img>
@@ -132,7 +136,17 @@ export default function UploadPage() {
                 id="uploadPageInput"
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
+                onChange={(e) => {
+                  const enteredValue = Number(e.target.value);
+                  // Check if enteredValue is a positive number
+                  if (enteredValue >= 0) {
+                    setQuantity(enteredValue);
+                  } else {
+                    // If negative value is entered, you can handle it accordingly (e.g., show an error message)
+                    // For now, setting quantity to 0 as an example
+                    setQuantity(0);
+                  }
+                }}
               />
               <br />
               <br />
@@ -144,10 +158,7 @@ export default function UploadPage() {
                 確認數量 : {quantity}
               </b>
             </h5>
-            <MDBBtn
-              className="uploadAddItemBtn"
-              onClick={addPreSubmitHandler}
-            >
+            <MDBBtn className="uploadAddItemBtn" onClick={addPreSubmitHandler}>
               增加
             </MDBBtn>
             <br />
@@ -172,7 +183,6 @@ export default function UploadPage() {
                   </span>
                 </ListGroup.Item>
               ))}
-
             </ListGroup>
             <MDBBtn
               className="uploadBtn"
@@ -186,6 +196,6 @@ export default function UploadPage() {
           {/* <button onClick={() => navigate("/Transaction")}>NEXT</button> */}
         </div>
       </div>
-    </div >
+    </div>
   );
 }

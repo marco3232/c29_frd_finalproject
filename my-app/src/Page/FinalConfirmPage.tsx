@@ -136,14 +136,14 @@ export default function FinalConfirmPage() {
                   <Col className="logisticConfirmContainerDonateItem" onClick={() => handleShowDonateItems(entry)}>
                     <Form.Group className="logisticConfirmCard">
                       <Form.Label>捐贈物品及數量</Form.Label>
-                      <Form.Control value="Testing" />
+                      <Form.Control value={entry.item_list} />
                     </Form.Group>
                   </Col>
 
                   <Col className="logisticConfirmContainerAddress" onClick={() => handleShowAddress(entry)}>
                     <Form.Group className="logisticConfirmCard">
                       <Form.Label>地址</Form.Label>
-                      <Form.Control value="Testing" />
+                      <Form.Control value={entry.address} />
                     </Form.Group>
                   </Col>
 
@@ -171,11 +171,8 @@ export default function FinalConfirmPage() {
                       <Form.Control value={entry.confirmed_session} />
                     </Form.Group>
                   </Col>
-
                 </Row></>
             ))}
-
-
           </Form>
         ) : (
           <div id="finalConfirmNodata">
