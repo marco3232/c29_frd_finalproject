@@ -35,6 +35,14 @@ export class CheckInController {
         goods_status
       } = req.body;
 
+      console.log( {
+        // item_image_path,
+        logistic_item_id,
+        // user_id,
+        logistic_id,
+        donate_item_id,
+        goods_status
+      })
       // Task: Update goods_status of logistic_items table
       await this.logisticService.updateGoods_status(logistic_item_id, goods_status);
       // Call the service method to add check-in

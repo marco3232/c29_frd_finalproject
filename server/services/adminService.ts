@@ -9,13 +9,14 @@ export class AdminService {
   async adminCheckInConfirm(logisticsId: number) {
     try {
       return await this.knex("logistic_items")
-        .select("*")
+        .select("logistic_items.*", "donate_items.id as logId", "donate_items.item_name")
         .join(
           "donate_items",
           "donate_items.id",
           "logistic_items.donate_item_id"
         )
-        .where("logistic_id", logisticsId);
+        .where("logistic_id", logisticsId)
+        .orderBy("logistic_items.id");
     } catch (e) {
       throw new Error(`Error fetching items:${e}`);
     }

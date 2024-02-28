@@ -45,11 +45,11 @@ export function useCheckOutInfo() {
 
 
 export async function addCheckOut(
-    checkInIds: number[],
+    donateItemIds: number[],
     checkoutTransaction: CheckOutTransactionType
 ) {
     const body = {
-        checkInIds,
+        donateItemIds,
         checkoutTransaction
     }
     console.log({ body })
