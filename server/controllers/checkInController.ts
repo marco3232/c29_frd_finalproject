@@ -34,7 +34,7 @@ export class CheckInController {
         donate_item_id,
         goods_status
       } = req.body;
-      console.log("check req body",req.body)
+
       // Task: Update goods_status of logistic_items table
       await this.logisticService.updateGoods_status(logistic_item_id, goods_status);
       // Call the service method to add check-in
@@ -46,7 +46,7 @@ export class CheckInController {
         donate_item_id,
         goods_status
       );
-        console.log("march",result)
+
       // if (result) {
         return res.status(201).json({ message: "Check-in added successfully" });
       // } else {
