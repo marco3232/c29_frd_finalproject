@@ -9,8 +9,7 @@ import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
-import { updateRentalList } from "../slice/checkOutSlice";
-
+import {updateRentalList} from "../slice/checkOutSlice"
 // --------------------------------------------------------------------------------
 
 export function RentalPage() {
@@ -109,3 +108,5 @@ export function RentalPage() {
     </>
   );
 }
+
+

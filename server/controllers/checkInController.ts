@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import { CheckInService } from "../services/checkInService";
+import { LogisticService } from "../services/logisticsService";
 
 export class CheckInController {
   router = express.Router();
-  constructor(private checkInService: CheckInService) {
+  constructor(private checkInService: CheckInService, private logisticService: LogisticService) {
     this.router.get("/checkin", this.list);
     this.router.get("/inventory", this.inventory);
 
@@ -33,7 +34,17 @@ export class CheckInController {
         donate_item_id,
         goods_status
       } = req.body;
-      console.log("check req body",req.body)
+
+      console.log( {
+        // item_image_path,
+        logistic_item_id,
+        // user_id,
+        logistic_id,
+        donate_item_id,
+        goods_status
+      })
+      // Task: Update goods_status of logistic_items table
+      await this.logisticService.updateGoods_status(logistic_item_id, goods_status);
       // Call the service method to add check-in
       const result = await this.checkInService.addCheckIn(
         // item_image_path,

@@ -17,7 +17,7 @@ export function AdminConfirmPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<string[]>([]);
   const [input, setInput] = useState("");
-  const items = useAdminCheckIn_Confirm_3(parseInt(id!));
+  const [items , refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const submittedStatus = useSelector((state: IRootState) => state.adminConfirm.submittedStatus);
@@ -52,12 +52,15 @@ export function AdminConfirmPage() {
   const onSubmit = async (index: number) => {
     const item = items[index];
     const itemStatus = status[index];
+    console.log(items)
     const body = {
       logistic_id: item.logistic_id,
       donate_item_id: item.donate_item_id,
-      goods_status: itemStatus
+      goods_status: itemStatus,
+      logistic_item_id: item.id
     };
 
+    console.log(JSON.stringify(body))
     await fetch(`${source}/checkin`, {
       method: "POST",
       headers: {
@@ -79,8 +82,8 @@ export function AdminConfirmPage() {
       updatedStatus[index] = newStatus;
       return updatedStatus;
     });
-
-    dispatch(setSubmittedStatus({ index, status: newStatus }));
+    dispatch(setSubmittedStatus({ index, status: "已存倉" }));
+    refetch()
   };
   // ---------------------
 
@@ -112,6 +115,7 @@ export function AdminConfirmPage() {
                       donate_item_id: 2;
                       qty: number;
                       item_name: string;
+                      goods_status: string
                     },
                     index
                   ) => (
@@ -123,7 +127,7 @@ export function AdminConfirmPage() {
                         <Form.Select
                           onChange={(e) => changeStatus(e, index)}
                           value={status[index] || "none"}
-                          disabled={status[index] === "已存倉"}
+                          disabled={entry.goods_status === "normal"}
                         >
                           <option value="none">請選擇</option>
                           <option value="normal">狀態良好</option>
@@ -138,7 +142,7 @@ export function AdminConfirmPage() {
                           onClick={() => onSubmit(index)}
                           disabled={status[index] === "已存倉" || status[index] !== "normal"}
                         >
-                          {status[index] === "已存倉" ? "已存倉" : "提交"}
+                          {entry.goods_status === "normal" ? "已存倉" : "提交"}
                         </MDBBtn>
                       </td>
                     </tr>

@@ -223,6 +223,7 @@ export default function CheckOutTransactionPage() {
               <TimePicker
                 label="Time"
                 defaultValue={dayjs()}
+                
                 // value={dayjs(confirmedSessionInput)}
                 onChange={(session) => {
                   const dayjsSession = dayjs(session);
