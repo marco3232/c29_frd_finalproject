@@ -112,11 +112,11 @@ export function AdminConfirmPage() {
                           disabled={status[index] === "已存倉"}
                         >
                           <option value="none">請選擇</option>
-                          <option value="normal">Normal</option>
-                          <option value="repairing">Repairing</option>
-                          <option value="rented">Rented</option>
+                          <option value="normal">狀態良好</option>
+                          <option value="repairing">需要維修</option>
+                          {/* <option value="rented">Rented</option>
                           <option value="disposed">Disposed</option>
-                          <option value="lost">Lost</option>
+                          <option value="lost">Lost</option> */}
                         </Form.Select>
                       </td>
                       <td>

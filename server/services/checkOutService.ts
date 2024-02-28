@@ -113,7 +113,8 @@ export class CheckOutService {
             l.user_id = ?
     ) AS subquery
     GROUP BY
-        logistic_id;
+        logistic_id
+        order by logistic_id desc;
     
     `,
 
