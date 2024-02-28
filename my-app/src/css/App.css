@@ -540,7 +540,6 @@ padding-bottom: 1rem;
     display: flex;   
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
 .RentalPage_title__ {
@@ -574,9 +573,10 @@ padding-bottom: 1rem;
 }
 .rentalPageBtn {
     display: flex;
-    justify-content: center;
-    width: 50rem;
+    width: 20rem;
     background-color: #cde6f5 !important;
+    margin-top: 3rem !important;
+    font-size: 20px !important;
 }
 
 /* ------Admin Confirm Page------------------------------------------------------------------------------------------ */

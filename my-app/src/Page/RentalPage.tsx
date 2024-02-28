@@ -85,7 +85,7 @@ export function RentalPage() {
                           <strong className="me-auto">租金:</strong>
                           <small>$ {entry.rent_charge}/月</small>
                         </Toast.Header>
-                        <Toast.Body >
+                        <Toast.Body className={styles.toast_body} >
                           <div className="mb-3">
                             <Form.Check
                               onChange={() =>
