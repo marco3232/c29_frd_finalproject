@@ -38,6 +38,13 @@ export function AdminConfirmPage() {
     localStorage.setItem('status', JSON.stringify(newStatus));
     console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items);
+
+    const submitBtn = document.getElementById(`submitBtn-${index}`);
+    if (submitBtn && value === "repairing") {
+      submitBtn.removeAttribute("disabled");
+    } else if (submitBtn) {
+      submitBtn.setAttribute("disabled", "disabled");
+    }
   };
 
   // ---------------------
@@ -51,7 +58,6 @@ export function AdminConfirmPage() {
       goods_status: itemStatus
     };
 
-
     await fetch(`${source}/checkin`, {
       method: "POST",
       headers: {
@@ -61,12 +67,20 @@ export function AdminConfirmPage() {
       body: JSON.stringify(body)
     });
 
+    let newStatus: string;
+    if (itemStatus === "repairing") {
+      newStatus = "維修中";
+    } else {
+      newStatus = "已存倉";
+    }
+
     setStatus(prevStatus => {
-      const newStatus = [...prevStatus];
-      newStatus[index] = "已存倉";
-      return newStatus;
+      const updatedStatus = [...prevStatus];
+      updatedStatus[index] = newStatus;
+      return updatedStatus;
     });
-    dispatch(setSubmittedStatus({ index, status: "已存倉" }));
+
+    dispatch(setSubmittedStatus({ index, status: newStatus }));
   };
   // ---------------------
 
@@ -114,9 +128,6 @@ export function AdminConfirmPage() {
                           <option value="none">請選擇</option>
                           <option value="normal">狀態良好</option>
                           <option value="repairing">需要維修</option>
-                          {/* <option value="rented">Rented</option>
-                          <option value="disposed">Disposed</option>
-                          <option value="lost">Lost</option> */}
                         </Form.Select>
                       </td>
                       <td>
