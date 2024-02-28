@@ -28,20 +28,20 @@ export function useCheckOutInfo() {
     return data
 }
 
-export async function getAmount() {
-    const res = await fetch(`${source}/totalamount`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        },
+// export async function getAmount() {
+//     const res = await fetch(`${source}/totalamount`, {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Authorization": `Bearer ${localStorage.getItem("token")}`,
+//         },
 
-    });
+//     });
 
-    let resp = await res.json();
-    console.log("check resp",resp)
-    return resp.message;
-}
+//     let resp = await res.json();
+//     console.log("check resppppp",resp)
+//     return resp.message;
+// }
 
 
 export async function addCheckOut(

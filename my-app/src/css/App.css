@@ -303,7 +303,6 @@ width: 100%;
     padding-bottom: 5px !important;
     margin-top: 10px;
     background-color: #daeef99c !important;
-    color: black !important;
 }
 
 .loginFormControl {
@@ -507,7 +506,6 @@ padding-bottom: 1rem;
 
 #adminPageBtn {
     background-color: #cde6f584;
-    color: black;
     display: flex;
     align-items: center;
     height: 1.8rem;    
@@ -517,6 +515,9 @@ padding-bottom: 1rem;
     justify-content: center;
 }
 
+.adminPagePopup:hover{
+    font-weight: bold;
+}
 
 /* ------Carousel------------------------------------------------------------------------------------------ */
 
@@ -534,7 +535,7 @@ padding-bottom: 1rem;
 /* ------Rental Page------------------------------------------------------------------------------------------ */
 
 .rentalPageControl {
-
+    width: 100%;
     display: flex;   
     flex-wrap: wrap;
     justify-content: center;
@@ -562,9 +563,6 @@ padding-bottom: 1rem;
     background-color: white;
 }
 
-.fade {
-    width:  40rem !important;
-}
 .rentalPageBtnControl {
     display: flex;
     justify-content: center;
@@ -575,26 +573,86 @@ padding-bottom: 1rem;
     justify-content: center;
     width: 50rem;
     background-color: #cde6f5 !important;
-    color: black !important;
+}
+
+/* ------Admin Confirm Page------------------------------------------------------------------------------------------ */
+
+
+.adminConfirmPageControl {
+    max-width: 100%;
+    /* height: 55rem; */
+}
+
+.adminConfirmPageContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.tableResponsive {
+    width: 80rem;
+}
+
+.adminConfirmPageBtn {
+    font-size: 15px !important;
+    font-weight: bold !important; 
+}
+
+/* ------Admin Page------------------------------------------------------------------------------------------ */
+
+.adminPageTableDonateItems {
+    display: flex;
+    width: 11rem;
+}
+
+.adminPageTableAddress {
+    width: 9rem;
+}
+
+.modal {
+    display: flex !important;
+    justify-content: center !important;   
+}
+
+.modal-backdrop {
+    --mdb-backdrop-opacity: 0.3 !important;
 }
 
 
+.modal-content{
+    width: 100rem !important;
+}
+
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    margin-right: 10rem !important;
+    margin-left: 0px !important;
+    margin-bottom: 25rem !important;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: center !important;
+    width: 40rem;
+    padding-left: 2rem;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center !important;
+
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center !important;
+}
+
+.btn-primary {
+    background-color:rgb(109 178	208	) !important;
+    font-weight: bold !important;
+}
 
 
-
-
-
-
-
-
-
-
-
-a {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
-  a:hover {
-    color: blue !important;
-  }
+/* ------------------------------------------------------------------------------------------------ */
