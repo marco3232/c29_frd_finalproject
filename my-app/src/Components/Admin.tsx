@@ -76,14 +76,14 @@ export default function Admin() {
                       <td>{entry.uuid}</td>
                       <td>{entry.purpose}</td>
                       <td>
-                        <a
+                        <a className="adminPagePopup"
                           onClick={() => handleShowDetails(entry)}
                         >
                           View Details
                         </a>
                       </td>
                       <td>
-                        <a
+                        <a className="adminPagePopup"
                           onClick={() => handleShowAddress(entry)}
                         >
                           View Address
@@ -133,6 +133,6 @@ export default function Admin() {
           </MDBBtn>
         </Modal.Footer>
       </Modal>
-    </div>
+    </div >
   );
 }

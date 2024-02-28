@@ -3,6 +3,7 @@ import { useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
 import { Form, Table } from "react-bootstrap";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 // --------------------------------------------------------------------------------
 
@@ -111,14 +112,15 @@ export function AdminConfirmPage() {
                         </Form.Select>
                       </td>
                       <td>
-                        <button
+                        <MDBBtn
+                          className="adminConfirmPageBtn"
                           type="submit"
                           id={`submitBtn-${index}`}
                           onClick={() => onSubmit(index)}
                           disabled={status[index] === "已存倉" || status[index] !== "normal"}
                         >
                           {status[index] === "已存倉" ? "已存倉" : "提交"}
-                        </button>
+                        </MDBBtn>
                       </td>
                     </tr>
                   )

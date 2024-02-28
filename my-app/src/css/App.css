@@ -515,6 +515,9 @@ padding-bottom: 1rem;
     justify-content: center;
 }
 
+.adminPagePopup:hover{
+    font-weight: bold;
+}
 
 /* ------Carousel------------------------------------------------------------------------------------------ */
 
@@ -560,9 +563,6 @@ padding-bottom: 1rem;
     background-color: white;
 }
 
-.fade {
-    /* width:  40rem !important; */
-}
 .rentalPageBtnControl {
     display: flex;
     justify-content: center;
@@ -591,6 +591,11 @@ padding-bottom: 1rem;
 
 .tableResponsive {
     width: 80rem;
+}
+
+.adminConfirmPageBtn {
+    font-size: 15px !important;
+    font-weight: bold !important; 
 }
 
 /* ------Admin Page------------------------------------------------------------------------------------------ */
