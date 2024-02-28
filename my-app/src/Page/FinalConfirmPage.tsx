@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { editLogisticColumn, useGetLogisticInfo } from "../hook/logisticAPI";
-import { Accordion, Card, } from "react-bootstrap";
+import { Accordion, Card, Modal, } from "react-bootstrap";
 // -----------------------------------------------------
 
 import { Form, Col, Row } from "react-bootstrap";
@@ -9,16 +9,15 @@ import { useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 
 
 export default function FinalConfirmPage() {
-  // const navigate = useNavigate()
   const queryClient = useQueryClient()
-  const [formData, setFormData] = useState([]);
-  const [isAddressExpanded, setIsAddressExpanded] = useState(false);
-  const [buildingInput, setBuildingInput] = useState("");
-
+  const [showDonateItems, setShowDonateItems] = React.useState(false);
+  const [showAddress, setShowAddress] = React.useState(false);
+  const [selectedEntry, setSelectedEntry] = React.useState<any>(null);
 
   const OnEditItem = useMutation({
     mutationFn: async (data: {
@@ -31,8 +30,25 @@ export default function FinalConfirmPage() {
         exact: true,
       }),
   })
+  const handleShowDonateItems = (entry: any) => {
+    setSelectedEntry(entry);
+    setShowDonateItems(true);
+    setShowAddress(false);
+  };
 
+  const handleShowAddress = (entry: any) => {
+    setSelectedEntry(entry);
+    setShowDonateItems(false);
+    setShowAddress(true);
+  };
+
+  const handleCloseDetails = () => {
+    setShowDonateItems(false);
+    setShowAddress(false);
+  };
   const [region, setRegion] = useState("");
+
+
   const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedRegion = e.target.value;
     setRegion(selectedRegion);
@@ -96,78 +112,111 @@ export default function FinalConfirmPage() {
   console.log("getall", getLogisticList);
 
   return (
-    <div className="logisticConfirm">
-      {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
-        <Form className="logisticForm">
-          <h1 className="logisticTitle">捐贈記錄</h1>
-          {getLogisticList.map((entry) => (
-            <><a>
-            </a>
-              <Row className="logisticRow" key={entry.id}>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>目的</Form.Label>
-                    <Form.Control value={entry.purpose} />
-                  </Form.Group>
-                </Col>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>運單號</Form.Label>
-                    <Form.Control value={entry.uuid} />
-                  </Form.Group>
-                </Col>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>捐贈物品及數量</Form.Label>
-                    <Form.Control value={entry.item_list} />
-                  </Form.Group>
-                </Col>
+    <div className="logisticControl">
+      <div className="logisticConfirm">
+        {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
+          <Form className="logisticForm">
+            <h1 className="logisticTitle">捐贈記錄</h1>
+            {getLogisticList.map((entry) => (
+              <><a>
+              </a>
+                <Row className="logisticRow" key={entry.id}>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>目的</Form.Label>
+                      <Form.Control value={entry.purpose} />
+                    </Form.Group>
+                  </Col>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>運單號</Form.Label>
+                      <Form.Control value={entry.uuid} />
+                    </Form.Group>
+                  </Col>
+                  <Col className="logisticConfirmContainerDonateItem" onClick={() => handleShowDonateItems(entry)}>
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>捐贈物品及數量</Form.Label>
+                      <Form.Control value="Testing" />
+                    </Form.Group>
+                  </Col>
 
-                <Col className="logisticConfirmContainerAddress">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>地址</Form.Label>
-                    <Form.Control value={entry.address} />
-                  </Form.Group>
-                </Col>
+                  <Col className="logisticConfirmContainerAddress" onClick={() => handleShowAddress(entry)}>
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>地址</Form.Label>
+                      <Form.Control value="Testing" />
+                    </Form.Group>
+                  </Col>
 
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>聯絡人姓名</Form.Label>
-                    <Form.Control value={entry.name} />
-                  </Form.Group>
-                </Col>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>聯絡人電話</Form.Label>
-                    <Form.Control value={entry.number} />
-                  </Form.Group>
-                </Col>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>確認交收日期</Form.Label>
-                    <Form.Control value={entry.confirmed_date} />
-                  </Form.Group>
-                </Col>
-                <Col className="logisticConfirmContainer">
-                  <Form.Group className="logisticConfirmCard">
-                    <Form.Label>確認交收時間</Form.Label>
-                    <Form.Control value={entry.confirmed_session} />
-                  </Form.Group>
-                </Col>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>聯絡人姓名</Form.Label>
+                      <Form.Control value={entry.name} />
+                    </Form.Group>
+                  </Col>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>聯絡人電話</Form.Label>
+                      <Form.Control value={entry.number} />
+                    </Form.Group>
+                  </Col>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>確認交收日期</Form.Label>
+                      <Form.Control value={entry.confirmed_date} />
+                    </Form.Group>
+                  </Col>
+                  <Col className="logisticConfirmContainer">
+                    <Form.Group className="logisticConfirmCard">
+                      <Form.Label>確認交收時間</Form.Label>
+                      <Form.Control value={entry.confirmed_session} />
+                    </Form.Group>
+                  </Col>
 
-              </Row></>
-          ))}
-        </Form>
-
-
+                </Row></>
+            ))}
 
 
-      ) : (
-        <div id="finalConfirmNodata">
-          <h3>No data available</h3>
-        </div>
-      )
-      }
-    </div >
+          </Form>
+        ) : (
+          <div id="finalConfirmNodata">
+            <h3>No data available</h3>
+          </div>
+        )
+        }
+      </div >
+      <Modal show={showAddress} onHide={handleCloseDetails}>
+        <Modal.Header closeButton>
+          <Modal.Title>地址</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEntry && (
+            <div>
+              <p>{selectedEntry.address}</p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <MDBBtn onClick={handleCloseDetails}>Close</MDBBtn>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDonateItems} onHide={handleCloseDetails}>
+        <Modal.Header closeButton>
+          <Modal.Title>捐贈物品及數量</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEntry && (
+            <div>
+              <p>{selectedEntry.item_list}</p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <MDBBtn onClick={handleCloseDetails}>Close</MDBBtn>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 }
+
+

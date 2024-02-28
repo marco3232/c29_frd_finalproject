@@ -1,8 +1,6 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUserInfo } from '../hook/userAPI';
-import { useDateField } from '@mui/x-date-pickers/DateField/useDateField';
 import { jwtDecode } from "jwt-decode";
 
 // ---------------------------------------------------------------
@@ -40,7 +38,6 @@ const initialStateFunc = () => {
             }
         }
         // console.log(data)
-
     }
     return data
 }
@@ -56,7 +53,6 @@ export const authSlice = createSlice({
         loginSuccess: (state, action: PayloadAction<{ username: string; role: string }>) => {
             const payload = action.payload;
             if (payload) {
-                // console.log({ payload })
                 state.userData.eng_given_name = payload.username;
                 state.role = action.payload.role
                 state.isAuthenticated = true;
