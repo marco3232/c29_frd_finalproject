@@ -1,8 +1,7 @@
 import { Knex } from "knex";
-import { CheckInType } from "../controllers/checkOutController";
 
 export class CheckOutService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
   table(trx: Knex | null) {
     let checkOut = !trx ? this.knex : trx;
     return checkOut("logistics");
@@ -20,7 +19,7 @@ export class CheckOutService {
     contact_number_input: string,
     contact_name_input: string,
     confirmed_date_input: string,
-    confirmed_session_input: string, 
+    confirmed_session_input: string,
     user_id_input: number,
     checkInIds: number[]
   ) {
@@ -64,12 +63,6 @@ export class CheckOutService {
           });
       }
 
-      // for (let rental of rentalList) {
-      // console.log("check rental", rental);
-      //     await this.table2(trx).insert({
-      //         checkin_id: rental.checkin_id,
-      //     })
-      // }
       await trx.commit();
       return true;
     } catch (error) {
@@ -78,4 +71,91 @@ export class CheckOutService {
       return false;
     }
   }
+
+
+  async getCheckOutInfo(userId: number) {
+    try {
+      const rows = await this.knex.raw(
+        `  select
+          checkouts.logistic_id
+          , checkouts.checkin_id
+          , l.uuid as uuid
+          , l.purpose as purpose
+          , l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district as address
+          , l.contact_number as number
+          , l.contact_name as name
+          , l.confirmed_date as confirmed_date
+          , l.confirmed_session as confirmed_session
+          , l.user_id as logistic_user_id
+          , checkins.donate_item_id as checkin_donate_item_id
+          , donate_items.item_name as item_name
+          , donate_items.deposit_charge as deposit_charge
+          , donate_items.rent_charge as rent_charge
+          from checkouts
+          inner join logistics l on l.id = checkouts.logistic_id
+          inner join checkins as checkins on checkins.id = checkouts.checkin_id
+          inner join donate_items as donate_items on donate_items.id = checkins.donate_item_id
+          where l.user_id = ?`,
+
+        [userId]
+      );
+
+      // console.log("rows??", rows);
+      return rows;
+    } catch (error) {
+      console.error(error); // handle errors
+      throw new Error(`Error fetching items: ${error}`);
+    }
+  }
+
+  async getTotalAmount(userId: number) {
+    try {
+      const rows = await this.knex.raw(
+        `  select logistic_id,
+        max(cast(uuid as varchar)) as uuid,
+        max(purpose) as purpose,
+        max(item_name) as item_name,
+        sum(deposit_charge) as deposit_charge,
+        sum(rent_charge) as rent_charge,
+        max(address) as address,
+        max(name) as name,
+        max(number) as number,
+        max(confirmed_date) as confirmed_date,
+        max(confirmed_session) as confirmed_session
+        FROM
+        (select
+        checkouts.logistic_id
+        , checkouts.checkin_id
+        , l.uuid as uuid
+        , l.purpose as purpose
+        , l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district as address
+        , l.contact_number as number
+        , l.contact_name as name
+        , l.confirmed_date as confirmed_date
+        , l.confirmed_session as confirmed_session
+        , l.user_id as logistic_user_id
+        , checkins.donate_item_id as checkin_donate_item_id
+        , donate_items.item_name as item_name
+        , donate_items.deposit_charge as deposit_charge
+        , donate_items.rent_charge as rent_charge
+        from checkouts
+        inner join logistics l on l.id = checkouts.logistic_id
+        inner join checkins as checkins on checkins.id = checkouts.checkin_id
+        inner join donate_items as donate_items on donate_items.id = checkins.donate_item_id
+        where l.user_id = ?)
+        group by logistic_id`,
+
+        [userId]
+      );
+
+      // console.log("rows??", rows);
+      return rows;
+    } catch (error) {
+      console.error(error); // handle errors
+      throw new Error(`Error fetching items: ${error}`);
+    }
+  }
+
+
+
 }

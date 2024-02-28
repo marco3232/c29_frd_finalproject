@@ -10,17 +10,18 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addLogisticColumn } from "../hook/logisticAPI";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { clearForm, updateTransaction } from "../slice/logisticSlice";
+import { updateRentalList, updateCheckOutTransaction, clearForm } from "../slice/checkOutSlice"
 import { useAppDispatch, useAppSelector } from "../hook/hooks";
 import "../css/InputAddressPage.module.css";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { addCheckOut } from "../hook/checkoutAPI";
 
 //-------------------------------------------------------------------------------------------
 
-export default function TransactionPage() {
+export default function CheckOutTransactionPage() {
   const dispatch = useAppDispatch();
-  const donationList = useAppSelector((state) => state.logistic.donationList);
-  const transaction = useAppSelector((state) => state.logistic.transaction);
+  const rentalList = useAppSelector((state) => state.checkout.donateItemIds);
+  const checkoutTransaction = useAppSelector((state) => state.checkout.checkoutTransaction);
 
   // -----------react query-----------------------
   const navigate = useNavigate();
@@ -28,8 +29,11 @@ export default function TransactionPage() {
 
   const onAddLogistic = useMutation({
     mutationFn: async () => {
-      console.log({ donationList, transaction });
-      addLogisticColumn(donationList, transaction);
+      console.log({ rentalList, checkoutTransaction });
+      addCheckOut(
+        rentalList,
+        checkoutTransaction
+      )
     },
 
     onSuccess: () => {
@@ -38,13 +42,13 @@ export default function TransactionPage() {
       //   exact: true,
       // });
       dispatch(clearForm());
-      navigate("/FinalConfirmPage");
+      // navigate("/FinalConfirmPage");
     },
   });
 
-  const addLogisticHandler = () => {
+  const addCheckOutHandler = () => {
     dispatch(
-      updateTransaction({
+      updateCheckOutTransaction({
         room: roomInput,
         building: buildingInput,
         street: streetInput,
@@ -57,6 +61,7 @@ export default function TransactionPage() {
     );
 
     onAddLogistic.mutate();
+
   };
 
   const [roomInput, setRoomInput] = useState("");
@@ -80,14 +85,7 @@ export default function TransactionPage() {
 
     switch (selectedRegion) {
       case "香港島":
-        setDistrictOptions([
-          "請選擇",
-          "中西區",
-          "灣仔區",
-          "東區",
-          "南區",
-          "其他",
-        ]);
+        setDistrictOptions(["請選擇", "中西區", "灣仔區", "東區", "南區", "其他"]);
         break;
       case "九龍區":
         setDistrictOptions([
@@ -123,7 +121,7 @@ export default function TransactionPage() {
   return (
     <div className={styles.transactionContainer}>
       <div className={styles.transactionPageTitle}>
-        <h3>請輸入聯絡人資料</h3>
+        <h3>請輸入租借人聯絡資料</h3>
       </div>
       <div className={styles.inputAddressContainer}>
         <div className={styles.contactInfo}>
@@ -236,7 +234,7 @@ export default function TransactionPage() {
             className={styles.transactionPageUploadBtn}
             color="info"
             size="lg"
-            onClick={addLogisticHandler}
+            onClick={addCheckOutHandler}
           >
             提交
           </MDBBtn>

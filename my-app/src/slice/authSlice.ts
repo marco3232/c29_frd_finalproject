@@ -41,7 +41,7 @@ const initialStateFunc = () => {
                 eng_given_name: decoded.data
             }
         }
-        console.log(data)
+        // console.log(data)
 
     }
     return data

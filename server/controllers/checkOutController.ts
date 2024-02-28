@@ -12,18 +12,20 @@ export interface CheckOutTransactionType {
   confirmed_date: string;
   confirmed_session: string;
 }
-export interface CheckInType {
-  id: number;
-  // itemName: string;
-  // quantity:number;
-  // deposit_charge:number;
-  // rent_charge:number;
-}
+// export interface CheckInType {
+//   id: number;
+//   // itemName: string;
+//   // quantity:number;
+//   // deposit_charge:number;
+//   // rent_charge:number;
+// }
 
 export class CheckOutController {
   router = express.Router();
   constructor(private checkOutService: CheckOutService, private checkInService: CheckInService) {
     this.router.post("/checkout", this.create);
+    this.router.get("/finalcheckout",this.list)
+    this.router.get("/totalamount",this.totalamount)
   }
 
   create = async (req: Request, res: Response) => {
@@ -70,7 +72,21 @@ export class CheckOutController {
       res.status(500).json({ message: error });
     }
   };
+
+  list = async (req:Request, res:Response) => {
+    const user_id = req.user?.id
+    let list = await this.checkOutService.getCheckOutInfo(user_id!);
+      res.status(200).json({data: list.rows})
+  }
+
+  totalamount = async (req:Request, res:Response) => {
+    const user_id = req.user?.id
+    let list = await this.checkOutService.getTotalAmount(user_id!);
+      res.status(200).json({data: list.rows})
+  }
+
 }
+
 function getCheckInIdByDonateItemId(arg0: number) {
   throw new Error("Function not implemented.");
 }

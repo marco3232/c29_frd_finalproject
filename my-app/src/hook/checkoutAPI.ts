@@ -5,11 +5,11 @@ import { CheckOutTransactionType,} from "../slice/checkOutSlice";
 const source = "http://localhost:8080";
 
 export function useCheckOutInfo() {
-    const { isLoading, error, data, isFetching} = useQuery ({
-        queryKey:["checkouts"],
+    const { isLoading, error, data, isFetching } = useQuery({
+        queryKey: ["checkouts"],
         queryFn: async () => {
-            const res = await fetch(`${source}/checkout`, {
-                headers:{
+            const res = await fetch(`${source}/finalcheckout`, {
+                headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 },
             });
@@ -21,12 +21,28 @@ export function useCheckOutInfo() {
     if (isLoading || isFetching) return "Data Loading";
     if (error) {
         return "Error";
-    } 
+    }
     if (!data) {
         return []
     }
     return data
 }
+
+export async function getAmount() {
+    const res = await fetch(`${source}/totalamount`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        },
+
+    });
+
+    let resp = await res.json();
+    console.log("check resp",resp)
+    return resp.message;
+}
+
 
 export async function addCheckOut(
     checkInIds: number[],
@@ -36,7 +52,7 @@ export async function addCheckOut(
         checkInIds,
         checkoutTransaction
     }
-    console.log({body})
+    console.log({ body })
     const res = await fetch(`${source}/checkout`, {
         method: "POST",
         headers: {
