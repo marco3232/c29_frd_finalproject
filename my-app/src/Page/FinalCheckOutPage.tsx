@@ -76,38 +76,14 @@ export function FinalCheckOutPage() {
     setShowRentPrice(false);
     setShowAddress(false);
   };
-  const getLogisticList:
-    | string
-    | Array<{
-      id: number;
-      uuid?: number;
-      purpose?: string;
-      address: string;
-      district: string;
-      number: number;
-      name: string;
-      confirmed_date: string;
-      confirmed_session: string;
-      user_id?: number;
-      item_name?: string;
-      logistic_id?: number;
-      donate_item_id?: number;
-      quantity: number;
-      item_list?: string;
-      created_at: number;
-      deposit_charge?: number;
-      rent_charge?: number;
-      item_info?: string;
-      total_deposit_sum?: number;
-      total_rent_price_sum?: number;
-    }> = useCheckOutInfo();
+  const [getLogisticList, refetch] = useCheckOutInfo();
 
-  const getRentNDeposit:
-    | string
-    | Array<{
-      deposit_charge: number;
-      rent_charge: number;
-    }> = useCheckOutInfo();
+  // const getRentNDeposit:
+  //   | string
+  //   | Array<{
+  //     deposit_charge: number;
+  //     rent_charge: number;
+  //   }> = useCheckOutInfo();
 
   //   const getDepositAndRent:
   //   | string
@@ -116,6 +92,7 @@ export function FinalCheckOutPage() {
   //     rent_charge:number;
   //   }> = getAmount()
 
+  console.log("final chewckout")
 
 
   return (
@@ -125,7 +102,6 @@ export function FinalCheckOutPage() {
           <h1 className="logisticTitle">租借記錄</h1>
           {getLogisticList.map((entry) => (
             <>
-              <a></a>
               <Row className="logisticRow" key={entry.id}>
                 <Col className="logisticConfirmContainer">
                   <Form.Group className="logisticConfirmCard">
