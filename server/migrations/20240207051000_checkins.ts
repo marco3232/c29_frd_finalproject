@@ -12,6 +12,11 @@ export async function up(knex: Knex): Promise<void> {
       .unsigned()
       .references("id")
       .inTable("logistics");
+      table
+      .integer("logistic_items_id")
+      .unsigned()
+      .references("id")
+      .inTable("logistic_items");
     table
       .integer("donate_item_id")
       .unsigned()

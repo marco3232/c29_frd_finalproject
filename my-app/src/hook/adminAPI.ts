@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 const source = "http://localhost:8080";
 
 export function useAdminCheckIn_Confirm_3(id: number) {
-    const { isLoading, error, data, isFetching } = useQuery({
+    const { isLoading, error, data, isFetching, refetch } = useQuery({
       queryKey: ["adminCheckInConfirm"],
       queryFn: async () => {
         const res = await fetch(`${source}/logistics/adminCheckIn/${id}`, {
@@ -18,13 +18,13 @@ export function useAdminCheckIn_Confirm_3(id: number) {
         return result;
       },
     });
-    if (isLoading || isFetching) return "Data Loading";
+    if (isLoading || isFetching) return ["Data Loading"];
     if (error) {
-      return "Error ";
+      return ["Error "];
     }
     if (!data) {
       return [];
     }
-    return data;
+    return [data, refetch];
 
 }
