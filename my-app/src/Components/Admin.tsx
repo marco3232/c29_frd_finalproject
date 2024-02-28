@@ -39,15 +39,15 @@ export default function Admin() {
           <Table responsive="sm">
             <thead>
               <tr>
-                <th>UUID</th>
-                <th>Purpose</th>
-                <th className="adminPageTableDonateItems">Donate items & qty</th>
-                <th className="adminPageTableAddress">address</th>
-                <th>Contact_name</th>
-                <th>Contact_number</th>
-                <th>Confirmed_date</th>
-                <th>Confirmed_session</th>
-                <th>Operation</th>
+                <th>運單號</th>
+                <th>目的</th>
+                <th className="adminPageTableDonateItems">捐贈物品和數量</th>
+                <th className="adminPageTableAddress">地址</th>
+                <th>聯絡人姓名</th>
+                <th>聯絡人電話</th>
+                <th>確認交收日期</th>
+                <th>確認交收時間</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
