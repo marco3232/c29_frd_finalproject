@@ -18,8 +18,8 @@ import BodyContent from "./Components/HomePageContent";
 import HomePageCarousel from "./Components/HomePageCarousel";
 import { AboutUs } from "./Components/AboutUs";
 import { RentalPage } from "./Page/RentalPage";
-
 import CheckOutTransactionPage from "./Page/CheckOutTransactionPage";
+import { FinalCheckOutPage } from "./Page/FinalCheckOutPage";
 import { AdminConfirmPage } from "./Page/AdminConfirmPage";
 
 
@@ -111,6 +111,7 @@ function App() {
                     <Route path="/FinalConfirmPage" element={<FinalConfirmPage />} />
                     <Route path="/RentalPage" element={<RentalPage />} />
                     <Route path="/CheckoutTransaction" element={<CheckOutTransactionPage />} />
+                    <Route path="/FinalCheckout" element={<FinalCheckOutPage />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/Upload" element={<UploadPage />} />
