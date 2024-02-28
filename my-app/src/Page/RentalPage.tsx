@@ -1,3 +1,4 @@
+import styles from "../css/RentalPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useRentalPage_3 } from "../hook/RentalPageAPI";
 import React, { useState } from "react";
@@ -46,7 +47,9 @@ export function RentalPage() {
   return (
     <>
       <div className="rentalPageControl">
-        <div className="rentalPageContainer">
+        <div className={styles.title}>
+        <span className={styles.header}>以下物品可供租借</span>
+         <div className="rentalPageContainer">
           {RentListData &&
             Array.isArray(RentListData) &&
             RentListData.map(
@@ -103,8 +106,9 @@ export function RentalPage() {
       </div>
       <div className="rentalPageBtnControl">
         <MDBBtn className="rentalPageBtn" onClick={submit}>
-          next
+          下一頁
         </MDBBtn>
+        </div>
       </div>
     </>
   );
