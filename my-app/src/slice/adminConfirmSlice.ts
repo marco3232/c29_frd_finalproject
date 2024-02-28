@@ -1,10 +1,23 @@
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUserInfo } from '../hook/userAPI';
 
-// ---------------------------------------------------------------
-
-const initialStateFunc = () => {
+interface AdminConfirmState {
+    submittedStatus: string[];
 }
 
+const initialState: AdminConfirmState = {
+    submittedStatus: [],
+};
+
+export const adminConfirmSlice = createSlice({
+    name: 'adminConfirm',
+    initialState,
+    reducers: {
+        setSubmittedStatus: (state, action: PayloadAction<{ index: number; status: string }>) => {
+            const { index, status } = action.payload;
+            state.submittedStatus[index] = status;
+        },
+    },
+});
+
+export const { setSubmittedStatus } = adminConfirmSlice.actions;
+export default adminConfirmSlice.reducer;

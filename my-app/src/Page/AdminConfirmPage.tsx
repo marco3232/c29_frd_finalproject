@@ -4,6 +4,9 @@ import { Form, Table } from "react-bootstrap";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { useDispatch, useSelector } from "react-redux";
+import { setSubmittedStatus } from "../slice/adminConfirmSlice";
+import { IRootState } from "../store";
 
 // --------------------------------------------------------------------------------
 
@@ -16,7 +19,8 @@ export function AdminConfirmPage() {
   const [input, setInput] = useState("");
   const items = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
-
+  const dispatch = useDispatch();
+  const submittedStatus = useSelector((state: IRootState) => state.adminConfirm.submittedStatus);
   // ---------------------
 
   // const changeFileUpload = (e: any, index: number) => {
@@ -59,6 +63,7 @@ export function AdminConfirmPage() {
       newStatus[index] = "已存倉";
       return newStatus;
     });
+    dispatch(setSubmittedStatus({ index, status: "已存倉" }));
   };
   // ---------------------
 
@@ -113,7 +118,7 @@ export function AdminConfirmPage() {
                       </td>
                       <td>
                         <MDBBtn
-                          className="adminConfirmPageBtn"
+                          className="adminConfirmPage"
                           type="submit"
                           id={`submitBtn-${index}`}
                           onClick={() => onSubmit(index)}
