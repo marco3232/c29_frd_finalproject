@@ -17,7 +17,7 @@ export function AdminConfirmPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<string[]>([]);
   const [input, setInput] = useState("");
-  const [items , refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
+  const [items, refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const submittedStatus = useSelector((state: IRootState) => state.adminConfirm.submittedStatus);
@@ -38,13 +38,6 @@ export function AdminConfirmPage() {
     localStorage.setItem('status', JSON.stringify(newStatus));
     console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items);
-
-    const submitBtn = document.getElementById(`submitBtn-${index}`);
-    if (submitBtn && value === "repairing") {
-      submitBtn.removeAttribute("disabled");
-    } else if (submitBtn) {
-      submitBtn.setAttribute("disabled", "disabled");
-    }
   };
 
   // ---------------------
@@ -70,17 +63,10 @@ export function AdminConfirmPage() {
       body: JSON.stringify(body)
     });
 
-    let newStatus: string;
-    if (itemStatus === "repairing") {
-      newStatus = "維修中";
-    } else {
-      newStatus = "已存倉";
-    }
-
     setStatus(prevStatus => {
-      const updatedStatus = [...prevStatus];
-      updatedStatus[index] = newStatus;
-      return updatedStatus;
+      const newStatus = [...prevStatus];
+      newStatus[index] = "已存倉";
+      return newStatus;
     });
     dispatch(setSubmittedStatus({ index, status: "已存倉" }));
     refetch()
@@ -132,6 +118,9 @@ export function AdminConfirmPage() {
                           <option value="none">請選擇</option>
                           <option value="normal">狀態良好</option>
                           <option value="repairing">需要維修</option>
+                          {/* <option value="rented">Rented</option>
+                          <option value="disposed">Disposed</option>
+                          <option value="lost">Lost</option> */}
                         </Form.Select>
                       </td>
                       <td>
