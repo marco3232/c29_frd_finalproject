@@ -4,16 +4,20 @@ import { useCheckOutInfo } from "../hook/checkoutAPI";
 import loadingGif from "../image/loading.gif";
 // -----------------------------------------------------
 
-import { Form, Col, Row, ListGroup } from "react-bootstrap";
+import { Form, Col, Row, ListGroup, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
 import { useGetAmount } from "../hook/totalAmountAPI";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 export function FinalCheckOutPage() {
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState([]);
+  const [showRentPrice, setShowRentPrice] = React.useState(false);
+  const [selectedEntry, setSelectedEntry] = React.useState<any>(null);
+  const [showAddress, setShowAddress] = React.useState(false);
 
   const [buildingInput, setBuildingInput] = useState("");
 
@@ -56,39 +60,54 @@ export function FinalCheckOutPage() {
   };
   const [districtOptions, setDistrictOptions] = useState<string[]>([]);
   const [districtInput, setDistrictInput] = useState("");
+  const handleShowRentPrice = (entry: any) => {
+    setSelectedEntry(entry);
+    setShowRentPrice(true);
+    setShowAddress(false);
+  };
 
+  const handleShowAddress = (entry: any) => {
+    setSelectedEntry(entry);
+    setShowRentPrice(false);
+    setShowAddress(true);
+  };
+
+  const handleCloseDetails = () => {
+    setShowRentPrice(false);
+    setShowAddress(false);
+  };
   const getLogisticList:
     | string
     | Array<{
-        id: number;
-        uuid?: number;
-        purpose?: string;
-        address: string;
-        district: string;
-        number: number;
-        name: string;
-        confirmed_date: string;
-        confirmed_session: string;
-        user_id?: number;
-        item_name?: string;
-        logistic_id?: number;
-        donate_item_id?: number;
-        quantity: number;
-        item_list?: string;
-        created_at: number;
-        deposit_charge?: number;
-        rent_charge?: number;
-        item_info?: string;
-        total_deposit_sum?: number;
-        total_rent_price_sum?: number;
-      }> = useCheckOutInfo();
+      id: number;
+      uuid?: number;
+      purpose?: string;
+      address: string;
+      district: string;
+      number: number;
+      name: string;
+      confirmed_date: string;
+      confirmed_session: string;
+      user_id?: number;
+      item_name?: string;
+      logistic_id?: number;
+      donate_item_id?: number;
+      quantity: number;
+      item_list?: string;
+      created_at: number;
+      deposit_charge?: number;
+      rent_charge?: number;
+      item_info?: string;
+      total_deposit_sum?: number;
+      total_rent_price_sum?: number;
+    }> = useCheckOutInfo();
 
   const getRentNDeposit:
     | string
     | Array<{
-        deposit_charge: number;
-        rent_charge: number;
-      }> = useCheckOutInfo();
+      deposit_charge: number;
+      rent_charge: number;
+    }> = useCheckOutInfo();
 
   //   const getDepositAndRent:
   //   | string
@@ -97,7 +116,7 @@ export function FinalCheckOutPage() {
   //     rent_charge:number;
   //   }> = getAmount()
 
-  
+
 
   return (
     <div className="logisticConfirm">
@@ -108,25 +127,12 @@ export function FinalCheckOutPage() {
             <>
               <a></a>
               <Row className="logisticRow" key={entry.id}>
-                {/* <Col className="logisticConfirmContainer">
-                    <Form.Group className="logisticConfirmCard">
-                      <Form.Label>目的</Form.Label>
-                      <Form.Control value={entry.purpose} />
-                    </Form.Group>
-                  </Col> */}
                 <Col className="logisticConfirmContainer">
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>運單號</Form.Label>
                     <Form.Control value={entry.uuid} />
                   </Form.Group>
                 </Col>
-                {/* <Col className="logisticConfirmContainer">
-                    <Form.Group className="logisticConfirmCard">
-                      <Form.Label>捐贈物品及數量</Form.Label>
-                      <Form.Control value={entry.item_list} />
-                    </Form.Group>
-                  </Col>
-                */}
                 <Col className="logisticConfirmContainer">
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>聯絡人姓名</Form.Label>
@@ -139,7 +145,7 @@ export function FinalCheckOutPage() {
                     <Form.Control value={entry.number} />
                   </Form.Group>
                 </Col>
-                <Col className="logisticConfirmContainer">
+                <Col className="logisticConfirmContainer" onClick={() => handleShowAddress(entry)}>
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>地址</Form.Label>
                     <Form.Control value={entry.address} />
@@ -158,13 +164,13 @@ export function FinalCheckOutPage() {
                     <Form.Control value={entry.confirmed_session} />
                   </Form.Group>
                 </Col>
-                <Col className="logisticConfirmContainer">
+                <Col className="logisticConfirmContainer" onClick={() => handleShowRentPrice(entry)}>
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>租借項目表</Form.Label>
                     <Form.Control value={entry.item_info} />
                   </Form.Group>
                 </Col>
-                <Col className="logisticConfirmContainer">
+                <Col className="logisticConfirmContainer" >
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>總按金</Form.Label>
                     <Form.Control value={`$${entry.total_deposit_sum}`} />
@@ -183,33 +189,15 @@ export function FinalCheckOutPage() {
                     <Form.Control
                       value={
                         entry.total_rent_price_sum !== undefined &&
-                        entry.total_deposit_sum !== undefined
+                          entry.total_deposit_sum !== undefined
                           ? `$${Number(entry.total_rent_price_sum) +
-                            Number(entry.total_deposit_sum)}`
+                          Number(entry.total_deposit_sum)}`
                           : "Error: Data not available"
                       }
                     />
                   </Form.Group>
                 </Col>
               </Row>
-
-              {/* {Array.isArray(getRentNDeposit) && getRentNDeposit.length > 0 ? (
-                <ListGroup as="ul">
-                  <ListGroup.Item as="li">付款詳情</ListGroup.Item>
-                  {getRentNDeposit.map((entry) => (
-                    <div>
-                      <ListGroup.Item as="li">
-                        總按金 ${entry.deposit_charge}
-                         總租金 $ {entry.rent_charge} 
-                      </ListGroup.Item>
-                    </div>
-                  ))}
-                </ListGroup>
-              ) : (
-                <div id="finalConfirmNodata">
-                  <h3>No data available</h3>
-                </div>
-              )} */}
             </>
           ))}
         </Form>
@@ -218,6 +206,37 @@ export function FinalCheckOutPage() {
           <h3>No data available</h3>
         </div>
       )}
+      <Modal show={showAddress} onHide={handleCloseDetails}>
+        <Modal.Header closeButton>
+          <Modal.Title>地址</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEntry && (
+            <div>
+              <p>{selectedEntry.address}</p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <MDBBtn onClick={handleCloseDetails}>Close</MDBBtn>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showRentPrice} onHide={handleCloseDetails}>
+        <Modal.Header closeButton>
+          <Modal.Title>租借項目表</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEntry && (
+            <div>
+              <p>{selectedEntry.item_info}</p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <MDBBtn onClick={handleCloseDetails}>Close</MDBBtn>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

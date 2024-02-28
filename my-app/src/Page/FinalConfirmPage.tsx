@@ -171,11 +171,8 @@ export default function FinalConfirmPage() {
                       <Form.Control value={entry.confirmed_session} />
                     </Form.Group>
                   </Col>
-
                 </Row></>
             ))}
-
-
           </Form>
         ) : (
           <div id="finalConfirmNodata">
