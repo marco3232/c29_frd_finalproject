@@ -605,7 +605,6 @@ padding-bottom: 1rem;
 /* ------Admin Page------------------------------------------------------------------------------------------ */
 
 .adminPageTableDonateItems {
-    display: flex;
     width: 11rem;
 }
 
@@ -613,6 +612,25 @@ padding-bottom: 1rem;
     width: 9rem;
 }
 
+.adminPageTable {
+    /* width: 0rem !important; */
+}
+
+.adminPageTableAction {
+    width: 10rem;
+}
+
+.adminPageTableDate {
+    width: 10rem;
+}
+
+.adminPageTableTime {
+    width: 10rem;
+}
+
+.adminPageTableBill {
+    width: 15rem;
+}
 .modal {
     display: flex !important;
     justify-content: center !important;   

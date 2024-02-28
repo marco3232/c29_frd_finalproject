@@ -36,17 +36,17 @@ export default function Admin() {
           <h3>所有捐贈記錄</h3>
         </div>
         <div>
-          <Table responsive="sm">
+          <Table className="adminPageTable" responsive="sm">
             <thead>
               <tr>
-                <th>運單號</th>
-                <th>目的</th>
+                <th className="adminPageTableBill">運單號</th>
+                <th className="adminPageTableAction">目的</th>
                 <th className="adminPageTableDonateItems">捐贈物品和數量</th>
                 <th className="adminPageTableAddress">地址</th>
-                <th>聯絡人姓名</th>
+                <th className="adminPageTableName">聯絡人姓名</th>
                 <th>聯絡人電話</th>
-                <th>確認交收日期</th>
-                <th>確認交收時間</th>
+                <th className="adminPageTableDate">確認交收日期</th>
+                <th className="adminPageTableTime">確認交收時間</th>
                 <th></th>
               </tr>
             </thead>
