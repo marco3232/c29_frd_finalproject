@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getAmount, useCheckOutInfo } from "../hook/checkoutAPI";
+import { useCheckOutInfo } from "../hook/checkoutAPI";
 import loadingGif from "../image/loading.gif";
 // -----------------------------------------------------
 
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
+import { useGetAmount } from "../hook/totalAmountAPI";
 
 export function FinalCheckOutPage() {
   const queryClient = useQueryClient();
@@ -75,20 +76,29 @@ export function FinalCheckOutPage() {
         quantity: number;
         item_list?: string;
         created_at: number;
-        deposit_charge:number;
-        rent_charge:number;
+        deposit_charge?: number;
+        rent_charge?: number;
+        item_info?: string;
+        total_deposit_sum?: number;
+        total_rent_price_sum?: number;
       }> = useCheckOutInfo();
 
-    //   const getDepositAndRent:
-    //   | string
-    //   | Array<{
-    //     deposit_charge:number;
-    //     rent_charge:number;
-    //   }> = getAmount()
+  const getRentNDeposit:
+    | string
+    | Array<{
+        deposit_charge: number;
+        rent_charge: number;
+      }> = useCheckOutInfo();
+
+  //   const getDepositAndRent:
+  //   | string
+  //   | Array<{
+  //     deposit_charge:number;
+  //     rent_charge:number;
+  //   }> = getAmount()
 
   return (
     <div className="logisticConfirm">
-
       {Array.isArray(getLogisticList) && getLogisticList.length > 0 ? (
         <Form className="logisticForm">
           <h1 className="logisticTitle">租借記錄</h1>
@@ -146,29 +156,66 @@ export function FinalCheckOutPage() {
                     <Form.Control value={entry.confirmed_session} />
                   </Form.Group>
                 </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>租借項目表</Form.Label>
+                    <Form.Control value={entry.item_info} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>總按金</Form.Label>
+                    <Form.Control value={entry.total_deposit_sum} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>總租金</Form.Label>
+                    <Form.Control value={entry.total_rent_price_sum} />
+                  </Form.Group>
+                </Col>
+                <Col className="logisticConfirmContainer">
+                  <Form.Group className="logisticConfirmCard">
+                    <Form.Label>總額</Form.Label>
+                    {/* <Form.Control value={entry.total_rent_price_sum + entry.total_deposit_sum} /> */}
+                    <Form.Control
+                      value={
+                        entry.total_rent_price_sum !== undefined &&
+                        entry.total_deposit_sum !== undefined
+                          ? Number(entry.total_rent_price_sum) +
+                            Number(entry.total_deposit_sum)
+                          : "Error: Data not available"
+                      }
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
-              <ListGroup as="ul">
-              <ListGroup.Item as="li" >
-                租借項目表
-              </ListGroup.Item>
-              <ListGroup.Item as="li" >{entry.item_name}:  按金 ${entry.deposit_charge} 租金 ${entry.rent_charge}</ListGroup.Item>
-              {/* <ListGroup.Item as="li" ></ListGroup.Item>
-              <ListGroup.Item as="li"></ListGroup.Item> */}
-            </ListGroup>
+
+              {/* {Array.isArray(getRentNDeposit) && getRentNDeposit.length > 0 ? (
+                <ListGroup as="ul">
+                  <ListGroup.Item as="li">付款詳情</ListGroup.Item>
+                  {getRentNDeposit.map((entry) => (
+                    <div>
+                      <ListGroup.Item as="li">
+                        總按金 ${entry.deposit_charge}
+                         總租金 $ {entry.rent_charge} 
+                      </ListGroup.Item>
+                    </div>
+                  ))}
+                </ListGroup>
+              ) : (
+                <div id="finalConfirmNodata">
+                  <h3>No data available</h3>
+                </div>
+              )} */}
             </>
-             
           ))}
-      
         </Form>
       ) : (
         <div id="finalConfirmNodata">
           <h3>No data available</h3>
         </div>
       )}
-      <div className="rentalItems">
-     
-
-      </div>
     </div>
   );
 }
