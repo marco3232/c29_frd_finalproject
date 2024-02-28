@@ -5,7 +5,7 @@ import { CheckOutTransactionType,} from "../slice/checkOutSlice";
 const source = "http://localhost:8080";
 
 export function useCheckOutInfo() {
-    const { isLoading, error, data, isFetching } = useQuery({
+    const { isLoading, error, data, isFetching, refetch } = useQuery({
         queryKey: ["checkouts"],
         queryFn: async () => {
             const res = await fetch(`${source}/finalcheckout`, {
@@ -18,14 +18,14 @@ export function useCheckOutInfo() {
             return result.data
         }
     });
-    if (isLoading || isFetching) return "Data Loading";
+    if (isLoading || isFetching) return ["Data Loading"];
     if (error) {
-        return "Error";
+        return ["Error"];
     }
     if (!data) {
         return []
     }
-    return data
+    return [data, refetch]
 }
 
 // export async function getAmount() {
