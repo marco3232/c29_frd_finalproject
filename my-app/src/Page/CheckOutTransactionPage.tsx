@@ -21,7 +21,9 @@ import { addCheckOut } from "../hook/checkoutAPI";
 export default function CheckOutTransactionPage() {
   const dispatch = useAppDispatch();
   const rentalList = useAppSelector((state) => state.checkout.donateItemIds);
-  const checkoutTransaction = useAppSelector((state) => state.checkout.checkoutTransaction);
+  const checkoutTransaction = useAppSelector(
+    (state) => state.checkout.checkoutTransaction
+  );
 
   // -----------react query-----------------------
   const navigate = useNavigate();
@@ -30,10 +32,7 @@ export default function CheckOutTransactionPage() {
   const onAddLogistic = useMutation({
     mutationFn: async () => {
       console.log({ rentalList, checkoutTransaction });
-      addCheckOut(
-        rentalList,
-        checkoutTransaction
-      )
+      addCheckOut(rentalList, checkoutTransaction);
     },
 
     onSuccess: () => {
@@ -61,7 +60,6 @@ export default function CheckOutTransactionPage() {
     );
 
     onAddLogistic.mutate();
-
   };
 
   const [roomInput, setRoomInput] = useState("");
@@ -85,7 +83,14 @@ export default function CheckOutTransactionPage() {
 
     switch (selectedRegion) {
       case "香港島":
-        setDistrictOptions(["請選擇", "中西區", "灣仔區", "東區", "南區", "其他"]);
+        setDistrictOptions([
+          "請選擇",
+          "中西區",
+          "灣仔區",
+          "東區",
+          "南區",
+          "其他",
+        ]);
         break;
       case "九龍區":
         setDistrictOptions([

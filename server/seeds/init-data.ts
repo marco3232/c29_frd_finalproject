@@ -8,7 +8,7 @@ export async function seed(knex: Knex): Promise<void> {
   await knex("users")
     .insert([
       {
-        email: "admin01@gmail.com",
+        email: "admin@gmail.com",
         password: await hashPassword("123456"),
         address: "Heaven_road_9527",
         chi_surname: "管",
@@ -23,22 +23,7 @@ export async function seed(knex: Knex): Promise<void> {
     .into("users");
 
   // -------------------------------------
-  await knex("users")
-    .insert([
-      {
-        email: "testing@gmail.com",
-        password: await hashPassword("123456"),
-        address: "hongkong",
-        chi_surname: "田",
-        chi_given_name: "比比",
-        eng_surname: "Ho",
-        eng_given_name: "lo",
-        mobile_phone: "23456789",
-        address_proof_image_path: "/assets/batman.jpeg",
-        role: "admin",
-      },
-    ])
-    .into("users");
+
 
   await knex("users")
     .insert([
