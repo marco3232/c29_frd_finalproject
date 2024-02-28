@@ -457,6 +457,7 @@ padding-bottom: 1rem;
     margin-bottom: 1rem;
 }
 
+
 .form-label {
     margin-bottom: 0rem !important
 }
@@ -655,3 +656,7 @@ padding-bottom: 1rem;
 
 
 /* ------------------------------------------------------------------------------------------------ */
+
+
+.btn-close {
+}
