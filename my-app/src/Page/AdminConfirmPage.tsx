@@ -78,7 +78,7 @@ export function AdminConfirmPage() {
       <div className="adminConfirmPageContainer">
 
         <h1>Admin Confirm Page</h1>
-        <p>Hi this is the detail page of item ID: {id}</p>
+        {/* <p>Hi this is the detail page of item ID: {id}</p> */}
         <div className="tableResponsive">
           <Table responsive="sm">
             <thead>
