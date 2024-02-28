@@ -83,8 +83,8 @@ export function AdminConfirmPage() {
           <Table responsive="sm">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>物品名稱</th>
+                <th>id</th>
+                <th>物資名稱</th>
                 <th>數量</th>
                 <th>狀態</th>
                 <th></th>
