@@ -71,15 +71,15 @@ export function RentalPage() {
                       style={{ objectFit: "contain" }}
                     />
                     <Toast>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">Item:</strong>
                         <small>{entry.item_name}</small>
                       </Toast.Header>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">Deposit:</strong>
                         <small>{entry.deposit_charge}元</small>
                       </Toast.Header>
-                      <Toast.Header>
+                      <Toast.Header closeButton={false}>
                         <strong className="me-auto">Rent:</strong>
                         <small>{entry.rent_charge}元/MONTH</small>
                       </Toast.Header>

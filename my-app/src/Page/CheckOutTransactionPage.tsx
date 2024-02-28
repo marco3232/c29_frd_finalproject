@@ -203,6 +203,7 @@ export default function CheckOutTransactionPage() {
               <DatePicker
                 label="Date"
                 defaultValue={dayjs()}
+                minDate={dayjs()}
                 // value={dayjs(confirmedDateInput)}
                 onChange={(date) => {
                   const dayjsDate = dayjs(date);
@@ -222,6 +223,7 @@ export default function CheckOutTransactionPage() {
               <TimePicker
                 label="Time"
                 defaultValue={dayjs()}
+                
                 // value={dayjs(confirmedSessionInput)}
                 onChange={(session) => {
                   const dayjsSession = dayjs(session);
