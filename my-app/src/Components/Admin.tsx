@@ -3,13 +3,23 @@ import "../css/Admin.module.css";
 import { Form, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { useState } from "react";
 
 
 export default function Admin() {
   const navigate = useNavigate();
-
   const AdminLogisticData = useAdminCheck_LogisticInfo_3();
+  const [showDetails, setShowDetails] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState(null);
 
+  const handleShowDetails = (entry: any) => {
+    setSelectedEntry(entry);
+    setShowDetails(true);
+  };
+
+  const handleCloseDetails = () => {
+    setShowDetails(false);
+  };
 
 
   return (
