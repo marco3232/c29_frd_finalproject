@@ -31,6 +31,9 @@ export function RentalPage() {
   //   navigate("/Transaction");
   // };
 
+  // const updateRentalList = (itemIds: number[]) => {
+  //   return { type: "update rental list", donateItemIds: itemIds };
+  // };
   const submit = () => {
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
