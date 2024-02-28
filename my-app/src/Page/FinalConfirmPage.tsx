@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { editLogisticColumn, useGetLogisticInfo } from "../hook/logisticAPI";
-import loadingGif from "../image/loading.gif";
+import { Accordion, Card, } from "react-bootstrap";
 // -----------------------------------------------------
 
 import { Form, Col, Row } from "react-bootstrap";
@@ -16,7 +16,7 @@ export default function FinalConfirmPage() {
   // const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [formData, setFormData] = useState([]);
-
+  const [isAddressExpanded, setIsAddressExpanded] = useState(false);
   const [buildingInput, setBuildingInput] = useState("");
 
 
@@ -123,7 +123,7 @@ export default function FinalConfirmPage() {
                   </Form.Group>
                 </Col>
 
-                <Col className="logisticConfirmContainer">
+                <Col className="logisticConfirmContainerAddress">
                   <Form.Group className="logisticConfirmCard">
                     <Form.Label>地址</Form.Label>
                     <Form.Control value={entry.address} />
