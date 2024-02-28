@@ -5,7 +5,7 @@ import loadingGif from "../image/loading.gif";
 // -----------------------------------------------------
 
 import { Form, Col, Row, ListGroup } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
@@ -86,6 +86,8 @@ export function FinalCheckOutPage() {
     //     rent_charge:number;
     //   }> = getAmount()
 
+  
+
   return (
     <div className="logisticConfirm">
 
@@ -155,6 +157,7 @@ export function FinalCheckOutPage() {
               {/* <ListGroup.Item as="li" ></ListGroup.Item>
               <ListGroup.Item as="li"></ListGroup.Item> */}
             </ListGroup>
+
             </>
              
           ))}
@@ -172,3 +175,4 @@ export function FinalCheckOutPage() {
     </div>
   );
 }
+

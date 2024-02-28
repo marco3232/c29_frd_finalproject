@@ -42,7 +42,7 @@ export default function CheckOutTransactionPage() {
       //   exact: true,
       // });
       dispatch(clearForm());
-      // navigate("/FinalConfirmPage");
+      navigate("/FinalCheckout");
     },
   });
 

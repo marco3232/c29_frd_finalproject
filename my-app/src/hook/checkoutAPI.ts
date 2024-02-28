@@ -35,7 +35,6 @@ export async function getAmount() {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
-
     });
 
     let resp = await res.json();

@@ -101,7 +101,7 @@ export class LogisticMixService {
         l.id as logistic_id,
         l.contact_name as name,
         l.contact_number as number,
-        l.room || ', ' || l.building || ', ' || l.street || ', ' || l.district as address,
+        l.district || ', ' || l.street || ', ' || l.building || ', ' || l.room  as address,
         u.email as email,
         l.purpose as purpose,
         l.district as district,
