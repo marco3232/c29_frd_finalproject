@@ -609,11 +609,11 @@ padding-bottom: 1rem;
 }
 
 .adminPageTableAddress {
-    width: 9rem;
+    width: 10rem;
 }
 
 .adminPageTable {
-    /* width: 0rem !important; */
+    justify-content: center;
 }
 
 .adminPageTableAction {
