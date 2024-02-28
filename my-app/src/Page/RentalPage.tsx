@@ -23,17 +23,6 @@ export function RentalPage() {
 
   // ------------------
 
-  // const nextStep = () => {
-  //   let donateItemIds: number[] = [];
-  //   dispatch(updateRentalList(donateItemIds));
-  //   console.log({donateItemIds})
-
-  //   navigate("/Transaction");
-  // };
-
-  // const updateRentalList = (itemIds: number[]) => {
-  //   return { type: "update rental list", donateItemIds: itemIds };
-  // };
   const submit = () => {
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");

@@ -19,8 +19,6 @@ interface AuthState {
 // ---------------------------------------------------------------
 const token = localStorage.getItem('token');
 const isAuthenticated = !!token;
-
-
 const initialStateFunc = () => {
     let data = {
         isAuthenticated: isAuthenticated,
