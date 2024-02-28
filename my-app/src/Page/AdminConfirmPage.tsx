@@ -17,7 +17,7 @@ export function AdminConfirmPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<string[]>([]);
   const [input, setInput] = useState("");
-  const [items , refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
+  const [items, refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const submittedStatus = useSelector((state: IRootState) => state.adminConfirm.submittedStatus);
@@ -78,16 +78,16 @@ export function AdminConfirmPage() {
       <div className="adminConfirmPageContainer">
 
         <h1>Admin Confirm Page</h1>
-        <p>Hi this is the detail page of item ID: {id}</p>
+        {/* <p>Hi this is the detail page of item ID: {id}</p> */}
         <div className="tableResponsive">
           <Table responsive="sm">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Table heading</th>
-                <th>Table heading</th>
-                <th>Status</th>
-                <th>Operation</th>
+                <th>id</th>
+                <th>物資名稱</th>
+                <th>數量</th>
+                <th>狀態</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

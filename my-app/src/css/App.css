@@ -26,7 +26,7 @@ max-width: 100%;
     justify-content: center ;
     width: 100%;
     padding-left: 5rem;
-    height: 10rem;
+    height: 12rem;
 }
 
 #homePageLogo {
@@ -543,6 +543,9 @@ padding-bottom: 1rem;
 
 }
 
+.RentalPage_title__ {
+    width: 100rem;
+}
 .rentalPageContainer {
     width: 70rem;
     display: flex; 
@@ -602,14 +605,32 @@ padding-bottom: 1rem;
 /* ------Admin Page------------------------------------------------------------------------------------------ */
 
 .adminPageTableDonateItems {
-    display: flex;
     width: 11rem;
 }
 
 .adminPageTableAddress {
-    width: 9rem;
+    width: 10rem;
 }
 
+.adminPageTable {
+    justify-content: center;
+}
+
+.adminPageTableAction {
+    width: 10rem;
+}
+
+.adminPageTableDate {
+    width: 10rem;
+}
+
+.adminPageTableTime {
+    width: 10rem;
+}
+
+.adminPageTableBill {
+    width: 15rem;
+}
 .modal {
     display: flex !important;
     justify-content: center !important;   

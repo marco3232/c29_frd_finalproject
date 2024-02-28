@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/App.css"
 import "../css/DonateItemPage.module.css"
 import { useAppSelector } from "../hook/hooks";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 
 export default function DonateItemPage() {
@@ -27,8 +28,8 @@ export default function DonateItemPage() {
   return (
     <div className="donateItemContainer">
       <div className={styles.title}>
-        <span className={styles.header}>器材募集 </span>
-        <h4 className="mt-2"><b>現接受捐贈以下物品</b></h4>
+        <span className={styles.header}>現接受捐贈以下物品 </span>
+        <h4 className="mt-2"><b></b></h4>
         <div className={styles.cards}>
           <Card className="donateItemCard" >
             <CardMedia
@@ -162,12 +163,15 @@ export default function DonateItemPage() {
           </Card>
 
 
-          <span
+          {/* <span
             className={styles.uploadBtn}
             onClick={() => navigate('/Upload')}
             onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
             onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
-          >按此捐贈</span>
+          >按此捐贈</span> */}
+           <MDBBtn className="rentalPageBtn" onClick={() => navigate('/Upload')}>
+          按此捐贈
+        </MDBBtn>
         </div>
       </div >
     </div >
