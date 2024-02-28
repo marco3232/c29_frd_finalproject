@@ -8,32 +8,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSubmittedStatus } from "../slice/adminConfirmSlice";
 import { IRootState } from "../store";
 
-// ---------------------
+// --------------------------------------------------------------------------------
 
 const source = "http://localhost:8080";
 
-// --------------------------------------------------------------------------------
-
-
 export function AdminConfirmPage() {
   let { id } = useParams();
-  const navigate = useNavigate();
-  const [status, setStatus] = useState<string[]>(JSON.parse(localStorage.getItem('status') || '[]'));
+  const [status, setStatus] = useState<string[]>([]);
   const [items, refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
+  const [submitButtonText, setSubmitButtonText] = useState("");
 
   // ---------------------
+  useEffect(() => {
+    const savedStatus = sessionStorage.getItem('status');
+    if (savedStatus) {
+      setStatus(JSON.parse(savedStatus));
+    }
+  }, []);
 
   const changeStatus = (e: any, index: number) => {
     const value = e.target.value;
     const newStatus = [...status];
     newStatus[index] = value;
     setStatus(newStatus);
-    localStorage.setItem('status', JSON.stringify(newStatus));
+    if (value === "repairing") {
+      sessionStorage.setItem('status', JSON.stringify(newStatus));
+    }
     console.log({ value, index });
     queryClient.setQueryData(["adminCheckInConfirm"], items);
-  };
+  }
 
   // ---------------------
 
@@ -58,16 +63,15 @@ export function AdminConfirmPage() {
       body: JSON.stringify(body)
     });
 
-
     setStatus(prevStatus => {
       const newStatus = [...prevStatus];
       newStatus[index] = "已存倉";
       return newStatus;
     });
     dispatch(setSubmittedStatus({ index, status: "已存倉" }));
+    setSubmitButtonText("請選擇");
     refetch()
   };
-
   // ---------------------
 
   return (
@@ -75,12 +79,13 @@ export function AdminConfirmPage() {
       <div className="adminConfirmPageContainer">
 
         <h1>Admin Confirm Page</h1>
+        {/* <p>Hi this is the detail page of item ID: {id}</p> */}
         <div className="tableResponsive">
           <Table responsive="sm">
             <thead>
               <tr>
-                <th>id</th>
-                <th>物資名稱</th>
+                <th>ID</th>
+                <th>物品名稱</th>
                 <th>數量</th>
                 <th>狀態</th>
                 <th></th>
@@ -124,7 +129,8 @@ export function AdminConfirmPage() {
                           onClick={() => onSubmit(index)}
                           disabled={status[index] === "已存倉" || status[index] !== "normal"}
                         >
-                          {status[index] === "repairing" ? "維修中" : entry.goods_status === "normal" ? "已存倉" : "提交"}
+                          {/* {entry.goods_status === "normal" ? "已存倉" : "提交"} */}
+                          {entry.goods_status === "normal" ? "已存倉" : (status[index] === "repairing" ? "維修中" : "提交")}
                         </MDBBtn>
                       </td>
                     </tr>
