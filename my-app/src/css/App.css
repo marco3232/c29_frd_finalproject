@@ -577,3 +577,24 @@ padding-bottom: 1rem;
     background-color: #cde6f5 !important;
     color: black !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    color: blue !important;
+  }

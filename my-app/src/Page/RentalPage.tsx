@@ -11,10 +11,17 @@ import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
 import { updateRentalList } from "../slice/checkOutSlice";
 
+// --------------------------------------------------------------------------------
+
 export function RentalPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const RentListData = useRentalPage_3();
+  const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
+  const [showA, setShowA] = useState(true);
+  const [showB, setShowB] = useState(true);
+
+  // ------------------
 
   // const nextStep = () => {
   //   let donateItemIds: number[] = [];
@@ -24,12 +31,6 @@ export function RentalPage() {
   //   navigate("/Transaction");
   // };
 
-  const [showA, setShowA] = useState(true);
-  const [showB, setShowB] = useState(true);
-
-  const toggleShowA = () => setShowA(!showA);
-  const toggleShowB = () => setShowB(!showB);
-
   const submit = () => {
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
@@ -37,17 +38,18 @@ export function RentalPage() {
     navigate("/CheckoutTransaction");
   };
 
-  const [donateItemIds, setDonateItemIds] = useState<Set<number>>(new Set());
+  // ------------------
 
   const updateDonateItem = (id: number) => {
-    const updatedItemIds = new Set(donateItemIds); // Create a copy of the existing set
+    const updatedItemIds = new Set(donateItemIds);
     if (updatedItemIds.has(id)) {
-      updatedItemIds.delete(id); // Item already selected, remove it from the set
+      updatedItemIds.delete(id);
     } else {
-      updatedItemIds.add(id); // Item not selected, add it to the set
+      updatedItemIds.add(id);
     }
     setDonateItemIds(updatedItemIds); //
   };
+  // ------------------
 
   return (
     <>
@@ -91,7 +93,7 @@ export function RentalPage() {
                       </Toast.Header>
                       <Toast.Body>
                         <div className="mb-3">
-                          <Form.Check // prettier-ignore
+                          <Form.Check
                             onChange={() =>
                               updateDonateItem(entry.donate_item_id)
                             }
