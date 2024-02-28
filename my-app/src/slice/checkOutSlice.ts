@@ -49,8 +49,9 @@ export const checkOutSlice = createSlice({
             state.checkoutTransaction = action.payload
         },
         clearForm: (state: CheckOutState) => {
-            state = initialState
+            return initialState;
         },
+
     },
 
 });

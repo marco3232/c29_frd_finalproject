@@ -2,31 +2,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAdminCheckIn_Confirm_3 } from "../hook/adminAPI";
 import { Form, Table } from "react-bootstrap";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { setSubmittedStatus } from "../slice/adminConfirmSlice";
 import { IRootState } from "../store";
 
-// --------------------------------------------------------------------------------
+// ---------------------
 
 const source = "http://localhost:8080";
+
+// --------------------------------------------------------------------------------
+
 
 export function AdminConfirmPage() {
   let { id } = useParams();
   const navigate = useNavigate();
-  const [status, setStatus] = useState<string[]>([]);
-  const [input, setInput] = useState("");
+  const [status, setStatus] = useState<string[]>(JSON.parse(localStorage.getItem('status') || '[]'));
   const [items, refetch] = useAdminCheckIn_Confirm_3(parseInt(id!));
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
-  const submittedStatus = useSelector((state: IRootState) => state.adminConfirm.submittedStatus);
-  // ---------------------
-
-  // const changeFileUpload = (e: any, index: number) => {
-  //   const value = e.target.value;
-  //   console.log(value);
-  // };
 
   // ---------------------
 
@@ -63,6 +58,7 @@ export function AdminConfirmPage() {
       body: JSON.stringify(body)
     });
 
+
     setStatus(prevStatus => {
       const newStatus = [...prevStatus];
       newStatus[index] = "已存倉";
@@ -71,6 +67,7 @@ export function AdminConfirmPage() {
     dispatch(setSubmittedStatus({ index, status: "已存倉" }));
     refetch()
   };
+
   // ---------------------
 
   return (
@@ -78,7 +75,6 @@ export function AdminConfirmPage() {
       <div className="adminConfirmPageContainer">
 
         <h1>Admin Confirm Page</h1>
-        {/* <p>Hi this is the detail page of item ID: {id}</p> */}
         <div className="tableResponsive">
           <Table responsive="sm">
             <thead>
@@ -118,9 +114,6 @@ export function AdminConfirmPage() {
                           <option value="none">請選擇</option>
                           <option value="normal">狀態良好</option>
                           <option value="repairing">需要維修</option>
-                          {/* <option value="rented">Rented</option>
-                          <option value="disposed">Disposed</option>
-                          <option value="lost">Lost</option> */}
                         </Form.Select>
                       </td>
                       <td>
@@ -131,7 +124,7 @@ export function AdminConfirmPage() {
                           onClick={() => onSubmit(index)}
                           disabled={status[index] === "已存倉" || status[index] !== "normal"}
                         >
-                          {entry.goods_status === "normal" ? "已存倉" : "提交"}
+                          {status[index] === "repairing" ? "維修中" : entry.goods_status === "normal" ? "已存倉" : "提交"}
                         </MDBBtn>
                       </td>
                     </tr>
