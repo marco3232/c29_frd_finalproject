@@ -94,11 +94,11 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="uploadControl">
-      <div className="stepImgContainer">
-        {showImage && <img id="uploadStepImg" src={uploadImg} alt="Step Image"></img>}
-      </div>
-      <div className="uploadContainer">
+    <div className="uploadContainer">
+      <div className="uploadControl">
+        <div className="stepImgContainer">
+          {showImage && <img id="uploadStepImg" src={uploadImg} alt="Step Image"></img>}
+        </div>
         <div className="uploadForm">
           <form className="selectItem" onSubmit={handleSubmit}>
             <MDBBtn id="donateStepBtn" onClick={() => setShowImage(!showImage)}>捐贈步驟說明</MDBBtn>

@@ -26,6 +26,7 @@ max-width: 100%;
     justify-content: center ;
     width: 100%;
     padding-left: 5rem;
+    height: 10rem;
 }
 
 #homePageLogo {
@@ -288,7 +289,6 @@ width: 100%;
 .donateItemContainer {
     display: flex;
     justify-content: center;
-    /* margin-bottom: 1rem; */
 }
 
 .pWelcome {
@@ -394,8 +394,7 @@ width: 100%;
 .uploadContainer {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
-    height: 80rem;
+    margin-bottom: 5rem;
 }
 
 .uploadControl {

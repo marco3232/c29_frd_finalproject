@@ -28,7 +28,7 @@ export default function DonateItemPage() {
     <div className="donateItemContainer">
       <div className={styles.title}>
         <span className={styles.header}>器材募集 </span>
-        <h4 className="mt-5"><b>現接受捐贈以下物品</b></h4>
+        <h4 className="mt-2"><b>現接受捐贈以下物品</b></h4>
         <div className={styles.cards}>
           <Card className="donateItemCard" >
             <CardMedia
