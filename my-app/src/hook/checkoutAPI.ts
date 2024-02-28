@@ -8,7 +8,7 @@ export function useCheckOutInfo() {
     const { isLoading, error, data, isFetching } = useQuery({
         queryKey: ["checkouts"],
         queryFn: async () => {
-            const res = await fetch(`${source}/checkout`, {
+            const res = await fetch(`${source}/finalcheckout`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -26,6 +26,21 @@ export function useCheckOutInfo() {
         return []
     }
     return data
+}
+
+export async function getAmount() {
+    const res = await fetch(`${source}/totalamount`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        },
+
+    });
+
+    let resp = await res.json();
+    console.log("check resp",resp)
+    return resp.message;
 }
 
 

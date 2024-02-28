@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import CardMedia from "@mui/material/CardMedia";
 import { MDBBtn } from "mdb-react-ui-kit";
 import { useAppDispatch } from "../hook/hooks";
+import { updateRentalList } from "../slice/checkOutSlice";
 
 export function RentalPage() {
   const dispatch = useAppDispatch();
@@ -29,9 +30,9 @@ export function RentalPage() {
   const toggleShowA = () => setShowA(!showA);
   const toggleShowB = () => setShowB(!showB);
 
-  const updateRentalList = (itemIds: number[]) => {
-    return { type: "update rental list", donateItemIds: itemIds };
-  };
+  // const updateRentalList = (itemIds: number[]) => {
+  //   return { type: "update rental list", donateItemIds: itemIds };
+  // };
   const submit = () => {
     dispatch(updateRentalList(Array.from(donateItemIds)));
     console.log("submit");
