@@ -44,7 +44,7 @@ export default function Admin() {
                 <th className="adminPageTableDonateItems">捐贈物品和數量</th>
                 <th className="adminPageTableAddress">地址</th>
                 <th className="adminPageTableName">聯絡人姓名</th>
-                <th>聯絡人電話</th>
+                <th className="adminPageTablePhone"> 聯絡人電話</th>
                 <th className="adminPageTableDate">確認交收日期</th>
                 <th className="adminPageTableTime">確認交收時間</th>
                 <th></th>

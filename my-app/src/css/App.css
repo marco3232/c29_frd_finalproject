@@ -631,6 +631,14 @@ padding-bottom: 1rem;
 .adminPageTableBill {
     width: 15rem;
 }
+
+.adminPageTableName {
+    width: 10rem;
+}
+
+.adminPageTablePhone {
+    width: 10rem;
+}
 .modal {
     display: flex !important;
     justify-content: center !important;   
