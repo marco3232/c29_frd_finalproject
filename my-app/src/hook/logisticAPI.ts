@@ -5,7 +5,7 @@ import { DonationType, TransactionType } from "../slice/logisticSlice";
 const source = "http://localhost:8080";
 
 export function useGetLogisticInfo() {
-  const { isLoading, error, data, isFetching } = useQuery({
+  const { isLoading, error, data, isFetching,refetch } = useQuery({
     queryKey: ["logistic"],
     queryFn: async () => {
       const res = await fetch(`${source}/finaldonateconfirmMix`, {
@@ -19,14 +19,14 @@ export function useGetLogisticInfo() {
     },
   });
 
-  if (isLoading || isFetching) return "Data Loading";
+  if (isLoading || isFetching) return ["Data Loading", refetch];
   if (error) {
-    return "Error ";
+      return ["Error", refetch];
   }
   if (!data) {
-    return [];
+      return ["Error", refetch]
   }
-  return data;
+  return [data, refetch]
 }
 
 export async function addLogisticColumn(

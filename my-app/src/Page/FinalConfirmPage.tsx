@@ -5,7 +5,7 @@ import { Accordion, Card, Modal, } from "react-bootstrap";
 // -----------------------------------------------------
 
 import { Form, Col, Row } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { queryClient } from "..";
 import React from "react";
@@ -89,27 +89,34 @@ export default function FinalConfirmPage() {
   const [districtInput, setDistrictInput] = useState("");
 
 
-  const getLogisticList:
-    | string
-    | Array<{
-      id: number;
-      uuid?: number;
-      purpose?: string;
-      address: string;
-      district: string;
-      number: number;
-      name: string;
-      confirmed_date: string;
-      confirmed_session: string;
-      user_id?: number;
-      item_name?: string;
-      logistic_id?: number;
-      donate_item_id?: number;
-      quantity: number;
-      item_list?: string,
-      created_at: number
-    }> = useGetLogisticInfo();
-  console.log("getall", getLogisticList);
+  // const getLogisticList:
+  //   | string
+  //   | Array<{
+  //     id: number;
+  //     uuid?: number;
+  //     purpose?: string;
+  //     address: string;
+  //     district: string;
+  //     number: number;
+  //     name: string;
+  //     confirmed_date: string;
+  //     confirmed_session: string;
+  //     user_id?: number;
+  //     item_name?: string;
+  //     logistic_id?: number;
+  //     donate_item_id?: number;
+  //     quantity: number;
+  //     item_list?: string,
+  //     created_at: number
+  //   }> = useGetLogisticInfo();
+  // console.log("getall", getLogisticList);
+
+  const [getLogisticList, refetch] = useGetLogisticInfo();
+  useEffect(() => {
+    console.log("final confirm page")
+
+    refetch()
+  }, [])
 
   return (
     <div className="logisticControl">
