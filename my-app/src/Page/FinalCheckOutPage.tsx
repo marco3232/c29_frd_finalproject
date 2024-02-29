@@ -77,7 +77,11 @@ export function FinalCheckOutPage() {
     setShowAddress(false);
   };
   const [getLogisticList, refetch] = useCheckOutInfo();
+  useEffect(() => {
+    console.log("final chewckout")
 
+    refetch()
+  }, [])
   // const getRentNDeposit:
   //   | string
   //   | Array<{
@@ -92,7 +96,6 @@ export function FinalCheckOutPage() {
   //     rent_charge:number;
   //   }> = getAmount()
 
-  console.log("final chewckout")
 
 
   return (

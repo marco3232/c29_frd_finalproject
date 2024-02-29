@@ -28,7 +28,7 @@ export default function DonateItemPage() {
   return (
     <div className="donateItemContainer">
       <div className={styles.title}>
-        <span className={styles.header}>現接受捐贈以下物品 </span>
+        <span className={styles.header}>現接受捐贈以下物資 </span>
         <h4 className="mt-2"><b></b></h4>
         <div className={styles.cards}>
           <Card className="donateItemCard" >

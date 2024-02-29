@@ -18,12 +18,12 @@ export function useCheckOutInfo() {
             return result.data
         }
     });
-    if (isLoading || isFetching) return ["Data Loading"];
+    if (isLoading || isFetching) return ["Data Loading", refetch];
     if (error) {
-        return ["Error"];
+        return ["Error", refetch];
     }
     if (!data) {
-        return []
+        return ["Error", refetch]
     }
     return [data, refetch]
 }

@@ -30,7 +30,7 @@ export class AuthService {
         const token = jwtSimple.encode(payload, jwt.jwtSecret);
         return { flag: true, data: userInfoQuery.eng_given_name, message: "Login successful!", token: token, role: userInfoQuery.role };
       } else {
-        return { flag: false, message: "Sorry, Incorrect password" };
+        return { flag: false, message: "Sorry, Email Or Password Incorrect" };
       }
     } else {
       return { flag: false, message: "Sorry, User not found" };

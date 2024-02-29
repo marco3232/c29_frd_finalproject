@@ -140,7 +140,7 @@ export default function TransactionPage() {
               />
               <Form.Label>聯絡人電話</Form.Label>
               <Form.Control
-                type="phoneNumber"
+                type="number"
                 placeholder=""
                 value={contactNumberInput}
                 onChange={(e) => {

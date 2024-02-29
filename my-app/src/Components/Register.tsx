@@ -177,15 +177,15 @@ const RegisterForm = () => {
             />
           </MDBRow>
           <div className='roleLabel'>
-            <h6 className=''>用戶身份:</h6>
-            <MDBRadio
+            {/* <h6 className=''>用戶身份:</h6> */}
+            {/* <MDBRadio
               name='inlineRadio'
               id='inlineRadio3'
               value='option3'
               label='需要人士'
               inline
-            />
-            <MDBRadio
+            /> */}
+            {/* <MDBRadio
               name='inlineRadio'
               id='inlineRadio1'
               value='option1'
@@ -205,7 +205,7 @@ const RegisterForm = () => {
               value='option2'
               label='非牟利機構'
               inline
-            />
+            /> */}
           </div>
           <div className='submitContainer   '>
             <MDBBtn id="resetBtn" color='danger' size='lg'>
